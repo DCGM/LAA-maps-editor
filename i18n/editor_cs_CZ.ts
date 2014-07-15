@@ -82,9 +82,9 @@
     </message>
     <message id="props-detail-out-of-sector-penalty">
         <location filename="../qml/editor/PropertiesDetail.qml" line="200"/>
-        <source>Out of sector pentaly [points]</source>
-        <oldsource>Out of sector pentaly</oldsource>
-        <translation>Vylétnutí ze sektrou [body]</translation>
+        <source>Out of sector pentaly [%]</source>
+        <oldsource>Out of sector pentaly [points]</oldsource>
+        <translation>Vylétnutí ze sektrou [%]</translation>
     </message>
     <message id="props-detail-speed-penalty">
         <location filename="../qml/editor/PropertiesDetail.qml" line="209"/>
@@ -130,55 +130,55 @@
     </message>
     <message id="point-detail-section_speed_start-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="402"/>
-        <location filename="../qml/editor/TracksList.qml" line="918"/>
+        <location filename="../qml/editor/TracksList.qml" line="920"/>
         <source>Section speed start</source>
         <translation>Začátek úseku měření rychlosti</translation>
     </message>
     <message id="point-detail-section_speed_end-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="410"/>
-        <location filename="../qml/editor/TracksList.qml" line="926"/>
+        <location filename="../qml/editor/TracksList.qml" line="928"/>
         <source>Section speed end</source>
         <translation>Konec úseku měření rychlosti</translation>
     </message>
     <message id="point-detail-section_alt_start-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="418"/>
-        <location filename="../qml/editor/TracksList.qml" line="934"/>
+        <location filename="../qml/editor/TracksList.qml" line="936"/>
         <source>Section alt start</source>
         <translation>Začátek úseku měření výšky</translation>
     </message>
     <message id="point-detail-section_alt_end-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="426"/>
-        <location filename="../qml/editor/TracksList.qml" line="942"/>
+        <location filename="../qml/editor/TracksList.qml" line="944"/>
         <source>Section alt end</source>
         <translation>Konec úseku měření výšky</translation>
     </message>
     <message id="point-detail-section_space_start-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="434"/>
-        <location filename="../qml/editor/TracksList.qml" line="949"/>
+        <location filename="../qml/editor/TracksList.qml" line="951"/>
         <source>Section space start</source>
         <translation>Začátek úseku měření koridoru</translation>
     </message>
     <message id="point-detail-section_space_end-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="442"/>
-        <location filename="../qml/editor/TracksList.qml" line="957"/>
+        <location filename="../qml/editor/TracksList.qml" line="959"/>
         <source>Section space end</source>
         <translation>Konec úseku měření koridoru</translation>
     </message>
     <message id="point-detail-secret_turn_point-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="454"/>
-        <location filename="../qml/editor/TracksList.qml" line="966"/>
+        <location filename="../qml/editor/TracksList.qml" line="968"/>
         <source>Secret Turn Point</source>
         <translation>Tajný otočný bod</translation>
     </message>
     <message id="point-detail-secret_time_gate-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="463"/>
-        <location filename="../qml/editor/TracksList.qml" line="974"/>
+        <location filename="../qml/editor/TracksList.qml" line="976"/>
         <source>Secret Time Gate</source>
         <translation>Tajná časová brána</translation>
     </message>
     <message id="point-detail-secret_space_gate-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="472"/>
-        <location filename="../qml/editor/TracksList.qml" line="982"/>
+        <location filename="../qml/editor/TracksList.qml" line="984"/>
         <source>Secret Space Gate</source>
         <oldsource>Secret Time Gate</oldsource>
         <translation>Tajná prostorová brána</translation>
@@ -199,7 +199,7 @@
         <translation>LAA Trajectory Editor</translation>
     </message>
     <message id="about-licence">
-        <location filename="../qml/editor/AboutDialog.qml" line="103"/>
+        <location filename="../qml/editor/AboutDialog.qml" line="102"/>
         <source>
 Authors: &lt;br/&gt;\n
 Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;http://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;\n\n
@@ -290,7 +290,7 @@ Redistribuce a použití zdrojových i binárních forem díla, v původním i u
 TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK STOJÍ A LEŽÍ“ A JAKÉKOLIV VÝSLOVNÉ NEBO PŘEDPOKLÁDANÉ ZÁRUKY VČETNĚ, ALE NEJEN, PŘEDPOKLÁDANÝCH OBCHODNÍCH ZÁRUK A ZÁRUKY VHODNOSTI PRO JAKÝKOLIV ÚČEL JSOU POPŘENY. DRŽITEL, ANI PŘISPĚVATELÉ NEBUDOU V ŽÁDNÉM PŘÍPADĚ ODPOVĚDNI ZA JAKÉKOLIV PŘÍMÉ, NEPŘÍMÉ, NÁHODNÉ, ZVLÁŠTNÍ, PŘÍKLADNÉ NEBO VYPLÝVAJÍCÍ ŠKODY (VČETNĚ, ALE NEJEN, ŠKOD VZNIKLÝCH NARUŠENÍM DODÁVEK ZBOŽÍ NEBO SLUŽEB; ZTRÁTOU POUŽITELNOSTI, DAT NEBO ZISKŮ; NEBO PŘERUŠENÍM OBCHODNÍ ČINNOSTI) JAKKOLIV ZPŮSOBENÉ NA ZÁKLADĚ JAKÉKOLIV TEORIE O ZODPOVĚDNOSTI, AŤ UŽ PLYNOUCÍ Z JINÉHO SMLUVNÍHO VZTAHU, URČITÉ ZODPOVĚDNOSTI NEBO PŘEČINU (VČETNĚ NEDBALOSTI) NA JAKÉMKOLIV ZPŮSOBU POUŽITÍ TOHOTO SOFTWARE, I V PŘÍPADĚ, ŽE DRŽITEL PRÁV BYL UPOZORNĚN NA MOŽNOST TAKOVÝCH ŠKOD.</translation>
     </message>
     <message id="about-build-date">
-        <location filename="../qml/editor/AboutDialog.qml" line="111"/>
+        <location filename="../qml/editor/AboutDialog.qml" line="110"/>
         <source>Build %1 %2</source>
         <translation>Vytvořeno %1 %2</translation>
     </message>
@@ -341,37 +341,37 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
     </message>
     <message id="point-detail-altitude-min-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="366"/>
-        <location filename="../qml/editor/TracksList.qml" line="886"/>
+        <location filename="../qml/editor/TracksList.qml" line="888"/>
         <source>Altitude min</source>
         <translation>Minimální výška</translation>
     </message>
     <message id="point-detail-altitude-max-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="375"/>
-        <location filename="../qml/editor/TracksList.qml" line="894"/>
+        <location filename="../qml/editor/TracksList.qml" line="896"/>
         <source>Altitude max</source>
         <translation>Maximální výška</translation>
     </message>
     <message id="point-detail-speed-min-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="384"/>
-        <location filename="../qml/editor/TracksList.qml" line="903"/>
+        <location filename="../qml/editor/TracksList.qml" line="905"/>
         <source>Speed min</source>
         <translation>Minimální rychlost</translation>
     </message>
     <message id="point-detail-speed-max-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="392"/>
-        <location filename="../qml/editor/TracksList.qml" line="911"/>
+        <location filename="../qml/editor/TracksList.qml" line="913"/>
         <source>Speed max</source>
         <translation>Maximální rychlost</translation>
     </message>
     <message id="point-detail-turn-point-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="341"/>
-        <location filename="../qml/editor/TracksList.qml" line="864"/>
+        <location filename="../qml/editor/TracksList.qml" line="866"/>
         <source>Turn Point</source>
         <translation>Otočný bod</translation>
     </message>
     <message id="point-detail-time-gate-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="349"/>
-        <location filename="../qml/editor/TracksList.qml" line="871"/>
+        <location filename="../qml/editor/TracksList.qml" line="873"/>
         <source>Time gate</source>
         <translation>Časová brána</translation>
     </message>
@@ -734,68 +734,68 @@ TENTO SOFTWARE JE POSKYTOVÁN DRŽITELEM LICENCE A JEHO PŘISPĚVATELI „JAK ST
         <translation>Maximální výška [m]</translation>
     </message>
     <message id="tracks-list-speed_min">
-        <location filename="../qml/editor/TracksList.qml" line="588"/>
+        <location filename="../qml/editor/TracksList.qml" line="589"/>
         <source>Min Speed [km/h]</source>
         <translation>Minimální rychlost [km/h]</translation>
     </message>
     <message id="tracks-list-speed_max">
-        <location filename="../qml/editor/TracksList.qml" line="594"/>
+        <location filename="../qml/editor/TracksList.qml" line="596"/>
         <source>Max Speed [km/h]</source>
         <translation>Maximální rychlost [km/h]</translation>
     </message>
     <message id="tracks-list-ptr">
-        <location filename="../qml/editor/TracksList.qml" line="600"/>
+        <location filename="../qml/editor/TracksList.qml" line="602"/>
         <source>Arc/Poly</source>
         <translation>Oblouk/Křivka</translation>
     </message>
     <message id="tracks-list-points-table-add-before">
-        <location filename="../qml/editor/TracksList.qml" line="737"/>
+        <location filename="../qml/editor/TracksList.qml" line="739"/>
         <source>Add point before selected</source>
         <translation>Přidat bod před vybraný</translation>
     </message>
     <message id="tracks-list-points-table-add-after">
-        <location filename="../qml/editor/TracksList.qml" line="755"/>
+        <location filename="../qml/editor/TracksList.qml" line="757"/>
         <source>Add point after selected</source>
         <translation>Přidat bod za vybraný</translation>
     </message>
     <message id="tracks-list-points-table-add">
-        <location filename="../qml/editor/TracksList.qml" line="768"/>
+        <location filename="../qml/editor/TracksList.qml" line="770"/>
         <source>Add point</source>
         <translation>Přidat bod</translation>
     </message>
     <message id="tracks-list-points-table-remove">
-        <location filename="../qml/editor/TracksList.qml" line="823"/>
+        <location filename="../qml/editor/TracksList.qml" line="825"/>
         <source>Remove point</source>
         <translation>Odstranit bod</translation>
     </message>
     <message id="point-detail-reset-flags">
-        <location filename="../qml/editor/TracksList.qml" line="844"/>
+        <location filename="../qml/editor/TracksList.qml" line="846"/>
         <source>Reset flags</source>
         <translation>Obnovit atributy</translation>
     </message>
     <message id="point-detail-space-gate-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="357"/>
-        <location filename="../qml/editor/TracksList.qml" line="878"/>
+        <location filename="../qml/editor/TracksList.qml" line="880"/>
         <source>Space gate</source>
         <translation>Prostorová brána</translation>
     </message>
     <message id="track-list-polygon-did">
-        <location filename="../qml/editor/TracksList.qml" line="1022"/>
+        <location filename="../qml/editor/TracksList.qml" line="1024"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="track-list-polygon-cid">
-        <location filename="../qml/editor/TracksList.qml" line="1029"/>
+        <location filename="../qml/editor/TracksList.qml" line="1031"/>
         <source>Polygon</source>
         <translation>Polygon</translation>
     </message>
     <message id="tracks-list-polygons-table-add">
-        <location filename="../qml/editor/TracksList.qml" line="1048"/>
+        <location filename="../qml/editor/TracksList.qml" line="1050"/>
         <source>Add polygon</source>
         <translation>Přidat polygon</translation>
     </message>
     <message id="tracks-list-polygons-table-remove">
-        <location filename="../qml/editor/TracksList.qml" line="1071"/>
+        <location filename="../qml/editor/TracksList.qml" line="1073"/>
         <source>Remove polygon</source>
         <translation>Odstranit polygon</translation>
     </message>

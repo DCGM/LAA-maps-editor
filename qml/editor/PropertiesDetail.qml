@@ -196,7 +196,7 @@ ApplicationWindow {
         }
 
         NativeText {
-            //% "Out of sector pentaly [points]"
+            //% "Out of sector pentaly [%]"
             text: qsTrId("props-detail-out-of-sector-penalty")
         }
 

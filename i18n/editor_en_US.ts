@@ -82,9 +82,9 @@
     </message>
     <message id="props-detail-out-of-sector-penalty">
         <location filename="../qml/editor/PropertiesDetail.qml" line="200"/>
-        <source>Out of sector pentaly [points]</source>
-        <oldsource>Out of sector pentaly</oldsource>
-        <translation>Out of sector pentaly [points]</translation>
+        <source>Out of sector pentaly [%]</source>
+        <oldsource>Out of sector pentaly [points]</oldsource>
+        <translation>Out of sector pentaly [%]</translation>
     </message>
     <message id="props-detail-speed-penalty">
         <location filename="../qml/editor/PropertiesDetail.qml" line="209"/>
@@ -130,55 +130,55 @@
     </message>
     <message id="point-detail-section_speed_start-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="402"/>
-        <location filename="../qml/editor/TracksList.qml" line="918"/>
+        <location filename="../qml/editor/TracksList.qml" line="920"/>
         <source>Section speed start</source>
         <translation>Section speed start</translation>
     </message>
     <message id="point-detail-section_speed_end-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="410"/>
-        <location filename="../qml/editor/TracksList.qml" line="926"/>
+        <location filename="../qml/editor/TracksList.qml" line="928"/>
         <source>Section speed end</source>
         <translation>Section speed end</translation>
     </message>
     <message id="point-detail-section_alt_start-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="418"/>
-        <location filename="../qml/editor/TracksList.qml" line="934"/>
+        <location filename="../qml/editor/TracksList.qml" line="936"/>
         <source>Section alt start</source>
         <translation>Section alt start</translation>
     </message>
     <message id="point-detail-section_alt_end-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="426"/>
-        <location filename="../qml/editor/TracksList.qml" line="942"/>
+        <location filename="../qml/editor/TracksList.qml" line="944"/>
         <source>Section alt end</source>
         <translation>Section alt end</translation>
     </message>
     <message id="point-detail-section_space_start-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="434"/>
-        <location filename="../qml/editor/TracksList.qml" line="949"/>
+        <location filename="../qml/editor/TracksList.qml" line="951"/>
         <source>Section space start</source>
         <translation>Section space start</translation>
     </message>
     <message id="point-detail-section_space_end-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="442"/>
-        <location filename="../qml/editor/TracksList.qml" line="957"/>
+        <location filename="../qml/editor/TracksList.qml" line="959"/>
         <source>Section space end</source>
         <translation>Section space end</translation>
     </message>
     <message id="point-detail-secret_turn_point-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="454"/>
-        <location filename="../qml/editor/TracksList.qml" line="966"/>
+        <location filename="../qml/editor/TracksList.qml" line="968"/>
         <source>Secret Turn Point</source>
         <translation>Secret Turn Point</translation>
     </message>
     <message id="point-detail-secret_time_gate-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="463"/>
-        <location filename="../qml/editor/TracksList.qml" line="974"/>
+        <location filename="../qml/editor/TracksList.qml" line="976"/>
         <source>Secret Time Gate</source>
         <translation>Secret Time Gate</translation>
     </message>
     <message id="point-detail-secret_space_gate-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="472"/>
-        <location filename="../qml/editor/TracksList.qml" line="982"/>
+        <location filename="../qml/editor/TracksList.qml" line="984"/>
         <source>Secret Space Gate</source>
         <oldsource>Secret Time Gate</oldsource>
         <translation>Secret Space Gate</translation>
@@ -199,7 +199,7 @@
         <translation>LAA Trajectory Editor</translation>
     </message>
     <message id="about-licence">
-        <location filename="../qml/editor/AboutDialog.qml" line="103"/>
+        <location filename="../qml/editor/AboutDialog.qml" line="102"/>
         <source>
 Authors: &lt;br/&gt;\n
 Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;http://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;\n\n
@@ -308,7 +308,7 @@ Licence: &lt;br/&gt;
  </translation>
     </message>
     <message id="about-build-date">
-        <location filename="../qml/editor/AboutDialog.qml" line="111"/>
+        <location filename="../qml/editor/AboutDialog.qml" line="110"/>
         <source>Build %1 %2</source>
         <translation>Build %1 %2</translation>
     </message>
@@ -359,37 +359,37 @@ Licence: &lt;br/&gt;
     </message>
     <message id="point-detail-altitude-min-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="366"/>
-        <location filename="../qml/editor/TracksList.qml" line="886"/>
+        <location filename="../qml/editor/TracksList.qml" line="888"/>
         <source>Altitude min</source>
         <translation>Altitude min</translation>
     </message>
     <message id="point-detail-altitude-max-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="375"/>
-        <location filename="../qml/editor/TracksList.qml" line="894"/>
+        <location filename="../qml/editor/TracksList.qml" line="896"/>
         <source>Altitude max</source>
         <translation>Altitude max</translation>
     </message>
     <message id="point-detail-speed-min-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="384"/>
-        <location filename="../qml/editor/TracksList.qml" line="903"/>
+        <location filename="../qml/editor/TracksList.qml" line="905"/>
         <source>Speed min</source>
         <translation>Speed min</translation>
     </message>
     <message id="point-detail-speed-max-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="392"/>
-        <location filename="../qml/editor/TracksList.qml" line="911"/>
+        <location filename="../qml/editor/TracksList.qml" line="913"/>
         <source>Speed max</source>
         <translation>Speed max</translation>
     </message>
     <message id="point-detail-turn-point-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="341"/>
-        <location filename="../qml/editor/TracksList.qml" line="864"/>
+        <location filename="../qml/editor/TracksList.qml" line="866"/>
         <source>Turn Point</source>
         <translation>Turn Point</translation>
     </message>
     <message id="point-detail-time-gate-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="349"/>
-        <location filename="../qml/editor/TracksList.qml" line="871"/>
+        <location filename="../qml/editor/TracksList.qml" line="873"/>
         <source>Time gate</source>
         <translation>Time Gate</translation>
     </message>
@@ -752,68 +752,68 @@ Licence: &lt;br/&gt;
         <translation>Max Alt [m]</translation>
     </message>
     <message id="tracks-list-speed_min">
-        <location filename="../qml/editor/TracksList.qml" line="588"/>
+        <location filename="../qml/editor/TracksList.qml" line="589"/>
         <source>Min Speed [km/h]</source>
         <translation>Min Speed [km/h]</translation>
     </message>
     <message id="tracks-list-speed_max">
-        <location filename="../qml/editor/TracksList.qml" line="594"/>
+        <location filename="../qml/editor/TracksList.qml" line="596"/>
         <source>Max Speed [km/h]</source>
         <translation>Max Speed [km/h]</translation>
     </message>
     <message id="tracks-list-ptr">
-        <location filename="../qml/editor/TracksList.qml" line="600"/>
+        <location filename="../qml/editor/TracksList.qml" line="602"/>
         <source>Arc/Poly</source>
         <translation>Arc/Poly</translation>
     </message>
     <message id="tracks-list-points-table-add-before">
-        <location filename="../qml/editor/TracksList.qml" line="737"/>
+        <location filename="../qml/editor/TracksList.qml" line="739"/>
         <source>Add point before selected</source>
         <translation>Add point before selected</translation>
     </message>
     <message id="tracks-list-points-table-add-after">
-        <location filename="../qml/editor/TracksList.qml" line="755"/>
+        <location filename="../qml/editor/TracksList.qml" line="757"/>
         <source>Add point after selected</source>
         <translation>Add point after selected</translation>
     </message>
     <message id="tracks-list-points-table-add">
-        <location filename="../qml/editor/TracksList.qml" line="768"/>
+        <location filename="../qml/editor/TracksList.qml" line="770"/>
         <source>Add point</source>
         <translation>Add point</translation>
     </message>
     <message id="tracks-list-points-table-remove">
-        <location filename="../qml/editor/TracksList.qml" line="823"/>
+        <location filename="../qml/editor/TracksList.qml" line="825"/>
         <source>Remove point</source>
         <translation>Remove point</translation>
     </message>
     <message id="point-detail-reset-flags">
-        <location filename="../qml/editor/TracksList.qml" line="844"/>
+        <location filename="../qml/editor/TracksList.qml" line="846"/>
         <source>Reset flags</source>
         <translation>Reset flags</translation>
     </message>
     <message id="point-detail-space-gate-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="357"/>
-        <location filename="../qml/editor/TracksList.qml" line="878"/>
+        <location filename="../qml/editor/TracksList.qml" line="880"/>
         <source>Space gate</source>
         <translation>Space gate</translation>
     </message>
     <message id="track-list-polygon-did">
-        <location filename="../qml/editor/TracksList.qml" line="1022"/>
+        <location filename="../qml/editor/TracksList.qml" line="1024"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="track-list-polygon-cid">
-        <location filename="../qml/editor/TracksList.qml" line="1029"/>
+        <location filename="../qml/editor/TracksList.qml" line="1031"/>
         <source>Polygon</source>
         <translation>Polygon</translation>
     </message>
     <message id="tracks-list-polygons-table-add">
-        <location filename="../qml/editor/TracksList.qml" line="1048"/>
+        <location filename="../qml/editor/TracksList.qml" line="1050"/>
         <source>Add polygon</source>
         <translation>Add polygon</translation>
     </message>
     <message id="tracks-list-polygons-table-remove">
-        <location filename="../qml/editor/TracksList.qml" line="1071"/>
+        <location filename="../qml/editor/TracksList.qml" line="1073"/>
         <source>Remove polygon</source>
         <translation>Remove polygon</translation>
     </message>
