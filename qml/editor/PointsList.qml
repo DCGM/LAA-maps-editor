@@ -176,7 +176,7 @@ TableView {
                     pModel.remove(removeIndex, 1);
                     removedCount++
                 })
-                tableView.selection.deselect(0, pModel.count-1);
+                tableView.selection.clear();
 
                 pModel.pointsChanged();
 

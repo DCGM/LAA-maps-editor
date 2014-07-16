@@ -94,10 +94,12 @@ TableView {
         MenuItem {
             //% "Transform to points"
             text: qsTrId("polygon-list-polygon-to-points")
-            enabled: (tableView.currentRow !== -1)
+            enabled: (tableView.selection.count > 0)
             onTriggered: {
-                var item = pModel.get(tableView.currentRow);
-                polygonToPoints(item.cid)
+                tableView.selection.forEach( function(rowIndex) {
+                    var item = pModel.get(rowIndex);
+                    polygonToPoints(item.cid)
+                })
 
             }
         }
@@ -105,9 +107,15 @@ TableView {
         MenuItem {
             //% "Remove polygon"
             text: qsTrId("polygon-list-remove-polygon")
-            enabled: (tableView.currentRow !== -1)
+            enabled: (tableView.selection.count > 0)
             onTriggered: {
-                pModel.remove(tableView.currentRow, 1)
+                var removedCount = 0;
+                tableView.selection.forEach( function(rowIndex) {
+                    pModel.remove(rowIndex-removedCount, 1)
+                    removedCount++;
+
+                } )
+                tableView.selection.clear();
                 pModel.polygonsChanged();
             }
         }
