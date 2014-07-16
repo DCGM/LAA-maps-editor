@@ -705,6 +705,14 @@ Rectangle {
                 mapy: map.y
                 z: 2000
 
+
+//                NativeText {
+//                    x: parent.width*0.75
+//                    y: parent.height*0.75
+//                    text: model.name
+//                    visible: (pinchmap.zoomLevel > 9);
+//                }
+
             }
 
         }
