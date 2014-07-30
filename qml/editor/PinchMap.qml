@@ -7,17 +7,20 @@ Rectangle {
     property bool mapTileVisible:true;
     property bool airspaceVisible: true;
 
-    property int zoomLevel: 7;
+    property real zoomLevel: 7;
+    property int zoomLevelInt: Math.floor(zoomLevel);
+    property real zoomLevelReminder: zoomLevel - zoomLevelInt
     property int oldZoomLevel: 99
     property int maxZoomLevel: 19;
     property int minZoomLevel: 2;
     property int minZoomLevelShowGeocaches: 9;
-    property int tileSize: 256;
+    property real tileScaleFactor: 2
+    property int tileSize: (128 + (128 * zoomLevelReminder)) * tileScaleFactor;
     property int cornerTileX: 32;
     property int cornerTileY: 32;
     property int numTilesX: Math.ceil(width/tileSize) + 2;
     property int numTilesY: Math.ceil(height/tileSize) + 2;
-    property int maxTileNo: Math.pow(2, zoomLevel) - 1;
+    property int maxTileNo: Math.pow(2, zoomLevelInt) - 1;
     property bool showTargetIndicator: false
     property double showTargetAtLat: 0;
     property double showTargetAtLon: 0;
@@ -509,7 +512,7 @@ Rectangle {
     }
 
     function num2deg(xtile, ytile) {
-        var n = Math.pow(2, zoomLevel);
+        var n = Math.pow(2, zoomLevelInt);
         var lon_deg = xtile / n * 360.0 - 180;
         var lat_rad = Math.atan(sinh(Math.PI * (1 - 2 * ytile / n)));
         var lat_deg = lat_rad * 180.0 / Math.PI;
@@ -518,19 +521,19 @@ Rectangle {
 
     function tileUrl(tx, ty) {
         if ((url === undefined) || (url === "")) {
-            return "./data/noimage-disabled.png"
+            return Qt.resolvedUrl("./data/noimage-disabled.png")
         }
 
         if (tx < 0 || tx > maxTileNo) {
-            return "./data/noimage.png"
+            return Qt.resolvedUrl("./data/noimage.png")
         }
 
         if (ty < 0 || ty > maxTileNo) {
-            return "./data/noimage.png"
+            return Qt.resolvedUrl("./data/noimage.png")
         }
 
 
-        var res = Qt.resolvedUrl(F.getMapTile(url, tx, ty, zoomLevel));
+        var res = Qt.resolvedUrl(F.getMapTile(url, tx, ty, zoomLevelInt));
 
         if (filereader.is_local_file(res) && !filereader.file_exists(res)) { // do not open non existing image
             return "";
@@ -612,6 +615,7 @@ Rectangle {
                     visible: mapTileVisible
                 }
                 Image {
+                    anchors.fill: parent;
                     visible: mapTileVisible && (img.status === Image.Null)
                     source: "./data/noimage.png"
                 }
@@ -1585,19 +1589,23 @@ Rectangle {
         id: pincharea;
 
         property double __oldZoom;
+        property double __oldAngle;
+
 
         anchors.fill: parent;
 
         function calcZoomDelta(p) {
-            pinchmap.setZoomLevelPoint(Math.round((Math.log(p.scale)/Math.log(2)) + __oldZoom), p.center.x, p.center.y);
+            var newZoomLevel = (Math.log(p.scale)/Math.log(2)) + __oldZoom;
+            pinchmap.setZoomLevelPoint(newZoomLevel, p.center.x, p.center.y);
             if (rotationEnabled) {
-                rot.angle = p.rotation
+                rot.angle = __oldAngle + p.rotation
             }
             pan(p.previousCenter.x - p.center.x, p.previousCenter.y - p.center.y);
         }
 
         onPinchStarted: {
             __oldZoom = pinchmap.zoomLevel;
+            __oldAngle = rot.angle
         }
 
         onPinchUpdated: {
@@ -1628,9 +1636,9 @@ Rectangle {
 
             onWheel:  {
                 if (wheel.angleDelta.y > 0) {
-                    setZoomLevelPoint(pinchmap.zoomLevel + 1, wheel.x, wheel.y);
+                    setZoomLevelPoint(pinchmap.zoomLevel + 0.25, wheel.x, wheel.y);
                 } else {
-                    setZoomLevelPoint(pinchmap.zoomLevel - 1, wheel.x, wheel.y);
+                    setZoomLevelPoint(pinchmap.zoomLevel - 0.25, wheel.x, wheel.y);
                 }
             }
 
