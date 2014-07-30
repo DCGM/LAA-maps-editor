@@ -1636,9 +1636,9 @@ Rectangle {
 
             onWheel:  {
                 if (wheel.angleDelta.y > 0) {
-                    setZoomLevelPoint(pinchmap.zoomLevel + 0.25, wheel.x, wheel.y);
+                    setZoomLevelPoint(pinchmap.zoomLevel + 1, wheel.x, wheel.y);
                 } else {
-                    setZoomLevelPoint(pinchmap.zoomLevel - 0.25, wheel.x, wheel.y);
+                    setZoomLevelPoint(pinchmap.zoomLevel - 1, wheel.x, wheel.y);
                 }
             }
 
