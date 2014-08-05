@@ -879,3 +879,7 @@ function getFlagsByIndex(flag_index, value) {
     return ((value & mask) == mask);
 }
 
+function addSlashes(input) {
+    return String(input).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+

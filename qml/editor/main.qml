@@ -17,6 +17,7 @@ ApplicationWindow {
 
     property string opened_track_filename: "";
     property bool document_changed: false;
+    property string tucekSettingsCSV: "./tucek-settings.csv"
 
     onClosing: {
         close.accepted = false;
@@ -88,6 +89,7 @@ ApplicationWindow {
                     }
                     document_changed = false;
                     file_reader.write(Qt.resolvedUrl(opened_track_filename), JSON.stringify(tracks));
+                    storeTrackSettings(Qt.resolvedUrl(tucekSettingsCSV));
 
                 }
 
@@ -479,6 +481,8 @@ ApplicationWindow {
 
 
             file_reader.write(Qt.resolvedUrl(opened_track_filename), JSON.stringify(tracks));
+            storeTrackSettings(Qt.resolvedUrl(tucekSettingsCSV));
+
             action();
         }
     }
@@ -501,6 +505,8 @@ ApplicationWindow {
                 return;
             }
             file_reader.write(Qt.resolvedUrl(opened_track_filename), JSON.stringify(tracks));
+            storeTrackSettings(Qt.resolvedUrl(tucekSettingsCSV));
+
             action();
         }
 
@@ -991,6 +997,157 @@ ApplicationWindow {
     GpxJsonConvertor {
         id: gpxConv
     }
+
+
+    function getPtByPid(pid, points) {
+        for (var i = 0; i < points.length; i++) {
+            var item = points[i]
+            if (item.pid == pid) {
+                return item;
+            }
+        }
+    }
+
+    function storeTrackSettings(filename) {
+        var str = "";
+        var trks = tracks.tracks
+        var points = tracks.points;
+        for (var i = 0; i < trks.length; i++) {
+            var item = trks[i]
+            var category_name = F.addSlashes(item.name)
+            str += "\"" + category_name + "\";";
+            str += "\"" + item.alt_penalty + "\";";
+            str += "\"" + item.gyre_penalty + "\";";
+            str += "\"" + item.marker_max_score + "\";";
+            str += "\"" + item.oposite_direction_penalty + "\";";
+            str += "\"" + item.out_of_sector_penalty + "\";";
+            str += "\"" + item.photos_max_score + "\";";
+            str += "\"" + item.speed_penalty + "\";";
+            str += "\"" + item.tg_max_score + "\";";
+            str += "\"" + item.tg_penalty + "\";";
+            str += "\"" + item.tg_tolerance + "\";";
+            str += "\"" + item.time_window_penalty + "\";";
+            str += "\"" + item.time_window_size + "\";";
+            str += "\"" + item.tp_max_score + "\";";
+            str += "\"" + item.speed_tolerance + "\";";
+            str += "\"" + item.sg_max_score + "\";";
+            str += "\"" + ((item.preparation_time !== undefined) ? item.preparation_time : 0) + "\";";
+
+            //            str += "\n";
+            //            str += "\"" + category_name + "___PART2" +"\";";
+
+            var conns = item.conn;
+
+
+            for (var j = 0; (j < conns.length); j++) {
+                var c = conns[j];
+
+                var pt = getPtByPid(c.pid, points)
+
+                //                console.log(JSON.stringify(pt))
+                str += "\"" + ((c.flags < 0) ? item.default_flags : c.flags ) + "\";";
+                str += "\"" + ((c.angle < 0) ? c.computed_angle : c.angle) + "\";";
+                str += "\"" + ((c.distance < 0) ? c.computed_distance : c.distance) + "\";";
+                str += "\"" + ((c.addTime < 0) ? item.default_addTime : c.addTime) + "\";";
+                str += "\"" + ((c.radius < 0) ? item.default_radius : c.radius) + "\";";
+                str += "\"" + ((c.alt_max < 0) ? item.default_alt_max : c.alt_max) + "\";";
+                str += "\"" + ((c.alt_min < 0) ? item.default_alt_min : c.alt_min) + "\";";
+                str += "\"" + ((c.speed_max < 0) ? item.default_speed_max : c.speed_max) + "\";";
+                str += "\"" + ((c.speed_min < 0) ? item.default_speed_min : c.speed_min) + "\";";
+                str += "\"" + F.addSlashes(pt.name) + "\";";
+            }
+
+
+
+            var section_speed_start_pid = -1;
+            var section_alt_start_pid = -1;
+            var section_space_start_pid = -1;
+            var sections = [];
+
+            for (var j = 0; j < conns.length; j++) {
+                var c = conns[j];
+
+                var flags = ((c.flags < 0) ? item.default_flags : c.flags );
+                var section_speed_start = F.getFlagsByIndex(7, flags)
+                var section_speed_end   = F.getFlagsByIndex(8, flags)
+                var section_alt_start   = F.getFlagsByIndex(9, flags)
+                var section_alt_end     = F.getFlagsByIndex(10, flags)
+                var section_space_start = F.getFlagsByIndex(11, flags)
+                var section_space_end   = F.getFlagsByIndex(12, flags)
+
+                if (section_speed_end && (section_speed_start_pid >= 0)) {
+                    var item = {
+                        "start": section_speed_start_pid,
+                        "end": c.pid,
+                        "type":
+                        //% "speed"
+                        qsTrId("section-type-speed")
+                    }
+                    sections.push(item);
+                    section_speed_start_pid = -1;
+                }
+
+                if (section_alt_end && (section_alt_start_pid >= 0)) {
+                    var item = {
+                        "start": section_alt_start_pid,
+                        "end": c.pid,
+                        "type":
+                        //% "altitude"
+                        qsTrId("section-type-altitude")
+                    }
+                    sections.push(item);
+                    section_alt_start_pid = -1;
+                }
+
+                if (section_space_end && (section_space_start_pid >= 0)) {
+                    var item = {
+                        "start": section_space_start_pid,
+                        "end": c.pid,
+                        "type":
+                        //% "space"
+                        qsTrId("section-type-space")
+                    }
+                    sections.push(item);
+                    section_space_start_pid = -1;
+                }
+
+                if (section_speed_start) {
+                    section_speed_start_pid = c.pid;
+                }
+                if (section_alt_start) {
+                    section_alt_start_pid = c.pid;
+                }
+                if (section_space_start) {
+                    section_space_start_pid = c.pid;
+                }
+
+
+            }
+
+            str += "\n";
+            str += "\"" + category_name + "___sections" +"\";";
+
+
+            for (var j = 0; j < sections.length; j++) {
+                var section = sections[j];
+                var pt_start = getPtByPid(section.start, points)
+                var pt_end = getPtByPid(section.end, points)
+
+                str += "\"" + section.type + "\";\"" + section.start + "\";\"" + F.addSlashes(pt_start.name) + "\";\"" + section.end + "\";\"" + F.addSlashes(pt_end.name) + "\";"
+            }
+
+
+
+            str += "\n";
+
+        }
+        str += ""
+
+        file_reader.write(Qt.resolvedUrl(filename), str);
+
+    }
+
+
 
 
 
