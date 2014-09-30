@@ -12,9 +12,11 @@ Rectangle {
     property variant computedData;
     signal pointSelected(int tid);
 
-
-
     onComputedDataChanged: {
+        updateComputedValues()
+    }
+
+    function updateComputedValues() {
         if (computedData === undefined) {
             return;
         }
@@ -55,7 +57,8 @@ Rectangle {
                 new_tracks_arr.push(new_arr)
             } else {
                 // FIXME
-                // bug: pokud se pohne bodem, tak se nezmeni vypocitane uhly a vzdalenosti"
+                // bug: pokud se pohne bodem, tak se neprepocitaji uhly a vzdalenosti pro vsechny kategorie
+                // workaround: pred ulozenim je potreba proklikat si vsechny kategorie
                 new_tracks_arr.push(t);
             }
 
@@ -63,7 +66,6 @@ Rectangle {
 
         newTracks(new_tracks_arr)
         trackToTable(catIndex)
-
 
     }
 
@@ -386,6 +388,7 @@ Rectangle {
         onCurrentIndexChanged: {
             trackToTable(currentIndex)
             categoryChanged(currentIndex)
+            updateComputedValues();
 
         }
     }

@@ -158,6 +158,7 @@ Rectangle {
         }
     }
 
+
     onPolySelectedCidChanged: {
         if (!pageActive) {
             needsUpdate = true;

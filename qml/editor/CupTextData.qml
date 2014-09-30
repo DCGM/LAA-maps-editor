@@ -146,7 +146,6 @@ TabView {
 
             computedData: tabView.computedData
 
-
         }
 
     }
