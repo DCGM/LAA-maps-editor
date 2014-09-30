@@ -20,7 +20,7 @@ Item {
         color: (styleData.value == -1
                 || (styleData.role === "addTime" && styleData.value === 0)
                 ) ? "#aaa" : styleData.textColor
-        visible: ((styleData.role === "tid") || (styleData.role === "flags") ) || (!styleData.selected && (styleData.role !== "type"))
+        visible: ((styleData.role === "tid") || (styleData.role === "flags") || styleData.role === "distance_sum" ) || (!styleData.selected && (styleData.role !== "type"))
 
     }
 
@@ -239,7 +239,13 @@ Item {
             }
         }
         sourceComponent:
-            (styleData.role !== "tid" && styleData.role !== "type" && styleData.role !== "pid" && styleData.role !== "flags" ) && (styleData.selected)
+            (
+                styleData.role !== "tid" &&
+                styleData.role !== "type" &&
+                styleData.role !== "pid" &&
+                styleData.role !== "flags" &&
+                styleData.role !== "distance_sum"
+             ) && (styleData.selected)
             ? editor : null
 
         Component {
@@ -341,6 +347,17 @@ Item {
         case "addTime":
             show = F.addTimeStrFormat(value)
             break;
+        case "distance_sum":
+            var distance_sum = 0;
+            for (var i = 0; ((i < tracksModel.count) && (i <= styleData.row)); i++) {
+                var item = tracksModel.get(i);
+                var distance = (item.distance !== -1) ? item.distance : item.computed_distance
+                distance_sum += distance;
+                show = Math.round(distance_sum);
+            }
+
+            break;
+
         default:
 
         }

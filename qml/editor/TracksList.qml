@@ -44,6 +44,7 @@ Rectangle {
             return;
         }
 
+
         var new_tracks_arr = [];
         for (var i = 0; i < allTracks.length; i++) {
             var t = allTracks[i];
@@ -53,6 +54,8 @@ Rectangle {
                 new_arr.poly = t.poly
                 new_tracks_arr.push(new_arr)
             } else {
+                // FIXME
+                // bug: pokud se pohne bodem, tak se nezmeni vypocitane uhly a vzdalenosti"
                 new_tracks_arr.push(t);
             }
 
@@ -63,7 +66,6 @@ Rectangle {
 
 
     }
-
 
     signal newTracks(variant t);
     signal categoryChanged(int index);
@@ -548,6 +550,13 @@ Rectangle {
             }
 
             TableViewColumn {
+                //% "Distance to start point [m]"
+                title: qsTrId("tracks-list-distance-sum")
+                role: "distance_sum"
+                width: 50;
+            }
+
+            TableViewColumn {
                 //% "Time to next point [s]"
                 title: qsTrId("tracks-list-addTime")
                 role: "addTime"
@@ -851,12 +860,6 @@ Rectangle {
                         tracksPointTable.selectionChangedHanlder();
                     }
 
-                }
-
-                Rectangle {
-                    color: "red"
-                    height: 20;
-                    width: (parent !== null) ? parent.width : 20;
                 }
 
                 MenuItem {
