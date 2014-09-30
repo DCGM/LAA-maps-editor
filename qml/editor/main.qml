@@ -530,13 +530,13 @@ ApplicationWindow {
 
         onAccepted: {
             var str = String(fileUrl);
-            if (str.match(/\.cup$/)) {
+            if (str.match(/\.cup$/i)) {
                 importCup(fileUrl);
-            } else if (str.match(/\.kml$/)) {
+            } else if (str.match(/\.kml$/i)) {
                 importKml(fileUrl)
-            } else if (str.match(/\.gpx$/)) {
+            } else if (str.match(/\.gpx$/i)) {
                 importGpx(fileUrl)
-            } else if (str.match(/\.igc$/)) {
+            } else if (str.match(/\.igc$/i)) {
                 importIgc(fileUrl)
             } else {
                 console.error("unsupported file format (please rename file): " + fileUrl)
