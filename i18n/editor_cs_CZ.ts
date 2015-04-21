@@ -468,125 +468,130 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <source>Ruler</source>
         <translation>Pravítko</translation>
     </message>
+    <message id="main-menu-edit-autocenter">
+        <location filename="../qml/editor/main.qml" line="202"/>
+        <source>Automaticaly snap to center</source>
+        <translation>Automaticky na střed</translation>
+    </message>
     <message id="main-map-menu">
-        <location filename="../qml/editor/main.qml" line="203"/>
+        <location filename="../qml/editor/main.qml" line="214"/>
         <source>&amp;Map</source>
         <translation>&amp;Mapa</translation>
     </message>
     <message id="main-map-menu-none">
-        <location filename="../qml/editor/main.qml" line="210"/>
+        <location filename="../qml/editor/main.qml" line="221"/>
         <source>&amp;None</source>
         <translation>&amp;Žádná</translation>
     </message>
     <message id="main-map-menu-local">
-        <location filename="../qml/editor/main.qml" line="220"/>
+        <location filename="../qml/editor/main.qml" line="231"/>
         <source>&amp;Local</source>
         <translation>&amp;Stazene mapy</translation>
     </message>
     <message id="main-map-menu-osm">
-        <location filename="../qml/editor/main.qml" line="239"/>
+        <location filename="../qml/editor/main.qml" line="250"/>
         <source>&amp;OSM Mapnik</source>
         <translation>&amp;OSM Mapnik</translation>
     </message>
     <message id="main-map-menu-google-roadmap">
-        <location filename="../qml/editor/main.qml" line="249"/>
+        <location filename="../qml/editor/main.qml" line="260"/>
         <source>Google &amp;Roadmap</source>
         <translation>Google &amp;Roadmap</translation>
     </message>
     <message id="main-map-menu-google-terrain">
-        <location filename="../qml/editor/main.qml" line="259"/>
+        <location filename="../qml/editor/main.qml" line="270"/>
         <source>Google &amp;Terrain</source>
         <translation>Google &amp;Terrain</translation>
     </message>
     <message id="main-map-menu-google-satellite">
-        <location filename="../qml/editor/main.qml" line="269"/>
+        <location filename="../qml/editor/main.qml" line="280"/>
         <source>Google &amp;Satellite</source>
         <translation>Google &amp;Satellite</translation>
     </message>
     <message id="main-map-menu-gfw">
-        <location filename="../qml/editor/main.qml" line="280"/>
+        <location filename="../qml/editor/main.qml" line="291"/>
         <source>Show &amp;gfw image</source>
         <oldsource>Load &amp;gfw image</oldsource>
         <translation>Zobrazit gf&amp;w obrázek</translation>
     </message>
     <message id="main-help-menu">
-        <location filename="../qml/editor/main.qml" line="298"/>
+        <location filename="../qml/editor/main.qml" line="309"/>
         <source>&amp;Help</source>
         <translation>&amp;Nápověda</translation>
     </message>
     <message id="main-help-menu-about">
-        <location filename="../qml/editor/main.qml" line="301"/>
+        <location filename="../qml/editor/main.qml" line="312"/>
         <source>&amp;About</source>
         <translation>&amp;O programu</translation>
     </message>
     <message id="confirm-unsaved-title">
-        <location filename="../qml/editor/main.qml" line="493"/>
+        <location filename="../qml/editor/main.qml" line="504"/>
         <source>Are you sure?</source>
         <translation>Jste si jistý?</translation>
     </message>
     <message id="confirm-usaved-text">
-        <location filename="../qml/editor/main.qml" line="495"/>
+        <location filename="../qml/editor/main.qml" line="506"/>
         <source>Your changes have not been saved.</source>
         <translation>Změny nebyli uloženy.</translation>
     </message>
     <message id="section-type-speed">
-        <location filename="../qml/editor/main.qml" line="1084"/>
+        <location filename="../qml/editor/main.qml" line="1095"/>
         <source>speed</source>
         <translation>rychlost</translation>
     </message>
     <message id="section-type-altitude">
-        <location filename="../qml/editor/main.qml" line="1096"/>
+        <location filename="../qml/editor/main.qml" line="1107"/>
         <source>altitude</source>
         <translation>výška</translation>
     </message>
     <message id="section-type-space">
-        <location filename="../qml/editor/main.qml" line="1108"/>
+        <location filename="../qml/editor/main.qml" line="1119"/>
         <source>space</source>
         <translation>prostor</translation>
     </message>
     <message id="points-list-add-point">
-        <location filename="../qml/editor/PointsList.qml" line="140"/>
+        <location filename="../qml/editor/PointsList.qml" line="146"/>
         <source>Add point</source>
         <translation>Přidat bod</translation>
     </message>
     <message id="points-list-default-name">
-        <location filename="../qml/editor/PointsList.qml" line="152"/>
+        <location filename="../qml/editor/PointsList.qml" line="158"/>
         <location filename="../qml/editor/PointsListEditableDelegate.qml" line="39"/>
         <source>Turn point</source>
         <translation>Otočný bod</translation>
     </message>
     <message id="points-list-remove-points">
-        <location filename="../qml/editor/PointsList.qml" line="170"/>
+        <location filename="../qml/editor/PointsList.qml" line="176"/>
         <source>Remove points</source>
         <translation>Odstranit body</translation>
     </message>
     <message id="points-list-snap-to">
-        <location filename="../qml/editor/PointsList.qml" line="188"/>
+        <location filename="../qml/editor/PointsList.qml" line="194"/>
         <source>Snap to..</source>
         <translation>Přilnout k..</translation>
     </message>
     <message id="points-list-transform-to-polygon">
-        <location filename="../qml/editor/PointsList.qml" line="199"/>
+        <location filename="../qml/editor/PointsList.qml" line="205"/>
         <source>Transform to polygon</source>
         <translation>Převést na polygon</translation>
     </message>
     <message id="points-list-id">
-        <location filename="../qml/editor/PointsList.qml" line="251"/>
+        <location filename="../qml/editor/PointsList.qml" line="257"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="points-list-name">
-        <location filename="../qml/editor/PointsList.qml" line="258"/>
+        <location filename="../qml/editor/PointsList.qml" line="264"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message id="points-list-lat">
-        <location filename="../qml/editor/PointsList.qml" line="265"/>
+        <location filename="../qml/editor/PointsList.qml" line="271"/>
         <source>Latitude</source>
         <translation>Zeměpisná šířka</translation>
     </message>
     <message id="points-list-lon">
-        <location filename="../qml/editor/PointsList.qml" line="272"/>
+        <location filename="../qml/editor/PointsList.qml" line="278"/>
         <source>Longitude</source>
         <translation>Zeměpisná délka</translation>
     </message>
@@ -621,27 +626,27 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <translation>Body</translation>
     </message>
     <message id="pinchmap-ready">
-        <location filename="../qml/editor/PinchMap.qml" line="550"/>
+        <location filename="../qml/editor/PinchMap.qml" line="552"/>
         <source>Ready</source>
         <translation>Připravena</translation>
     </message>
     <message id="pinchmap-not-set">
-        <location filename="../qml/editor/PinchMap.qml" line="552"/>
+        <location filename="../qml/editor/PinchMap.qml" line="554"/>
         <source>Not Set</source>
         <translation>Nenastaveno</translation>
     </message>
     <message id="pinchmap-error">
-        <location filename="../qml/editor/PinchMap.qml" line="554"/>
+        <location filename="../qml/editor/PinchMap.qml" line="556"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message id="pinchmap-loading">
-        <location filename="../qml/editor/PinchMap.qml" line="556"/>
+        <location filename="../qml/editor/PinchMap.qml" line="558"/>
         <source>Loading ...</source>
         <translation>Nahrávání ...</translation>
     </message>
     <message id="pinchmap-unknown-error">
-        <location filename="../qml/editor/PinchMap.qml" line="558"/>
+        <location filename="../qml/editor/PinchMap.qml" line="560"/>
         <source>Unknown error</source>
         <translation>Neznámá chyba</translation>
     </message>
@@ -825,7 +830,7 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <translation>Odstranit polygon</translation>
     </message>
     <message id="polygon-list-default-name">
-        <location filename="../qml/editor/PointsList.qml" line="209"/>
+        <location filename="../qml/editor/PointsList.qml" line="215"/>
         <location filename="../qml/editor/PolygonListDelegate.qml" line="37"/>
         <source>Polygon</source>
         <translation>Polygon</translation>

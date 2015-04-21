@@ -196,6 +196,17 @@ ApplicationWindow {
                 }
             }
 
+            MenuItem {
+                id: main_menu_edit_autocenter_point
+                //% "Automaticaly snap to center"
+                text: qsTrId("main-menu-edit-autocenter")
+                checkable: true;
+                checked: true;
+                onCheckedChanged: {
+                    map.autocenter = checked;
+                }
+            }
+
         }
 
         Menu {

@@ -59,6 +59,7 @@ Rectangle {
 
     property bool showRuler: false
     property real rulerDistance: -1;
+    property bool autocenter: true;
 
     property string url;
     // : "~/Maps/OSM/%(zoom)d/%(x)d/%(y)d.png"
@@ -119,7 +120,7 @@ Rectangle {
             pointsSelectedLat = item.lat
             pointsSelectedLon = item.lon;
 
-            if ((zoomLevel < 12) || (filterCupData !== 0)) {
+            if (!autocenter || (filterCupData !== 0)) {
                 return;
             }
             setCenterLatLon(item.lat, item.lon)
@@ -129,7 +130,7 @@ Rectangle {
 
     onTracksSelectedTidChanged: {
 
-        if ((trackModel === undefined) || (trackModel.tracks === undefined) || (zoomLevel < 12) || (filterCupData !== 2)) {
+        if ((trackModel === undefined) || (trackModel.tracks === undefined) || (!autocenter) || (filterCupData !== 2)) {
             canvas.requestPaint();
             return;
         }
