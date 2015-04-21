@@ -140,7 +140,7 @@ TabView {
                 selectedCategoryIndex = index;
             }
 
-            onPointSelected:  {
+            onPointSelected: {
                 trackListItemSelected(tid)
             }
 

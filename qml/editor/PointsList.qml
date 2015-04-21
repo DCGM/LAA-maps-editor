@@ -50,11 +50,17 @@ TableView {
         }
     }
 
-    onCurrentRowChanged: {
-        if ((currentRow < 0) || (model.count <= 0)) {
-            return;
+    Component.onCompleted: {
+        selection.selectionChanged.connect(pointlistSelectionChanged);
+    }
+
+    function pointlistSelectionChanged() {
+        if (selection.count === 1) {
+            selection.forEach( function(rowIndex) {
+                pointSelected(model.get(rowIndex).pid);
+            });
         }
-        pointSelected(model.get(currentRow).pid);
+
     }
 
     onPointsChanged: {
