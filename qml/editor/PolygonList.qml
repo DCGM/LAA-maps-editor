@@ -25,16 +25,21 @@ TableView {
                               "name": p.name,
                               "color": p.color,
                               "point_count": p.points.length,
-                              "points": JSON.stringify(p.points)
+                              "points": JSON.stringify(p.points),
+                              "closed": p.closed,
                           });
-
         }
+
 
     }
 
-    onCurrentRowChanged: {
-        var item = model.get(currentRow);
-        polygonSelected(item.cid)
+    function polygonSelectionChanged() {
+        if (selection.count === 1) {
+            selection.forEach( function(rowIndex) {
+                var item = model.get(rowIndex);
+                polygonSelected(item.cid)
+            })
+        }
     }
 
     ColorDialog {
@@ -42,14 +47,11 @@ TableView {
         property int returnRow;
 
         onAccepted: {
-            var col = String(color).substring(1);
+            var col = String(colorDialog.currentColor).substring(1);
             pModel.setProperty(returnRow, "color", col)
 
             tableView.selection.deselect(0, pModel.count-1);
             tableView.selection.select(returnRow)
-            tableView.currentRow = returnRow;
-
-
         }
     }
 
@@ -71,7 +73,8 @@ TableView {
                                  "cid": p.cid,
                                  "name": p.name,
                                  "color": p.color,
-                                 "points": old_pts
+                                 "points": old_pts,
+                                 "closed": p.closed,
                              })
             }
             newPolygons(new_arr)
@@ -124,10 +127,13 @@ TableView {
 
     itemDelegate: PolygonListDelegate {
         onChangeModel: {
-            tableView.model.setProperty(row, role, value);
+            var tmpValue = value;
+            if (role == "closed") {
+                tmpValue = (value === "true")
+            }
+            tableView.model.setProperty(row, role, tmpValue);
             tableView.selection.deselect(0, pModel.count-1);
             tableView.selection.select(row)
-            tableView.currentRow = row;
 
         }
 
@@ -165,5 +171,15 @@ TableView {
         title: qsTrId("polygon-points-count");
         role: "point_count";
         width: 50;
+    }
+    TableViewColumn {
+        //% "Closed"
+        title: qsTrId("polygon-closed")
+        role: "closed";
+        width: 50
+    }
+
+    Component.onCompleted: {
+        selection.selectionChanged.connect(polygonSelectionChanged);
     }
 }

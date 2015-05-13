@@ -214,7 +214,8 @@ TableView {
                     "cid": -1,
                     "name": qsTrId("polygon-list-default-name"),
                     "color": "FF0000",
-                    "points": newPointsArr
+                    "points": newPointsArr,
+                    "closed": false,
                 }
 
 

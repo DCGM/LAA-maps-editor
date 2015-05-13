@@ -874,6 +874,9 @@ Rectangle {
                                     ctx.lineTo(screenPoint[0], screenPoint[1])
 
                                 }
+                                if (polygon.closed) {
+                                    ctx.closePath();
+                                }
                                 ctx.stroke();
                                 //complexityCounter++;
                             }
@@ -1491,6 +1494,10 @@ Rectangle {
                                 screenPoint = getMappointFromCoord(item.lat, item.lon)
                                 ctx.lineTo(screenPoint[0], screenPoint[1])
                             }
+                            if (polyData.closed) {
+                                ctx.closePath();
+                            }
+
                             ctx.stroke();
 
                         }

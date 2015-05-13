@@ -108,7 +108,7 @@ TabView {
                                 "name" : newName,
                                 "lat": polypoint.lat,
                                 "lon": polypoint.lon,
-                                "pid": maxPid+1+j
+                                "pid": maxPid+1+j,
                             }
                             newArr.push(item);
 

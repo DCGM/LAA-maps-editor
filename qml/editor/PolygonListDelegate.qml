@@ -17,7 +17,7 @@ Item {
         elide: styleData.elideMode
         text: styleData.value
         color: styleData.textColor
-        visible: !styleData.selected
+        visible: !styleData.selected && (styleData.role !== "closed") && (styleData.role !== "color")
     }
     Loader { // Initialize text editor lazily to improve performance
         id: loaderEditor
@@ -47,7 +47,10 @@ Item {
                     break;
                 case "point_count":
                     console.log("Cannot change point count so easy"); // neni mozne prepsat pocet bodu (TODO: editor bodu)
-                    break
+                    break;
+                case "closed":
+                    changeModel(styleData.row, styleData.role, loaderEditor.item.checked)
+                    break;
                 default:
                     changeModel(styleData.row, styleData.role, loaderEditor.item.text)
                     break;
@@ -55,7 +58,33 @@ Item {
 
             }
         }
-        sourceComponent: styleData.selected ? editor : null
+        sourceComponent: (styleData.role === "closed") ? btn : ( (styleData.role === "color") ? colorRect : (styleData.selected ? editor : null) )
+        Component {
+            id: btn
+            CheckBox {
+                checked: styleData.value;
+                signal accepted();
+                onClicked: {
+                    accepted();
+                }
+            }
+        }
+        Component {
+            id: colorRect
+            Rectangle {
+                width: 10;
+                height: 10;
+                color: "#" + styleData.value
+                signal accepted();
+                MouseArea {
+                    anchors.fill: parent;
+                    onClicked: {
+                        openColorDialog(styleData.row, styleData.value)
+                    }
+                }
+            }
+        }
+
         Component {
             id: editor
             NativeTextInput {

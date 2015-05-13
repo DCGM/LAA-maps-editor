@@ -576,77 +576,82 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <translation>Transform to polygon</translation>
     </message>
     <message id="points-list-id">
-        <location filename="../qml/editor/PointsList.qml" line="257"/>
+        <location filename="../qml/editor/PointsList.qml" line="258"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="points-list-name">
-        <location filename="../qml/editor/PointsList.qml" line="264"/>
+        <location filename="../qml/editor/PointsList.qml" line="265"/>
         <source>Name</source>
         <translation>Point name</translation>
     </message>
     <message id="points-list-lat">
-        <location filename="../qml/editor/PointsList.qml" line="271"/>
+        <location filename="../qml/editor/PointsList.qml" line="272"/>
         <source>Latitude</source>
         <translation>Latitude</translation>
     </message>
     <message id="points-list-lon">
-        <location filename="../qml/editor/PointsList.qml" line="278"/>
+        <location filename="../qml/editor/PointsList.qml" line="279"/>
         <source>Longitude</source>
         <translation>Longitude</translation>
     </message>
     <message id="polygon-list-remove-polygon">
-        <location filename="../qml/editor/PolygonList.qml" line="109"/>
+        <location filename="../qml/editor/PolygonList.qml" line="111"/>
         <source>Remove polygon</source>
         <translation>Remove polygon</translation>
     </message>
     <message id="polygon-list-polygon-to-points">
-        <location filename="../qml/editor/PolygonList.qml" line="96"/>
+        <location filename="../qml/editor/PolygonList.qml" line="98"/>
         <source>Transform to points</source>
         <translation>Transform to points</translation>
     </message>
     <message id="polygon-list-id">
-        <location filename="../qml/editor/PolygonList.qml" line="144"/>
+        <location filename="../qml/editor/PolygonList.qml" line="149"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="polygon-list-name">
-        <location filename="../qml/editor/PolygonList.qml" line="151"/>
+        <location filename="../qml/editor/PolygonList.qml" line="156"/>
         <source>Name</source>
         <translation>Polygon name</translation>
     </message>
     <message id="polygon-list-color">
-        <location filename="../qml/editor/PolygonList.qml" line="158"/>
+        <location filename="../qml/editor/PolygonList.qml" line="163"/>
         <source>Color</source>
         <translation>Color</translation>
     </message>
     <message id="polygon-points-count">
-        <location filename="../qml/editor/PolygonList.qml" line="165"/>
+        <location filename="../qml/editor/PolygonList.qml" line="170"/>
         <source>Points</source>
         <translation>Points</translation>
     </message>
+    <message id="polygon-closed">
+        <location filename="../qml/editor/PolygonList.qml" line="176"/>
+        <source>Closed</source>
+        <translation>Closed</translation>
+    </message>
     <message id="pinchmap-ready">
-        <location filename="../qml/editor/PinchMap.qml" line="552"/>
+        <location filename="../qml/editor/PinchMap.qml" line="551"/>
         <source>Ready</source>
         <translation>Ready</translation>
     </message>
     <message id="pinchmap-not-set">
-        <location filename="../qml/editor/PinchMap.qml" line="554"/>
+        <location filename="../qml/editor/PinchMap.qml" line="553"/>
         <source>Not Set</source>
         <translation>Not Set</translation>
     </message>
     <message id="pinchmap-error">
-        <location filename="../qml/editor/PinchMap.qml" line="556"/>
+        <location filename="../qml/editor/PinchMap.qml" line="555"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message id="pinchmap-loading">
-        <location filename="../qml/editor/PinchMap.qml" line="558"/>
+        <location filename="../qml/editor/PinchMap.qml" line="557"/>
         <source>Loading ...</source>
         <translation>Loading ...</translation>
     </message>
     <message id="pinchmap-unknown-error">
-        <location filename="../qml/editor/PinchMap.qml" line="560"/>
+        <location filename="../qml/editor/PinchMap.qml" line="559"/>
         <source>Unknown error</source>
         <translation>Unknown error</translation>
     </message>

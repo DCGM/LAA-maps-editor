@@ -576,77 +576,82 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <translation>Převést na polygon</translation>
     </message>
     <message id="points-list-id">
-        <location filename="../qml/editor/PointsList.qml" line="257"/>
+        <location filename="../qml/editor/PointsList.qml" line="258"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="points-list-name">
-        <location filename="../qml/editor/PointsList.qml" line="264"/>
+        <location filename="../qml/editor/PointsList.qml" line="265"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message id="points-list-lat">
-        <location filename="../qml/editor/PointsList.qml" line="271"/>
+        <location filename="../qml/editor/PointsList.qml" line="272"/>
         <source>Latitude</source>
         <translation>Zeměpisná šířka</translation>
     </message>
     <message id="points-list-lon">
-        <location filename="../qml/editor/PointsList.qml" line="278"/>
+        <location filename="../qml/editor/PointsList.qml" line="279"/>
         <source>Longitude</source>
         <translation>Zeměpisná délka</translation>
     </message>
     <message id="polygon-list-remove-polygon">
-        <location filename="../qml/editor/PolygonList.qml" line="109"/>
+        <location filename="../qml/editor/PolygonList.qml" line="111"/>
         <source>Remove polygon</source>
         <translation>Odstranit polygon</translation>
     </message>
     <message id="polygon-list-polygon-to-points">
-        <location filename="../qml/editor/PolygonList.qml" line="96"/>
+        <location filename="../qml/editor/PolygonList.qml" line="98"/>
         <source>Transform to points</source>
         <translation>Převést na body</translation>
     </message>
     <message id="polygon-list-id">
-        <location filename="../qml/editor/PolygonList.qml" line="144"/>
+        <location filename="../qml/editor/PolygonList.qml" line="149"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="polygon-list-name">
-        <location filename="../qml/editor/PolygonList.qml" line="151"/>
+        <location filename="../qml/editor/PolygonList.qml" line="156"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message id="polygon-list-color">
-        <location filename="../qml/editor/PolygonList.qml" line="158"/>
+        <location filename="../qml/editor/PolygonList.qml" line="163"/>
         <source>Color</source>
         <translation>Barva</translation>
     </message>
     <message id="polygon-points-count">
-        <location filename="../qml/editor/PolygonList.qml" line="165"/>
+        <location filename="../qml/editor/PolygonList.qml" line="170"/>
         <source>Points</source>
         <translation>Body</translation>
     </message>
+    <message id="polygon-closed">
+        <location filename="../qml/editor/PolygonList.qml" line="176"/>
+        <source>Closed</source>
+        <translation>Uzavřený</translation>
+    </message>
     <message id="pinchmap-ready">
-        <location filename="../qml/editor/PinchMap.qml" line="552"/>
+        <location filename="../qml/editor/PinchMap.qml" line="551"/>
         <source>Ready</source>
         <translation>Připravena</translation>
     </message>
     <message id="pinchmap-not-set">
-        <location filename="../qml/editor/PinchMap.qml" line="554"/>
+        <location filename="../qml/editor/PinchMap.qml" line="553"/>
         <source>Not Set</source>
         <translation>Nenastaveno</translation>
     </message>
     <message id="pinchmap-error">
-        <location filename="../qml/editor/PinchMap.qml" line="556"/>
+        <location filename="../qml/editor/PinchMap.qml" line="555"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message id="pinchmap-loading">
-        <location filename="../qml/editor/PinchMap.qml" line="558"/>
+        <location filename="../qml/editor/PinchMap.qml" line="557"/>
         <source>Loading ...</source>
         <translation>Nahrávání ...</translation>
     </message>
     <message id="pinchmap-unknown-error">
-        <location filename="../qml/editor/PinchMap.qml" line="560"/>
+        <location filename="../qml/editor/PinchMap.qml" line="559"/>
         <source>Unknown error</source>
         <translation>Neznámá chyba</translation>
     </message>
