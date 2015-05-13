@@ -706,7 +706,8 @@ ApplicationWindow {
             var newPolyItem = {"cid": maxCid+1+i,
                         "name": kmlPolyItem.name,
                         "color": kmlPolyItem.color,
-                        "points" : kmlPolyItem.points
+                        "points" : kmlPolyItem.points,
+                        "closed": false,
                     }
             newPoly.push(newPolyItem)
 
@@ -765,7 +766,8 @@ ApplicationWindow {
             var newPolyItem = {"cid": maxCid+1+i,
                         "name": kmlPolyItem.name,
                         "color": kmlPolyItem.color,
-                        "points" : kmlPolyItem.points
+                        "points" : kmlPolyItem.points,
+                        "closed": false,
                     }
             newPoly.push(newPolyItem)
 
