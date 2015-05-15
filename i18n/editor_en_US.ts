@@ -130,55 +130,55 @@
     </message>
     <message id="point-detail-section_speed_start-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="402"/>
-        <location filename="../qml/editor/TracksList.qml" line="926"/>
+        <location filename="../qml/editor/TracksList.qml" line="929"/>
         <source>Section speed start</source>
         <translation>Section speed start</translation>
     </message>
     <message id="point-detail-section_speed_end-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="410"/>
-        <location filename="../qml/editor/TracksList.qml" line="934"/>
+        <location filename="../qml/editor/TracksList.qml" line="937"/>
         <source>Section speed end</source>
         <translation>Section speed end</translation>
     </message>
     <message id="point-detail-section_alt_start-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="418"/>
-        <location filename="../qml/editor/TracksList.qml" line="942"/>
+        <location filename="../qml/editor/TracksList.qml" line="945"/>
         <source>Section alt start</source>
         <translation>Section alt start</translation>
     </message>
     <message id="point-detail-section_alt_end-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="426"/>
-        <location filename="../qml/editor/TracksList.qml" line="950"/>
+        <location filename="../qml/editor/TracksList.qml" line="953"/>
         <source>Section alt end</source>
         <translation>Section alt end</translation>
     </message>
     <message id="point-detail-section_space_start-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="434"/>
-        <location filename="../qml/editor/TracksList.qml" line="957"/>
+        <location filename="../qml/editor/TracksList.qml" line="960"/>
         <source>Section space start</source>
         <translation>Section space start</translation>
     </message>
     <message id="point-detail-section_space_end-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="442"/>
-        <location filename="../qml/editor/TracksList.qml" line="965"/>
+        <location filename="../qml/editor/TracksList.qml" line="968"/>
         <source>Section space end</source>
         <translation>Section space end</translation>
     </message>
     <message id="point-detail-secret_turn_point-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="454"/>
-        <location filename="../qml/editor/TracksList.qml" line="974"/>
+        <location filename="../qml/editor/TracksList.qml" line="977"/>
         <source>Secret Turn Point</source>
         <translation>Secret Turn Point</translation>
     </message>
     <message id="point-detail-secret_time_gate-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="463"/>
-        <location filename="../qml/editor/TracksList.qml" line="982"/>
+        <location filename="../qml/editor/TracksList.qml" line="985"/>
         <source>Secret Time Gate</source>
         <translation>Secret Time Gate</translation>
     </message>
     <message id="point-detail-secret_space_gate-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="472"/>
-        <location filename="../qml/editor/TracksList.qml" line="990"/>
+        <location filename="../qml/editor/TracksList.qml" line="993"/>
         <source>Secret Space Gate</source>
         <oldsource>Secret Time Gate</oldsource>
         <translation>Secret Space Gate</translation>
@@ -346,37 +346,37 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
     </message>
     <message id="point-detail-altitude-min-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="366"/>
-        <location filename="../qml/editor/TracksList.qml" line="894"/>
+        <location filename="../qml/editor/TracksList.qml" line="897"/>
         <source>Altitude min</source>
         <translation>Altitude min</translation>
     </message>
     <message id="point-detail-altitude-max-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="375"/>
-        <location filename="../qml/editor/TracksList.qml" line="902"/>
+        <location filename="../qml/editor/TracksList.qml" line="905"/>
         <source>Altitude max</source>
         <translation>Altitude max</translation>
     </message>
     <message id="point-detail-speed-min-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="384"/>
-        <location filename="../qml/editor/TracksList.qml" line="911"/>
+        <location filename="../qml/editor/TracksList.qml" line="914"/>
         <source>Speed min</source>
         <translation>Speed min</translation>
     </message>
     <message id="point-detail-speed-max-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="392"/>
-        <location filename="../qml/editor/TracksList.qml" line="919"/>
+        <location filename="../qml/editor/TracksList.qml" line="922"/>
         <source>Speed max</source>
         <translation>Speed max</translation>
     </message>
     <message id="point-detail-turn-point-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="341"/>
-        <location filename="../qml/editor/TracksList.qml" line="872"/>
+        <location filename="../qml/editor/TracksList.qml" line="875"/>
         <source>Turn Point</source>
         <translation>Turn Point</translation>
     </message>
     <message id="point-detail-time-gate-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="349"/>
-        <location filename="../qml/editor/TracksList.qml" line="879"/>
+        <location filename="../qml/editor/TracksList.qml" line="882"/>
         <source>Time gate</source>
         <translation>Time Gate</translation>
     </message>
@@ -535,17 +535,17 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <translation>Your changes have not been saved.</translation>
     </message>
     <message id="section-type-speed">
-        <location filename="../qml/editor/main.qml" line="1095"/>
+        <location filename="../qml/editor/main.qml" line="1097"/>
         <source>speed</source>
         <translation>speed</translation>
     </message>
     <message id="section-type-altitude">
-        <location filename="../qml/editor/main.qml" line="1107"/>
+        <location filename="../qml/editor/main.qml" line="1109"/>
         <source>altitude</source>
         <translation>altitude</translation>
     </message>
     <message id="section-type-space">
-        <location filename="../qml/editor/main.qml" line="1119"/>
+        <location filename="../qml/editor/main.qml" line="1121"/>
         <source>space</source>
         <translation>space</translation>
     </message>
@@ -596,37 +596,37 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <translation>Longitude</translation>
     </message>
     <message id="polygon-list-remove-polygon">
-        <location filename="../qml/editor/PolygonList.qml" line="111"/>
+        <location filename="../qml/editor/PolygonList.qml" line="112"/>
         <source>Remove polygon</source>
         <translation>Remove polygon</translation>
     </message>
     <message id="polygon-list-polygon-to-points">
-        <location filename="../qml/editor/PolygonList.qml" line="98"/>
+        <location filename="../qml/editor/PolygonList.qml" line="99"/>
         <source>Transform to points</source>
         <translation>Transform to points</translation>
     </message>
     <message id="polygon-list-id">
-        <location filename="../qml/editor/PolygonList.qml" line="149"/>
+        <location filename="../qml/editor/PolygonList.qml" line="150"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="polygon-list-name">
-        <location filename="../qml/editor/PolygonList.qml" line="156"/>
+        <location filename="../qml/editor/PolygonList.qml" line="157"/>
         <source>Name</source>
         <translation>Polygon name</translation>
     </message>
     <message id="polygon-list-color">
-        <location filename="../qml/editor/PolygonList.qml" line="163"/>
+        <location filename="../qml/editor/PolygonList.qml" line="164"/>
         <source>Color</source>
         <translation>Color</translation>
     </message>
     <message id="polygon-points-count">
-        <location filename="../qml/editor/PolygonList.qml" line="170"/>
+        <location filename="../qml/editor/PolygonList.qml" line="171"/>
         <source>Points</source>
         <translation>Points</translation>
     </message>
     <message id="polygon-closed">
-        <location filename="../qml/editor/PolygonList.qml" line="176"/>
+        <location filename="../qml/editor/PolygonList.qml" line="177"/>
         <source>Closed</source>
         <translation>Closed</translation>
     </message>
@@ -671,166 +671,171 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <translation>Tracks</translation>
     </message>
     <message id="tracks-list-line-type-none">
-        <location filename="../qml/editor/TracksList.qml" line="360"/>
+        <location filename="../qml/editor/TracksList.qml" line="363"/>
         <source>None</source>
         <translation>None</translation>
     </message>
     <message id="tracks-list-line-type-line">
-        <location filename="../qml/editor/TracksList.qml" line="362"/>
+        <location filename="../qml/editor/TracksList.qml" line="365"/>
         <source>Line</source>
         <translation>Line</translation>
     </message>
     <message id="tracks-list-line-type-arc1">
-        <location filename="../qml/editor/TracksList.qml" line="366"/>
+        <location filename="../qml/editor/TracksList.qml" line="369"/>
         <source>Mid-point Arc A</source>
         <oldsource>Mid-point Arc</oldsource>
         <translation>Mid-point Arc A</translation>
     </message>
     <message id="tracks-list-line-type-arc2">
-        <location filename="../qml/editor/TracksList.qml" line="368"/>
+        <location filename="../qml/editor/TracksList.qml" line="371"/>
         <source>Mid-point Arc B</source>
         <oldsource>Edge-point Arc</oldsource>
         <translation>Mid-point Arc B</translation>
     </message>
     <message id="tracks-list-line-type-polyline">
-        <location filename="../qml/editor/TracksList.qml" line="364"/>
+        <location filename="../qml/editor/TracksList.qml" line="367"/>
         <source>Polyline</source>
         <translation>Polyline</translation>
     </message>
     <message id="track-list-preferences">
-        <location filename="../qml/editor/TracksList.qml" line="399"/>
+        <location filename="../qml/editor/TracksList.qml" line="402"/>
         <source>Preferences</source>
         <translation>Preferences</translation>
     </message>
     <message id="track-list-statistics">
-        <location filename="../qml/editor/TracksList.qml" line="427"/>
+        <location filename="../qml/editor/TracksList.qml" line="430"/>
         <source>Statistics</source>
         <translation>Statistics</translation>
     </message>
     <message id="tracks-list-id">
-        <location filename="../qml/editor/TracksList.qml" line="523"/>
+        <location filename="../qml/editor/TracksList.qml" line="526"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="tracks-list-point">
-        <location filename="../qml/editor/TracksList.qml" line="529"/>
+        <location filename="../qml/editor/TracksList.qml" line="532"/>
         <source>Point</source>
         <translation>Point</translation>
     </message>
     <message id="tracks-list-type">
-        <location filename="../qml/editor/TracksList.qml" line="536"/>
+        <location filename="../qml/editor/TracksList.qml" line="539"/>
         <source>Type</source>
         <translation>Type</translation>
     </message>
     <message id="tracks-list-angle">
-        <location filename="../qml/editor/TracksList.qml" line="543"/>
+        <location filename="../qml/editor/TracksList.qml" line="546"/>
         <source>Angle [deg]</source>
         <oldsource>Angle</oldsource>
         <translation>Angle [deg]</translation>
     </message>
     <message id="tracks-list-distance">
-        <location filename="../qml/editor/TracksList.qml" line="550"/>
+        <location filename="../qml/editor/TracksList.qml" line="553"/>
         <source>Distance to previous point [m]</source>
         <oldsource>Distance to next point [m]</oldsource>
         <translation>Distance to previous point [m]</translation>
     </message>
     <message id="tracks-list-distance-sum">
-        <location filename="../qml/editor/TracksList.qml" line="557"/>
+        <location filename="../qml/editor/TracksList.qml" line="560"/>
         <source>Distance to start point [m]</source>
         <translation>Distance to start point [m]</translation>
     </message>
     <message id="tracks-list-addTime">
-        <location filename="../qml/editor/TracksList.qml" line="564"/>
+        <location filename="../qml/editor/TracksList.qml" line="567"/>
         <source>Time to next point [s]</source>
         <oldsource>Additional Time [s]</oldsource>
         <translation>Time to next point [s]</translation>
     </message>
     <message id="tracks-list-radius">
-        <location filename="../qml/editor/TracksList.qml" line="572"/>
+        <location filename="../qml/editor/TracksList.qml" line="575"/>
         <source>Radius [m]</source>
         <oldsource>Radius</oldsource>
         <translation>Radius [m]</translation>
     </message>
     <message id="tracks-list-flags">
-        <location filename="../qml/editor/TracksList.qml" line="580"/>
+        <location filename="../qml/editor/TracksList.qml" line="583"/>
         <source>Flags</source>
         <translation>Flags</translation>
     </message>
     <message id="tracks-list-alt_min">
-        <location filename="../qml/editor/TracksList.qml" line="587"/>
+        <location filename="../qml/editor/TracksList.qml" line="590"/>
         <source>Min Alt [m]</source>
         <oldsource>Min Alt</oldsource>
         <translation>Min Alt [m]</translation>
     </message>
     <message id="tracks-list-alt_max">
-        <location filename="../qml/editor/TracksList.qml" line="593"/>
+        <location filename="../qml/editor/TracksList.qml" line="596"/>
         <source>Max Alt [m]</source>
         <oldsource>Max Alt</oldsource>
         <translation>Max Alt [m]</translation>
     </message>
     <message id="tracks-list-speed_min">
-        <location filename="../qml/editor/TracksList.qml" line="601"/>
+        <location filename="../qml/editor/TracksList.qml" line="604"/>
         <source>Min Speed [km/h]</source>
         <translation>Min Speed [km/h]</translation>
     </message>
     <message id="tracks-list-speed_max">
-        <location filename="../qml/editor/TracksList.qml" line="608"/>
+        <location filename="../qml/editor/TracksList.qml" line="611"/>
         <source>Max Speed [km/h]</source>
         <translation>Max Speed [km/h]</translation>
     </message>
     <message id="tracks-list-ptr">
-        <location filename="../qml/editor/TracksList.qml" line="614"/>
+        <location filename="../qml/editor/TracksList.qml" line="617"/>
         <source>Arc/Poly</source>
         <translation>Arc/Poly</translation>
     </message>
     <message id="tracks-list-points-table-add-before">
-        <location filename="../qml/editor/TracksList.qml" line="751"/>
+        <location filename="../qml/editor/TracksList.qml" line="754"/>
         <source>Add point before selected</source>
         <translation>Add point before selected</translation>
     </message>
     <message id="tracks-list-points-table-add-after">
-        <location filename="../qml/editor/TracksList.qml" line="769"/>
+        <location filename="../qml/editor/TracksList.qml" line="772"/>
         <source>Add point after selected</source>
         <translation>Add point after selected</translation>
     </message>
     <message id="tracks-list-points-table-add">
-        <location filename="../qml/editor/TracksList.qml" line="782"/>
+        <location filename="../qml/editor/TracksList.qml" line="785"/>
         <source>Add point</source>
         <translation>Add point</translation>
     </message>
     <message id="tracks-list-points-table-remove">
-        <location filename="../qml/editor/TracksList.qml" line="837"/>
+        <location filename="../qml/editor/TracksList.qml" line="840"/>
         <source>Remove point</source>
         <translation>Remove point</translation>
     </message>
     <message id="point-detail-reset-flags">
-        <location filename="../qml/editor/TracksList.qml" line="858"/>
+        <location filename="../qml/editor/TracksList.qml" line="861"/>
         <source>Reset flags</source>
         <translation>Reset flags</translation>
     </message>
     <message id="point-detail-space-gate-checkbox">
         <location filename="../qml/editor/PropertiesDetail.qml" line="357"/>
-        <location filename="../qml/editor/TracksList.qml" line="886"/>
+        <location filename="../qml/editor/TracksList.qml" line="889"/>
         <source>Space gate</source>
         <translation>Space gate</translation>
     </message>
     <message id="track-list-polygon-did">
-        <location filename="../qml/editor/TracksList.qml" line="1030"/>
+        <location filename="../qml/editor/TracksList.qml" line="1033"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="track-list-polygon-cid">
-        <location filename="../qml/editor/TracksList.qml" line="1037"/>
+        <location filename="../qml/editor/TracksList.qml" line="1040"/>
         <source>Polygon</source>
         <translation>Polygon</translation>
     </message>
+    <message id="track-list-polygon-score">
+        <location filename="../qml/editor/TracksList.qml" line="1046"/>
+        <source>Score</source>
+        <translation>Score</translation>
+    </message>
     <message id="tracks-list-polygons-table-add">
-        <location filename="../qml/editor/TracksList.qml" line="1056"/>
+        <location filename="../qml/editor/TracksList.qml" line="1065"/>
         <source>Add polygon</source>
         <translation>Add polygon</translation>
     </message>
     <message id="tracks-list-polygons-table-remove">
-        <location filename="../qml/editor/TracksList.qml" line="1079"/>
+        <location filename="../qml/editor/TracksList.qml" line="1089"/>
         <source>Remove polygon</source>
         <translation>Remove polygon</translation>
     </message>

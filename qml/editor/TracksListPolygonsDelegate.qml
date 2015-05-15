@@ -18,7 +18,7 @@ Item {
         elide: styleData.elideMode
         text: styleData.value;
         color: styleData.textColor
-        visible: (styleData.role !== "pid") && (styleData.role !== "type")
+        visible: (styleData.role !== "cid") && !styleData.selected
     }
 
     Loader { // Initialize text editor lazily to improve performance
@@ -35,7 +35,14 @@ Item {
             }
         }
 
-        sourceComponent: (styleData.role === "cid") ? polygonSelection : null
+        Connections {
+            target: cidComboLoader.item
+            onNewScore: {
+                changeModel(styleData.row, styleData.role, value)
+            }
+        }
+
+        sourceComponent: (styleData.role === "cid") ? polygonSelection : ((styleData.selected && styleData.role === "score") ? polygonScoreText : null)
         Component {
             id: polygonSelection
             ComboBox {
@@ -45,6 +52,8 @@ Item {
                 property string tableCid: parseInt(styleData.value);
 
                 signal newCid(int cid);
+                signal newScore(int value);
+
                 onCurrentIndexChanged: {
                     if (comboModel === undefined) {
                         return;
@@ -83,6 +92,28 @@ Item {
             }
         }
 
+        Component {
+            id: polygonScoreText
+            NativeTextInput {
+                id: textinput
+
+                signal newCid();
+                signal newScore(int value);
+                color: styleData.textColor
+                text: styleData.value
+                onAccepted: {
+                    newScore(parseInt(textinput.text, 10))
+                }
+
+                MouseArea {
+                    id: mouseArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onClicked: textinput.forceActiveFocus();
+                }
+            }
+
+        }
     }
 
 

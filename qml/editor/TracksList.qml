@@ -103,7 +103,8 @@ Rectangle {
             var p = polygons[i];
             allPolygonsModel.append({
                                         "name" : p.name,
-                                        "cid": p.cid
+                                        "cid": p.cid,
+                                        "score": p.score
                                     })
         }
 
@@ -155,7 +156,8 @@ Rectangle {
             var p = polygons[i];
             selectedPolygonsModel.append({
                                              "did" : p.did,
-                                             "cid": p.cid
+                                             "cid": p.cid,
+                                             "score": p.score,
                                          })
         }
     }
@@ -318,7 +320,8 @@ Rectangle {
                 var item = selectedPolygonsModel.get(i);
                 arr.push({
                              "did": item.did,
-                             "cid": item.cid
+                             "cid": item.cid,
+                             "score": item.score,
                          })
             }
 
@@ -1038,6 +1041,12 @@ Rectangle {
                 role: "cid";
                 width: 150;
             }
+            TableViewColumn {
+                //% "Score"
+                title: qsTrId("track-list-polygon-score")
+                role: "score"
+                width: 150;
+            }
 
             MouseArea {
                 acceptedButtons: Qt.RightButton
@@ -1068,7 +1077,8 @@ Rectangle {
 
                         selectedPolygonsModel.append({
                                                          "did": (maxId+1),
-                                                         "cid": firstCid
+                                                         "cid": firstCid,
+                                                         "score": 0
                                                      })
                         selectedPolygonsModel.selectedPolygonsChanged()
 
@@ -1077,9 +1087,11 @@ Rectangle {
                 MenuItem {
                     //% "Remove polygon"
                     text: qsTrId("tracks-list-polygons-table-remove")
-                    enabled: ((polygonsTable.currentRow !== -1) && (selectedPolygonsModel.count > 0))
+                    enabled: ((polygonsTable.selection.count > 0) && (selectedPolygonsModel.count > 0))
                     onTriggered: {
-                        selectedPolygonsModel.remove(polygonsTable.currentRow, 1)
+                        polygonsTable.selection.forEach( function(rowIndex) {
+                            selectedPolygonsModel.remove(rowIndex, 1)
+                        })
                         selectedPolygonsModel.selectedPolygonsChanged();
                     }
                 }
