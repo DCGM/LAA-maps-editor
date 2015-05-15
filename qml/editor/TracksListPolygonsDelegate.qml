@@ -18,7 +18,7 @@ Item {
         elide: styleData.elideMode
         text: styleData.value;
         color: styleData.textColor
-        visible: (styleData.role !== "cid") && !styleData.selected
+        visible: (styleData.role === "did") || ((styleData.role === "score") && !styleData.selected)
     }
 
     Loader { // Initialize text editor lazily to improve performance
