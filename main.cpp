@@ -33,6 +33,9 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const Q
     case QtFatalMsg:
         txt = QString("Fatal: %1:%2 in %3 %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
         abort();
+    default:
+        txt = QString("Other: %1:%2 in %3 %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
+        break;
     }
     QFile outFile("editor.log");
     outFile.open(QIODevice::WriteOnly | QIODevice::Append);
