@@ -9,7 +9,6 @@
 #include <QFile>
 #include <QTextStream>
 
-
 #include "qtquick2controlsapplicationviewer.h"
 #include "filereader.h"
 #include "networkaccessmanagerfactory.h"
@@ -23,7 +22,6 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const Q
     QString txt;
     switch (type) {
     case QtDebugMsg:
-
         txt = QString("Debug: %1:%2 in %3 %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
         break;
     case QtWarningMsg:
@@ -40,6 +38,7 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const Q
     outFile.open(QIODevice::WriteOnly | QIODevice::Append);
     QTextStream ts(&outFile);
     ts << txt << endl;
+    outFile.close();
 }
 
 int main(int argc, char *argv[]) {
