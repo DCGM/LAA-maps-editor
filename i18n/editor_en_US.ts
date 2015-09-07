@@ -264,11 +264,11 @@ Licence: &lt;br/&gt;\n
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  </oldsource>
-        <translation type="unfinished">
-Authors: &lt;br/&gt;\n
-Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;http://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;\n\n
+        <translation>
+Authors: &lt;br/&gt;
+Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;http://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
 
-Licence: &lt;br/&gt;\n
+Licence: &lt;br/&gt;
 
 BUT OPEN SOURCE LICENCE
 Version 1.
@@ -449,103 +449,120 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <translation>Zoom to points</translation>
     </message>
     <message id="main-menu-edit-zoom-in">
-        <location filename="../qml/editor/main.qml" line="165"/>
+        <location filename="../qml/editor/main.qml" line="166"/>
         <source>Zoom in</source>
         <translation>Zoom in</translation>
     </message>
     <message id="main-menu-edit-zoom-out">
-        <location filename="../qml/editor/main.qml" line="173"/>
+        <location filename="../qml/editor/main.qml" line="174"/>
         <source>Zoom out</source>
         <translation>Zoom out</translation>
     </message>
     <message id="main-menu-edit-show-track-always">
-        <location filename="../qml/editor/main.qml" line="183"/>
+        <location filename="../qml/editor/main.qml" line="184"/>
         <source>Show track always</source>
         <translation>Show track always</translation>
     </message>
     <message id="main-menu-edit-ruler">
-        <location filename="../qml/editor/main.qml" line="191"/>
+        <location filename="../qml/editor/main.qml" line="192"/>
         <source>Ruler</source>
         <translation>Ruler</translation>
     </message>
     <message id="main-menu-edit-autocenter">
-        <location filename="../qml/editor/main.qml" line="202"/>
+        <location filename="../qml/editor/main.qml" line="203"/>
         <source>Automaticaly snap to center</source>
         <translation>Autosnap to center</translation>
     </message>
     <message id="main-map-menu">
-        <location filename="../qml/editor/main.qml" line="214"/>
+        <location filename="../qml/editor/main.qml" line="215"/>
         <source>&amp;Map</source>
         <translation>&amp;Map</translation>
     </message>
     <message id="main-map-menu-none">
-        <location filename="../qml/editor/main.qml" line="221"/>
+        <location filename="../qml/editor/main.qml" line="222"/>
         <source>&amp;None</source>
         <translation>&amp;None</translation>
     </message>
     <message id="main-map-menu-local">
-        <location filename="../qml/editor/main.qml" line="231"/>
+        <location filename="../qml/editor/main.qml" line="233"/>
         <source>&amp;Local</source>
         <translation>&amp;Local</translation>
     </message>
     <message id="main-map-menu-osm">
-        <location filename="../qml/editor/main.qml" line="250"/>
+        <location filename="../qml/editor/main.qml" line="253"/>
         <source>&amp;OSM Mapnik</source>
         <translation>&amp;OSM Mapnik</translation>
     </message>
     <message id="main-map-menu-google-roadmap">
-        <location filename="../qml/editor/main.qml" line="260"/>
+        <location filename="../qml/editor/main.qml" line="264"/>
         <source>Google &amp;Roadmap</source>
         <translation>Google &amp;Roadmap</translation>
     </message>
     <message id="main-map-menu-google-terrain">
-        <location filename="../qml/editor/main.qml" line="270"/>
+        <location filename="../qml/editor/main.qml" line="275"/>
         <source>Google &amp;Terrain</source>
         <translation>Google &amp;Terrain</translation>
     </message>
     <message id="main-map-menu-google-satellite">
-        <location filename="../qml/editor/main.qml" line="280"/>
+        <location filename="../qml/editor/main.qml" line="286"/>
         <source>Google &amp;Satellite</source>
         <translation>Google &amp;Satellite</translation>
     </message>
+    <message id="main-map-menu-custom-tile-layer">
+        <location filename="../qml/editor/main.qml" line="296"/>
+        <source>Custom tile layer</source>
+        <translation>Custom tile layer</translation>
+    </message>
     <message id="main-map-menu-gfw">
-        <location filename="../qml/editor/main.qml" line="291"/>
+        <location filename="../qml/editor/main.qml" line="309"/>
         <source>Show &amp;gfw image</source>
         <oldsource>Load &amp;gfw image</oldsource>
         <translation>Show &amp;gfw image</translation>
     </message>
     <message id="main-help-menu">
-        <location filename="../qml/editor/main.qml" line="309"/>
+        <location filename="../qml/editor/main.qml" line="327"/>
         <source>&amp;Help</source>
         <translation>&amp;Help</translation>
     </message>
     <message id="main-help-menu-about">
-        <location filename="../qml/editor/main.qml" line="312"/>
+        <location filename="../qml/editor/main.qml" line="330"/>
         <source>&amp;About</source>
         <translation>&amp;About</translation>
     </message>
+    <message id="main-map-dialog-title">
+        <location filename="../qml/editor/main.qml" line="477"/>
+        <source>Custom map tile configuration</source>
+        <oldsource>Set Map URL</oldsource>
+        <translation>Custom map tile configuration</translation>
+    </message>
+    <message id="main-map-dialog-question">
+        <location filename="../qml/editor/main.qml" line="480"/>
+        <source>Enter URL</source>
+        <oldsource>Set URL</oldsource>
+        <translation>Enter URL</translation>
+    </message>
     <message id="confirm-unsaved-title">
-        <location filename="../qml/editor/main.qml" line="504"/>
+        <location filename="../qml/editor/main.qml" line="538"/>
         <source>Are you sure?</source>
         <translation>Are you sure?</translation>
     </message>
     <message id="confirm-usaved-text">
-        <location filename="../qml/editor/main.qml" line="506"/>
+        <location filename="../qml/editor/main.qml" line="540"/>
         <source>Your changes have not been saved.</source>
         <translation>Your changes have not been saved.</translation>
     </message>
     <message id="section-type-speed">
-        <location filename="../qml/editor/main.qml" line="1097"/>
+        <location filename="../qml/editor/main.qml" line="1131"/>
         <source>speed</source>
         <translation>speed</translation>
     </message>
     <message id="section-type-altitude">
-        <location filename="../qml/editor/main.qml" line="1109"/>
+        <location filename="../qml/editor/main.qml" line="1143"/>
         <source>altitude</source>
         <translation>altitude</translation>
     </message>
     <message id="section-type-space">
-        <location filename="../qml/editor/main.qml" line="1121"/>
+        <location filename="../qml/editor/main.qml" line="1155"/>
         <source>space</source>
         <translation>space</translation>
     </message>
