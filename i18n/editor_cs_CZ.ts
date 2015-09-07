@@ -514,55 +514,65 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <translation>Vlastní mapová vrstva</translation>
     </message>
     <message id="main-map-menu-gfw">
-        <location filename="../qml/editor/main.qml" line="309"/>
+        <location filename="../qml/editor/main.qml" line="308"/>
         <source>Show &amp;gfw image</source>
         <oldsource>Load &amp;gfw image</oldsource>
         <translation>Zobrazit gf&amp;w obrázek</translation>
     </message>
     <message id="main-help-menu">
-        <location filename="../qml/editor/main.qml" line="327"/>
+        <location filename="../qml/editor/main.qml" line="326"/>
         <source>&amp;Help</source>
         <translation>&amp;Nápověda</translation>
     </message>
     <message id="main-help-menu-about">
-        <location filename="../qml/editor/main.qml" line="330"/>
+        <location filename="../qml/editor/main.qml" line="329"/>
         <source>&amp;About</source>
         <translation>&amp;O programu</translation>
     </message>
     <message id="main-map-dialog-title">
-        <location filename="../qml/editor/main.qml" line="477"/>
+        <location filename="../qml/editor/main.qml" line="476"/>
         <source>Custom map tile configuration</source>
         <oldsource>Set Map URL</oldsource>
         <translation>Nastavení vlastního mapového podkladu</translation>
     </message>
     <message id="main-map-dialog-question">
-        <location filename="../qml/editor/main.qml" line="480"/>
+        <location filename="../qml/editor/main.qml" line="479"/>
         <source>Enter URL</source>
         <oldsource>Set URL</oldsource>
         <translation>Zadejte adresu</translation>
     </message>
+    <message id="error-dialog">
+        <location filename="../qml/editor/main.qml" line="491"/>
+        <source>Error</source>
+        <translation>Chyba</translation>
+    </message>
     <message id="confirm-unsaved-title">
-        <location filename="../qml/editor/main.qml" line="538"/>
+        <location filename="../qml/editor/main.qml" line="547"/>
         <source>Are you sure?</source>
         <translation>Jste si jistý?</translation>
     </message>
     <message id="confirm-usaved-text">
-        <location filename="../qml/editor/main.qml" line="540"/>
+        <location filename="../qml/editor/main.qml" line="549"/>
         <source>Your changes have not been saved.</source>
         <translation>Změny nebyli uloženy.</translation>
     </message>
+    <message id="error-defaults-file">
+        <location filename="../qml/editor/main.qml" line="664"/>
+        <source>Cannot load defaults</source>
+        <translation>Nelze načíst výchozí hodnoty</translation>
+    </message>
     <message id="section-type-speed">
-        <location filename="../qml/editor/main.qml" line="1131"/>
+        <location filename="../qml/editor/main.qml" line="1143"/>
         <source>speed</source>
         <translation>rychlost</translation>
     </message>
     <message id="section-type-altitude">
-        <location filename="../qml/editor/main.qml" line="1143"/>
+        <location filename="../qml/editor/main.qml" line="1155"/>
         <source>altitude</source>
         <translation>výška</translation>
     </message>
     <message id="section-type-space">
-        <location filename="../qml/editor/main.qml" line="1155"/>
+        <location filename="../qml/editor/main.qml" line="1167"/>
         <source>space</source>
         <translation>prostor</translation>
     </message>

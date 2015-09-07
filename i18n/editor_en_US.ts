@@ -514,55 +514,65 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <translation>Custom tile layer</translation>
     </message>
     <message id="main-map-menu-gfw">
-        <location filename="../qml/editor/main.qml" line="309"/>
+        <location filename="../qml/editor/main.qml" line="308"/>
         <source>Show &amp;gfw image</source>
         <oldsource>Load &amp;gfw image</oldsource>
         <translation>Show &amp;gfw image</translation>
     </message>
     <message id="main-help-menu">
-        <location filename="../qml/editor/main.qml" line="327"/>
+        <location filename="../qml/editor/main.qml" line="326"/>
         <source>&amp;Help</source>
         <translation>&amp;Help</translation>
     </message>
     <message id="main-help-menu-about">
-        <location filename="../qml/editor/main.qml" line="330"/>
+        <location filename="../qml/editor/main.qml" line="329"/>
         <source>&amp;About</source>
         <translation>&amp;About</translation>
     </message>
     <message id="main-map-dialog-title">
-        <location filename="../qml/editor/main.qml" line="477"/>
+        <location filename="../qml/editor/main.qml" line="476"/>
         <source>Custom map tile configuration</source>
         <oldsource>Set Map URL</oldsource>
         <translation>Custom map tile configuration</translation>
     </message>
     <message id="main-map-dialog-question">
-        <location filename="../qml/editor/main.qml" line="480"/>
+        <location filename="../qml/editor/main.qml" line="479"/>
         <source>Enter URL</source>
         <oldsource>Set URL</oldsource>
         <translation>Enter URL</translation>
     </message>
+    <message id="error-dialog">
+        <location filename="../qml/editor/main.qml" line="491"/>
+        <source>Error</source>
+        <translation>Error</translation>
+    </message>
     <message id="confirm-unsaved-title">
-        <location filename="../qml/editor/main.qml" line="538"/>
+        <location filename="../qml/editor/main.qml" line="547"/>
         <source>Are you sure?</source>
         <translation>Are you sure?</translation>
     </message>
     <message id="confirm-usaved-text">
-        <location filename="../qml/editor/main.qml" line="540"/>
+        <location filename="../qml/editor/main.qml" line="549"/>
         <source>Your changes have not been saved.</source>
         <translation>Your changes have not been saved.</translation>
     </message>
+    <message id="error-defaults-file">
+        <location filename="../qml/editor/main.qml" line="664"/>
+        <source>Cannot load defaults</source>
+        <translation>Cannot load defaults</translation>
+    </message>
     <message id="section-type-speed">
-        <location filename="../qml/editor/main.qml" line="1131"/>
+        <location filename="../qml/editor/main.qml" line="1143"/>
         <source>speed</source>
         <translation>speed</translation>
     </message>
     <message id="section-type-altitude">
-        <location filename="../qml/editor/main.qml" line="1143"/>
+        <location filename="../qml/editor/main.qml" line="1155"/>
         <source>altitude</source>
         <translation>altitude</translation>
     </message>
     <message id="section-type-space">
-        <location filename="../qml/editor/main.qml" line="1155"/>
+        <location filename="../qml/editor/main.qml" line="1167"/>
         <source>space</source>
         <translation>space</translation>
     </message>

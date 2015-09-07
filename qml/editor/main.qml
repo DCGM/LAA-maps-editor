@@ -485,6 +485,16 @@ ApplicationWindow {
 
     }
 
+    MessageDialog {
+        id: errorDialog;
+        //% "Error"
+        title: qsTrId("error-dialog")
+        icon: StandardIcon.Critical;
+        onAccepted: {
+            Qt.quit();
+        }
+    }
+
     FileDialog {
         id: loadFileDialog;
         nameFilters: [
@@ -650,6 +660,9 @@ ApplicationWindow {
         var defaults_file = "file://" + QStandardPathsApplicationFilePath + "/editor_defaults.json";
         if (!file_reader.file_exists(Qt.resolvedUrl(defaults_file))) {
             console.log("Error: cannot load defaults " + defaults_file);
+            //% "Cannot load defaults"
+            errorDialog.text = qsTrId("error-defaults-file") + "\n" + defaults_file;
+            errorDialog.open();
             return;
         }
         tracks = JSON.parse(file_reader.read(Qt.resolvedUrl(defaults_file)))
