@@ -479,100 +479,115 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <translation>&amp;Mapa</translation>
     </message>
     <message id="main-map-menu-none">
-        <location filename="../qml/editor/main.qml" line="222"/>
+        <location filename="../qml/editor/main.qml" line="225"/>
         <source>&amp;None</source>
         <translation>&amp;Žádná</translation>
     </message>
     <message id="main-map-menu-local">
-        <location filename="../qml/editor/main.qml" line="233"/>
+        <location filename="../qml/editor/main.qml" line="236"/>
         <source>&amp;Local</source>
         <translation>&amp;Stazene mapy</translation>
     </message>
     <message id="main-map-menu-osm">
-        <location filename="../qml/editor/main.qml" line="253"/>
+        <location filename="../qml/editor/main.qml" line="256"/>
         <source>&amp;OSM Mapnik</source>
         <translation>&amp;OSM Mapnik</translation>
     </message>
     <message id="main-map-menu-google-roadmap">
-        <location filename="../qml/editor/main.qml" line="264"/>
+        <location filename="../qml/editor/main.qml" line="267"/>
         <source>Google &amp;Roadmap</source>
         <translation>Google &amp;Roadmap</translation>
     </message>
     <message id="main-map-menu-google-terrain">
-        <location filename="../qml/editor/main.qml" line="275"/>
+        <location filename="../qml/editor/main.qml" line="278"/>
         <source>Google &amp;Terrain</source>
         <translation>Google &amp;Terrain</translation>
     </message>
     <message id="main-map-menu-google-satellite">
-        <location filename="../qml/editor/main.qml" line="286"/>
+        <location filename="../qml/editor/main.qml" line="289"/>
         <source>Google &amp;Satellite</source>
         <translation>Google &amp;Satellite</translation>
     </message>
     <message id="main-map-menu-custom-tile-layer">
-        <location filename="../qml/editor/main.qml" line="296"/>
+        <location filename="../qml/editor/main.qml" line="299"/>
         <source>Custom tile layer</source>
         <translation>Vlastní mapová vrstva</translation>
     </message>
+    <message id="main-map-menu-airspace-off">
+        <location filename="../qml/editor/main.qml" line="310"/>
+        <source>Airspace Off</source>
+        <translation>Vzdušné prostory vypnuty</translation>
+    </message>
+    <message id="main-map-menu-airspace-prosoar">
+        <location filename="../qml/editor/main.qml" line="322"/>
+        <source>Airspace (prosoar.de)</source>
+        <translation>Vzdušné prostory (prosoar.de)</translation>
+    </message>
+    <message id="main-map-menu-airspace-local">
+        <location filename="../qml/editor/main.qml" line="333"/>
+        <source>Airspace (local)</source>
+        <translation>Vzdušné prostory (stažené)</translation>
+    </message>
     <message id="main-map-menu-gfw">
-        <location filename="../qml/editor/main.qml" line="308"/>
+        <location filename="../qml/editor/main.qml" line="346"/>
         <source>Show &amp;gfw image</source>
         <oldsource>Load &amp;gfw image</oldsource>
         <translation>Zobrazit gf&amp;w obrázek</translation>
     </message>
     <message id="main-help-menu">
-        <location filename="../qml/editor/main.qml" line="326"/>
+        <location filename="../qml/editor/main.qml" line="364"/>
         <source>&amp;Help</source>
         <translation>&amp;Nápověda</translation>
     </message>
     <message id="main-help-menu-about">
-        <location filename="../qml/editor/main.qml" line="329"/>
+        <location filename="../qml/editor/main.qml" line="367"/>
         <source>&amp;About</source>
         <translation>&amp;O programu</translation>
     </message>
     <message id="main-map-dialog-title">
-        <location filename="../qml/editor/main.qml" line="476"/>
+        <location filename="../qml/editor/main.qml" line="514"/>
         <source>Custom map tile configuration</source>
         <oldsource>Set Map URL</oldsource>
         <translation>Nastavení vlastního mapového podkladu</translation>
     </message>
     <message id="main-map-dialog-question">
-        <location filename="../qml/editor/main.qml" line="479"/>
+        <location filename="../qml/editor/main.qml" line="517"/>
         <source>Enter URL</source>
         <oldsource>Set URL</oldsource>
         <translation>Zadejte adresu</translation>
     </message>
     <message id="error-dialog">
-        <location filename="../qml/editor/main.qml" line="491"/>
+        <location filename="../qml/editor/main.qml" line="529"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message id="confirm-unsaved-title">
-        <location filename="../qml/editor/main.qml" line="547"/>
+        <location filename="../qml/editor/main.qml" line="585"/>
         <source>Are you sure?</source>
         <translation>Jste si jistý?</translation>
     </message>
     <message id="confirm-usaved-text">
-        <location filename="../qml/editor/main.qml" line="549"/>
+        <location filename="../qml/editor/main.qml" line="587"/>
         <source>Your changes have not been saved.</source>
         <translation>Změny nebyli uloženy.</translation>
     </message>
     <message id="error-defaults-file">
-        <location filename="../qml/editor/main.qml" line="664"/>
+        <location filename="../qml/editor/main.qml" line="702"/>
         <source>Cannot load defaults</source>
         <translation>Nelze načíst výchozí hodnoty</translation>
     </message>
     <message id="section-type-speed">
-        <location filename="../qml/editor/main.qml" line="1143"/>
+        <location filename="../qml/editor/main.qml" line="1181"/>
         <source>speed</source>
         <translation>rychlost</translation>
     </message>
     <message id="section-type-altitude">
-        <location filename="../qml/editor/main.qml" line="1155"/>
+        <location filename="../qml/editor/main.qml" line="1193"/>
         <source>altitude</source>
         <translation>výška</translation>
     </message>
     <message id="section-type-space">
-        <location filename="../qml/editor/main.qml" line="1167"/>
+        <location filename="../qml/editor/main.qml" line="1205"/>
         <source>space</source>
         <translation>prostor</translation>
     </message>
@@ -658,27 +673,27 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
         <translation>Uzavřený</translation>
     </message>
     <message id="pinchmap-ready">
-        <location filename="../qml/editor/PinchMap.qml" line="551"/>
+        <location filename="../qml/editor/PinchMap.qml" line="566"/>
         <source>Ready</source>
         <translation>Připravena</translation>
     </message>
     <message id="pinchmap-not-set">
-        <location filename="../qml/editor/PinchMap.qml" line="553"/>
+        <location filename="../qml/editor/PinchMap.qml" line="568"/>
         <source>Not Set</source>
         <translation>Nenastaveno</translation>
     </message>
     <message id="pinchmap-error">
-        <location filename="../qml/editor/PinchMap.qml" line="555"/>
+        <location filename="../qml/editor/PinchMap.qml" line="570"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message id="pinchmap-loading">
-        <location filename="../qml/editor/PinchMap.qml" line="557"/>
+        <location filename="../qml/editor/PinchMap.qml" line="572"/>
         <source>Loading ...</source>
         <translation>Nahrávání ...</translation>
     </message>
     <message id="pinchmap-unknown-error">
-        <location filename="../qml/editor/PinchMap.qml" line="559"/>
+        <location filename="../qml/editor/PinchMap.qml" line="574"/>
         <source>Unknown error</source>
         <translation>Neznámá chyba</translation>
     </message>
