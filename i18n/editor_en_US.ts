@@ -516,17 +516,17 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
     <message id="main-map-menu-airspace-off">
         <location filename="../qml/editor/main.qml" line="310"/>
         <source>Airspace Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Airspace Off</translation>
     </message>
     <message id="main-map-menu-airspace-prosoar">
         <location filename="../qml/editor/main.qml" line="322"/>
         <source>Airspace (prosoar.de)</source>
-        <translation type="unfinished"></translation>
+        <translation>Airspace (prosoar.de)</translation>
     </message>
     <message id="main-map-menu-airspace-local">
         <location filename="../qml/editor/main.qml" line="333"/>
         <source>Airspace (local)</source>
-        <translation type="unfinished"></translation>
+        <translation>Airspace (local)</translation>
     </message>
     <message id="main-map-menu-gfw">
         <location filename="../qml/editor/main.qml" line="346"/>

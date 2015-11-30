@@ -622,7 +622,7 @@ Rectangle {
                         width: (parent.width - 4) * progressBar.p;
                         color: "#000000";
                     }
-                    visible: mapTileVisible
+                    visible: mapTileVisible && img.status !== Image.Ready
                 }
                 NativeText {
                     anchors.left: parent.left
