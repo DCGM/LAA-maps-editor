@@ -1,4 +1,4 @@
-import QtQuick 2.2
+import QtQuick 2.5
 import "functions.js" as F
 import cz.mlich 1.0
 
