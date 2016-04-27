@@ -569,7 +569,7 @@ BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, 
     <message id="confirm-usaved-text">
         <location filename="../qml/editor/main.qml" line="587"/>
         <source>Your changes have not been saved.</source>
-        <translation>Změny nebyli uloženy.</translation>
+        <translation>Změny nebyly uloženy.</translation>
     </message>
     <message id="error-defaults-file">
         <location filename="../qml/editor/main.qml" line="702"/>
