@@ -32,11 +32,15 @@ Rectangle {
 
         for (var i = 0; i< computedData.length; i++) {
             var item = computedData[i];
-            if ((item.angle !== undefined) && (item.angle !== new_conn[item.idx].computed_angle)) {
+            if ((item.angle !== undefined)
+                    && (new_conn[item.idx] !== undefined)
+                    && (item.angle !== new_conn[item.idx].computed_angle)) {
                 new_conn[item.idx].computed_angle = item.angle;
                 changed = true;
             }
-            if ((item.distance !== undefined) && (item.distance !== new_conn[item.idx].computed_distance)) {
+            if ((item.distance !== undefined)
+                    && (new_conn[item.idx] !== undefined)
+                    && (item.distance !== new_conn[item.idx].computed_distance)) {
                 new_conn[item.idx].computed_distance = item.distance;
                 changed = true;
             }

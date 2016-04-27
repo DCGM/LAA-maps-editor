@@ -14,8 +14,19 @@ TableView {
     property real mapCenterLat: 49
     property real mapCenterLon: 16
     property bool enableSnap: false;
+    property variant lateSelect;
 
+    model: pModel;
     selectionMode: SelectionMode.ExtendedSelection
+
+    onRowCountChanged: {
+        if (lateSelect !== undefined) {
+            tableView.selection.clear();
+            tableView.selection.select(lateSelect)
+            lateSelect = undefined;
+        }
+
+    }
 
 
     onPointPidSelectedFromMapChanged: {
@@ -81,7 +92,6 @@ TableView {
 
 
 
-    model: pModel;
     itemDelegate: PointsListEditableDelegate {
         onChangeModel: {
             tableView.model.setProperty(row, role, value);
@@ -104,16 +114,16 @@ TableView {
                 if (http.readyState === XMLHttpRequest.DONE) {
                     if (http.readyState === XMLHttpRequest.DONE) {
                         var response = JSON.parse(http.responseText)
-                        if (response.address == undefined) {
+                        if (response.address === undefined) {
                             return;
                         }
-                        if (response.address.city != undefined) {
+                        if (response.address.city !== undefined) {
                             pModel.setProperty(row, "name", response.address.city);
-                        } else if (response.address.town != undefined) {
+                        } else if (response.address.town !== undefined) {
                             pModel.setProperty(row, "name", response.address.town);
-                        } else if (response.address.hamlet != undefined) {
+                        } else if (response.address.hamlet !== undefined) {
                             pModel.setProperty(row, "name", response.address.hamlet);
-                        } else if (response.address.village != undefined) {
+                        } else if (response.address.village !== undefined) {
                             pModel.setProperty(row, "name", response.address.village);
                         }
                         tableView.selection.deselect(0, pModel.count-1);
@@ -164,9 +174,8 @@ TableView {
 
                 pModel.pointsChanged()
 
-                tableView.selection.deselect(0, pModel.count-1);
-                tableView.selection.select(current)
-                tableView.currentRow = current;
+                lateSelect = current; // workarround for https://bugreports.qt.io/browse/QTBUG-53027
+
 
 
             }
