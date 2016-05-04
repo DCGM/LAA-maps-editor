@@ -232,8 +232,14 @@ function DMStoFloat(str) {
 }
 
 
-function getMapTile(url, x, y, zoom) {
-    return url.replace("%(x)d", x).replace("%(y)d", y).replace("%(zoom)d", zoom);
+function getMapTile(url, x, y, zoom, subdomains) {
+    var result = url.replace("%(x)d", x).replace("%(y)d", y).replace("%(zoom)d", zoom);
+    if ((subdomains !== undefined) && (subdomains.length > 0)) {
+        var rand = Math.floor((Math.random() * subdomains.length));
+        result = result.replace("%(s)d", subdomains[rand]);
+    }
+
+    return result;
 }
 
 function getBearingTo(lat, lon, tlat, tlon) {

@@ -64,6 +64,7 @@ Rectangle {
     property string url;
     // : "~/Maps/OSM/%(zoom)d/%(x)d/%(y)d.png"
     // url: "http://a.tile.openstreetmap.org/%(zoom)d/%(x)d/%(y)d.png";
+    property variant url_subdomains: []
     property string airspaceUrl;
 
 
@@ -549,7 +550,7 @@ Rectangle {
         }
 
 
-        var res = Qt.resolvedUrl(F.getMapTile(baseUrl, tx, ty, zoomLevelInt));
+        var res = Qt.resolvedUrl(F.getMapTile(baseUrl, tx, ty, zoomLevelInt, url_subdomains));
 
         if (filereader.is_local_file(res) && !filereader.file_exists(res)) { // do not open non existing image
             return "";
