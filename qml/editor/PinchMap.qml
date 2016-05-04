@@ -782,7 +782,7 @@ Rectangle {
     function getPtByPid(pid, points) {
         for (var i = 0; i < points.length; i++) {
             var item = points[i]
-            if (item.pid == pid) {
+            if (item.pid === pid) {
                 return item;
             }
         }
@@ -791,7 +791,7 @@ Rectangle {
     function getPolyByCid(cid, poly) {
         for (var i = 0; i < poly.length; i++) {
             var item = poly[i];
-            if (item.cid == cid) {
+            if (item.cid === cid) {
                 return item;
             }
         }
@@ -815,9 +815,9 @@ Rectangle {
 
     function getFlagsMask(current, defaults, mask) {
         if (current < 0) {
-            return ((defaults & mask) == mask)
+            return ((defaults & mask) === mask)
         }
-        return ((current & mask) == mask)
+        return ((current & mask) === mask)
 
     }
 
@@ -939,8 +939,8 @@ Rectangle {
                     if (pointSnap >= 0) {
                         var item = getPtByPid(pointSnap, points);
                         if (item !== undefined) {
-                            snapLat = item.lat;
-                            snapLon = item.lon;
+                            pointsSelectedLat = snapLat = item.lat;
+                            pointsSelectedLon = snapLon = item.lon;
                         }
                     }
 
