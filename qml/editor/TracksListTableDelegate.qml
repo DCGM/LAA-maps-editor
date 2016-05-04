@@ -17,7 +17,7 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         elide: styleData.elideMode
         text: getTextForRole(styleData.row, styleData.role, styleData.value);
-        color: (styleData.value == -1
+        color: (styleData.value === -1
                 || (styleData.role === "addTime" && styleData.value === 0)
                 ) ? "#aaa" : styleData.textColor
         visible: ((styleData.role === "tid") || (styleData.role === "flags") || styleData.role === "distance_sum" ) || (!styleData.selected && (styleData.role !== "type"))
@@ -57,7 +57,7 @@ Item {
                     }
 
                     var it = comboModel.get(currentIndex);
-                    if (it.pid != styleData.value) { // jen kdyz se zmenilo
+                    if (it.pid !== styleData.value) { // jen kdyz se zmenilo
                         newPid(it.pid);
                     }
 
@@ -73,7 +73,7 @@ Item {
 
                     for (var i = 0; i < model.count; i++) {
                         var it = model.get(i);
-                        if (it.pid == styleData.value) {
+                        if (it.pid === styleData.value) {
                             toIdx = i;
                             break;
                         }
@@ -123,7 +123,7 @@ Item {
                         return;
                     }
                     var it = typeModel.get(currentIndex)
-                    if (it.typeId != styleData.value) { // jen kdyz se zmenilo
+                    if (it.typeId !== styleData.value) { // jen kdyz se zmenilo
                         newType(it.typeId);
                     }
                 }
@@ -138,7 +138,7 @@ Item {
                     var toIdx = 0;
                     for (var i = 0; i < model.count; i++) {
                         var it = model.get(i);
-                        if (it.typeId == styleData.value) {
+                        if (it.typeId === styleData.value) {
                             toIdx = i;
                             break;
                         }
@@ -200,6 +200,14 @@ Item {
 
                 switch (styleData.role) {
                 case "angle": // default
+                    var num = parseFloat(value);
+                    if (isNaN(num)) {
+                        changeModel(styleData.row, styleData.role, -1)
+                    } else {
+                        num = (num + 90) % 360
+                        changeModel(styleData.row, styleData.role, num)
+                    }
+                    break;
                 case "distance":
                 case "radius":
                 case "speed_min":
@@ -341,6 +349,9 @@ Item {
         }
 
         switch (role) {
+        case "angle": // adjust angle by 90 deg
+            show = (show + 270) % 360;
+            break;
         case "flags":
             show = flagsToStr(show);
             break;
