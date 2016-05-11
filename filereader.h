@@ -20,6 +20,8 @@ public:
 
     Q_INVOKABLE bool is_local_file(const QUrl &filename);
 
+    Q_INVOKABLE QString dirname_local(const QString &filename);
+    Q_INVOKABLE bool is_dir_and_exists_local(const QString &dirname);
 
 signals:
 

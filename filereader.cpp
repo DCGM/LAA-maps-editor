@@ -1,6 +1,8 @@
 #include <QFile>
+#include <QDir>
 #include <QUrl>
 #include <QDebug>
+#include <QFileInfo>
 #include "filereader.h"
 
 FileReader::FileReader(QObject *parent) :
@@ -45,4 +47,20 @@ bool FileReader::file_exists_local(const QString &filename) {
 
 bool FileReader::is_local_file(const QUrl &filename) {
     return filename.isLocalFile();
+}
+
+QString FileReader::dirname_local(const QString &filename) {
+    QFileInfo info(filename);
+    QUrl u = info.dir().path();
+    return u.toLocalFile();
+}
+
+bool FileReader::is_dir_and_exists_local(const QString &dirname) {
+
+    QFileInfo info(dirname);
+//    qDebug() << "is dir and exists " <<dirname;
+//    qDebug() << info.exists();
+//    qDebug() << info.isDir();
+
+    return info.exists() && info.isDir();
 }
