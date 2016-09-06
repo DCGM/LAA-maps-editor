@@ -704,7 +704,7 @@ ApplicationWindow {
 
     function loadDefaults() {
         document_changed = false;
-        var defaults_file = "file://" + QStandardPathsApplicationFilePath + "/editor_defaults.json";
+        var defaults_file = "file:///" + QStandardPathsApplicationFilePath + "/editor_defaults.json";
         if (!file_reader.file_exists(Qt.resolvedUrl(defaults_file))) {
             console.log("Error: cannot load defaults " + defaults_file);
             //% "Cannot load defaults"
