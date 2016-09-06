@@ -600,7 +600,7 @@ Rectangle {
                 title: qsTrId("tracks-list-alt_max")
                 role: "alt_max"
                 width: 50;
-                visible: false;
+                //visible: false;
             }
 
             TableViewColumn {
@@ -615,6 +615,7 @@ Rectangle {
                 title: qsTrId("tracks-list-speed_max")
                 role: "speed_max"
                 width: 50;
+                visible: false;
             }
             TableViewColumn {
                 //% "Arc/Poly"
