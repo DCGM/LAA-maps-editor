@@ -789,14 +789,6 @@ Rectangle {
         }
     }
 
-    function getPolyByCid(cid, poly) {
-        for (var i = 0; i < poly.length; i++) {
-            var item = poly[i];
-            if (item.cid === cid) {
-                return item;
-            }
-        }
-    }
 
     function getAngleByIdx(idx, trackinfo) {
         for (var i = 0; i < trackinfo.length; i++) {
@@ -966,7 +958,7 @@ Rectangle {
 
                             break;
                         case "polyline":
-                            var selPoly = getPolyByCid(c.ptr, poly);
+                            var selPoly = F.getPolyByCid(c.ptr, poly);
                             if (selPoly === undefined) {
                                 angle = ((F.getBearingTo(prevItem.lat, prevItem.lon, item.lat, item.lon)+90)%360);
                             } else {
@@ -1051,7 +1043,7 @@ Rectangle {
                         case "polyline":
                             distance = 0;
 
-                            var selPoly = getPolyByCid(c.ptr, poly);
+                            var selPoly = F.getPolyByCid(c.ptr, poly);
                             if (selPoly === undefined) {
                                 ctx.moveTo(screenPoint[0], screenPoint[1])
                             } else {

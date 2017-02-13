@@ -1262,7 +1262,7 @@ ApplicationWindow {
             str += "\"" + category_name + "___polygons" +"\";";
             for (var j = 0; j < poly.length; j++) {
                 var poly_info = poly[j];
-                var poly_data = getPolyByCid(poly_info.cid, polys);
+                var poly_data = F.getPolyByCid(poly_info.cid, polys);
                 str += "\"" +  poly_data.name +"\";"
                 str += "\"" + poly_info.score +"\";"
             }

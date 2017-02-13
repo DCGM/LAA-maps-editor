@@ -889,3 +889,15 @@ function addSlashes(input) {
     return String(input).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 }
 
+
+
+
+
+function getPolyByCid(cid, poly) {
+    for (var i = 0; i < poly.length; i++) {
+        var item = poly[i];
+        if (item.cid == cid) {
+            return item;
+        }
+    }
+}
