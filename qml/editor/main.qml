@@ -241,15 +241,13 @@ ApplicationWindow {
                 exclusiveGroup: mapTypeExclusive
                 onTriggered: {
                     console.log("Cached OSM")
-                    map.url = QStandardPathsHomeLocation+"/.local/share/Maps/OSM/%(zoom)d/%(x)d/%(y)d.png"
-//                    map.url = "../../Maps/OSM/%(zoom)d/%(x)d/%(y)d.png"
+                    map.url = "../../../../Maps/OSM/%(zoom)d/%(x)d/%(y)d.png"
                     map.url_subdomains = [];
 
                 }
                 Component.onCompleted: { // default value
                     checked = true;
-                    map.url = QStandardPathsHomeLocation+"/.local/share/Maps/OSM/%(zoom)d/%(x)d/%(y)d.png"
-//                    map.url = "../../Maps/OSM/%(zoom)d/%(x)d/%(y)d.png"
+                    map.url = "../../../../Maps/OSM/%(zoom)d/%(x)d/%(y)d.png"
                     map.url_subdomains = [];
 
                 }
@@ -344,7 +342,7 @@ ApplicationWindow {
                 exclusiveGroup: mapTypeSecondaryExclusive
                 checkable: true;
                 onTriggered: {
-                    map.airspaceUrl = QStandardPathsHomeLocation+"/.local/share/Maps/airspace/%(zoom)d/%(x)d/%(y)d.png"
+                    map.airspaceUrl = "../../../../Maps/airspace/tiles/%(zoom)d/%(x)d/%(y)d.png"
                     map.mapAirspaceVisible = true;
                 }
             }
