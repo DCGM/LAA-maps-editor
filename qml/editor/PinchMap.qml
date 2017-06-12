@@ -412,21 +412,21 @@ Rectangle {
         var l = getCenter()
         longitude = l[1]
         latitude = l[0]
-        updateGeocaches();
+        canvas.requestPaint()
+
     }
 
     function requestUpdate() {
         var start = getCoordFromScreenpoint(0,0)
         var end = getCoordFromScreenpoint(pinchmap.width,pinchmap.height)
-        //         controller.updateGeocaches(start[0], start[1], end[0], end[1])
-        updateGeocaches()
+        canvas.requestPaint()
+
         console.debug("Update requested.")
     }
 
     function requestUpdateDetails() {
         var start = getCoordFromScreenpoint(0,0)
         var end = getCoordFromScreenpoint(pinchmap.width,pinchmap.height)
-        //        controller.downloadGeocaches(start[0], start[1], end[0], end[1])
         console.debug("Download requested.")
     }
 
@@ -503,8 +503,7 @@ Rectangle {
         var tile = deg2num(lat, lon)
         var realX = (tile[0] - cornerTileX) * tileSize
         var realY = (tile[1] - cornerTileY) * tileSize
-        return [realX, realY]
-        
+        return [realX, realY];
     }
 
     function getCenter() {
@@ -559,8 +558,6 @@ Rectangle {
         return res;
 
     }
-
-
     function imageStatusToString(status) {
         switch (status) {
             //% "Ready"
@@ -623,14 +620,14 @@ Rectangle {
                         width: (parent.width - 4) * progressBar.p;
                         color: "#000000";
                     }
-                    visible: mapTileVisible && img.status !== Image.Ready
+                    visible: mapTileVisible && (img.status !== Image.Ready)
                 }
                 NativeText {
                     anchors.left: parent.left
                     anchors.leftMargin: 16
                     y: parent.height/2 - 32
                     text: imageStatusToString(img.status)
-                    visible: mapTileVisible && img.status !== Image.Ready
+                    visible: mapTileVisible && (img.status !== Image.Ready)
                 }
                 Image {
                     anchors.fill: parent;
@@ -732,14 +729,6 @@ Rectangle {
                 mapy: map.y
                 z: 2000
 
-
-//                NativeText {
-//                    x: parent.width*0.75
-//                    y: parent.height*0.75
-//                    text: model.name
-//                    visible: (pinchmap.zoomLevel > 9);
-//                }
-
             }
 
         }
@@ -823,7 +812,9 @@ Rectangle {
         width: map.width
         height: map.height
         renderStrategy: Canvas.Cooperative
+
         onPaint: {
+
             console.time("canvas-onPaint")
 
             var ctx = canvas.getContext("2d");
@@ -918,7 +909,8 @@ Rectangle {
                 var polygonCachePoints = [];
 
                 // draw connection for selected category
-                if ((conns !== undefined) && conns.length > 0) {
+                if ((conns !== undefined) && (conns.length > 0)) {
+
 
                     // draw track polygon
                     var c = conns[0];
@@ -1002,6 +994,7 @@ Rectangle {
                                            "idx": 0,
                                            "angle": angle
                                        });
+
                     }
 
 
@@ -1260,8 +1253,6 @@ Rectangle {
                     var tp_enabled = getFlags(c.flags, tracks.default_flags, 0)
                     var radius = (c.radius < 0) ? tracks.default_radius : c.radius;
 
-
-
                     if (tp_enabled) {
                         // kruznice
                         ctx.strokeStyle= ((filterCupData === 2) && (tracksSelectedTid === c.tid)) ? "#cc0000" : "#0000cc"
@@ -1290,7 +1281,7 @@ Rectangle {
                         tmp.push({
                                      "cid": 1,
                                      "name": "turn point circle",
-                                     "color": "0000ff",
+                                     "color": "0000FF",
                                      "points": points_ll
                                  });
                         polygonCache = tmp;
@@ -1401,7 +1392,7 @@ Rectangle {
                                 tmp.push({
                                              "cid": 1,
                                              "name": "turn point circle",
-                                             "color": "0000ff",
+                                             "color": "0000FF",
                                              "points": points_ll
                                          });
                                 polygonCache = tmp;
@@ -1448,7 +1439,7 @@ Rectangle {
                                 tmp.push({
                                              "cid": 1,
                                              "name": "gate",
-                                             "color": "0000ff",
+                                             "color": "0000FF",
                                              "points": [
                                                  {"lat": gateA.lat, "lon": gateA.lon},
                                                  {"lat": gateB.lat, "lon": gateB.lon},
@@ -1581,31 +1572,6 @@ Rectangle {
         font.pixelSize: 24
     }
 
-    function updateGeocaches () {
-        //        console.debug("Update polygons called")
-
-        /*
-      var from = getCoordFromScreenpoint(0,0)
-        var to = getCoordFromScreenpoint(pinchmap.width,pinchmap.height)
-
-
-        FlightData.sendMessage({
-                                   'action': 'visibleMapChanged',
-                                   'simple_objects': simple_objects,
-                                   'polygon_objects': polygon_objects,
-                                   'min_latitude':  Math.min(from[0],to[0]),
-                                   'min_longitude': Math.min(from[1],to[1]),
-                                   'max_latitude':  Math.max(from[0],to[0]),
-                                   'max_longitude': Math.max(from[1],to[1]),
-                                   'zoom': zoomLevel,
-                                   'flight_data_container': flight_data_container
-                                   //                                 'mapPtr': map,
-                                   //                                 'tmpCoord': tmpCoord
-                               });
-*/
-        canvas.requestPaint()
-
-    }
 
     PinchArea {
         id: pincharea;
