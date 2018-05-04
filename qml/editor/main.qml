@@ -651,6 +651,7 @@ ApplicationWindow {
         nameFilters: [
             "Keyhole Markup Language (*.kml)",
             "GPS exchange Format (*.gpx)",
+            "See You cup (*.cup)",
         ]
         onAccepted: {
             var str = String(fileUrl);
@@ -658,6 +659,8 @@ ApplicationWindow {
                 exportKml(fileUrl);
             } else if (str.match(/\.gpx$/)) {
                 exportGpx(fileUrl);
+            } else if (str.match(/\.cup$/)) {
+                exportCup(fileUrl);
             } else {
                 console.error("unsupported file format (please add file extension)")
             }
@@ -689,6 +692,9 @@ ApplicationWindow {
 //        var default_data_file = "file:///var/www/html/tucek2/2014-KOTV.json";
 //        var default_data = file_reader.read(Qt.resolvedUrl(default_data_file))
 //        tracks = JSON.parse(default_data);
+
+//        var cupFilename = "file:///home/jmlich/Desktop/x.cup"
+//        exportCup(cupFilename);
 
 //        var kmlFilename = "file:///home/jmlich/workspace/tucek/data/kml/2013_skutec_final.kml"
 //        importKml(kmlFilename);
@@ -728,12 +734,13 @@ ApplicationWindow {
 
         var newArr = tracks.points;
         var maxPid = 0;
-        for (var i = 0; i < newArr.length; i++) {
+        var i = 0;
+        for (i = 0; i < newArr.length; i++) {
             var item = newArr[i];
             maxPid = Math.max(item.pid, maxPid);
         }
 
-        for (var i = 0; i < wpts.length; i++) {
+        for (i = 0; i < wpts.length; i++) {
             var wpt = wpts[i];
             newArr.push({
                             "pid": maxPid+ 1 +i,
@@ -768,14 +775,16 @@ ApplicationWindow {
 
         var newPoints = tracks.points;
         var maxPid = 0;
-        for (var i = 0; i < newPoints.length; i++) {
-            var item = newPoints[i];
+        var i = 0;
+        var item;
+        for (i = 0; i < newPoints.length; i++) {
+            item = newPoints[i];
             maxPid = Math.max(item.pid, maxPid);
         }
 
 
-        for (var i = 0; i < kmlpts.length; i++) {
-            var item = kmlpts[i];
+        for (i = 0; i < kmlpts.length; i++) {
+            item = kmlpts[i];
             newPoints.push({
                             "pid": maxPid+ 1 +i,
                             "name": item.name,
@@ -786,13 +795,13 @@ ApplicationWindow {
 
         var newPoly = tracks.poly;
         var maxCid = 0;
-        for (var i = 0; i < newPoly.length; i++) {
-            var item = newPoly[i];
+        for (i = 0; i < newPoly.length; i++) {
+            item = newPoly[i];
             maxCid = Math.max(item.cid, maxCid);
         }
 
         var kmlpoly = kml.poly;
-        for (var i = 0; i < kmlpoly.length; i++) {
+        for (i = 0; i < kmlpoly.length; i++) {
             var kmlPolyItem = kmlpoly[i];
             var newPolyItem = {"cid": maxCid+1+i,
                         "name": kmlPolyItem.name,
@@ -828,14 +837,16 @@ ApplicationWindow {
 
         var newPoints = tracks.points;
         var maxPid = 0;
-        for (var i = 0; i < newPoints.length; i++) {
-            var item = newPoints[i];
+        var i = 0;
+        var item;
+        for (i = 0; i < newPoints.length; i++) {
+            item = newPoints[i];
             maxPid = Math.max(item.pid, maxPid);
         }
 
 
-        for (var i = 0; i < kmlpts.length; i++) {
-            var item = kmlpts[i];
+        for (i = 0; i < kmlpts.length; i++) {
+            item = kmlpts[i];
             newPoints.push({
                             "pid": maxPid+ 1 +i,
                             "name": item.name,
@@ -846,13 +857,13 @@ ApplicationWindow {
 
         var newPoly = tracks.poly;
         var maxCid = 0;
-        for (var i = 0; i < newPoly.length; i++) {
-            var item = newPoly[i];
+        for (i = 0; i < newPoly.length; i++) {
+            item = newPoly[i];
             maxCid = Math.max(item.cid, maxCid);
         }
 
         var kmlpoly = gpx.poly;
-        for (var i = 0; i < kmlpoly.length; i++) {
+        for (i = 0; i < kmlpoly.length; i++) {
             var kmlPolyItem = kmlpoly[i];
             var newPolyItem = {"cid": maxCid+1+i,
                         "name": kmlPolyItem.name,
@@ -883,13 +894,14 @@ ApplicationWindow {
 
 
         var points = tracks.points;
+        var item;
 
         if (points.length > 0) {
-            var item = points[0]
+            item = points[0]
             str += "<LookAt><longitude>"+item.lon+"</longitude> <latitude>"+item.lat+"</latitude> <altitude>0</altitude><range>3000,000000000000000000</range> <tilt>45</tilt> <heading>0</heading> </LookAt>"
         }
         for (var i = 0; i < points.length; i++) {
-            var item = points[i];
+            item = points[i];
             str += "<Placemark>
   <name>"+item.name+"</name>
   <Point>
@@ -904,7 +916,7 @@ ApplicationWindow {
 
         var poly = tracks.poly;
         for (var i = 0; i< poly.length; i++) {
-            var item = poly[i];
+            item = poly[i];
             var coordStr = "";
             var color = item.color;
             if (color.length === 6) {
@@ -938,7 +950,7 @@ ApplicationWindow {
 
         var poly = map.polygonCache;
         for (var i = 0; i< poly.length; i++) {
-            var item = poly[i];
+            item = poly[i];
             var coordStr = "";
             var color = item.color;
             if (color.length === 6) {
@@ -1039,15 +1051,57 @@ ApplicationWindow {
 
         }
 
-
-
-
         str += "</gpx>"
 
         file_reader.write(Qt.resolvedUrl(filename), str);
 
     }
 
+
+    function exportCup(filename) {
+        var str ="";
+        var i = 0;
+        str += "name,code,country,lat,lon,elev,style,rwdir,rwlen,freq,desc\r\n"
+
+        var points = tracks.points;
+
+        for (i = 0; i < points.length; i++) {
+            var item = points[i];
+
+            str += "\"" + F.addSlashes(item.name) + "\",PT" + item.pid + ",," + F.getLat(item.lat,{coordinateFormat: "DM"}) + "," + F.getLon(item.lon,{coordinateFormat: "DM"}) + ",-100000000.0m,1,,,,\""+item.name+"\"\r\n";
+        }
+
+        str += "-----Related Tasks-----\r\n"
+
+        for (var tidx = 0; tidx < tracks.tracks.length; tidx++) {
+            var trk = tracks.tracks[tidx];
+            var conn = trk.conn
+            var point;
+
+            if (conn.length > 0) {
+
+                str += "\""+F.addSlashes(trk.name)+"\"";
+                point = getPtByPid(conn[0].pid , points);
+                str += ",\"" + F.addSlashes(point.name) + "\""
+
+                for (i = 0; i < conn.length; i++) {
+                    point = getPtByPid(conn[i].pid , points)
+                    str += ",\"" + F.addSlashes(point.name) + "\""
+                }
+                point = getPtByPid(conn[conn.length-1].pid , points);
+                str += ",\"" + F.addSlashes(point.name) + "\""
+                str += "\r\n";
+
+                for (i = 0; i < conn.length; i++) {
+                    var c = conn[i]
+                    str += "ObsZone="+(i+1)+",Style=2,R1=" + ((c.radius < 0) ? trk.default_radius : c.radius) +"m,A1=180,Line=1\r\n"
+                }
+            }
+        }
+
+        file_reader.write(Qt.resolvedUrl(filename), str);
+
+    }
 
 
     function importIgc(filename) {

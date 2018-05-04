@@ -78,10 +78,14 @@ function getLat(lat, settings) {
     }
     if (settings.coordinateFormat === "D") {
         return c + " " + l.toFixed(5) + "°"
+    } else if (settings.coordinateFormat === "DM") {
+        var mxt = (l - Math.floor(l)) * 60
+        var s = (mxt - Math.floor(mxt))
+        return ("00" + Math.floor(l)).slice(-2) + ("00"+Math.floor(mxt)).slice(-2)+ "." + ("000" + s.toFixed(3)*1000).slice(-3) + c
     } else if (settings.coordinateFormat === "DMS") {
         var mxt = (l - Math.floor(l)) * 60
         var s = (mxt - Math.floor(mxt)) * 60
-        return c + " "+ Math.floor(l) + "° " + Math.floor(mxt) + "' " + s.toFixed(3) + "''"
+        return c + " "+ Math.floor(l) + "° " + Math.floor(mxt) + "' " + s.toFixed(5) + "''"
     } else {
         return c + " " + Math.floor(l) + "° " + ((l - Math.floor(l)) * 60).toFixed(3) + "'"
     }
@@ -96,6 +100,10 @@ function getLon(lon, settings) {
     }
     if (settings.coordinateFormat === "D") {
         return c + " " + l.toFixed(5) + "°"
+    } else if (settings.coordinateFormat === "DM") {
+        var mxt = (l - Math.floor(l)) * 60
+        var s = (mxt - Math.floor(mxt))
+        return ("000" + Math.floor(l)).slice(-3) + ("00"+Math.floor(mxt)).slice(-2)+ "." + ("000" + s.toFixed(3)*1000).slice(-3) + c
     } else if (settings.coordinateFormat === "DMS") {
         var mxt = (l - Math.floor(l)) * 60
         var s = (mxt - Math.floor(mxt)) * 60
