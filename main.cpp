@@ -48,11 +48,8 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const Q
 int main(int argc, char *argv[]) {
 
     QGuiApplication app(argc, argv);
-    //    QGuiApplication app(argc, argv);
-
 
     qInstallMessageHandler(myMessageHandler); // FIXME: timto se zapina vytvareni logu do souboru
-
 
     QQmlApplicationEngine engine;
 
@@ -83,12 +80,26 @@ int main(int argc, char *argv[]) {
             }
         }
 
+    } else if (translator.load(QLatin1String("editor_") + QLocale::system().name(), "../share/editor/i18n")) {
+        app.installTranslator(&translator);
+        engine.rootContext()->setContextProperty("locale", QLocale::system().bcp47Name());
+
+        if (QLocale::system().name() == "cs_CZ") {
+            if (qtbasetranslator.load("qtbase_cs", "./")) {
+                app.installTranslator(&qtbasetranslator);
+                qDebug() << "loading qtbase_cs";
+            }
+        }
+
     } else {
         qDebug() << "translation.load() failed - falling back to English";
         //        if (translator.load(QLatin1String("editor_en_US") , QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
         if (translator.load(QLatin1String("editor_en_US")   , "./")) {
             app.installTranslator(&translator);
+        } else if (translator.load(QLatin1String("editor_en_US")   , "../share/editor/i18n")) {
+            app.installTranslator(&translator);
         }
+
         engine.rootContext()->setContextProperty("locale","en");
     }
 

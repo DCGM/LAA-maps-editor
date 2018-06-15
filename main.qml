@@ -1,4 +1,4 @@
-import QtQuick 2.5
+import QtQuick 2.9
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
 import cz.mlich 1.0
@@ -710,7 +710,7 @@ ApplicationWindow {
         document_changed = false;
         var defaults_files = [
                     "file:///" + QStandardPathsApplicationFilePath + "/editor_defaults.json",
-                    "file:///" + QStandardPathsApplicationFilePath + "/../share/editor_defaults.json"
+                    "file:///" + QStandardPathsApplicationFilePath + "/../share/editor/editor_defaults.json"
                 ];
 
         var selected_default;

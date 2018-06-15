@@ -12,8 +12,6 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  qt5-devel >= 5.10.0
 BuildRequires:  qt5-linguist
 
-%{?_qt5_version:Requires: qt5%{?_isa} >= %{_qt5_version}}
-
 %description
 editor is 
 
@@ -28,7 +26,7 @@ make %{?_smp_mflags}
 %install
 make INSTALL_ROOT=$RPM_BUILD_ROOT install
 
-#desktop-file-install --dir $RPM_BUILD_ROOT%{_datadir}/applications\
+#desktop-file-install --dir $RPM_BUILD_ROOT/opt/%{name}/share/applications\
 #      $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
 
 %files
