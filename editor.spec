@@ -16,7 +16,7 @@ BuildRequires:  qt5-linguist
 editor is 
 
 %prep
-%setup -q -c
+%setup -q -n %{name}-%{version}
 
 
 %build
