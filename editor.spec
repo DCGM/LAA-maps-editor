@@ -1,7 +1,7 @@
 Name:           editor
 Version:        0.2.0
 Release:        %(date +%Y%m%d%H)%{?dist}
-Summary:        A cross platform web browser
+Summary:        Editor of LAA Competition tracks
 
 Group:          Applications/Internet
 License:        custom
@@ -13,7 +13,7 @@ BuildRequires:  qt5-devel >= 5.10.0
 BuildRequires:  qt5-linguist
 
 %description
-editor is 
+editor is tool for editing of LAA Competion tracks
 
 %prep
 %setup -q -n %{name}-%{version}
