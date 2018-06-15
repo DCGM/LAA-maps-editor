@@ -107,12 +107,14 @@ TableView {
         onReverseGeocoding: {
             var item = pModel.get(row);
 
-            var url = "http://nominatim.openstreetmap.org/reverse?lat="+item.lat+"&lon="+item.lon+"&format=json";
+            var url = "https://nominatim.openstreetmap.org/reverse?lat="+item.lat+"&lon="+item.lon+"&format=json";
+            console.log(url)
             var http = new XMLHttpRequest()
             http.open("GET", url, true);
             http.onreadystatechange = function() {
                 if (http.readyState === XMLHttpRequest.DONE) {
                     if (http.readyState === XMLHttpRequest.DONE) {
+                        console.log(http.responseText)
                         var response = JSON.parse(http.responseText)
                         if (response.address === undefined) {
                             return;
