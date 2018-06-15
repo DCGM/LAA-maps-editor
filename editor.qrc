@@ -1,5 +1,51 @@
 <RCC>
     <qresource prefix="/">
         <file>editor64.png</file>
+        <file>editor_defaults.json</file>
+        <file>TracksListTableDelegate.qml</file>
+        <file>CupTextData.qml</file>
+        <file>TracksList.qml</file>
+        <file>PropertiesDetail.qml</file>
+        <file>fragment.fsh</file>
+        <file>TracksListPolygonsDelegate.qml</file>
+        <file>parseCup.js</file>
+        <file>PointsListEditableDelegate.qml</file>
+        <file>PolygonList.qml</file>
+        <file>data/Airport15.png</file>
+        <file>data/Triangle_Red.png</file>
+        <file>data/arrow.png</file>
+        <file>data/logo-laa.png</file>
+        <file>data/noimage-cantload.png</file>
+        <file>data/noimage.png</file>
+        <file>data/target-indicator-cross.png</file>
+        <file>data/Diamond_Red.png</file>
+        <file>data/Triangle_Green.png</file>
+        <file>data/Radio_Beacon.png</file>
+        <file>data/Airport.png</file>
+        <file>data/Tall_Tower.png</file>
+        <file>data/noimage-loading.png</file>
+        <file>data/logo_fit.png</file>
+        <file>data/Diamond_Blue.png</file>
+        <file>data/position-indicator-red.png</file>
+        <file>data/position-indicator.png</file>
+        <file>data/Ultralight_Area.png</file>
+        <file>data/noimage-disabled.png</file>
+        <file>data/target-indicator-cross-blue.png</file>
+        <file>functions.js</file>
+        <file>PolygonListDelegate.qml</file>
+        <file>Ruler.qml</file>
+        <file>PointsList.qml</file>
+        <file>GFWDialog.qml</file>
+        <file>TrackStatistics.qml</file>
+        <file>NativeText.qml</file>
+        <file>WorldFileImage.qml</file>
+        <file>TextDialog.qml</file>
+        <file>AboutDialog.qml</file>
+        <file>main.qml</file>
+        <file>CloneDialog.qml</file>
+        <file>PinchMap.qml</file>
+        <file>Waypoint.qml</file>
+        <file>parser_fn.js</file>
+        <file>NativeTextInput.qml</file>
     </qresource>
 </RCC>

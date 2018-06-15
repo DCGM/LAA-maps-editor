@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=LAA Maps Editor
+Name[en_US]=LAA Maps Editor
+Comment=LAA Maps Editor
+GenericName=Competition Editor
+Exec=editor %u
+Terminal=false
+Type=Application
+Icon=editor64.png
+Categories=Application;Qt;Network;
+StartupNotify=true

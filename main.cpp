@@ -1,6 +1,6 @@
 #include <QtQml>
 #include <QtGui>
-#include <QApplication>
+#include <QGuiApplication>
 #include <QQuickWindow>
 #include <QQuickView>
 #include <QQuickItem>
@@ -9,7 +9,6 @@
 #include <QFile>
 #include <QTextStream>
 
-#include "qtquick2controlsapplicationviewer.h"
 #include "filereader.h"
 #include "networkaccessmanagerfactory.h"
 #include "imagesaver.h"
@@ -40,13 +39,15 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const Q
     QFile outFile("editor.log");
     outFile.open(QIODevice::WriteOnly | QIODevice::Append);
     QTextStream ts(&outFile);
+    QTextStream std_out(stdout, QIODevice::WriteOnly);
     ts << txt << endl;
+    std_out << txt << endl;
     outFile.close();
 }
 
 int main(int argc, char *argv[]) {
 
-    QApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
     //    QGuiApplication app(argc, argv);
 
 
@@ -54,6 +55,7 @@ int main(int argc, char *argv[]) {
 
 
     QQmlApplicationEngine engine;
+
 
     //    qDebug() << "app.libraryPaths() "  << app.libraryPaths();
     //    qDebug() << "engine.importPathList()" << engine.importPathList();
@@ -100,8 +102,7 @@ int main(int argc, char *argv[]) {
     engine.rootContext()->setContextProperty("QStandardPathsApplicationFilePath", QFileInfo( QCoreApplication::applicationFilePath() ).dir().absolutePath() );
     //    engine.rootContext()->setContextProperty("QStandardPathsApplicationFilePath", QFileInfo( QCoreApplication::applicationFilePath() ).dir().absolutePath().left(QFileInfo( QCoreApplication::applicationFilePath() ).dir().absolutePath().size()-4) );
     engine.rootContext()->setContextProperty("QStandardPathsHomeLocation", QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0]);
-    engine.load(QUrl("qml/editor/main.qml"));
-
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     QObject *topLevel = engine.rootObjects().value(0);
     QQuickWindow *window = qobject_cast<QQuickWindow *>(topLevel);

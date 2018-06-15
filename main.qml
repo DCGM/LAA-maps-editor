@@ -241,13 +241,13 @@ ApplicationWindow {
                 exclusiveGroup: mapTypeExclusive
                 onTriggered: {
                     console.log("Cached OSM")
-                    map.url = "../../../../Maps/OSM/%(zoom)d/%(x)d/%(y)d.png"
+                    map.url = Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/../../../../Maps/OSM/")+"%(zoom)d/%(x)d/%(y)d.png"
                     map.url_subdomains = [];
 
                 }
                 Component.onCompleted: { // default value
                     checked = true;
-                    map.url = "../../../../Maps/OSM/%(zoom)d/%(x)d/%(y)d.png"
+                    map.url = Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/../../../../Maps/OSM/")+"%(zoom)d/%(x)d/%(y)d.png"
                     map.url_subdomains = [];
 
                 }
@@ -331,7 +331,7 @@ ApplicationWindow {
                 exclusiveGroup: mapTypeSecondaryExclusive
                 checkable: true;
                 onTriggered: {
-                    map.airspaceUrl = "http://prosoar.de/airspace/%(zoom)d/%(x)d/%(y)d.png"
+                    map.airspaceUrl= Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/../../../../Maps/airspace/tiles/")+"%(zoom)d/%(x)d/%(y)d.png"
                     map.mapAirspaceVisible = true;
                 }
             }
@@ -342,7 +342,7 @@ ApplicationWindow {
                 exclusiveGroup: mapTypeSecondaryExclusive
                 checkable: true;
                 onTriggered: {
-                    map.airspaceUrl = "../../../../Maps/airspace/tiles/%(zoom)d/%(x)d/%(y)d.png"
+                    map.airspaceUrl= Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/../../../../Maps/airspace/tiles/")+"%(zoom)d/%(x)d/%(y)d.png"
                     map.mapAirspaceVisible = true;
                 }
             }
@@ -708,15 +708,26 @@ ApplicationWindow {
 
     function loadDefaults() {
         document_changed = false;
-        var defaults_file = "file:///" + QStandardPathsApplicationFilePath + "/editor_defaults.json";
-        if (!file_reader.file_exists(Qt.resolvedUrl(defaults_file))) {
-            console.log("Error: cannot load defaults " + defaults_file);
+        var defaults_files = [
+                    "file:///" + QStandardPathsApplicationFilePath + "/editor_defaults.json",
+                    "file:///" + QStandardPathsApplicationFilePath + "/../share/editor_defaults.json"
+                ];
+
+        var selected_default;
+        defaults_files.forEach(function(defaults_file) {
+            if (file_reader.file_exists(Qt.resolvedUrl(defaults_file))) {
+                selected_default = Qt.resolvedUrl(defaults_file)
+            }
+        })
+
+        if (selected_default === undefined) {
+            console.log("Error: cannot load defaults");
             //% "Cannot load defaults"
-            errorDialog.text = qsTrId("error-defaults-file") + "\n" + defaults_file;
+            errorDialog.text = qsTrId("error-defaults-file") + "\neditor_defaults.json";
             errorDialog.open();
             return;
         }
-        tracks = JSON.parse(file_reader.read(Qt.resolvedUrl(defaults_file)))
+        tracks = JSON.parse(file_reader.read(Qt.resolvedUrl(selected_default)))
 
         map.requestUpdate()
 
