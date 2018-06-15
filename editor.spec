@@ -1,6 +1,6 @@
 Name:           editor
 Version:        0.2.0
-Release:        1%{?dist}
+Release:        %(date +%Y%m%d%H)%{?dist}
 Summary:        A cross platform web browser
 
 Group:          Applications/Internet
