@@ -1,6 +1,7 @@
 # Add more folders to ship with the application, here
 
 QT += quick xml
+CONFIG += qtquickcompiler
 CONFIG += c++11
 
 # The .cpp file which was generated for your project. Feel free to hack it.
@@ -85,11 +86,3 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-
-win32 {
-    DEFINES += BUILDTIME=\\\"$$system(echo %time%)\\\"
-    DEFINES += BUILDDATE=\\\"$$system(echo %date%)\\\"
-} else {
-    DEFINES += BUILDTIME=\\\"$$system(date '+%H:%M.%s')\\\"
-    DEFINES += BUILDDATE=\\\"$$system(date '+%d/%m/%y')\\\"
-}

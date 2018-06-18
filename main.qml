@@ -240,18 +240,28 @@ ApplicationWindow {
                 checkable: true;
                 exclusiveGroup: mapTypeExclusive
                 onTriggered: {
-                    console.log("Cached OSM")
-                    map.url = Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/../../../../Maps/OSM/")+"%(zoom)d/%(x)d/%(y)d.png"
-                    map.url_subdomains = [];
-
+                    setLocalPath();
                 }
                 Component.onCompleted: { // default value
                     checked = true;
-                    map.url = Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/../../../../Maps/OSM/")+"%(zoom)d/%(x)d/%(y)d.png"
-                    map.url_subdomains = [];
+                    setLocalPath();
 
                 }
                 shortcut: "Ctrl+2"
+                function setLocalPath() {
+                    var homepath = Qt.resolvedUrl("file://"+QStandardPathsHomeLocation+"/Maps/OSM/")
+                    var binpath = Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/Maps/OSM/");
+                    map.url_subdomains = [];
+                    if (file_reader.file_exists(binpath)) {
+                        console.warn("local map " + binpath)
+                        map.url = binpath + "%(zoom)d/%(x)d/%(y)d.png"
+                    } else if (file_reader.file_exists(homepath)) {
+                        console.warn("local map " + homepath)
+                        map.url = homepath + "%(zoom)d/%(x)d/%(y)d.png"
+                    } else {
+                        console.warn("local map not found")
+                    }
+                }
 
             }
             MenuItem {
@@ -331,7 +341,7 @@ ApplicationWindow {
                 exclusiveGroup: mapTypeSecondaryExclusive
                 checkable: true;
                 onTriggered: {
-                    map.airspaceUrl= Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/../../../../Maps/airspace/tiles/")+"%(zoom)d/%(x)d/%(y)d.png"
+                    map.airspaceUrl= Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/Maps/airspace/tiles/")+"%(zoom)d/%(x)d/%(y)d.png"
                     map.mapAirspaceVisible = true;
                 }
             }
@@ -342,7 +352,7 @@ ApplicationWindow {
                 exclusiveGroup: mapTypeSecondaryExclusive
                 checkable: true;
                 onTriggered: {
-                    map.airspaceUrl= Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/../../../../Maps/airspace/tiles/")+"%(zoom)d/%(x)d/%(y)d.png"
+                    map.airspaceUrl= Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/Maps/airspace/tiles/")+"%(zoom)d/%(x)d/%(y)d.png"
                     map.mapAirspaceVisible = true;
                 }
             }
