@@ -19,29 +19,41 @@
 
 void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg) {
     QString txt;
-    switch (type) {
-    case QtDebugMsg:
-        txt = QString("Debug: %1:%2 in %3 %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
-        break;
-    case QtWarningMsg:
-        txt = QString("Warning: %1:%2 in %3 %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
-        break;
-    case QtCriticalMsg:
-        txt = QString("Critical: %1:%2 in %3 %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
-        break;
-    case QtFatalMsg:
-        txt = QString("Fatal: %1:%2 in %3 %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
-        abort();
-    default:
-        txt = QString("Other: %1:%2 in %3 %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
-        break;
-    }
-    QFile outFile("editor.log");
+
+    QFile outFile("viewer.log");
     outFile.open(QIODevice::WriteOnly | QIODevice::Append);
     QTextStream ts(&outFile);
+
     QTextStream std_out(stdout, QIODevice::WriteOnly);
+    QTextStream std_err(stderr, QIODevice::WriteOnly);
+
+
+    switch (type) {
+    case QtDebugMsg:
+
+        txt = QString("Debug: [%1:%2@%3]: %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
+        std_out << txt << endl;
+        break;
+    case QtWarningMsg:
+        txt = QString("Warning: [%1:%2@%3]: %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
+        std_out << txt << endl;
+        break;
+    case QtCriticalMsg:
+        txt = QString("Critical: [%1:%2@%3]: %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
+        std_err << txt << endl;
+        break;
+    case QtFatalMsg:
+        txt = QString("Fatal: [%1:%2@%3]: %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
+        std_err << txt << endl;
+        abort();
+    default:
+        txt = QString("Other: [%1:%2@%3]: %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
+        std_err << txt << endl;
+        break;
+
+    }
     ts << txt << endl;
-    std_out << txt << endl;
+
     outFile.close();
 }
 
@@ -49,7 +61,7 @@ int main(int argc, char *argv[]) {
 
     QGuiApplication app(argc, argv);
 
-    qInstallMessageHandler(myMessageHandler); // FIXME: timto se zapina vytvareni logu do souboru
+    qInstallMessageHandler(myMessageHandler);
 
     QQmlApplicationEngine engine;
 
