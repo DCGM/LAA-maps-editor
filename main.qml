@@ -249,18 +249,18 @@ ApplicationWindow {
                 }
                 shortcut: "Ctrl+2"
                 function setLocalPath() {
-                    var homepath = Qt.resolvedUrl("file://"+QStandardPathsHomeLocation+"/Maps/OSM/")
-                    var binpath = Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/Maps/OSM/");
+                    var homepath = QStandardPathsHomeLocation+"/Maps/OSM/"
+                    var binpath = QStandardPathsApplicationFilePath +"/Maps/OSM/";
                     map.url_subdomains = [];
-                    if (file_reader.file_exists(binpath)) {
-                        console.warn("local map " + binpath)
-                        map.url = binpath + "%(zoom)d/%(x)d/%(y)d.png"
-                    } else if (file_reader.file_exists(homepath)) {
-                        console.warn("local map " + homepath)
-                        map.url = homepath + "%(zoom)d/%(x)d/%(y)d.png"
+                    if (file_reader.is_dir_and_exists_local(binpath)) {
+                        console.log("local map " + binpath)
+                        map.url = Qt.resolvedUrl("file://"+binpath) + "%(zoom)d/%(x)d/%(y)d.png"
+                    } else if (file_reader.is_dir_and_exists_local(homepath)) {
+                        console.log("local map " + homepath)
+                        map.url = Qt.resolvedUrl("file://"+homepath) + "%(zoom)d/%(x)d/%(y)d.png"
                     } else {
-                        console.warn("local map not found")
                         map.url = "";
+                        console.warn("local map not found")
                     }
                 }
 
