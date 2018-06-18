@@ -1,6 +1,6 @@
 # Add more folders to ship with the application, here
 
-QT += quick xml
+QT += qml quick xml
 CONFIG += qtquickcompiler
 CONFIG += c++11
 
@@ -17,9 +17,6 @@ SOURCES += main.cpp \
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
-
-# Installation path
-# target.path =
 
 HEADERS += \
     filereader.h \
@@ -68,8 +65,6 @@ icons64.files = editor64.png
 unix:!andorid: icons64.path = /opt/$${TARGET}/share/icons/hicolor/applications/64x64
 icons64.CONFIG += no_check_exist
 INSTALLS += icons64
-
-
 
 
 CODECFORTR = UTF-8
