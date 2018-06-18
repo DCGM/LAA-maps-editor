@@ -260,6 +260,7 @@ ApplicationWindow {
                         map.url = homepath + "%(zoom)d/%(x)d/%(y)d.png"
                     } else {
                         console.warn("local map not found")
+                        map.url = "";
                     }
                 }
 
