@@ -3,7 +3,7 @@ Name=LAA Maps Editor
 Name[en_US]=LAA Maps Editor
 Comment=LAA Maps Editor
 GenericName=Competition Editor
-Exec=editor %u
+Exec=env QT_QPA_PLATFORMTHEME=gtk2 editor %u
 Terminal=false
 Type=Application
 Icon=editor64.png
