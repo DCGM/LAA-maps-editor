@@ -70,10 +70,7 @@ INSTALLS += icons64
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
 
-RC_ICON = editor64.ico
-
-RESOURCES += \
-    editor.qrc
+RESOURCES += editor.qrc
 
 
 # Default rules for deployment.

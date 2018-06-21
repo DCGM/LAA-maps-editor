@@ -26,8 +26,14 @@ QString FileReader::toLocal(const QUrl &filename) {
 
 
 QByteArray FileReader::read(const QUrl &filename) {
-//    qDebug() << "read " << filename.toLocalFile();
-    return read_local(filename.toLocalFile());
+    if (filename.isLocalFile()) {
+        return read_local(filename.toLocalFile());
+    }
+    if (filename.scheme() == "qrc") {
+        QString resource_fn = ":" + filename.toString(QUrl::RemoveScheme);
+        return read_local(resource_fn);
+    }
+    return QByteArray();
 }
 
 
@@ -83,7 +89,14 @@ void FileReader::write_local(const QString &filename, QByteArray data) {
 }
 
 bool FileReader::file_exists(const QUrl &filename) {
-    return file_exists_local(filename.toLocalFile());
+    if (filename.isLocalFile()) {
+        return file_exists_local(filename.toLocalFile());
+    }
+    if (filename.scheme() == "qrc") {
+        QString resource_fn = ":" + filename.toString(QUrl::RemoveScheme);
+        return file_exists_local(resource_fn);
+    }
+    return false;
 }
 
 bool FileReader::file_exists_local(const QString &filename) {

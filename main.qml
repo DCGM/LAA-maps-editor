@@ -721,7 +721,8 @@ ApplicationWindow {
         document_changed = false;
         var defaults_files = [
                     "file:///" + QStandardPathsApplicationFilePath + "/editor_defaults.json",
-                    "file:///" + QStandardPathsApplicationFilePath + "/../share/editor/editor_defaults.json"
+                    "file:///" + QStandardPathsApplicationFilePath + "/../share/editor/editor_defaults.json",
+                    "qrc:/editor_defaults.json",
                 ];
 
         var selected_default;
