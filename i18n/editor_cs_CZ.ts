@@ -265,8 +265,9 @@ Licence: &lt;br/&gt;\n
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  </oldsource>
         <translatorcomment>viz GPL Licence</translatorcomment>
-        <translation>Autoři: &lt;br/&gt;
-Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;http://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
+        <translation>
+Autoři: &lt;br/&gt;
+Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=&quot;http://www.fit.vutbr.cz/&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
 
 Licenční ujednání: &lt;br/&gt;
 
