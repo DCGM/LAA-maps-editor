@@ -20,39 +20,50 @@
 void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg) {
     QString txt;
 
-    QFile outFile("viewer.log");
+#if defined(Q_OS_LINUX)
+    if (!QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).exists()) {
+        QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+    }
+    QFile outFile(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QDir::separator() +"editor.log");
+#elif (defined (Q_OS_WIN) || defined (Q_OS_WIN32) || defined (Q_OS_WIN64))
+    QFile outFile("editor.log");
+#else
+    QFile outfile("editor.log");
+#endif
     outFile.open(QIODevice::WriteOnly | QIODevice::Append);
     QTextStream ts(&outFile);
 
     QTextStream std_out(stdout, QIODevice::WriteOnly);
     QTextStream std_err(stderr, QIODevice::WriteOnly);
 
-
     switch (type) {
     case QtDebugMsg:
-
-        txt = QString("Debug: [%1:%2@%3]: %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
-        std_out << txt << endl;
+        txt = QString("[D] %1:%2 @ %3(): %4").arg(context.file).arg(context.line).arg(context.function).arg(qPrintable(msg));
+        std_out << txt << endl ;
         break;
     case QtWarningMsg:
-        txt = QString("Warning: [%1:%2@%3]: %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
+        txt = QString("[W]: %1:%2 @ %3(): %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
         std_out << txt << endl;
         break;
     case QtCriticalMsg:
-        txt = QString("Critical: [%1:%2@%3]: %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
+        txt = QString("[C]: %1:%2 @ %3(): %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
         std_err << txt << endl;
         break;
     case QtFatalMsg:
-        txt = QString("Fatal: [%1:%2@%3]: %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
+        txt = QString("[F]: %1:%2 @ %3(): %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
         std_err << txt << endl;
         abort();
     default:
-        txt = QString("Other: [%1:%2@%3]: %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
+        txt = QString("[O]: %1:%2 @ %3(): %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
         std_err << txt << endl;
         break;
 
     }
-    ts << txt << endl;
+    ts << txt;
+#if (defined (Q_OS_WIN) || defined (Q_OS_WIN32) || defined (Q_OS_WIN64))
+    ts << ('\r');
+#endif
+    ts << endl;
 
     outFile.close();
 }

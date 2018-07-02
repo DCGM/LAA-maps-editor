@@ -35,8 +35,12 @@ defineReplace(prependAll) {
     return($$result)
 }
 
-LRELEASE = lrelease-qt5
-
+unix: {
+    LRELEASE = lrelease-qt5
+}
+win32: {
+    LRELEASE = lrelease
+}
 TRANSLATIONS = $$prependAll(LANGUAGES, $$PWD/i18n/editor_,.ts)
 
 updateqm.input = TRANSLATIONS

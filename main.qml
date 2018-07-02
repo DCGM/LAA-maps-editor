@@ -342,7 +342,7 @@ ApplicationWindow {
                 exclusiveGroup: mapTypeSecondaryExclusive
                 checkable: true;
                 onTriggered: {
-                    map.airspaceUrl= Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/Maps/airspace/tiles/")+"%(zoom)d/%(x)d/%(y)d.png"
+                    map.airspaceUrl = "http://prosoar.de/airspace/%(zoom)d/%(x)d/%(y)d.png"
                     map.mapAirspaceVisible = true;
                 }
             }
@@ -353,9 +353,27 @@ ApplicationWindow {
                 exclusiveGroup: mapTypeSecondaryExclusive
                 checkable: true;
                 onTriggered: {
-                    map.airspaceUrl= Qt.resolvedUrl("file://"+QStandardPathsApplicationFilePath +"/Maps/airspace/tiles/")+"%(zoom)d/%(x)d/%(y)d.png"
-                    map.mapAirspaceVisible = true;
+                    setLocalPath();
                 }
+                function setLocalPath() {
+                    var homepath = QStandardPathsHomeLocation+"/Maps/airspace/tiles/"
+                    var binpath = QStandardPathsApplicationFilePath +"/Maps/airspace/tiles/";
+                    map.url_subdomains = [];
+                    if (file_reader.is_dir_and_exists_local(binpath)) {
+                        map.airspaceUrl = Qt.resolvedUrl("file://"+binpath) + "%(zoom)d/%(x)d/%(y)d.png"
+                        map.mapAirspaceVisible = true;
+
+                    } else if (file_reader.is_dir_and_exists_local(homepath)) {
+                        map.airspaceUrl = Qt.resolvedUrl("file://"+homepath) + "%(zoom)d/%(x)d/%(y)d.png"
+                        map.mapAirspaceVisible = true;
+                    } else {
+                        map.airspaceUrl = "";
+                        map.mapAirspaceVisible = false;
+                        console.warn("local map not found")
+                    }
+                    console.log(map.airspaceUrl)
+                }
+
             }
 
 
