@@ -38,7 +38,7 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const Q
 
     switch (type) {
     case QtDebugMsg:
-        txt = QString("[D] %1:%2 @ %3(): %4").arg(context.file).arg(context.line).arg(context.function).arg(qPrintable(msg));
+        txt = QString("[D] %1:%2 @ %3(): %4").arg(context.file).arg(context.line).arg(context.function).arg(msg);
         std_out << txt << endl ;
         break;
     case QtWarningMsg:
