@@ -117,10 +117,7 @@ bool FileReader::delete_file_local(const QString &filename) {
 
 bool FileReader::is_dir_and_exists_local(const QString &dirname) {
     QFileInfo info(dirname);
-//    qDebug() << "is dir and exists " <<dirname;
-//    qDebug() << info.exists();
-//    qDebug() << info.isDir();
-
+//    qDebug() << "is dir and exists " <<dirname << " exists: " <<info.exists() << " isDir: " << info.isDir();
     return info.exists() && info.isDir();
 }
 
