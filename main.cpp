@@ -129,7 +129,6 @@ int main(int argc, char *argv[]) {
     engine.rootContext()->setContextProperty("builddate", QString::fromLocal8Bit(__DATE__));
     engine.rootContext()->setContextProperty("buildtime", QString::fromLocal8Bit(__TIME__));
 
-
     NetworkAccessManagerFactory namFactory;
 
     engine.setNetworkAccessManagerFactory(&namFactory);

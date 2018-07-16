@@ -250,7 +250,7 @@ ApplicationWindow {
                 shortcut: "Ctrl+2"
                 function setLocalPath() {
                     var homepath = QStandardPathsHomeLocation+"/Maps/OSM/"
-                    var binpath = QStandardPathsApplicationFilePath +"/Maps/OSM/";
+                    var binpath = QStandardPathsApplicationFilePath +"/../Maps/OSM/";
                     map.url_subdomains = [];
                     if (file_reader.is_dir_and_exists_local(binpath)) {
                         console.log("local map " + binpath)
@@ -357,7 +357,7 @@ ApplicationWindow {
                 }
                 function setLocalPath() {
                     var homepath = QStandardPathsHomeLocation+"/Maps/airspace/tiles/"
-                    var binpath = QStandardPathsApplicationFilePath +"/Maps/airspace/tiles/";
+                    var binpath = QStandardPathsApplicationFilePath +"/../Maps/airspace/tiles/";
                     map.url_subdomains = [];
                     if (file_reader.is_dir_and_exists_local(binpath)) {
                         map.airspaceUrl = Qt.resolvedUrl("file:///"+binpath) + "%(zoom)d/%(x)d/%(y)d.png"
