@@ -91,12 +91,11 @@ int main(int argc, char *argv[]) {
     QTranslator translator;
     QTranslator qtbasetranslator;
 
-    //    if (translator.load(QLatin1String("editor_") + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
     if (translator.load(QLatin1String("editor_") + QLocale::system().name(), "./")) {
         app.installTranslator(&translator);
         engine.rootContext()->setContextProperty("locale", QLocale::system().bcp47Name());
 
-    } else if (translator.load(QLatin1String("editor_") + QLocale::system().name(), "../share/editor/i18n")) {
+    } else if (translator.load(QLatin1String("editor_") + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
         app.installTranslator(&translator);
         engine.rootContext()->setContextProperty("locale", QLocale::system().bcp47Name());
 
