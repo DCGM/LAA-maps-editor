@@ -101,10 +101,9 @@ int main(int argc, char *argv[]) {
 
     } else {
         qDebug() << "translation.load() failed - falling back to English";
-        //        if (translator.load(QLatin1String("editor_en_US") , QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
         if (translator.load(QLatin1String("editor_en_US")   , "./")) {
             app.installTranslator(&translator);
-        } else if (translator.load(QLatin1String("editor_en_US")   , "../share/editor/i18n")) {
+        } else if (translator.load(QLatin1String("editor_en_US"), QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
             app.installTranslator(&translator);
         }
 
