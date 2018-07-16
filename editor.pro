@@ -74,8 +74,9 @@ INSTALLS += icons64
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
 
-RESOURCES += editor.qrc
+RC_ICONS = editor64.ico
 
+RESOURCES += editor.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

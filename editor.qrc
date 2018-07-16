@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
+        <file>editor64.ico</file>
         <file>editor64.png</file>
         <file>editor_defaults.json</file>
         <file>TracksListTableDelegate.qml</file>
