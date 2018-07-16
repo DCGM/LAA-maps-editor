@@ -96,23 +96,9 @@ int main(int argc, char *argv[]) {
         app.installTranslator(&translator);
         engine.rootContext()->setContextProperty("locale", QLocale::system().bcp47Name());
 
-        if (QLocale::system().name() == "cs_CZ") {
-            if (qtbasetranslator.load("qtbase_cs", "./")) {
-                app.installTranslator(&qtbasetranslator);
-                qDebug() << "loading qtbase_cs";
-            }
-        }
-
     } else if (translator.load(QLatin1String("editor_") + QLocale::system().name(), "../share/editor/i18n")) {
         app.installTranslator(&translator);
         engine.rootContext()->setContextProperty("locale", QLocale::system().bcp47Name());
-
-        if (QLocale::system().name() == "cs_CZ") {
-            if (qtbasetranslator.load("qtbase_cs", "./")) {
-                app.installTranslator(&qtbasetranslator);
-                qDebug() << "loading qtbase_cs";
-            }
-        }
 
     } else {
         qDebug() << "translation.load() failed - falling back to English";
