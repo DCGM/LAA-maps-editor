@@ -55,6 +55,14 @@ ApplicationWindow {
             spacing: 20;
             anchors.margins: 10;
 
+            NativeText {
+                //% "Build %1 %2 %3"
+                text: qsTrId("about-build-date").arg(builddate).arg(buildtime).arg(version);
+                anchors.left: parent.left
+                anchors.right: parent.right
+                wrapMode: Text.WordWrap
+            }
+
 
             NativeText {
                 id: aboutTextLabel
@@ -105,13 +113,6 @@ By installing, copying or other use of Software User declares he/she has read th
                 onLinkActivated: {
                     Qt.openUrlExternally(link)
                 }
-            }
-            NativeText {
-                //% "Build %1 %2 %3"
-                text: qsTrId("about-build-date").arg(builddate).arg(buildtime).arg(version);
-                anchors.left: parent.left
-                anchors.right: parent.right
-                wrapMode: Text.WordWrap
             }
 
         }
