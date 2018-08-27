@@ -107,8 +107,8 @@ By installing, copying or other use of Software User declares he/she has read th
                 }
             }
             NativeText {
-                //% "Build %1 %2"
-                text: qsTrId("about-build-date").arg(builddate).arg(buildtime);
+                //% "Build %1 %2 %3"
+                text: qsTrId("about-build-date").arg(builddate).arg(buildtime).arg(version);
                 anchors.left: parent.left
                 anchors.right: parent.right
                 wrapMode: Text.WordWrap
