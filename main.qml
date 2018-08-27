@@ -550,7 +550,7 @@ ApplicationWindow {
         //% "Custom map tile configuration"
         title: qsTrId("main-map-dialog-title")
 
-        //% "Enter URL";
+        //% "Enter URL"
         question: qsTrId("main-map-dialog-question")
 
         text: "http://m3.mapserver.mapy.cz/ophoto-m/%(zoom)d-%(x)d-%(y)d"
