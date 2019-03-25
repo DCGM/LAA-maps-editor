@@ -36,7 +36,15 @@ defineReplace(prependAll) {
 }
 
 unix: {
-    LRELEASE = lrelease-qt5
+    exists( $(QTDIR)/bin/lrelease ) {
+        LRELEASE = $(QTDIR)/bin/lrelease
+    } else {
+        exists( /usr/bin/lrelease-qt5 ) {
+            LRELEASE = /usr/bin/lrelease-qt5
+        } else {
+            LRELEASE = lrelease-qt5
+        }
+    }
 }
 win32: {
     LRELEASE = lrelease
