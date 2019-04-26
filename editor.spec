@@ -1,5 +1,5 @@
 Name:           editor
-Version:        %(git describe --tags --abbrev=0)
+Version:        0.4
 Release:        %(date +%Y%m%d%H)%{?dist}
 Summary:        Editor of LAA Competition tracks
 
@@ -8,7 +8,6 @@ License:        BUT LICENCE (GPLv2 compatibile)
 URL:            https://github.com/DCGM/LAA-maps-editor
 Source0:        https://github.com/DCGM/LAA-maps-editor/archive/master.tar.gz#/%{name}-%{version}.tar.gz
 
-BuildRequires:  git
 BuildRequires:  desktop-file-utils
 BuildRequires:  qt5-devel >= 5.10.0
 BuildRequires:  qt5-linguist
