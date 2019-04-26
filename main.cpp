@@ -76,6 +76,10 @@ int main(int argc, char *argv[]) {
 
     QQmlApplicationEngine engine;
 
+    app.setOrganizationName("Brno University of Technology");
+    app.setOrganizationDomain("fit.vutbr.cz");
+    app.setApplicationName("LAA Maps Editor");
+
 
     //    qDebug() << "app.libraryPaths() "  << app.libraryPaths();
     //    qDebug() << "engine.importPathList()" << engine.importPathList();
@@ -115,6 +119,7 @@ int main(int argc, char *argv[]) {
     engine.rootContext()->setContextProperty("version", QString::fromLocal8Bit(GIT_VERSION));
 
     qDebug() << "Starting build " << QString::fromLocal8Bit(GIT_VERSION) << " "<< QString::fromLocal8Bit(__DATE__) << " " <<  QString::fromLocal8Bit(__TIME__);
+    qDebug() << QSslSocket::supportsSsl() << QSslSocket::sslLibraryBuildVersionString() << QSslSocket::sslLibraryVersionString();
 
     NetworkAccessManagerFactory namFactory;
 
