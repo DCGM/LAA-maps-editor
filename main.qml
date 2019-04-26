@@ -337,12 +337,12 @@ ApplicationWindow {
             }
 
             MenuItem {
-                //% "Airspace (prosoar.de)"
+                //% "Airspace (skylines.aero)"
                 text: qsTrId("main-map-menu-airspace-prosoar")
                 exclusiveGroup: mapTypeSecondaryExclusive
                 checkable: true;
                 onTriggered: {
-                    map.airspaceUrl = "http://prosoar.de/airspace/%(zoom)d/%(x)d/%(y)d.png"
+                    map.airspaceUrl = "https://skylines.aero/mapproxy/tiles/1.0.0/airspace+airports/EPSG3857/%(zoom)d/%(x)d/%(y)d.png"
                     map.mapAirspaceVisible = true;
                 }
             }

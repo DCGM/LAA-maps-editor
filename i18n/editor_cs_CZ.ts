@@ -237,10 +237,10 @@ This agreement is governed by law of the Czech Republic. In case of a dispute, t
 By installing, copying or other use of Software User declares he/she has read this terms and conditions, understands them and his/her use of Software is a demonstration of his/her free will absent of any duress.
 </source>
         <oldsource>
-Authors: &lt;br/&gt;\n
-Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;http://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;\n\n
+Authors: &lt;br/&gt;
+Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;http://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
 
-Licence: &lt;br/&gt;\n
+Licence: &lt;br/&gt;
 
 BUT OPEN SOURCE LICENCE
 Version 1.
@@ -537,8 +537,9 @@ By installing, copying or other use of Software User declares he/she has read th
     </message>
     <message id="main-map-menu-airspace-prosoar">
         <location filename="../main.qml" line="341"/>
-        <source>Airspace (prosoar.de)</source>
-        <translation>Vzdušné prostory (prosoar.de)</translation>
+        <source>Airspace (skylines.aero)</source>
+        <oldsource>Airspace (prosoar.de)</oldsource>
+        <translation>Vzdušné prostory (skylines.aero)</translation>
     </message>
     <message id="main-map-menu-airspace-local">
         <location filename="../main.qml" line="352"/>
@@ -609,48 +610,48 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>prostor</translation>
     </message>
     <message id="points-list-add-point">
-        <location filename="../PointsList.qml" line="158"/>
+        <location filename="../PointsList.qml" line="162"/>
         <source>Add point</source>
         <translation>Přidat bod</translation>
     </message>
     <message id="points-list-default-name">
-        <location filename="../PointsList.qml" line="170"/>
+        <location filename="../PointsList.qml" line="174"/>
         <location filename="../PointsListEditableDelegate.qml" line="39"/>
         <source>Turn point</source>
         <translation>Otočný bod</translation>
     </message>
     <message id="points-list-remove-points">
-        <location filename="../PointsList.qml" line="187"/>
+        <location filename="../PointsList.qml" line="191"/>
         <source>Remove points</source>
         <translation>Odstranit body</translation>
     </message>
     <message id="points-list-snap-to">
-        <location filename="../PointsList.qml" line="205"/>
+        <location filename="../PointsList.qml" line="209"/>
         <source>Snap to..</source>
         <translation>Přilnout k..</translation>
     </message>
     <message id="points-list-transform-to-polygon">
-        <location filename="../PointsList.qml" line="216"/>
+        <location filename="../PointsList.qml" line="220"/>
         <source>Transform to polygon</source>
         <translation>Převést na polygon</translation>
     </message>
     <message id="points-list-id">
-        <location filename="../PointsList.qml" line="269"/>
+        <location filename="../PointsList.qml" line="273"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="points-list-name">
-        <location filename="../PointsList.qml" line="276"/>
+        <location filename="../PointsList.qml" line="280"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message id="points-list-lat">
-        <location filename="../PointsList.qml" line="283"/>
+        <location filename="../PointsList.qml" line="287"/>
         <source>Latitude</source>
         <translation>Zeměpisná šířka</translation>
     </message>
     <message id="points-list-lon">
-        <location filename="../PointsList.qml" line="290"/>
+        <location filename="../PointsList.qml" line="294"/>
         <source>Longitude</source>
         <translation>Zeměpisná délka</translation>
     </message>
@@ -899,7 +900,7 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>Odstranit polygon</translation>
     </message>
     <message id="polygon-list-default-name">
-        <location filename="../PointsList.qml" line="226"/>
+        <location filename="../PointsList.qml" line="230"/>
         <location filename="../PolygonListDelegate.qml" line="37"/>
         <source>Polygon</source>
         <translation>Polygon</translation>
