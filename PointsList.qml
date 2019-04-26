@@ -114,25 +114,29 @@ TableView {
             http.onreadystatechange = function() {
                 if (http.readyState === XMLHttpRequest.DONE) {
                     if (http.readyState === XMLHttpRequest.DONE) {
-                        console.log(http.responseText)
-                        var response = JSON.parse(http.responseText)
-                        if (response.address === undefined) {
-                            return;
-                        }
-                        if (response.address.city !== undefined) {
-                            pModel.setProperty(row, "name", response.address.city);
-                        } else if (response.address.town !== undefined) {
-                            pModel.setProperty(row, "name", response.address.town);
-                        } else if (response.address.hamlet !== undefined) {
-                            pModel.setProperty(row, "name", response.address.hamlet);
-                        } else if (response.address.village !== undefined) {
-                            pModel.setProperty(row, "name", response.address.village);
-                        }
-                        tableView.selection.deselect(0, pModel.count-1);
-                        tableView.selection.select(row)
-                        tableView.currentRow = row;
+                        try {
+                            var response = JSON.parse(http.responseText)
 
-                        pointSelected(pModel.get(row).pid);
+                            if (response.address === undefined) {
+                                return;
+                            }
+                            if (response.address.city !== undefined) {
+                                pModel.setProperty(row, "name", response.address.city);
+                            } else if (response.address.town !== undefined) {
+                                pModel.setProperty(row, "name", response.address.town);
+                            } else if (response.address.hamlet !== undefined) {
+                                pModel.setProperty(row, "name", response.address.hamlet);
+                            } else if (response.address.village !== undefined) {
+                                pModel.setProperty(row, "name", response.address.village);
+                            }
+                            tableView.selection.deselect(0, pModel.count-1);
+                            tableView.selection.select(row)
+                            tableView.currentRow = row;
+
+                            pointSelected(pModel.get(row).pid);
+                        } catch (e) {
+                            console.error(e + " \"" + http.responseText + "\"")
+                        }
 
                     }
                 }
