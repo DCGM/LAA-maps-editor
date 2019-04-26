@@ -92,4 +92,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 
-DEFINES += GIT_VERSION='"\\\"$$system(git describe --dirty --always --tags)\\\""'
+DEFINES += GIT_VERSION='"\\\"$$system(git describe --dirty --broken --always --tags)\\\""'
