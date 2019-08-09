@@ -78,13 +78,18 @@ int main(int argc, char *argv[]) {
 
     QGuiApplication app(argc, argv);
 
-    qInstallMessageHandler(myMessageHandler);
-
-    QQmlApplicationEngine engine;
-
     app.setOrganizationName("Brno University of Technology");
     app.setOrganizationDomain("fit.vutbr.cz");
     app.setApplicationName("LAA Maps Editor");
+
+    qInstallMessageHandler(myMessageHandler);
+
+#if defined(Q_OS_LINUX)
+    qDebug() << QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QDir::separator() +"editor.log";
+#endif
+
+
+    QQmlApplicationEngine engine;
 
 
     //    qDebug() << "app.libraryPaths() "  << app.libraryPaths();
