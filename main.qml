@@ -718,7 +718,7 @@ ApplicationWindow {
     Component.onCompleted: {
         loadDefaults()
 
-//        var default_data_file = "file:///var/www/html/tucek2/2014-KOTV.json";
+//        var default_data_file = "file:///home/jmlich/workspace/tucek/testovaci_data/track.json";
 //        var default_data = file_reader.read(Qt.resolvedUrl(default_data_file))
 //        tracks = JSON.parse(default_data);
 
