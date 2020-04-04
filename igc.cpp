@@ -124,7 +124,7 @@ bool IgcFile::load(QIODevice *dev, QTextCodec* codec) {
         }
     }
 
-    qSort(eventList.begin(), eventList.end(), eventLessThan);
+    std::sort(eventList.begin(), eventList.end(), eventLessThan);
 
     emit eventsChanged();
 

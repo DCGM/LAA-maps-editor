@@ -48,5 +48,6 @@
         <file>Waypoint.qml</file>
         <file>parser_fn.js</file>
         <file>NativeTextInput.qml</file>
+        <file>geom.js</file>
     </qresource>
 </RCC>

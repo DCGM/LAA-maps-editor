@@ -1,6 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 1.4
 import "functions.js" as F
+import "geom.js" as G
 
 
 
@@ -45,10 +46,10 @@ Item {
                     console.log("Cannot change point id"); // neni mozne prepsat pid
                     break;
                 case "lat":
-                    changeModel(styleData.row, styleData.role, F.DMStoFloat(loaderEditor.item.text))
+                    changeModel(styleData.row, styleData.role, G.DMStoFloat(loaderEditor.item.text))
                     break;
                 case "lon":
-                    changeModel(styleData.row, styleData.role, F.DMStoFloat(loaderEditor.item.text))
+                    changeModel(styleData.row, styleData.role, G.DMStoFloat(loaderEditor.item.text))
                     break;
                 default:
                     changeModel(styleData.row, styleData.role, loaderEditor.item.text)
@@ -82,9 +83,9 @@ Item {
 
         switch (role) {
         case "lat":
-            return F.getLat(value,{coordinateFormat: "DMS"});
+            return G.getLat(value,{coordinateFormat: "DMS"});
         case "lon":
-            return F.getLon(value,{coordinateFormat: "DMS"});
+            return G.getLon(value,{coordinateFormat: "DMS"});
         }
 
         return value;

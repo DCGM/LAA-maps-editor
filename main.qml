@@ -5,6 +5,7 @@ import cz.mlich 1.0
 import "parseCup.js" as Cup
 import "parser_fn.js" as Parser
 import "functions.js" as F
+import "geom.js" as G
 
 ApplicationWindow {
     id: mainWindow
@@ -1109,7 +1110,7 @@ ApplicationWindow {
         for (i = 0; i < points.length; i++) {
             var item = points[i];
 
-            str += "\"" + F.addSlashes(item.name) + "\",PT" + item.pid + ",," + F.getLat(item.lat,{coordinateFormat: "DM"}) + "," + F.getLon(item.lon,{coordinateFormat: "DM"}) + ",-100000000.0m,1,,,,\""+item.name+"\"\r\n";
+            str += "\"" + G.addSlashes(item.name) + "\",PT" + item.pid + ",," + G.getLat(item.lat,{coordinateFormat: "DM"}) + "," + G.getLon(item.lon,{coordinateFormat: "DM"}) + ",-100000000.0m,1,,,,\""+item.name+"\"\r\n";
         }
 
         str += "-----Related Tasks-----\r\n"
@@ -1201,7 +1202,7 @@ ApplicationWindow {
     function getPtByPid(pid, points) {
         for (var i = 0; i < points.length; i++) {
             var item = points[i]
-            if (item.pid == pid) {
+            if (item.pid === pid) {
                 return item;
             }
         }

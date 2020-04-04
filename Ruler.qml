@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import "functions.js" as F
+import "geom.js" as G
 
 Item {
     id: ruler
@@ -26,8 +27,8 @@ Item {
     property real x2: mapx + endPoint[0];
     property real y2: mapy + endPoint[1];
 
-    property real computed_angle: F.rad2deg(Math.atan2(y2-y1, x2-x1));
-    property real hypotenuse: F.euclidDistance(x1, y1, x2, y2);
+    property real computed_angle: G.rad2deg(Math.atan2(y2-y1, x2-x1));
+    property real hypotenuse: G.euclidDistance(x1, y1, x2, y2);
 
     Rectangle {
         anchors.fill: parent;

@@ -230,6 +230,8 @@ ApplicationWindow {
             text: F.addTimeStrFormat(seconds);
             validator: RegExpValidator { regExp: /^(\d+):(\d+):(\d+)$/; }
 
+
+
             function strToAddTime(value) {
 
                 var regexp = /^(\d+):(\d+):(\d+)$/;

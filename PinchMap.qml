@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import "functions.js" as F
+import "geom.js" as G
 import cz.mlich 1.0
 
 Rectangle {
@@ -298,7 +299,7 @@ Rectangle {
             currentPositionLon = item.lon;
             currentPositionTime = item.time;
             currentPositionAltitude = item.alt;
-            currentPositionAzimuth = F.getBearingTo(item.lat, item.lon, nextItem.lat, nextItem.lon)
+            currentPositionAzimuth = G.getBearingTo(item.lat, item.lon, nextItem.lat, nextItem.lon)
         }
     }
 
@@ -549,7 +550,7 @@ Rectangle {
         }
 
 
-        var res = Qt.resolvedUrl(F.getMapTile(baseUrl, tx, ty, zoomLevelInt, url_subdomains));
+        var res = Qt.resolvedUrl(G.getMapTile(baseUrl, tx, ty, zoomLevelInt, url_subdomains));
 
         if (filereader.is_local_file(res) && !filereader.file_exists(res)) { // do not open non existing image
             return "";
@@ -946,16 +947,16 @@ Rectangle {
                         switch (c.type) {
                         case "none":
                         case "line":
-                            angle = ((F.getBearingTo(prevItem.lat, prevItem.lon, item.lat, item.lon)+90)%360);
+                            angle = ((G.getBearingTo(prevItem.lat, prevItem.lon, item.lat, item.lon)+90)%360);
 
                             break;
                         case "polyline":
-                            var selPoly = F.getPolyByCid(c.ptr, poly);
+                            var selPoly = G.getPolyByCid(c.ptr, poly);
                             if (selPoly === undefined) {
-                                angle = ((F.getBearingTo(prevItem.lat, prevItem.lon, item.lat, item.lon)+90)%360);
+                                angle = ((G.getBearingTo(prevItem.lat, prevItem.lon, item.lat, item.lon)+90)%360);
                             } else {
                                 var selPolyPoint = selPoly.points[0]
-                                angle = ((F.getBearingTo(prevItem.lat, prevItem.lon, selPolyPoint.lat, selPolyPoint.lon)+90)%360);
+                                angle = ((G.getBearingTo(prevItem.lat, prevItem.lon, selPolyPoint.lat, selPolyPoint.lon)+90)%360);
                             }
                             break;
                         case "arc1":
@@ -965,18 +966,18 @@ Rectangle {
                             var center = getPtByPid(c.ptr, points);
                             if (center !== undefined) {
 
-                                var tmp = F.insertMidArc(center.lat, center.lon, item.lat, item.lon, prevItem.lat, prevItem.lon, cw);
+                                var tmp = G.insertMidArc(center.lat, center.lon, item.lat, item.lon, prevItem.lat, prevItem.lon, cw);
 
                                 if (tmp.length > 2) {
                                     var tmpFirst = tmp[0];
                                     var tmpLast = tmp[tmp.length-1];
-                                    var firstDistance = F.getDistanceTo(tmpFirst[0], tmpFirst[1], item.lat, item.lon);
-                                    var lastDistance = F.getDistanceTo(tmpLast[0], tmpLast[1], item.lat, item.lon);
+                                    var firstDistance = G.getDistanceTo(tmpFirst[0], tmpFirst[1], item.lat, item.lon);
+                                    var lastDistance = G.getDistanceTo(tmpLast[0], tmpLast[1], item.lat, item.lon);
 
                                     if (firstDistance > lastDistance) {
-                                        angle = ((F.getBearingTo(prevItem.lat, prevItem.lon, tmpFirst[0], tmpFirst[1])+90)%360);
+                                        angle = ((G.getBearingTo(prevItem.lat, prevItem.lon, tmpFirst[0], tmpFirst[1])+90)%360);
                                     } else {
-                                        angle = ((F.getBearingTo(prevItem.lat, prevItem.lon, tmpLast[0], tmpLast[1])+90)%360);
+                                        angle = ((G.getBearingTo(prevItem.lat, prevItem.lon, tmpLast[0], tmpLast[1])+90)%360);
 
                                     }
                                 }
@@ -1006,8 +1007,8 @@ Rectangle {
                         }
 
                         screenPoint = getMappointFromCoord(item.lat, item.lon)
-                        var distance = F.getDistanceTo(item.lat, item.lon, prevItem.lat, prevItem.lon);
-                        var angle = ((F.getBearingTo(prevItem.lat, prevItem.lon, item.lat, item.lon)+90)%360);
+                        var distance = G.getDistanceTo(item.lat, item.lon, prevItem.lat, prevItem.lon);
+                        var angle = ((G.getBearingTo(prevItem.lat, prevItem.lon, item.lat, item.lon)+90)%360);
 
                         polygonCachePoints.push({"lat": prevItem.lat, "lon": prevItem.lon})
 
@@ -1021,8 +1022,8 @@ Rectangle {
                             ctx.lineTo(screenPoint[0], screenPoint[1])
 
                             if (pointSnap >= 0) {
-                                var projPoint = F.projectionPointToLineLatLon(prevItem.lat, prevItem.lon, item.lat, item.lon, pointsSelectedLat, pointsSelectedLon)
-                                var tmpDistance = F.getDistanceTo(pointsSelectedLat, pointsSelectedLon, projPoint[0], projPoint[1])
+                                var projPoint = G.projectionPointToLineLatLon(prevItem.lat, prevItem.lon, item.lat, item.lon, pointsSelectedLat, pointsSelectedLon)
+                                var tmpDistance = G.getDistanceTo(pointsSelectedLat, pointsSelectedLon, projPoint[0], projPoint[1])
                                 if (tmpDistance < snapDistance) {
                                     snapDistance = tmpDistance;
                                     snapLat = projPoint[0];
@@ -1036,7 +1037,7 @@ Rectangle {
                         case "polyline":
                             distance = 0;
 
-                            var selPoly = F.getPolyByCid(c.ptr, poly);
+                            var selPoly = G.getPolyByCid(c.ptr, poly);
                             if (selPoly === undefined) {
                                 ctx.moveTo(screenPoint[0], screenPoint[1])
                             } else {
@@ -1052,12 +1053,12 @@ Rectangle {
                                     var screenPoint2 = getMappointFromCoord(selPolyItem.lat, selPolyItem.lon)
                                     ctx.lineTo(screenPoint2[0], screenPoint2[1])
                                     polygonCachePoints.push({"lat": selPolyItem.lat, "lon": selPolyItem.lon})
-                                    distance = distance + F.getDistanceTo(selPolyItem.lat, selPolyItem.lon, prevPolyItem.lat, prevPolyItem.lon);
+                                    distance = distance + G.getDistanceTo(selPolyItem.lat, selPolyItem.lon, prevPolyItem.lat, prevPolyItem.lon);
 
 
                                     if (pointSnap >= 0) {
-                                        var projPoint = F.projectionPointToLineLatLon(prevPolyItem.lat, prevPolyItem.lon, selPolyItem.lat, selPolyItem.lon, pointsSelectedLat, pointsSelectedLon)
-                                        var tmpDistance = F.getDistanceTo(pointsSelectedLat, pointsSelectedLon, projPoint[0], projPoint[1])
+                                        var projPoint = G.projectionPointToLineLatLon(prevPolyItem.lat, prevPolyItem.lon, selPolyItem.lat, selPolyItem.lon, pointsSelectedLat, pointsSelectedLon)
+                                        var tmpDistance = G.getDistanceTo(pointsSelectedLat, pointsSelectedLon, projPoint[0], projPoint[1])
                                         if (tmpDistance < snapDistance) {
                                             snapDistance = tmpDistance;
                                             snapLat = projPoint[0];
@@ -1068,8 +1069,8 @@ Rectangle {
 
                                     prevPolyItem = selPolyItem;
                                 }
-                                distance = distance + F.getDistanceTo(prevPolyItem.lat, prevPolyItem.lon, item.lat, item.lon)
-                                angle = ((F.getBearingTo(prevPolyItem.lat, prevPolyItem.lon, item.lat, item.lon)+90)%360);
+                                distance = distance + G.getDistanceTo(prevPolyItem.lat, prevPolyItem.lon, item.lat, item.lon)
+                                angle = ((G.getBearingTo(prevPolyItem.lat, prevPolyItem.lon, item.lat, item.lon)+90)%360);
 
                                 ctx.lineTo(screenPoint[0], screenPoint[1])
                                 polygonCachePoints.push({"lat": item.lat, "lon": item.lon})
@@ -1092,26 +1093,26 @@ Rectangle {
                                 ctx.moveTo(screenPoint[0], screenPoint[1])
                             } else {
 
-                                var tmp = F.insertMidArc(center.lat, center.lon, item.lat, item.lon, prevItem.lat, prevItem.lon, cw);
+                                var tmp = G.insertMidArc(center.lat, center.lon, item.lat, item.lon, prevItem.lat, prevItem.lon, cw);
                                 if (tmp.length > 2) {
                                     var tmpFirst = tmp[0];
                                     var tmpLast = tmp[tmp.length-1];
-                                    var firstDistance = F.getDistanceTo(tmpFirst[0], tmpFirst[1], item.lat, item.lon);
-                                    var lastDistance = F.getDistanceTo(tmpLast[0], tmpLast[1], item.lat, item.lon);
+                                    var firstDistance = G.getDistanceTo(tmpFirst[0], tmpFirst[1], item.lat, item.lon);
+                                    var lastDistance = G.getDistanceTo(tmpLast[0], tmpLast[1], item.lat, item.lon);
 
                                     if (firstDistance > lastDistance) {
                                         for (var k = 0; k < tmp.length; k++) {
                                             var arcItem = tmp[k]
                                             var screenPoint2 = getMappointFromCoord(arcItem[0], arcItem[1]);
-                                            distance = distance + F.getDistanceTo(arcItem[0], arcItem[1], prevArcItem[0], prevArcItem[1]);
+                                            distance = distance + G.getDistanceTo(arcItem[0], arcItem[1], prevArcItem[0], prevArcItem[1]);
 
                                             ctx.lineTo(screenPoint2[0], screenPoint2[1])
                                             polygonCachePoints.push({"lat": arcItem[0], "lon": arcItem[1]})
 
 
                                             if (pointSnap >= 0) {
-                                                var projPoint = F.projectionPointToLineLatLon(prevArcItem[0], prevArcItem[1], arcItem[0], arcItem[1], pointsSelectedLat, pointsSelectedLon)
-                                                var tmpDistance = F.getDistanceTo(pointsSelectedLat, pointsSelectedLon, projPoint[0], projPoint[1])
+                                                var projPoint = G.projectionPointToLineLatLon(prevArcItem[0], prevArcItem[1], arcItem[0], arcItem[1], pointsSelectedLat, pointsSelectedLon)
+                                                var tmpDistance = G.getDistanceTo(pointsSelectedLat, pointsSelectedLon, projPoint[0], projPoint[1])
                                                 if (tmpDistance < snapDistance) {
                                                     snapDistance = tmpDistance;
                                                     snapLat = projPoint[0];
@@ -1125,13 +1126,13 @@ Rectangle {
                                         for (var k = tmp.length-1; k >=0; k--) {
                                             var arcItem = tmp[k]
                                             var screenPoint2 = getMappointFromCoord(arcItem[0], arcItem[1]);
-                                            distance = distance + F.getDistanceTo(arcItem[0], arcItem[1], prevArcItem[0], prevArcItem[1]);
+                                            distance = distance + G.getDistanceTo(arcItem[0], arcItem[1], prevArcItem[0], prevArcItem[1]);
                                             ctx.lineTo(screenPoint2[0], screenPoint2[1])
                                             polygonCachePoints.push({"lat": arcItem[0], "lon": arcItem[1]})
 
                                             if (pointSnap >= 0) {
-                                                var projPoint = F.projectionPointToLineLatLon(prevArcItem[0], prevArcItem[1], arcItem[0], arcItem[1], pointsSelectedLat, pointsSelectedLon)
-                                                var tmpDistance = F.getDistanceTo(pointsSelectedLat, pointsSelectedLon, projPoint[0], projPoint[1])
+                                                var projPoint = G.projectionPointToLineLatLon(prevArcItem[0], prevArcItem[1], arcItem[0], arcItem[1], pointsSelectedLat, pointsSelectedLon)
+                                                var tmpDistance = G.getDistanceTo(pointsSelectedLat, pointsSelectedLon, projPoint[0], projPoint[1])
                                                 if (tmpDistance < snapDistance) {
                                                     snapDistance = tmpDistance;
                                                     snapLat = projPoint[0];
@@ -1143,8 +1144,8 @@ Rectangle {
                                         }
                                     }
 
-                                    angle = ((F.getBearingTo(prevArcItem[0], prevArcItem[1], item.lat, item.lon)+90)%360);
-                                    distance = distance + F.getDistanceTo(item.lat, item.lon, prevArcItem[0], prevArcItem[1]);
+                                    angle = ((G.getBearingTo(prevArcItem[0], prevArcItem[1], item.lat, item.lon)+90)%360);
+                                    distance = distance + G.getDistanceTo(item.lat, item.lon, prevArcItem[0], prevArcItem[1]);
 
                                     ctx.lineTo(screenPoint[0], screenPoint[1])
                                     polygonCachePoints.push({"lat": item.lat, "lon": item.lon})
@@ -1152,27 +1153,27 @@ Rectangle {
 
 
                                     // draw center of arc (500 meters to each side)
-                                    var tmp = F.getCoordByDistanceBearing(F.global_center_lat, F.global_center_lon,45, 500)
+                                    var tmp = G.getCoordByDistanceBearing(G.global_center_lat, G.global_center_lon,45, 500)
                                     var screenPoint2 = getMappointFromCoord(tmp.lat, tmp.lon)
                                     ctx.moveTo (screenPoint2[0], screenPoint2[1]);
-                                    var tmp = F.getCoordByDistanceBearing(F.global_center_lat, F.global_center_lon,225, 500)
+                                    var tmp = G.getCoordByDistanceBearing(G.global_center_lat, G.global_center_lon,225, 500)
                                     var screenPoint2 = getMappointFromCoord(tmp.lat, tmp.lon)
                                     ctx.lineTo (screenPoint2[0], screenPoint2[1]);
-                                    var tmp = F.getCoordByDistanceBearing(F.global_center_lat, F.global_center_lon,135, 500)
+                                    var tmp = G.getCoordByDistanceBearing(G.global_center_lat, G.global_center_lon,135, 500)
                                     var screenPoint2 = getMappointFromCoord(tmp.lat, tmp.lon)
                                     ctx.moveTo (screenPoint2[0], screenPoint2[1]);
-                                    var tmp = F.getCoordByDistanceBearing(F.global_center_lat, F.global_center_lon,315, 500)
+                                    var tmp = G.getCoordByDistanceBearing(G.global_center_lat, G.global_center_lon,315, 500)
                                     var screenPoint2 = getMappointFromCoord(tmp.lat, tmp.lon)
                                     ctx.lineTo (screenPoint2[0], screenPoint2[1]);
 
 
 
                                     if (pointSnap >= 0) {
-                                        var tmpDistance = F.getDistanceTo(pointsSelectedLat, pointsSelectedLon, F.global_center_lat, F.global_center_lon)
+                                        var tmpDistance = G.getDistanceTo(pointsSelectedLat, pointsSelectedLon, G.global_center_lat, G.global_center_lon)
                                         if (tmpDistance < snapDistance) {
                                             snapDistance = tmpDistance;
-                                            snapLat = F.global_center_lat;
-                                            snapLon = F.global_center_lon;
+                                            snapLat = G.global_center_lat;
+                                            snapLon = G.global_center_lon;
                                         }
                                     }
 
@@ -1259,7 +1260,7 @@ Rectangle {
                         ctx.beginPath();
 
                         var tmp = polygonCache;
-                        var tmp_points = F.insertMidArcByAngle(item.lat, item.lon, 0, Math.PI*2, true, F.distToAngle(radius));
+                        var tmp_points = G.insertMidArcByAngle(item.lat, item.lon, 0, Math.PI*2, true, G.distToAngle(radius));
                         var points_ll = [];
                         var arcPoint = tmp_points[0]
                         var screenPoint3 = getMappointFromCoord(arcPoint[0],arcPoint[1])
@@ -1312,9 +1313,9 @@ Rectangle {
                                 }
                             }
 
-                            var gateA = F.getCoordByDistanceBearing(prevItem.lat, prevItem.lon, (angle)%360, radius)
-                            var gateB = F.getCoordByDistanceBearing(prevItem.lat, prevItem.lon, (180+angle)%360, radius)
-                            var gateC = F.getCoordByDistanceBearing(prevItem.lat, prevItem.lon, (270+angle)%360, 0.2*radius)
+                            var gateA = G.getCoordByDistanceBearing(prevItem.lat, prevItem.lon, (angle)%360, radius)
+                            var gateB = G.getCoordByDistanceBearing(prevItem.lat, prevItem.lon, (180+angle)%360, radius)
+                            var gateC = G.getCoordByDistanceBearing(prevItem.lat, prevItem.lon, (270+angle)%360, 0.2*radius)
                             var screenPointGA = getMappointFromCoord(gateA.lat, gateA.lon)
                             var screenPointGB = getMappointFromCoord(gateB.lat, gateB.lon)
                             var screenPointGC = getMappointFromCoord(gateC.lat, gateC.lon)
@@ -1370,7 +1371,7 @@ Rectangle {
                                 ctx.beginPath();
 
                                 var tmp = polygonCache;
-                                var tmp_points = F.insertMidArcByAngle(item.lat, item.lon, 0, Math.PI*2, true, F.distToAngle(radius));
+                                var tmp_points = G.insertMidArcByAngle(item.lat, item.lon, 0, Math.PI*2, true, G.distToAngle(radius));
                                 var points_ll = [];
                                 var arcPoint = tmp_points[0]
                                 points_ll.push({"lat": arcPoint[0], "lon": arcPoint[1]})
@@ -1419,9 +1420,9 @@ Rectangle {
                                     }
                                 }
 
-                                var gateA = F.getCoordByDistanceBearing(item.lat, item.lon, (angle)%360, radius)
-                                var gateB = F.getCoordByDistanceBearing(item.lat, item.lon, (180+angle)%360, radius)
-                                var gateC = F.getCoordByDistanceBearing(item.lat, item.lon, (270+angle)%360, 100)
+                                var gateA = G.getCoordByDistanceBearing(item.lat, item.lon, (angle)%360, radius)
+                                var gateB = G.getCoordByDistanceBearing(item.lat, item.lon, (180+angle)%360, radius)
+                                var gateC = G.getCoordByDistanceBearing(item.lat, item.lon, (270+angle)%360, 100)
                                 var screenPointGA = getMappointFromCoord(gateA.lat, gateA.lon)
                                 var screenPointGB = getMappointFromCoord(gateB.lat, gateB.lon)
                                 var screenPointGC = getMappointFromCoord(gateC.lat, gateC.lon)
@@ -1563,7 +1564,7 @@ Rectangle {
     }
 
     NativeText {
-        text: F.formatDistance(scaleBarLength[1], {'distanceUnit':'m'})
+        text: G.formatDistance(scaleBarLength[1], {'distanceUnit':'m'})
         anchors.horizontalCenter: scaleBar.horizontalCenter
         anchors.top: scaleBar.bottom
         anchors.topMargin: 8
@@ -1645,8 +1646,8 @@ Rectangle {
                     for (var i = 0; i < pointsListModel.count; i++) {
                         var item = pointsListModel.get(i);
                         var screen = getScreenpointFromCoord(item.lat, item.lon)
-                        var distance = F.euclidDistance(screen[0], screen[1], mouse.x, mouse.y);
-                        //                                F.getDistanceTo(item.lat, item.lon, c[0], c[1]);
+                        var distance = G.euclidDistance(screen[0], screen[1], mouse.x, mouse.y);
+                        //                                G.getDistanceTo(item.lat, item.lon, c[0], c[1]);
                         if (distance < minDistance) {
                             minIndex = i;
                             minDistance = distance;
@@ -1686,7 +1687,7 @@ Rectangle {
                             if (item.pid === pointsSelectedPid) {
                                 var screen = getScreenpointFromCoord(item.lat, item.lon)
 
-                                var distance = F.euclidDistance(screen[0], screen[1], mouse.x, mouse.y);
+                                var distance = G.euclidDistance(screen[0], screen[1], mouse.x, mouse.y);
                                 pointsSelectedIndex = i;
                                 if (distance < 20) { // 20 px
                                     __isDragingPoint = true;
@@ -1737,7 +1738,7 @@ Rectangle {
                     // pri kliknuti do mapy
 
                     var click_coord = getCoordFromScreenpoint(mouse.x,mouse.y)
-                    var minDist = F.earth_radius;
+                    var minDist = G.earth_radius;
                     var minIndex = 0;
                     var item, i, nextItem;
 
@@ -1748,7 +1749,7 @@ Rectangle {
                             if (item.valid !== "true") {
                                 continue;
                             }
-                            var dist = F.getDistanceTo(click_coord[0], click_coord[1], item.lat, item.lon);
+                            var dist = G.getDistanceTo(click_coord[0], click_coord[1], item.lat, item.lon);
                             if (dist < minDist) {
                                 minDist = dist;
                                 minIndex = i;
@@ -1779,8 +1780,8 @@ Rectangle {
                     ruler.endPoint = getMappointFromCoord(pos[0], pos[1])
 
                     var posFirst = getCoordFromScreenpoint(__firstX, __firstY);
-                    rulerDistance = F.getDistanceTo(pos[0], pos[1], posFirst[0], posFirst[1])
-                    ruler.distance = F.getDistanceTo(pos[0], pos[1], posFirst[0], posFirst[1]).toFixed(1) + " m"
+                    rulerDistance = G.getDistanceTo(pos[0], pos[1], posFirst[0], posFirst[1])
+                    ruler.distance = G.getDistanceTo(pos[0], pos[1], posFirst[0], posFirst[1]).toFixed(1) + " m"
 
                 }
 

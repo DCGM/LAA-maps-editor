@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import "functions.js" as F
+import "geom.js" as G
 
 Item {
     id: worldFileImage;
@@ -51,10 +52,10 @@ Item {
 //        console.log("utmcoords: " + utmX1 + " " + utmX2 + " " + utmY1 + " " + utmY2)
 //        console.log(param + " " +ssWidth + " " + ssHeight);
 
-        var ll1 = F.rad2degPair( F.utmXYToLatLon(utmX1, utmY1, zone, !northHemi) );
-        var ll2 = F.rad2degPair( F.utmXYToLatLon(utmX2, utmY1, zone, !northHemi) );
-        var ll3 = F.rad2degPair( F.utmXYToLatLon(utmX1, utmY2, zone, !northHemi) );
-        var ll4 = F.rad2degPair( F.utmXYToLatLon(utmX2, utmY2, zone, !northHemi) );
+        var ll1 = G.rad2degPair( G.utmXYToLatLon(utmX1, utmY1, zone, !northHemi) );
+        var ll2 = G.rad2degPair( G.utmXYToLatLon(utmX2, utmY1, zone, !northHemi) );
+        var ll3 = G.rad2degPair( G.utmXYToLatLon(utmX1, utmY2, zone, !northHemi) );
+        var ll4 = G.rad2degPair( G.utmXYToLatLon(utmX2, utmY2, zone, !northHemi) );
 
 
         ut  = [ Math.max(ll1[0], ll2[0], ll3[0], ll4[0]), Math.min(ll1[1], ll2[1], ll3[1], ll4[1]) ]
@@ -89,11 +90,11 @@ Item {
         //        var Xh = 0.5*(utmX1+utmX2)
         //        var Yh = 0.5*(utmY1+utmY2)
 
-        //        var ll7 = F.rad2degPair( F.UTMXYToLatLon(Xh, utmY2, wfZone, !wfNorthHemi) );
-        //        var ll5 = F.rad2degPair( F.UTMXYToLatLon(Xh, utmY1, wfZone, !wfNorthHemi) );
-        //        var ll6 = F.rad2degPair( F.UTMXYToLatLon(utmX1, Yh, wfZone, !wfNorthHemi) );
-        //        var ll8 = F.rad2degPair( F.UTMXYToLatLon(Xh, Yh, wfZone, !wfNorthHemi) );
-        //        var ll9 = F.rad2degPair( F.UTMXYToLatLon(utmX2, Yh, wfZone, !wfNorthHemi) );
+        //        var ll7 = G.rad2degPair( G.UTMXYToLatLon(Xh, utmY2, wfZone, !wfNorthHemi) );
+        //        var ll5 = G.rad2degPair( G.UTMXYToLatLon(Xh, utmY1, wfZone, !wfNorthHemi) );
+        //        var ll6 = G.rad2degPair( G.UTMXYToLatLon(utmX1, Yh, wfZone, !wfNorthHemi) );
+        //        var ll8 = G.rad2degPair( G.UTMXYToLatLon(Xh, Yh, wfZone, !wfNorthHemi) );
+        //        var ll9 = G.rad2degPair( G.UTMXYToLatLon(utmX2, Yh, wfZone, !wfNorthHemi) );
 
         //        wfcoords = [ll1, ll5, ll2, ll9, ll8, ll6, ll3, ll7, ll4, ]
 
