@@ -108,7 +108,7 @@ Rectangle {
             allPolygonsModel.append({
                                         "name" : p.name,
                                         "cid": p.cid,
-                                        "score": p.score
+                                        "score": (p.score !== undefined) ? p.score : 0
                                     })
         }
 
@@ -512,8 +512,8 @@ Rectangle {
                     tracksModel.setProperty(row, role, value);
 
                     tracksPointTable.selection.clear();
-                    tracksPointTable.selection.select(row);
-                    tracksPointTable.currentRow = row;
+//                    tracksPointTable.selection.select(row);
+//                    tracksPointTable.currentRow = row;
 
                 }
 
@@ -825,15 +825,15 @@ Rectangle {
                     if ((pos === -1) || (pos >= tracksModel.count)) {
                         tracksModel.append(obj)
                         tracksPointTable.selection.clear();
-                        tracksPointTable.currentRow = 0;
-                        tracksPointTable.selection.select(0)
+//                        tracksPointTable.currentRow = 0;
+//                        tracksPointTable.selection.select(0)
                     } else {
 
                         tracksModel.insert(pos, obj)
 
                         tracksPointTable.selection.clear();
-                        tracksPointTable.currentRow = pos;
-                        tracksPointTable.selection.select(pos)
+//                        tracksPointTable.currentRow = pos;
+//                        tracksPointTable.selection.select(pos)
 
                     }
 
@@ -1026,8 +1026,8 @@ Rectangle {
                     selectedPolygonsModel.setProperty(row, role, value);
 
                     polygonsTable.selection.clear();
-                    polygonsTable.selection.select(row);
-                    polygonsTable.currentRow = row;
+//                    polygonsTable.selection.select(row);
+//                    polygonsTable.currentRow = row;
 
                 }
 
