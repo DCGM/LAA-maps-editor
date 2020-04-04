@@ -85,7 +85,7 @@ function getLat(lat, settings) {
     } else if (settings.coordinateFormat === "DMS") {
         var mxt = (l - Math.floor(l)) * 60
         var s = (mxt - Math.floor(mxt)) * 60
-        return c + " "+ Math.floor(l) + "° " + Math.floor(mxt) + "' " + s.toFixed(5) + "''"
+        return c + " " + Math.floor(l) + "° " + Math.floor(mxt) + "' " + s.toFixed(3) + "''"
     } else {
         return c + " " + Math.floor(l) + "° " + ((l - Math.floor(l)) * 60).toFixed(3) + "'"
     }
@@ -274,6 +274,10 @@ function euclidDistance(a_x, a_y, b_x, b_y) {
     return Math.sqrt(d_x*d_x + d_y*d_y);
 }
 
+function manhatanDistance(a_x, a_y, b_x, b_y) {
+    return Math.abs(a_x - b_x) + Math.abs(a_y - b_y);
+}
+
 function lineIntersection(Ax, Ay, Bx, By, Cx, Cy, Dx, Dy) {
 
     //  Fail if either line is undefined.
@@ -310,11 +314,11 @@ function lineIntersection(Ax, Ay, Bx, By, Cx, Cy, Dx, Dy) {
     if (ABpos<0. || ABpos>distAB) return false;
 
     //  (4) Apply the discovered position to line A-B in the original coordinate system.
-    var X=Ax+ABpos*theCos;
+    var X = (Number(Ax) + ABpos*theCos);
     var Y=Ay+ABpos*theSin;
 
     //  Success.
-    return true;
+    return {x: X, y: Y};
 
 }
 
@@ -425,13 +429,6 @@ function getCoordByDistanceBearing(lat, lon, bear, dist) {
 
 
 
-String.prototype.trunc =
-        function(n,useWordBoundary){
-            var toLong = this.length>n,
-                    s_ = toLong ? this.substr(0,n-1) : this;
-            s_ = useWordBoundary && toLong ? s_.substr(0,s_.lastIndexOf(' ')) : s_;
-            return  toLong ? s_ +'...' : s_;
-        };
 
 
 
@@ -779,9 +776,6 @@ function mapXYToLatLon (x, y, lambda0, philambda)
     return;
 }
 
-
-
-
 /*
    * latLonToUTMXY
    *
@@ -909,3 +903,4 @@ function getPolyByCid(cid, poly) {
         }
     }
 }
+
