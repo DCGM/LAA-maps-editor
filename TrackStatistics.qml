@@ -7,6 +7,9 @@ ApplicationWindow {
     height: 250
     modality: Qt.ApplicationModal;
 
+    minimumHeight: grid.childrenRect.height + 2 * grid.anchors.margins + buttonRow.childrenRect.height + 2* buttonRow.padding
+    minimumWidth: grid.childrenRect.width + 2 * grid.anchors.margins
+
     signal accepted();
     signal canceled();
 
@@ -23,6 +26,7 @@ ApplicationWindow {
 
 
     Grid {
+        id: grid;
         anchors.left: parent.left;
         anchors.right: parent.right;
         anchors.top: parent.top;

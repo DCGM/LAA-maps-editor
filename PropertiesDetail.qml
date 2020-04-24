@@ -9,8 +9,11 @@ ApplicationWindow {
     //% "Category properties %1"
     title: qsTrId("props-detail").arg(category_name);
     modality: "ApplicationModal"
-    width: 850;
-    height: 500;
+
+    minimumWidth: 800
+    minimumHeight: 600
+    width: (leftSide.childrenRect.width + 2* leftSide.anchors.margins + rightSide.childrenRect.width + 2* rightSide.anchors.margins);
+    height: Math.max(leftSide.childrenRect.height + 2* leftSide.anchors.margins, rightSide.childrenRect.height + 2* rightSide.anchors.margins)
 
 
     signal accepted();
@@ -30,6 +33,7 @@ ApplicationWindow {
     property alias gyre_penalty: gyre_penalty_textfield.text;
     property alias oposite_direction_penalty: oposite_direction_penalty_textfield.text;
     property alias out_of_sector_penalty: out_of_sector_penalty_textfield.text;
+    property alias speed_max_score: speed_max_score_textfield.text;
     property alias speed_penalty: speed_penalty_textfield.text
     property alias speed_tolerance: speed_tolerance_textfield.text
     property alias preparation_time: preparation_time_textfield.seconds
@@ -88,10 +92,11 @@ ApplicationWindow {
 
 
     Grid {
+        id: leftSide
         anchors.left: parent.left;
         anchors.top: parent.top;
         anchors.bottom: buttonsRow.top
-        anchors.right: rightSide.left
+        anchors.right: parent.horizontaCenter
         anchors.margins: 10;
         spacing: 5;
         columns: 2;
@@ -203,6 +208,16 @@ ApplicationWindow {
         TextField{
             id: out_of_sector_penalty_textfield
         }
+
+
+        NativeText {
+            //% "Speed max score [points]"
+            text: qsTrId("props-detail-speed-penalty")
+        }
+        TextField{
+            id: speed_max_score_textfield
+        }
+
 
         NativeText {
             //% "Speed penalty [points per km/h]"

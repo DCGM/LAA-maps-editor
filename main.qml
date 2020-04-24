@@ -185,6 +185,7 @@ ApplicationWindow {
                 id: main_menu_edit_show_track_always
                 //% "Show track always"
                 text: qsTrId("main-menu-edit-show-track-always");
+                shortcut: "Ctrl+t"
                 checkable: true;
 
             }
@@ -1245,6 +1246,7 @@ ApplicationWindow {
             str += "\"" + trk.speed_tolerance + "\";";
             str += "\"" + trk.sg_max_score + "\";";
             str += "\"" + ((trk.preparation_time !== undefined) ? trk.preparation_time : 0) + "\";";
+            str += "\"" + trk.speed_max_score + "\";";
 
             //            str += "\n";
             //            str += "\"" + category_name + "___PART2" +"\";";
