@@ -9,187 +9,192 @@
         <translation>Category properties %1</translation>
     </message>
     <message id="props-detail-tg-max-score">
-        <location filename="../PropertiesDetail.qml" line="100"/>
+        <location filename="../PropertiesDetail.qml" line="105"/>
         <source>Time gate max score [points]</source>
         <oldsource>Time gate max score</oldsource>
         <translation>Time gate max score [points]</translation>
     </message>
     <message id="props-detail-tg-tolerance">
-        <location filename="../PropertiesDetail.qml" line="108"/>
+        <location filename="../PropertiesDetail.qml" line="113"/>
         <source>Time gate tolerance [sec]</source>
         <oldsource>Time gate tolerance</oldsource>
         <translation>Time gate tolerance [sec]</translation>
     </message>
     <message id="props-detail-tg-penalty">
-        <location filename="../PropertiesDetail.qml" line="116"/>
+        <location filename="../PropertiesDetail.qml" line="121"/>
         <source>Time gate penalty [points per sec]</source>
         <oldsource>Time gate penalty</oldsource>
         <translation>Time gate penalty [points per sec]</translation>
     </message>
     <message id="props-detail-sg-max-score">
-        <location filename="../PropertiesDetail.qml" line="124"/>
+        <location filename="../PropertiesDetail.qml" line="129"/>
         <source>Space gate max score [points]</source>
         <oldsource>Space gate max score</oldsource>
         <translation>Space gate max score [points]</translation>
     </message>
     <message id="props-detail-tp-max-score">
-        <location filename="../PropertiesDetail.qml" line="133"/>
+        <location filename="../PropertiesDetail.qml" line="138"/>
         <source>Turn point max score [points]</source>
         <oldsource>Turn point max score</oldsource>
         <translation>Turn point max score [points]</translation>
     </message>
     <message id="props-detail-marker-max-score">
-        <location filename="../PropertiesDetail.qml" line="142"/>
+        <location filename="../PropertiesDetail.qml" line="147"/>
         <source>Marker max score [points]</source>
         <oldsource>Marker max score</oldsource>
         <translation>Marker max score [points]</translation>
     </message>
     <message id="props-detail-photos-max-score">
-        <location filename="../PropertiesDetail.qml" line="150"/>
+        <location filename="../PropertiesDetail.qml" line="155"/>
         <source>Photos max score [points]</source>
         <oldsource>Photos max score</oldsource>
         <translation>Photos max score [points]</translation>
     </message>
     <message id="props-detail-time-window-size">
-        <location filename="../PropertiesDetail.qml" line="158"/>
+        <location filename="../PropertiesDetail.qml" line="163"/>
         <source>Time window size [sec]</source>
         <oldsource>Time window size</oldsource>
         <translation>Time window size [sec]</translation>
     </message>
     <message id="props-detail-time-window-penalty">
-        <location filename="../PropertiesDetail.qml" line="166"/>
+        <location filename="../PropertiesDetail.qml" line="171"/>
         <source>Time window penalty [%]</source>
         <oldsource>Time window penalty</oldsource>
         <translation>Time window penalty [%]</translation>
     </message>
     <message id="props-detail-alt-penalty">
-        <location filename="../PropertiesDetail.qml" line="175"/>
+        <location filename="../PropertiesDetail.qml" line="180"/>
         <source>Altitude penalty [points per meter]</source>
         <oldsource>Altitude penalty</oldsource>
         <translation>Altitude penalty [points per meter]</translation>
     </message>
     <message id="props-detail-gyre-penalty">
-        <location filename="../PropertiesDetail.qml" line="183"/>
+        <location filename="../PropertiesDetail.qml" line="188"/>
         <source>Gyre penalty [%]</source>
         <oldsource>Gyre penalty [%%]</oldsource>
         <translation>Gyre penalty [%]</translation>
     </message>
     <message id="props-detail-oposite-direction-penalty">
-        <location filename="../PropertiesDetail.qml" line="192"/>
+        <location filename="../PropertiesDetail.qml" line="197"/>
         <source>Oposite direction penalty [%]</source>
         <oldsource>Oposite direction penalty [%%]</oldsource>
         <translation>Oposite direction penalty [%]</translation>
     </message>
     <message id="props-detail-out-of-sector-penalty">
-        <location filename="../PropertiesDetail.qml" line="200"/>
+        <location filename="../PropertiesDetail.qml" line="205"/>
         <source>Out of sector pentaly [%]</source>
         <oldsource>Out of sector pentaly [points]</oldsource>
         <translation>Out of sector pentaly [%]</translation>
     </message>
+    <message id="props-detail-speed-max-score">
+        <location filename="../PropertiesDetail.qml" line="215"/>
+        <source>Speed max score [points]</source>
+        <translation>Speed section - max score [points]</translation>
+    </message>
     <message id="props-detail-speed-penalty">
-        <location filename="../PropertiesDetail.qml" line="209"/>
+        <location filename="../PropertiesDetail.qml" line="224"/>
         <source>Speed penalty [points per km/h]</source>
-        <oldsource>Speed penalty</oldsource>
+        <oldsource>Speed max score [points]</oldsource>
         <translation>Speed penalty [points per km/h]</translation>
     </message>
     <message id="props-detail-speed-tolerance">
-        <location filename="../PropertiesDetail.qml" line="217"/>
+        <location filename="../PropertiesDetail.qml" line="232"/>
         <source>Speed tolerance [km/h]</source>
         <oldsource>Speed tolerance</oldsource>
         <translation>Speed tolerance [km/h]</translation>
     </message>
     <message id="props-detail-preparation-time">
-        <location filename="../PropertiesDetail.qml" line="225"/>
+        <location filename="../PropertiesDetail.qml" line="240"/>
         <source>Preparation time [sec]</source>
         <oldsource>Preparation time [min]</oldsource>
         <translation>Preparation time [sec]</translation>
     </message>
     <message id="props-detail-default_radius">
-        <location filename="../PropertiesDetail.qml" line="277"/>
+        <location filename="../PropertiesDetail.qml" line="294"/>
         <source>Radius [m]</source>
         <oldsource>default_radius [m]</oldsource>
         <translation>Radius[m]</translation>
     </message>
     <message id="props-detail-default_alt_min">
-        <location filename="../PropertiesDetail.qml" line="287"/>
+        <location filename="../PropertiesDetail.qml" line="304"/>
         <source>Minimum Altitude [m]</source>
         <oldsource>default_alt_min [m]</oldsource>
         <translation>Minimum Altitude [m]</translation>
     </message>
     <message id="props-detail-default_alt_max">
-        <location filename="../PropertiesDetail.qml" line="296"/>
+        <location filename="../PropertiesDetail.qml" line="313"/>
         <source>Maximum Altitude [m]</source>
         <oldsource>default_alt_max [m]</oldsource>
         <translation>Maximum Altitude [m]</translation>
     </message>
     <message id="props-detail-default_flags">
-        <location filename="../PropertiesDetail.qml" line="326"/>
+        <location filename="../PropertiesDetail.qml" line="343"/>
         <source>Flags</source>
         <oldsource>default_flags</oldsource>
         <translation>Flags</translation>
     </message>
     <message id="point-detail-section_speed_start-checkbox">
-        <location filename="../PropertiesDetail.qml" line="402"/>
-        <location filename="../TracksList.qml" line="934"/>
+        <location filename="../PropertiesDetail.qml" line="419"/>
+        <location filename="../TracksList.qml" line="949"/>
         <source>Section speed start</source>
         <translation>Section speed start</translation>
     </message>
     <message id="point-detail-section_speed_end-checkbox">
-        <location filename="../PropertiesDetail.qml" line="410"/>
-        <location filename="../TracksList.qml" line="942"/>
+        <location filename="../PropertiesDetail.qml" line="427"/>
+        <location filename="../TracksList.qml" line="957"/>
         <source>Section speed end</source>
         <translation>Section speed end</translation>
     </message>
     <message id="point-detail-section_alt_start-checkbox">
-        <location filename="../PropertiesDetail.qml" line="418"/>
-        <location filename="../TracksList.qml" line="950"/>
+        <location filename="../PropertiesDetail.qml" line="435"/>
+        <location filename="../TracksList.qml" line="965"/>
         <source>Section alt start</source>
         <translation>Section alt start</translation>
     </message>
     <message id="point-detail-section_alt_end-checkbox">
-        <location filename="../PropertiesDetail.qml" line="426"/>
-        <location filename="../TracksList.qml" line="958"/>
+        <location filename="../PropertiesDetail.qml" line="443"/>
+        <location filename="../TracksList.qml" line="973"/>
         <source>Section alt end</source>
         <translation>Section alt end</translation>
     </message>
     <message id="point-detail-section_space_start-checkbox">
-        <location filename="../PropertiesDetail.qml" line="434"/>
-        <location filename="../TracksList.qml" line="965"/>
+        <location filename="../PropertiesDetail.qml" line="451"/>
+        <location filename="../TracksList.qml" line="980"/>
         <source>Section space start</source>
         <translation>Section space start</translation>
     </message>
     <message id="point-detail-section_space_end-checkbox">
-        <location filename="../PropertiesDetail.qml" line="442"/>
-        <location filename="../TracksList.qml" line="973"/>
+        <location filename="../PropertiesDetail.qml" line="459"/>
+        <location filename="../TracksList.qml" line="988"/>
         <source>Section space end</source>
         <translation>Section space end</translation>
     </message>
     <message id="point-detail-secret_turn_point-checkbox">
-        <location filename="../PropertiesDetail.qml" line="454"/>
-        <location filename="../TracksList.qml" line="982"/>
+        <location filename="../PropertiesDetail.qml" line="471"/>
+        <location filename="../TracksList.qml" line="997"/>
         <source>Secret Turn Point</source>
         <translation>Secret Turn Point</translation>
     </message>
     <message id="point-detail-secret_time_gate-checkbox">
-        <location filename="../PropertiesDetail.qml" line="463"/>
-        <location filename="../TracksList.qml" line="990"/>
+        <location filename="../PropertiesDetail.qml" line="480"/>
+        <location filename="../TracksList.qml" line="1005"/>
         <source>Secret Time Gate</source>
         <translation>Secret Time Gate</translation>
     </message>
     <message id="point-detail-secret_space_gate-checkbox">
-        <location filename="../PropertiesDetail.qml" line="472"/>
-        <location filename="../TracksList.qml" line="998"/>
+        <location filename="../PropertiesDetail.qml" line="489"/>
+        <location filename="../TracksList.qml" line="1013"/>
         <source>Secret Space Gate</source>
         <oldsource>Secret Time Gate</oldsource>
         <translation>Secret Space Gate</translation>
     </message>
     <message id="props-detail-ok">
-        <location filename="../PropertiesDetail.qml" line="494"/>
+        <location filename="../PropertiesDetail.qml" line="511"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message id="props-detail-cancel">
-        <location filename="../PropertiesDetail.qml" line="503"/>
+        <location filename="../PropertiesDetail.qml" line="520"/>
         <source>Cancel</source>
         <translation>Cancel</translation>
     </message>
@@ -202,7 +207,7 @@
         <location filename="../AboutDialog.qml" line="111"/>
         <source>
 Authors: &lt;br/&gt;
-Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;http://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
+Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=&quot;http://www.fit.vutbr.cz/&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
 
 Licence: &lt;br/&gt;
 
@@ -228,7 +233,7 @@ c) the information User received as to the offer to distribute corresponding sou
 User may not copy, modify, grant sublicences or distribute Software in any other way than expressly provided for in this licence agreement. Any other copying, modifying, granting of sublicences or distribution of Software is illegal and will automatically result in termination of the rights granted by this licence. This does not affect rights of third parties acquired in good faith, as long as they abide by the terms and conditions of this licence agreement.
 User may not use and/or distribute Software, if he/she cannot satisfy simultaneously obligations under this licence and any other pertinent obligations.
 User is not responsible for enforcing terms of this agreement by third parties. &lt;br/&gt;
-BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING, BUT PROVIDES SOFTWARE \&quot;AS IS\&quot; WITHOUT WARRANTY OF ANY KIND,EITHER EXPRESSED OR IMPLIED,INCLUDING,BUT NOT LIMITED TO,THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF SOFTWARE IS WITH USER. SHOULD SOFTWARE PROVE DEFECTIVE, USER SHALL ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+BECAUSE SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING, BUT PROVIDES SOFTWARE &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND,EITHER EXPRESSED OR IMPLIED,INCLUDING,BUT NOT LIMITED TO,THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF SOFTWARE IS WITH USER. SHOULD SOFTWARE PROVE DEFECTIVE, USER SHALL ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
 IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL BRNO UNIVERSITY OF TECHNOLOGY BE LIABLE FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF SOFTWARE TO OPERATE WITH ANY OTHER PROGRAMS). &lt;br/&gt;
 Final provisions: &lt;br/&gt;
 Any provision of this licence agreement that is prohibited, unenforceable, or not authorized in any jurisdiction shall, as to such jurisdiction, be ineffective to the extent of such prohibition, unenforceability, or non-authorization without invalidating or affecting the remaining provisions.
@@ -361,250 +366,250 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>&amp;Cancel</translation>
     </message>
     <message id="point-detail-altitude-min-checkbox">
-        <location filename="../PropertiesDetail.qml" line="366"/>
-        <location filename="../TracksList.qml" line="902"/>
+        <location filename="../PropertiesDetail.qml" line="383"/>
+        <location filename="../TracksList.qml" line="917"/>
         <source>Altitude min</source>
         <translation>Altitude min</translation>
     </message>
     <message id="point-detail-altitude-max-checkbox">
-        <location filename="../PropertiesDetail.qml" line="375"/>
-        <location filename="../TracksList.qml" line="910"/>
+        <location filename="../PropertiesDetail.qml" line="392"/>
+        <location filename="../TracksList.qml" line="925"/>
         <source>Altitude max</source>
         <translation>Altitude max</translation>
     </message>
     <message id="point-detail-speed-min-checkbox">
-        <location filename="../PropertiesDetail.qml" line="384"/>
-        <location filename="../TracksList.qml" line="919"/>
+        <location filename="../PropertiesDetail.qml" line="401"/>
+        <location filename="../TracksList.qml" line="934"/>
         <source>Speed min</source>
         <translation>Speed min</translation>
     </message>
     <message id="point-detail-speed-max-checkbox">
-        <location filename="../PropertiesDetail.qml" line="392"/>
-        <location filename="../TracksList.qml" line="927"/>
+        <location filename="../PropertiesDetail.qml" line="409"/>
+        <location filename="../TracksList.qml" line="942"/>
         <source>Speed max</source>
         <translation>Speed max</translation>
     </message>
     <message id="point-detail-turn-point-checkbox">
-        <location filename="../PropertiesDetail.qml" line="341"/>
-        <location filename="../TracksList.qml" line="880"/>
+        <location filename="../PropertiesDetail.qml" line="358"/>
+        <location filename="../TracksList.qml" line="895"/>
         <source>Turn Point</source>
         <translation>Turn Point</translation>
     </message>
     <message id="point-detail-time-gate-checkbox">
-        <location filename="../PropertiesDetail.qml" line="349"/>
-        <location filename="../TracksList.qml" line="887"/>
+        <location filename="../PropertiesDetail.qml" line="366"/>
+        <location filename="../TracksList.qml" line="902"/>
         <source>Time gate</source>
         <translation>Time Gate</translation>
     </message>
     <message id="main-window-title">
-        <location filename="../main.qml" line="13"/>
+        <location filename="../main.qml" line="14"/>
         <source>Trajectory Editor</source>
         <translation>Trajectory Editor</translation>
     </message>
     <message id="main-file-menu">
-        <location filename="../main.qml" line="45"/>
+        <location filename="../main.qml" line="46"/>
         <source>&amp;File</source>
         <translation>&amp;File</translation>
     </message>
     <message id="main-file-menu-new">
-        <location filename="../main.qml" line="48"/>
+        <location filename="../main.qml" line="49"/>
         <source>&amp;New</source>
         <translation>&amp;New</translation>
     </message>
     <message id="main-file-menu-load">
-        <location filename="../main.qml" line="66"/>
+        <location filename="../main.qml" line="67"/>
         <source>&amp;Load</source>
         <translation>&amp;Load</translation>
     </message>
     <message id="main-file-menu-save">
-        <location filename="../main.qml" line="83"/>
+        <location filename="../main.qml" line="84"/>
         <source>&amp;Save</source>
         <translation>&amp;Save</translation>
     </message>
     <message id="main-file-menu-save-as">
-        <location filename="../main.qml" line="102"/>
+        <location filename="../main.qml" line="103"/>
         <source>Save &amp;as...</source>
         <oldsource>Save as...</oldsource>
         <translation>Save &amp;as...</translation>
     </message>
     <message id="main-file-menu-load-gfw">
-        <location filename="../main.qml" line="112"/>
+        <location filename="../main.qml" line="113"/>
         <source>Load &amp;GFW</source>
         <oldsource>Load GFW</oldsource>
         <translation>Load &amp;GFW</translation>
     </message>
     <message id="main-file-menu-import">
-        <location filename="../main.qml" line="121"/>
+        <location filename="../main.qml" line="122"/>
         <source>&amp;Import</source>
         <translation>&amp;Import</translation>
     </message>
     <message id="main-file-menu-export">
-        <location filename="../main.qml" line="130"/>
+        <location filename="../main.qml" line="131"/>
         <source>E&amp;xport</source>
         <translation>E&amp;xport</translation>
     </message>
     <message id="main-file-menu-exit">
-        <location filename="../main.qml" line="140"/>
+        <location filename="../main.qml" line="141"/>
         <source>E&amp;xit</source>
         <translation>E&amp;xit</translation>
     </message>
     <message id="main-edit-menu">
-        <location filename="../main.qml" line="150"/>
+        <location filename="../main.qml" line="151"/>
         <source>&amp;Edit</source>
         <oldsource>Edit</oldsource>
         <translation>&amp;Edit</translation>
     </message>
     <message id="main-menu-edit-clone">
-        <location filename="../main.qml" line="153"/>
+        <location filename="../main.qml" line="154"/>
         <source>Clone</source>
         <translation>Clone</translation>
     </message>
     <message id="main-menu-edit-zoom-to-points">
-        <location filename="../main.qml" line="160"/>
+        <location filename="../main.qml" line="161"/>
         <source>Zoom to points</source>
         <translation>Zoom to points</translation>
     </message>
     <message id="main-menu-edit-zoom-in">
-        <location filename="../main.qml" line="168"/>
+        <location filename="../main.qml" line="169"/>
         <source>Zoom in</source>
         <translation>Zoom in</translation>
     </message>
     <message id="main-menu-edit-zoom-out">
-        <location filename="../main.qml" line="176"/>
+        <location filename="../main.qml" line="177"/>
         <source>Zoom out</source>
         <translation>Zoom out</translation>
     </message>
     <message id="main-menu-edit-show-track-always">
-        <location filename="../main.qml" line="186"/>
+        <location filename="../main.qml" line="187"/>
         <source>Show track always</source>
         <translation>Show track always</translation>
     </message>
     <message id="main-menu-edit-ruler">
-        <location filename="../main.qml" line="194"/>
+        <location filename="../main.qml" line="196"/>
         <source>Ruler</source>
         <translation>Ruler</translation>
     </message>
     <message id="main-menu-edit-autocenter">
-        <location filename="../main.qml" line="205"/>
+        <location filename="../main.qml" line="207"/>
         <source>Automaticaly snap to center</source>
         <translation>Autosnap to center</translation>
     </message>
     <message id="main-map-menu">
-        <location filename="../main.qml" line="217"/>
+        <location filename="../main.qml" line="219"/>
         <source>&amp;Map</source>
         <translation>&amp;Map</translation>
     </message>
     <message id="main-map-menu-none">
-        <location filename="../main.qml" line="227"/>
+        <location filename="../main.qml" line="229"/>
         <source>&amp;None</source>
         <translation>&amp;None</translation>
     </message>
     <message id="main-map-menu-local">
-        <location filename="../main.qml" line="239"/>
+        <location filename="../main.qml" line="241"/>
         <source>&amp;Local</source>
         <translation>&amp;Local</translation>
     </message>
     <message id="main-map-menu-osm">
-        <location filename="../main.qml" line="270"/>
+        <location filename="../main.qml" line="272"/>
         <source>&amp;OSM Mapnik</source>
         <translation>&amp;OSM Mapnik</translation>
     </message>
     <message id="main-map-menu-google-roadmap">
-        <location filename="../main.qml" line="282"/>
+        <location filename="../main.qml" line="284"/>
         <source>Google &amp;Roadmap</source>
         <translation>Google &amp;Roadmap</translation>
     </message>
     <message id="main-map-menu-google-terrain">
-        <location filename="../main.qml" line="294"/>
+        <location filename="../main.qml" line="296"/>
         <source>Google &amp;Terrain</source>
         <translation>Google &amp;Terrain</translation>
     </message>
     <message id="main-map-menu-google-satellite">
-        <location filename="../main.qml" line="306"/>
+        <location filename="../main.qml" line="308"/>
         <source>Google &amp;Satellite</source>
         <translation>Google &amp;Satellite</translation>
     </message>
     <message id="main-map-menu-custom-tile-layer">
-        <location filename="../main.qml" line="317"/>
+        <location filename="../main.qml" line="319"/>
         <source>Custom tile layer</source>
         <translation>Custom tile layer</translation>
     </message>
     <message id="main-map-menu-airspace-off">
-        <location filename="../main.qml" line="329"/>
+        <location filename="../main.qml" line="331"/>
         <source>Airspace Off</source>
         <translation>Airspace Off</translation>
     </message>
     <message id="main-map-menu-airspace-prosoar">
-        <location filename="../main.qml" line="341"/>
+        <location filename="../main.qml" line="343"/>
         <source>Airspace (skylines.aero)</source>
         <oldsource>Airspace (prosoar.de)</oldsource>
         <translation>Airspace (skylines.aero)</translation>
     </message>
     <message id="main-map-menu-airspace-local">
-        <location filename="../main.qml" line="352"/>
+        <location filename="../main.qml" line="354"/>
         <source>Airspace (local)</source>
         <translation>Airspace (local)</translation>
     </message>
     <message id="main-map-menu-gfw">
-        <location filename="../main.qml" line="383"/>
+        <location filename="../main.qml" line="385"/>
         <source>Show &amp;gfw image</source>
         <oldsource>Load &amp;gfw image</oldsource>
         <translation>Show &amp;gfw image</translation>
     </message>
     <message id="main-help-menu">
-        <location filename="../main.qml" line="401"/>
+        <location filename="../main.qml" line="403"/>
         <source>&amp;Help</source>
         <translation>&amp;Help</translation>
     </message>
     <message id="main-help-menu-about">
-        <location filename="../main.qml" line="404"/>
+        <location filename="../main.qml" line="406"/>
         <source>&amp;About</source>
         <translation>&amp;About</translation>
     </message>
     <message id="main-map-dialog-title">
-        <location filename="../main.qml" line="551"/>
+        <location filename="../main.qml" line="553"/>
         <source>Custom map tile configuration</source>
         <oldsource>Set Map URL</oldsource>
         <translation>Custom map tile configuration</translation>
     </message>
     <message id="main-map-dialog-question">
-        <location filename="../main.qml" line="554"/>
+        <location filename="../main.qml" line="556"/>
         <source>Enter URL</source>
         <oldsource>Set URL</oldsource>
         <translation>Enter URL</translation>
     </message>
     <message id="error-dialog">
-        <location filename="../main.qml" line="566"/>
+        <location filename="../main.qml" line="568"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message id="confirm-unsaved-title">
-        <location filename="../main.qml" line="621"/>
+        <location filename="../main.qml" line="623"/>
         <source>Are you sure?</source>
         <translation>Are you sure?</translation>
     </message>
     <message id="confirm-usaved-text">
-        <location filename="../main.qml" line="623"/>
+        <location filename="../main.qml" line="625"/>
         <source>Your changes have not been saved.</source>
         <translation>Your changes have not been saved.</translation>
     </message>
     <message id="error-defaults-file">
-        <location filename="../main.qml" line="756"/>
+        <location filename="../main.qml" line="758"/>
         <source>Cannot load defaults</source>
         <translation>Cannot load defaults</translation>
     </message>
     <message id="section-type-speed">
-        <location filename="../main.qml" line="1296"/>
+        <location filename="../main.qml" line="1301"/>
         <source>speed</source>
         <translation>speed</translation>
     </message>
     <message id="section-type-altitude">
-        <location filename="../main.qml" line="1308"/>
+        <location filename="../main.qml" line="1313"/>
         <source>altitude</source>
         <translation>altitude</translation>
     </message>
     <message id="section-type-space">
-        <location filename="../main.qml" line="1320"/>
+        <location filename="../main.qml" line="1325"/>
         <source>space</source>
         <translation>space</translation>
     </message>
@@ -615,7 +620,7 @@ By installing, copying or other use of Software User declares he/she has read th
     </message>
     <message id="points-list-default-name">
         <location filename="../PointsList.qml" line="174"/>
-        <location filename="../PointsListEditableDelegate.qml" line="39"/>
+        <location filename="../PointsListEditableDelegate.qml" line="40"/>
         <source>Turn point</source>
         <translation>Turn point</translation>
     </message>
@@ -690,27 +695,27 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>Closed</translation>
     </message>
     <message id="pinchmap-ready">
-        <location filename="../PinchMap.qml" line="564"/>
+        <location filename="../PinchMap.qml" line="565"/>
         <source>Ready</source>
         <translation>Ready</translation>
     </message>
     <message id="pinchmap-not-set">
-        <location filename="../PinchMap.qml" line="566"/>
+        <location filename="../PinchMap.qml" line="567"/>
         <source>Not Set</source>
         <translation>Not Set</translation>
     </message>
     <message id="pinchmap-error">
-        <location filename="../PinchMap.qml" line="568"/>
+        <location filename="../PinchMap.qml" line="569"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message id="pinchmap-loading">
-        <location filename="../PinchMap.qml" line="570"/>
+        <location filename="../PinchMap.qml" line="571"/>
         <source>Loading ...</source>
         <translation>Loading ...</translation>
     </message>
     <message id="pinchmap-unknown-error">
-        <location filename="../PinchMap.qml" line="572"/>
+        <location filename="../PinchMap.qml" line="573"/>
         <source>Unknown error</source>
         <translation>Unknown error</translation>
     </message>
@@ -730,171 +735,176 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>Tracks</translation>
     </message>
     <message id="tracks-list-line-type-none">
-        <location filename="../TracksList.qml" line="367"/>
+        <location filename="../TracksList.qml" line="369"/>
         <source>None</source>
         <translation>None</translation>
     </message>
     <message id="tracks-list-line-type-line">
-        <location filename="../TracksList.qml" line="369"/>
+        <location filename="../TracksList.qml" line="371"/>
         <source>Line</source>
         <translation>Line</translation>
     </message>
     <message id="tracks-list-line-type-arc1">
-        <location filename="../TracksList.qml" line="373"/>
+        <location filename="../TracksList.qml" line="375"/>
         <source>Mid-point Arc A</source>
         <oldsource>Mid-point Arc</oldsource>
         <translation>Mid-point Arc A</translation>
     </message>
     <message id="tracks-list-line-type-arc2">
-        <location filename="../TracksList.qml" line="375"/>
+        <location filename="../TracksList.qml" line="377"/>
         <source>Mid-point Arc B</source>
         <oldsource>Edge-point Arc</oldsource>
         <translation>Mid-point Arc B</translation>
     </message>
     <message id="tracks-list-line-type-polyline">
-        <location filename="../TracksList.qml" line="371"/>
+        <location filename="../TracksList.qml" line="373"/>
         <source>Polyline</source>
         <translation>Polyline</translation>
     </message>
     <message id="track-list-preferences">
-        <location filename="../TracksList.qml" line="406"/>
+        <location filename="../TracksList.qml" line="408"/>
         <source>Preferences</source>
         <translation>Preferences</translation>
     </message>
     <message id="track-list-statistics">
-        <location filename="../TracksList.qml" line="434"/>
+        <location filename="../TracksList.qml" line="436"/>
         <source>Statistics</source>
         <translation>Statistics</translation>
     </message>
     <message id="tracks-list-id">
-        <location filename="../TracksList.qml" line="530"/>
+        <location filename="../TracksList.qml" line="532"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="tracks-list-point">
-        <location filename="../TracksList.qml" line="536"/>
+        <location filename="../TracksList.qml" line="538"/>
         <source>Point</source>
         <translation>Point</translation>
     </message>
     <message id="tracks-list-type">
-        <location filename="../TracksList.qml" line="543"/>
+        <location filename="../TracksList.qml" line="545"/>
         <source>Type</source>
         <translation>Type</translation>
     </message>
     <message id="tracks-list-angle">
-        <location filename="../TracksList.qml" line="550"/>
+        <location filename="../TracksList.qml" line="552"/>
         <source>Angle [deg]</source>
         <oldsource>Angle</oldsource>
         <translation>Angle [deg]</translation>
     </message>
     <message id="tracks-list-distance">
-        <location filename="../TracksList.qml" line="557"/>
+        <location filename="../TracksList.qml" line="559"/>
         <source>Distance to previous point [m]</source>
         <oldsource>Distance to next point [m]</oldsource>
         <translation>Distance to previous point [m]</translation>
     </message>
     <message id="tracks-list-distance-sum">
-        <location filename="../TracksList.qml" line="564"/>
+        <location filename="../TracksList.qml" line="566"/>
         <source>Distance to start point [m]</source>
         <translation>Distance to start point [m]</translation>
     </message>
     <message id="tracks-list-addTime">
-        <location filename="../TracksList.qml" line="571"/>
+        <location filename="../TracksList.qml" line="573"/>
         <source>Time to next point [s]</source>
         <oldsource>Additional Time [s]</oldsource>
         <translation>Time to next point [s]</translation>
     </message>
     <message id="tracks-list-radius">
-        <location filename="../TracksList.qml" line="579"/>
+        <location filename="../TracksList.qml" line="581"/>
         <source>Radius [m]</source>
         <oldsource>Radius</oldsource>
         <translation>Radius [m]</translation>
     </message>
     <message id="tracks-list-flags">
-        <location filename="../TracksList.qml" line="587"/>
+        <location filename="../TracksList.qml" line="589"/>
         <source>Flags</source>
         <translation>Flags</translation>
     </message>
     <message id="tracks-list-alt_min">
-        <location filename="../TracksList.qml" line="594"/>
+        <location filename="../TracksList.qml" line="596"/>
         <source>Min Alt [m]</source>
         <oldsource>Min Alt</oldsource>
         <translation>Min Alt [m]</translation>
     </message>
     <message id="tracks-list-alt_max">
-        <location filename="../TracksList.qml" line="600"/>
+        <location filename="../TracksList.qml" line="602"/>
         <source>Max Alt [m]</source>
         <oldsource>Max Alt</oldsource>
         <translation>Max Alt [m]</translation>
     </message>
     <message id="tracks-list-speed_min">
-        <location filename="../TracksList.qml" line="608"/>
+        <location filename="../TracksList.qml" line="610"/>
         <source>Min Speed [km/h]</source>
         <translation>Min Speed [km/h]</translation>
     </message>
     <message id="tracks-list-speed_max">
-        <location filename="../TracksList.qml" line="615"/>
+        <location filename="../TracksList.qml" line="617"/>
         <source>Max Speed [km/h]</source>
         <translation>Max Speed [km/h]</translation>
     </message>
     <message id="tracks-list-ptr">
-        <location filename="../TracksList.qml" line="622"/>
+        <location filename="../TracksList.qml" line="624"/>
         <source>Arc/Poly</source>
         <translation>Arc/Poly</translation>
     </message>
     <message id="tracks-list-points-table-add-before">
-        <location filename="../TracksList.qml" line="759"/>
+        <location filename="../TracksList.qml" line="761"/>
         <source>Add point before selected</source>
         <translation>Add point before selected</translation>
     </message>
     <message id="tracks-list-points-table-add-after">
-        <location filename="../TracksList.qml" line="777"/>
+        <location filename="../TracksList.qml" line="779"/>
         <source>Add point after selected</source>
         <translation>Add point after selected</translation>
     </message>
     <message id="tracks-list-points-table-add">
-        <location filename="../TracksList.qml" line="790"/>
+        <location filename="../TracksList.qml" line="792"/>
         <source>Add point</source>
         <translation>Add point</translation>
     </message>
+    <message id="tracks-list-points-table-add-10">
+        <location filename="../TracksList.qml" line="803"/>
+        <source>Add 10 points</source>
+        <translation>Add 10 points</translation>
+    </message>
     <message id="tracks-list-points-table-remove">
-        <location filename="../TracksList.qml" line="845"/>
+        <location filename="../TracksList.qml" line="860"/>
         <source>Remove point</source>
         <translation>Remove point</translation>
     </message>
     <message id="point-detail-reset-flags">
-        <location filename="../TracksList.qml" line="866"/>
+        <location filename="../TracksList.qml" line="881"/>
         <source>Reset flags</source>
         <translation>Reset flags</translation>
     </message>
     <message id="point-detail-space-gate-checkbox">
-        <location filename="../PropertiesDetail.qml" line="357"/>
-        <location filename="../TracksList.qml" line="894"/>
+        <location filename="../PropertiesDetail.qml" line="374"/>
+        <location filename="../TracksList.qml" line="909"/>
         <source>Space gate</source>
         <translation>Space gate</translation>
     </message>
     <message id="track-list-polygon-did">
-        <location filename="../TracksList.qml" line="1038"/>
+        <location filename="../TracksList.qml" line="1053"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="track-list-polygon-cid">
-        <location filename="../TracksList.qml" line="1045"/>
+        <location filename="../TracksList.qml" line="1060"/>
         <source>Polygon</source>
         <translation>Polygon</translation>
     </message>
     <message id="track-list-polygon-score">
-        <location filename="../TracksList.qml" line="1051"/>
+        <location filename="../TracksList.qml" line="1066"/>
         <source>Score</source>
         <translation>Score</translation>
     </message>
     <message id="tracks-list-polygons-table-add">
-        <location filename="../TracksList.qml" line="1070"/>
+        <location filename="../TracksList.qml" line="1085"/>
         <source>Add polygon</source>
         <translation>Add polygon</translation>
     </message>
     <message id="tracks-list-polygons-table-remove">
-        <location filename="../TracksList.qml" line="1094"/>
+        <location filename="../TracksList.qml" line="1109"/>
         <source>Remove polygon</source>
         <translation>Remove polygon</translation>
     </message>
@@ -933,7 +943,7 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>Ok</translation>
     </message>
     <message id="clone-dialog-cancel">
-        <location filename="../CloneDialog.qml" line="227"/>
+        <location filename="../CloneDialog.qml" line="229"/>
         <source>Cancel</source>
         <oldsource>&amp;Cancel</oldsource>
         <translation>Cancel</translation>
@@ -1022,72 +1032,72 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>sec_tg</translation>
     </message>
     <message id="track-statistics-issue">
-        <location filename="../TrackStatistics.qml" line="37"/>
+        <location filename="../TrackStatistics.qml" line="41"/>
         <source>Issue</source>
         <translation>Issue</translation>
     </message>
     <message id="track-statistics-number">
-        <location filename="../TrackStatistics.qml" line="41"/>
+        <location filename="../TrackStatistics.qml" line="45"/>
         <source>Number</source>
         <translation>Number</translation>
     </message>
     <message id="track-statistics-scoring-value">
-        <location filename="../TrackStatistics.qml" line="45"/>
+        <location filename="../TrackStatistics.qml" line="49"/>
         <source>Scoring value</source>
         <translation>Scoring value</translation>
     </message>
     <message id="track-statistics-value-in-task">
-        <location filename="../TrackStatistics.qml" line="49"/>
+        <location filename="../TrackStatistics.qml" line="53"/>
         <source>Value in task</source>
         <translation>Value in task</translation>
     </message>
     <message id="track-statistics-percent-of-task-value">
-        <location filename="../TrackStatistics.qml" line="53"/>
+        <location filename="../TrackStatistics.qml" line="57"/>
         <source>% of task value</source>
         <translation>% of task value</translation>
     </message>
     <message id="track-statistics-turn-point">
-        <location filename="../TrackStatistics.qml" line="61"/>
+        <location filename="../TrackStatistics.qml" line="65"/>
         <source>Turn points</source>
         <translation>Turn points</translation>
     </message>
     <message id="track-statistics-time-gates">
-        <location filename="../TrackStatistics.qml" line="85"/>
+        <location filename="../TrackStatistics.qml" line="89"/>
         <source>Time gates</source>
         <translation>Time gates</translation>
     </message>
     <message id="track-statistics-space-gates">
-        <location filename="../TrackStatistics.qml" line="109"/>
+        <location filename="../TrackStatistics.qml" line="113"/>
         <source>Space gates</source>
         <translation>Space gates</translation>
     </message>
     <message id="track-statistics-markers">
-        <location filename="../TrackStatistics.qml" line="135"/>
+        <location filename="../TrackStatistics.qml" line="139"/>
         <source>Markers</source>
         <translation>Markers</translation>
     </message>
     <message id="track-statistics-photos">
-        <location filename="../TrackStatistics.qml" line="160"/>
+        <location filename="../TrackStatistics.qml" line="164"/>
         <source>Photos</source>
         <translation>Photos</translation>
     </message>
     <message id="track-statistics-other">
-        <location filename="../TrackStatistics.qml" line="185"/>
+        <location filename="../TrackStatistics.qml" line="189"/>
         <source>Other</source>
         <translation>Other</translation>
     </message>
     <message id="track-statistics-total">
-        <location filename="../TrackStatistics.qml" line="214"/>
+        <location filename="../TrackStatistics.qml" line="218"/>
         <source>Total</source>
         <translation>Total</translation>
     </message>
     <message id="track-statistics-ok">
-        <location filename="../TrackStatistics.qml" line="250"/>
+        <location filename="../TrackStatistics.qml" line="254"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message id="track-statistics-cancel">
-        <location filename="../TrackStatistics.qml" line="258"/>
+        <location filename="../TrackStatistics.qml" line="262"/>
         <source>Cancel</source>
         <oldsource>Ok</oldsource>
         <translation>Cancel</translation>

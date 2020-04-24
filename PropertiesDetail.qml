@@ -212,7 +212,7 @@ ApplicationWindow {
 
         NativeText {
             //% "Speed max score [points]"
-            text: qsTrId("props-detail-speed-penalty")
+            text: qsTrId("props-detail-speed-max-score")
         }
         TextField{
             id: speed_max_score_textfield
