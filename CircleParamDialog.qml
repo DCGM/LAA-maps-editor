@@ -44,6 +44,7 @@ ApplicationWindow {
             id: points_number_textfield
             text: "10"
         }
+
     }
 
     Row {

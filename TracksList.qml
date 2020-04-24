@@ -1,6 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 1.4
 import "functions.js" as F
+import "geom.js" as G
 
 
 Rectangle {
@@ -96,8 +97,11 @@ Rectangle {
         for (var i = 0; i < points.length; i++) {
             var p = points[i];
             pointsModel.append({
+                                   "pid" : p.pid,
                                    "text": p.name + " ("+ p.pid+")",
-                                   "pid" : p.pid
+                                   "name": p.name,
+                                   "lat": p.lat,
+                                   "lon": p.lon,
                                })
         }
 
@@ -817,6 +821,48 @@ Rectangle {
                         maxId = Math.max(item.tid, maxId);
                     }
                     var p = pointsModel.get(0);
+
+                    if (tracksModel.count > pos && pos > 0) {
+                        var firstTIpid = tracksModel.get(pos).pid
+                        var secondTIpid = tracksModel.get(pos-1).pid
+                        console.log(firstTIpid + " " + secondTIpid)
+                        var firstItem = p;
+                        var secondItem = p;
+
+                        for (var j = 0; j < pointsModel.count; j++) {
+                            var pitem = pointsModel.get(j)
+                            if (pitem.pid === firstTIpid) {
+                                console.log("found fisrt" + pitem.name)
+                                firstItem = pitem;
+                            }
+                            if (pitem.pid === secondTIpid) {
+                                secondItem = pitem;
+                            }
+                        }
+
+                        var lat = 0.5 * (firstItem.lat + secondItem.lat)
+                        var lon = 0.5 * (firstItem.lon + secondItem.lon)
+
+                        var minDistance = 100000;
+                        for (var j = 0; j < pointsModel.count; j++) {
+                            pitem = pointsModel.get(j)
+                            if (pitem.pid === firstTIpid) {
+                                continue
+                            }
+                            if (pitem.pid === secondTIpid) {
+                                continue
+                            }
+                            var distance = G.getDistanceTo(lat, lon, pitem.lat, pitem.lon)
+                            console.log("distance " + pitem.pid + " " + pitem.name + " " + distance)
+                            if (distance < minDistance) {
+                                minDistance = distance
+                                p = pitem;
+                            }
+
+                        }
+                        console.log("look for point between: " + firstItem.name + " ("+firstItem.pid+")" + secondItem.name + "("+secondItem.pid+") found " + p.name + "(" + p.pid + ")")
+
+                    }
 
                     var obj = {
                         "tid": (maxId+1),
