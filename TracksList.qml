@@ -182,7 +182,7 @@ Rectangle {
         propsDetail.gyre_penalty = track.gyre_penalty; // penalizace za krouzeni v %
         propsDetail.oposite_direction_penalty = track.oposite_direction_penalty; // penalizace za protismerny let
         propsDetail.out_of_sector_penalty = track.out_of_sector_penalty; // body
-        propsDetail.speed_max_score = track.speed_max_score;
+        propsDetail.speed_max_score = (track.speed_max_score !== undefined) ? track.speed_max_score : 200 ;
         propsDetail.speed_penalty = track.speed_penalty; // nedodrzeni rychlosti, body za km
         propsDetail.speed_tolerance = track.speed_tolerance
         propsDetail.preparation_time = (track.preparation_time !== undefined) ? track.preparation_time : 0;
