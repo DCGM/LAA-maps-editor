@@ -33,7 +33,6 @@ ApplicationWindow {
         anchors.bottom: buttonRow.top;
         anchors.margins: 10;
         spacing: 5
-
         columns: 5;
 
         NativeText {

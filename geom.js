@@ -168,13 +168,12 @@ function insertMidArc(control_lat, control_lon, start_lat, start_lon, end_lat, e
 
 }
 
-var ARC_GRANULARITY = 0.05;
-
 // from/to angle
-function insertMidArcByAngle(center_lat, center_lon, from, to, clock_wise, radius) {
+function insertMidArcByAngle(center_lat, center_lon, from = 0, to = 2 * Math.PI, clock_wise = true, radius = 1000, ARC_GRANULARITY = 0.05) {
     var result = [];
     var from_to_diff = Math.abs(from - to);
-    ARC_GRANULARITY = (from_to_diff < 0.25) ? 0.25 * from_to_diff : 0.05; // ensure at least 5 points in arc
+
+    ARC_GRANULARITY = (from_to_diff < 0.25) ? 0.25 * from_to_diff : ARC_GRANULARITY; // ensure at least 5 points in arc
 
     if (clock_wise) {
         if (to < from) {

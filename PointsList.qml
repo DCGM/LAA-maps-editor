@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Controls 1.4
+import "geom.js" as G
 
 TableView {
     id: tableView
@@ -155,37 +156,53 @@ TableView {
 
     }
 
+    function addPointToList(name = 'point', lat, lon) {
+        var maxId = 0;
+        for (var i = 0; i < pModel.count; i++) {
+            var item = pModel.get(i);
+            maxId = Math.max(item.pid, maxId);
+        }
+
+        var item = {
+            "pid": (maxId+1),
+            "name": name,
+            "lat": lat,
+            "lon": lon
+        }
+
+        pModel.append(item)
+
+    }
+
+
     Menu {
         id: contextMenu;
+
         MenuItem {
             //% "Add point"
             text: qsTrId("points-list-add-point")
             onTriggered: {
-                var maxId = 0;
-                for (var i = 0; i < pModel.count; i++) {
-                    var item = pModel.get(i);
-                    maxId = Math.max(item.pid, maxId);
-                }
+                //% "Turn point"
+                var name = qsTrId("points-list-default-name");
 
-
-                pModel.append({
-                                  "pid": (maxId+1),
-                                  //% "Turn point"
-                                  "name": qsTrId("points-list-default-name"),
-                                  "lat": mapCenterLat,
-                                  "lon": mapCenterLon
-                              })
-
+                addPointToList(name, mapCenterLat, mapCenterLon)
                 var current = pModel.count-1;
-
                 pModel.pointsChanged()
-
                 lateSelect = current; // workarround for https://bugreports.qt.io/browse/QTBUG-53027
-
-
 
             }
         }
+        MenuItem {
+            //% "Add circle
+            text: qsTrId("points-list-add-circle")
+            visible: (tableView.currentRow !== -1)
+            onTriggered: {
+                circleParamDialog.show();
+
+            }
+
+        }
+
         MenuItem {
             //% "Remove points"
             text: qsTrId("points-list-remove-points")
@@ -297,6 +314,25 @@ TableView {
 
 
 
+    CircleParamDialog {
+        id: circleParamDialog
+        onAccepted: {
+            var selectedPoint = pModel.get(tableView.currentRow)
+            var radius_num = parseFloat(radius)
+            var points_num = parseFloat(points)
+            console.log(radius_num + " " + points_num)
+
+            var list = G.insertMidArcByAngle(selectedPoint.lat, selectedPoint.lon, 0, Math.PI*2, true, G.distToAngle(radius_num), (Math.PI*2)/(points_num+0.01));
+            for (var i = 0; i < list.length; i++) {
+                //% "Circle point %n"
+                var name = selectedPoint.name + ": " + qsTrId("points-list-circle-point-name", i+1)
+                var coord = list[i];
+                addPointToList(name, coord[0], coord[1])
+            }
+            pModel.pointsChanged()
+
+        }
+    }
 
 
 }

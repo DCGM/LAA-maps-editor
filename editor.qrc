@@ -49,5 +49,6 @@
         <file>parser_fn.js</file>
         <file>NativeTextInput.qml</file>
         <file>geom.js</file>
+        <file>CircleParamDialog.qml</file>
     </qresource>
 </RCC>

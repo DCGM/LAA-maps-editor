@@ -799,10 +799,9 @@ Rectangle {
                 }
 
                 MenuItem {
-                    //% "Add 10 points"
+                    //% "Append 10 points"
                     text: qsTrId("tracks-list-points-table-add-10")
                     enabled: (pointsModel.count > 0)
-                    visible: !trackListPointsTableAddBeforeMenuItem.visible
 
                     onTriggered: {
                         for (var i = 0; i < 10; i++) {
