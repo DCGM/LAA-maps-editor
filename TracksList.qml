@@ -541,7 +541,7 @@ Rectangle {
                 //% "Point"
                 title: qsTrId("tracks-list-point");
                 role: "pid"
-                width: 200;
+                width: 250;
             }
 
             TableViewColumn {

@@ -295,7 +295,7 @@ TableView {
         role: "name"
         //% "Name"
         title: qsTrId("points-list-name");
-        width: 100;
+        width: 200;
     }
 
     TableViewColumn {

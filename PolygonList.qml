@@ -156,14 +156,14 @@ TableView {
         //% "Name"
         title: qsTrId("polygon-list-name");
         role: "name"
-        width: 150;
+        width: 250;
     }
 
     TableViewColumn {
         //% "Color"
         title: qsTrId("polygon-list-color");
         role: "color";
-        width: 100;
+        width: 70;
     }
 
     TableViewColumn {
