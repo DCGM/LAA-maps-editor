@@ -193,15 +193,19 @@ TableView {
             }
         }
         MenuItem {
-            //% "Add circle
+            //% "Add circle"
             text: qsTrId("points-list-add-circle")
             visible: (tableView.currentRow !== -1)
-            onTriggered: {
-                circleParamDialog.show();
-
-            }
-
+            onTriggered: circleParamDialog.show();
         }
+
+        MenuItem {
+            //% "Add points (in line)"
+            text: qsTrId("points-list-add-line")
+            visible: (tableView.currentRow !== -1)
+            onTriggered: lineParamDialog.show();
+        }
+
 
         MenuItem {
             //% "Remove points"
@@ -332,6 +336,29 @@ TableView {
             pModel.pointsChanged()
 
         }
+    }
+
+    LineParamDialog {
+        id: lineParamDialog
+        onAccepted: {
+            var selectedPoint = pModel.get(tableView.currentRow)
+            var distance_num = parseFloat(distance)
+            var angle_num = parseFloat(angle)
+            var points_num = parseFloat(points)
+            var distance_sum = 0
+            console.log("Add points for line: " + distance_num + " " + angle_num + " " + points_num)
+
+            for (var i = 0; i < points_num; i++) {
+                //% "Line point %n"
+                var name = selectedPoint.name + ": " + qsTrId("points-list-line-point-name", i+1)
+                distance_sum = distance_sum + distance_num;
+                var coord = G.getCoordByDistanceBearing(selectedPoint.lat, selectedPoint.lon, angle_num, distance_sum)
+                addPointToList(name, coord.lat, coord.lon)
+            }
+            pModel.pointsChanged()
+
+        }
+
     }
 
 

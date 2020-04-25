@@ -13,7 +13,7 @@ Item {
 
     transform: Rotation { origin.x: 0; origin.y: 0; angle: ruler.computed_angle}
 
-    property alias distance: distance_text.text
+    property alias text: ruler_text.text
 
     property real mapx;
     property real mapy;
@@ -38,7 +38,7 @@ Item {
     }
 
     NativeText {
-        id: distance_text
+        id: ruler_text
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.top
         smooth: true;

@@ -630,7 +630,7 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>Add circle</translation>
     </message>
     <message id="points-list-circle-point-name" numerus="yes">
-        <location filename="../PointsList.qml" line="328"/>
+        <location filename="../PointsList.qml" line="332"/>
         <source>Circle point %n</source>
         <translation>
             <numerusform>Circle point %n</numerusform>
@@ -638,39 +638,53 @@ By installing, copying or other use of Software User declares he/she has read th
         </translation>
     </message>
     <message id="points-list-remove-points">
-        <location filename="../PointsList.qml" line="208"/>
+        <location filename="../PointsList.qml" line="212"/>
         <source>Remove points</source>
         <translation>Remove points</translation>
     </message>
+    <message id="points-list-add-line">
+        <location filename="../PointsList.qml" line="204"/>
+        <source>Add points (in line)</source>
+        <oldsource>Add line</oldsource>
+        <translation>Add line (in line)</translation>
+    </message>
     <message id="points-list-snap-to">
-        <location filename="../PointsList.qml" line="226"/>
+        <location filename="../PointsList.qml" line="230"/>
         <source>Snap to..</source>
         <translation>Snap to..</translation>
     </message>
     <message id="points-list-transform-to-polygon">
-        <location filename="../PointsList.qml" line="237"/>
+        <location filename="../PointsList.qml" line="241"/>
         <source>Transform to polygon</source>
         <translation>Transform to polygon</translation>
     </message>
     <message id="points-list-id">
-        <location filename="../PointsList.qml" line="290"/>
+        <location filename="../PointsList.qml" line="294"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="points-list-name">
-        <location filename="../PointsList.qml" line="297"/>
+        <location filename="../PointsList.qml" line="301"/>
         <source>Name</source>
         <translation>Point name</translation>
     </message>
     <message id="points-list-lat">
-        <location filename="../PointsList.qml" line="304"/>
+        <location filename="../PointsList.qml" line="308"/>
         <source>Latitude</source>
         <translation>Latitude</translation>
     </message>
     <message id="points-list-lon">
-        <location filename="../PointsList.qml" line="311"/>
+        <location filename="../PointsList.qml" line="315"/>
         <source>Longitude</source>
         <translation>Longitude</translation>
+    </message>
+    <message id="points-list-line-point-name" numerus="yes">
+        <location filename="../PointsList.qml" line="353"/>
+        <source>Line point %n</source>
+        <translation>
+            <numerusform>Line point %n</numerusform>
+            <numerusform>Line point %n</numerusform>
+        </translation>
     </message>
     <message id="polygon-list-remove-polygon">
         <location filename="../PolygonList.qml" line="112"/>
@@ -708,27 +722,27 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>Closed</translation>
     </message>
     <message id="pinchmap-ready">
-        <location filename="../PinchMap.qml" line="565"/>
+        <location filename="../PinchMap.qml" line="564"/>
         <source>Ready</source>
         <translation>Ready</translation>
     </message>
     <message id="pinchmap-not-set">
-        <location filename="../PinchMap.qml" line="567"/>
+        <location filename="../PinchMap.qml" line="566"/>
         <source>Not Set</source>
         <translation>Not Set</translation>
     </message>
     <message id="pinchmap-error">
-        <location filename="../PinchMap.qml" line="569"/>
+        <location filename="../PinchMap.qml" line="568"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message id="pinchmap-loading">
-        <location filename="../PinchMap.qml" line="571"/>
+        <location filename="../PinchMap.qml" line="570"/>
         <source>Loading ...</source>
         <translation>Loading ...</translation>
     </message>
     <message id="pinchmap-unknown-error">
-        <location filename="../PinchMap.qml" line="573"/>
+        <location filename="../PinchMap.qml" line="572"/>
         <source>Unknown error</source>
         <translation>Unknown error</translation>
     </message>
@@ -923,7 +937,7 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>Remove polygon</translation>
     </message>
     <message id="polygon-list-default-name">
-        <location filename="../PointsList.qml" line="247"/>
+        <location filename="../PointsList.qml" line="251"/>
         <location filename="../PolygonListDelegate.qml" line="37"/>
         <source>Polygon</source>
         <translation>Polygon</translation>
@@ -1122,16 +1136,39 @@ By installing, copying or other use of Software User declares he/she has read th
     </message>
     <message id="track-statistics-ok">
         <location filename="../CircleParamDialog.qml" line="60"/>
+        <location filename="../LineParamDialog.qml" line="72"/>
         <location filename="../TrackStatistics.qml" line="253"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message id="track-statistics-cancel">
         <location filename="../CircleParamDialog.qml" line="68"/>
+        <location filename="../LineParamDialog.qml" line="80"/>
         <location filename="../TrackStatistics.qml" line="261"/>
         <source>Cancel</source>
         <oldsource>Ok</oldsource>
         <translation>Cancel</translation>
+    </message>
+    <message id="line-param-dialog-title">
+        <location filename="../LineParamDialog.qml" line="9"/>
+        <source>Line parameters</source>
+        <translation>Line parameters</translation>
+    </message>
+    <message id="line-param-dialog-distance">
+        <location filename="../LineParamDialog.qml" line="33"/>
+        <source>Distance of next point (m)</source>
+        <oldsource>Distance (m)</oldsource>
+        <translation>Distance to next point (m)</translation>
+    </message>
+    <message id="line-param-dialog-angle">
+        <location filename="../LineParamDialog.qml" line="42"/>
+        <source>Angle (deg)</source>
+        <translation>Angle (deg)</translation>
+    </message>
+    <message id="line-param-dialog-points">
+        <location filename="../LineParamDialog.qml" line="53"/>
+        <source>Number of points</source>
+        <translation>Number of points</translation>
     </message>
 </context>
 </TS>
