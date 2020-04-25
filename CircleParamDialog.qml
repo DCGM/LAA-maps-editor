@@ -33,7 +33,7 @@ ApplicationWindow {
         }
         TextField {
             id: radius_textfield
-            text: "10000"
+            text: "5556" // 3 nautical miles == 5556 (standard ATZ size)
         }
 
         NativeText {
@@ -42,7 +42,7 @@ ApplicationWindow {
         }
         TextField {
             id: points_number_textfield
-            text: "10"
+            text: "25"
         }
 
     }
