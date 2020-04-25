@@ -1574,6 +1574,8 @@ Rectangle {
     }
 
 
+
+
     PinchArea {
         id: pincharea;
 
@@ -1822,6 +1824,16 @@ Rectangle {
                 __isDragingPoint = false;
             }
         }
+
+    }
+
+
+    PinchMapControls {
+        anchors.right: parent.right;
+        anchors.bottom: parent.bottom;
+        onZoomIn: pinchmap.zoomIn();
+        onZoomOut: pinchmap.zoomOut();
+        onPanToMyPosition: pinchmap.pointsInBounds()
 
     }
 

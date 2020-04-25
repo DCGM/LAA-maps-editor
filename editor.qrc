@@ -50,5 +50,10 @@
         <file>NativeTextInput.qml</file>
         <file>geom.js</file>
         <file>CircleParamDialog.qml</file>
+        <file>PinchMapControls.qml</file>
+        <file>ShadowElement.qml</file>
+        <file>data/ic_remove_black_24dp/ic_remove_black_24dp/web/ic_remove_black_24dp_1x.png</file>
+        <file>data/ic_add_black_24dp/ic_add_black_24dp/web/ic_add_black_24dp_1x.png</file>
+        <file>data/ic_my_location_black_24dp/ic_my_location_black_24dp/web/ic_my_location_black_24dp_1x.png</file>
     </qresource>
 </RCC>
