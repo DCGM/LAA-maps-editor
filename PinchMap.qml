@@ -1036,7 +1036,7 @@ Rectangle {
                         case "polyline":
                             distance = 0;
 
-                            var selPoly = G.getPolyByCid(c.ptr, poly);
+                            var selPoly = F.getPolyByCid(c.ptr, poly);
                             if (selPoly === undefined) {
                                 ctx.moveTo(screenPoint[0], screenPoint[1])
                             } else {
