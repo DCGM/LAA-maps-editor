@@ -9,8 +9,16 @@ URL:            https://github.com/DCGM/LAA-maps-editor
 Source0:        https://github.com/DCGM/LAA-maps-editor/archive/master.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  desktop-file-utils
+
+%if 0%{?fedora} && 0%{?fedora}  <= 32
 BuildRequires:  qt5-devel >= 5.10.0
-BuildRequires:  qt5-linguist
+%else
+BuildRequires: qt5-qtbase-devel
+BuildRequires: qt5-qtquickcontrols
+BuildRequires: qt5-linguist
+BuildRequires: qt5-qtdeclarative-devel
+%endif
+
 
 %description
 editor is tool for editing of LAA Competion tracks
