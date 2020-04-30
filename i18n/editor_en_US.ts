@@ -646,7 +646,7 @@ By installing, copying or other use of Software User declares he/she has read th
         <location filename="../PointsList.qml" line="204"/>
         <source>Add points (in line)</source>
         <oldsource>Add line</oldsource>
-        <translation>Add line (in line)</translation>
+        <translation>Add points (in line)</translation>
     </message>
     <message id="points-list-snap-to">
         <location filename="../PointsList.qml" line="230"/>
