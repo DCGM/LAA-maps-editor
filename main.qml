@@ -407,6 +407,7 @@ ApplicationWindow {
                 onTriggered: {
                     aboutDialog.show();
                 }
+                shortcut: "F1"
 
             }
 
