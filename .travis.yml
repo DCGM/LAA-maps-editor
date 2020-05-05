@@ -11,3 +11,13 @@ script:
   - set PATH="%PATH%;C:\Qt\5.13.2\msvc2017\bin"
   - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.13.2\msvc2017" ..
   - cmake --build .
+  - C:/Qt/5.12.3/msvc2017/bin/windeployqt.exe ./editor.exe
+  - 7z a -tzip editor.zip -r *
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key: $GITHUB_TOKEN
+  file: editor.zip
+  on:
+    tags: true
+    draft: true
