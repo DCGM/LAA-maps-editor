@@ -1,90 +1,56 @@
-/*
- * Qt Installer script for a non-interactive installation of Qt5 on Windows.
- * Installs the 64-bit package if environment variable PLATFORM="x64".
- */
-
-// jshint strict:false
-/* globals QInstaller, QMessageBox, buttons, gui, installer, console */
-
-// Run with:
-// .\qt-unified-windows-x86-3.0.4-online.exe --verbose --script tools\qt-installer-windows.qs
-
-// Look for Name elements in
-// https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_5123/Updates.xml
-// Unfortunately it is not possible to disable deps like qt.tools.qtcreator
-var INSTALL_COMPONENTS = [
-    installer.environmentVariable("PLATFORM") == "x64" ?
-    "qt.qt5.5123.win64_msvc2017_64" :
-    "qt.qt5.5123.win32_msvc2017",
-];
-
 function Controller() {
-    // Continue on installing to an existing (possibly empty) directory.
-    installer.setMessageBoxAutomaticAnswer("OverwriteTargetDirectory", QMessageBox.Yes);
-    // Continue at "SHOW FINISHED PAGE"
+    installer.autoRejectMessageBoxes();
     installer.installationFinished.connect(function() {
-        console.log("installationFinished");
         gui.clickButton(buttons.NextButton);
-    });
+    })
 }
 
 Controller.prototype.WelcomePageCallback = function() {
-    console.log("Step: " + gui.currentPageWidget());
-    gui.clickButton(buttons.NextButton, 1000);
-};
+    gui.clickButton(buttons.NextButton, 5000);
+}
 
 Controller.prototype.CredentialsPageCallback = function() {
-    console.log("Step: " + gui.currentPageWidget());
-    gui.clickButton(buttons.NextButton);
-};
+    gui.currentPageWidget().loginWidget.EmailLineEdit.setText("ci@semlanik.org");
+    gui.currentPageWidget().loginWidget.PasswordLineEdit.setText("1QazxsW2");
+    gui.clickButton(buttons.NextButton, 5000);
+}
 
 Controller.prototype.IntroductionPageCallback = function() {
-    console.log("Step: " + gui.currentPageWidget());
     gui.clickButton(buttons.NextButton);
-};
+}
 
-Controller.prototype.TargetDirectoryPageCallback = function() {
-    console.log("Step: " + gui.currentPageWidget());
-    // Keep default at "C:\Qt".
-    //gui.currentPageWidget().TargetDirectoryLineEdit.setText("E:\\Qt");
+Controller.prototype.TargetDirectoryPageCallback = function()
+{
+    gui.currentPageWidget().TargetDirectoryLineEdit.setText("C:/Qt");
     gui.clickButton(buttons.NextButton);
-};
+}
 
 Controller.prototype.ComponentSelectionPageCallback = function() {
-    console.log("Step: " + gui.currentPageWidget());
-    var page = gui.currentPageWidget();
-    page.deselectAll();
-    for (var i = 0; i < INSTALL_COMPONENTS.length; i++) {
-        page.selectComponent(INSTALL_COMPONENTS[i]);
-    }
+    var widget = gui.currentPageWidget();
+    widget.deselectAll();
+    widget.selectComponent("qt.qt5.5132.win32_msvc2017");
+
     gui.clickButton(buttons.NextButton);
-};
+}
 
 Controller.prototype.LicenseAgreementPageCallback = function() {
-    console.log("Step: " + gui.currentPageWidget());
     gui.currentPageWidget().AcceptLicenseRadioButton.setChecked(true);
     gui.clickButton(buttons.NextButton);
-};
+}
 
 Controller.prototype.StartMenuDirectoryPageCallback = function() {
-    console.log("Step: " + gui.currentPageWidget());
     gui.clickButton(buttons.NextButton);
-};
+}
 
-Controller.prototype.ReadyForInstallationPageCallback = function() {
-    console.log("Step: " + gui.currentPageWidget());
+Controller.prototype.ReadyForInstallationPageCallback = function()
+{
     gui.clickButton(buttons.NextButton);
-};
+}
 
 Controller.prototype.FinishedPageCallback = function() {
-    console.log("Step: " + gui.currentPageWidget());
-    // TODO somehow the installer crashes after this step.
-    // https://stackoverflow.com/questions/25105269/silent-install-qt-run-installer-on-ubuntu-server
-    var checkBoxForm = gui.currentPageWidget().LaunchQtCreatorCheckBoxForm;
-    if (checkBoxForm && checkBoxForm.launchQtCreatorCheckBox) {
-        checkBoxForm.launchQtCreatorCheckBox.checked = false;
-    }
+var checkBoxForm = gui.currentPageWidget().LaunchQtCreatorCheckBoxForm
+if (checkBoxForm && checkBoxForm.launchQtCreatorCheckBox) {
+    checkBoxForm.launchQtCreatorCheckBox.checked = false;
+}
     gui.clickButton(buttons.FinishButton);
-};
-
-// vim: set ft=javascript:
+} 
