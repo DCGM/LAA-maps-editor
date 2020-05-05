@@ -106,11 +106,14 @@ int main(int argc, char *argv[]) {
     QTranslator translator;
     QTranslator qtbasetranslator;
 
-    if (translator.load(QLatin1String("editor_") + QLocale::system().name(), "./")) {
+    QString i18nFilename = QLatin1String("editor_") + QLocale::system().name();
+    if (translator.load(i18nFilename, "./")) {
+        qDebug() << i18nFilename << "./" << QLocale::system().bcp47Name();
         app.installTranslator(&translator);
         engine.rootContext()->setContextProperty("locale", QLocale::system().bcp47Name());
 
-    } else if (translator.load(QLatin1String("editor_") + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+    } else if (translator.load(i18nFilename, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+        qDebug() << i18nFilename << QLibraryInfo::location(QLibraryInfo::TranslationsPath) << QLocale::system().bcp47Name();
         app.installTranslator(&translator);
         engine.rootContext()->setContextProperty("locale", QLocale::system().bcp47Name());
 
