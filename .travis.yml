@@ -11,7 +11,8 @@ script:
   - set PATH="%PATH%;C:\Qt\5.13.2\msvc2017\bin"
   - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.13.2\msvc2017" ..
   - cmake --build .
-  - windeployqt ./editor.exe
+#  - windeployqt ./editor.exe
+  - dir C:\Qt\5.13.2\msvc2017\bin
   - 7z a -tzip editor.zip -r *
 deploy:
   provider: releases
