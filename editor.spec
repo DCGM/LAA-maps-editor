@@ -8,7 +8,9 @@ License:        BUT LICENCE (GPLv2 compatibile)
 URL:            https://github.com/DCGM/LAA-maps-editor
 Source0:        https://github.com/DCGM/LAA-maps-editor/archive/master.tar.gz#/%{name}-%{version}.tar.gz
 
+BuildRequires:  git
 BuildRequires:  desktop-file-utils
+BuildRequires:  cmake
 
 %if 0%{?fedora} && 0%{?fedora}  <= 32
 BuildRequires:  qt5-devel >= 5.10.0
@@ -28,17 +30,28 @@ editor is tool for editing of LAA Competion tracks
 
 
 %build
-%{qmake_qt5} PREFIX=%{_prefix}
+%cmake
 make %{?_smp_mflags}
 
+
 %install
-make INSTALL_ROOT=$RPM_BUILD_ROOT install
+make DESTDIR=%{buildroot} install
+
+desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 #desktop-file-install --dir $RPM_BUILD_ROOT/opt/%{name}/share/applications\
 #      $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
 
 %files
-/opt/editor/*
+%dir /usr/share/editor
+/usr/share/editor/i18n
+/usr/share/editor/i18n/editor_cs_CZ.qm
+/usr/share/editor/i18n/editor_en_US.qm
+/usr/share/editor/editor_defaults.json
+/usr/share/applications/editor.desktop
+/usr/share/icons/hicolor/applications/64x64/editor64.ico
+/usr/share/icons/hicolor/applications/64x64/editor64.png
+/usr/bin/editor
 
 
 %changelog
