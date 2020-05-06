@@ -7,6 +7,8 @@ before_install:
   - python -m pip install aqtinstall
   - python -m aqt install --outputdir c:\Qt 5.14.2 windows desktop win64_msvc2017_64
 script:
+  - setx path "%path%;C:\Qt\5.14.2\msvc2017\bin"
+  - set PATH="%PATH%;C:\Qt\5.14.2\msvc2017\bin"
   - mkdir build
   - cd build
   - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.14.2\msvc2017" ..
