@@ -1,9 +1,11 @@
 os: windows
 language: C++
+
+
 before_install:
-  - wget -q https://download.qt.io/official_releases/qt/5.13/5.13.2/qt-opensource-windows-x86-5.13.2.exe
-install:
-  - ./qt-opensource-windows-x86-5.13.2.exe --script ./.ci/qt_installer_windows.qs
+  - choco install python
+  - pip install aqtinstall
+  - python -m aqt install 5.14.0 windows desktop win64_msvc2017
 script:
   - mkdir build
   - cd build
