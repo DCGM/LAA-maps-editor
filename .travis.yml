@@ -1,15 +1,15 @@
 os: windows
 language: C++
-env: PATH=/c/Python38:/c/Python38/Scripts:/C/Qt/5.13.1/msvc2017/in:$PATH
+env: PATH=/c/Python38:/c/Python38/Scripts:/C/Qt/5.14.2/msvc2017/bin:$PATH
 before_install:
   - choco install  python --version 3.8.0
   - python -m pip install --upgrade pip
   - python -m pip install aqtinstall
-  - python -m aqt install 5.13.1 windows desktop win64_msvc2017
+  - python -m aqt aqt install --outputdir c:\Qt 5.14.2 windows desktop win64_msvc2017_64
 script:
   - mkdir build
   - cd build
-  - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.13.1\msvc2017" ..
+  - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.14.2\msvc2017" ..
   - cmake --build .
 #  - windeployqt ./editor.exe
   - 7z a -tzip editor.zip -r *
