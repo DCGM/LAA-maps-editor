@@ -1,19 +1,20 @@
 os: windows
 language: C++
-env: PATH=/c/Python38:/c/Python38/Scripts:/C/Qt/5.14.2/msvc2017/bin:$PATH
+env: PATH=/c/Python38:/c/Python38/Scripts:/C/Qt/5.14.2/msvc2017_64/bin:$PATH
 before_install:
   - choco install  python --version 3.8.0
   - python -m pip install --upgrade pip
   - python -m pip install aqtinstall
-  - python -m aqt install --outputdir c:\Qt 5.14.2 windows desktop win32_msvc2017
+  - python -m aqt install --outputdir c:\Qt 5.14.2 windows desktop win64_msvc2017_64
 script:
-  - setx path "%path%;C:\Qt\5.14.2\msvc2017\bin"
-  - set PATH="%PATH%;C:\Qt\5.14.2\msvc2017\bin"
+  - setx path "%path%;C:\Qt\5.14.2\msvc2017_64\bin"
+  - set PATH="%PATH%;C:\Qt\5.14.2\msvc2017_64\bin"
   - mkdir build
   - cd build
-  - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.14.2\msvc2017" -DCMAKE_BUILD_TYPE=RELEASE ..
+  - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.14.2\msvc2017_64" -DCMAKE_BUILD_TYPE=RELEASE ..
   - cmake --build .
 #  - windeployqt ./editor.exe
+  - cat "C:/Users/travis/build/DCGM/LAA-maps-editor/build/CMakeFiles/CMakeOutput.log"
   - 7z a -tzip editor.zip -r *
 deploy:
   provider: releases
