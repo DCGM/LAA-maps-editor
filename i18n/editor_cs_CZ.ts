@@ -418,204 +418,205 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>&amp;Nový</translation>
     </message>
     <message id="main-file-menu-load">
-        <location filename="../main.qml" line="69"/>
+        <location filename="../main.qml" line="70"/>
         <source>&amp;Load</source>
         <translation>&amp;Otevřít</translation>
     </message>
     <message id="main-file-load-recent">
-        <location filename="../main.qml" line="89"/>
-        <source>Recent projects</source>
-        <translation>Naposledy otevřené</translation>
+        <location filename="../main.qml" line="91"/>
+        <source>&amp;Recently opened</source>
+        <oldsource>Recent projects</oldsource>
+        <translation>&amp;Naposledy otevřené</translation>
     </message>
     <message id="main-file-menu-save">
-        <location filename="../main.qml" line="134"/>
+        <location filename="../main.qml" line="136"/>
         <source>&amp;Save</source>
         <translation>&amp;Uložit</translation>
     </message>
     <message id="main-file-menu-save-as">
-        <location filename="../main.qml" line="153"/>
+        <location filename="../main.qml" line="155"/>
         <source>Save &amp;as...</source>
         <oldsource>Save as...</oldsource>
         <translation>U&amp;ložit jako...</translation>
     </message>
     <message id="main-file-menu-load-gfw">
-        <location filename="../main.qml" line="163"/>
+        <location filename="../main.qml" line="165"/>
         <source>Load &amp;GFW</source>
         <oldsource>Load GFW</oldsource>
         <translation>Otevřít &amp;GFW</translation>
     </message>
     <message id="main-file-menu-import">
-        <location filename="../main.qml" line="172"/>
+        <location filename="../main.qml" line="174"/>
         <source>&amp;Import</source>
         <translation>&amp;Importovat</translation>
     </message>
     <message id="main-file-menu-export">
-        <location filename="../main.qml" line="181"/>
+        <location filename="../main.qml" line="183"/>
         <source>E&amp;xport</source>
         <translation>E&amp;xportovat</translation>
     </message>
     <message id="main-file-menu-exit">
-        <location filename="../main.qml" line="191"/>
+        <location filename="../main.qml" line="193"/>
         <source>E&amp;xit</source>
         <translation>&amp;Ukončit</translation>
     </message>
     <message id="main-edit-menu">
-        <location filename="../main.qml" line="201"/>
+        <location filename="../main.qml" line="203"/>
         <source>&amp;Edit</source>
         <oldsource>Edit</oldsource>
         <translation>&amp;Úpravy</translation>
     </message>
     <message id="main-menu-edit-clone">
-        <location filename="../main.qml" line="204"/>
+        <location filename="../main.qml" line="206"/>
         <source>Clone</source>
         <translation>Klonování</translation>
     </message>
     <message id="main-menu-edit-zoom-to-points">
-        <location filename="../main.qml" line="211"/>
+        <location filename="../main.qml" line="213"/>
         <source>Zoom to points</source>
         <translation>Přiblížit na body</translation>
     </message>
     <message id="main-menu-edit-zoom-in">
-        <location filename="../main.qml" line="219"/>
+        <location filename="../main.qml" line="221"/>
         <source>Zoom in</source>
         <translation>Přiblížit</translation>
     </message>
     <message id="main-menu-edit-zoom-out">
-        <location filename="../main.qml" line="227"/>
+        <location filename="../main.qml" line="229"/>
         <source>Zoom out</source>
         <translation>Oddálit</translation>
     </message>
     <message id="main-menu-edit-show-track-always">
-        <location filename="../main.qml" line="237"/>
+        <location filename="../main.qml" line="239"/>
         <source>Show track always</source>
         <translation>Zobrazovat trať vždy</translation>
     </message>
     <message id="main-menu-edit-ruler">
-        <location filename="../main.qml" line="246"/>
+        <location filename="../main.qml" line="248"/>
         <source>Ruler</source>
         <translation>Pravítko</translation>
     </message>
     <message id="main-menu-edit-autocenter">
-        <location filename="../main.qml" line="257"/>
+        <location filename="../main.qml" line="259"/>
         <source>Automaticaly snap to center</source>
         <translation>Automaticky na střed</translation>
     </message>
     <message id="main-map-menu">
-        <location filename="../main.qml" line="269"/>
+        <location filename="../main.qml" line="271"/>
         <source>&amp;Map</source>
         <translation>&amp;Mapa</translation>
     </message>
     <message id="main-map-menu-none">
-        <location filename="../main.qml" line="279"/>
+        <location filename="../main.qml" line="281"/>
         <source>&amp;None</source>
         <translation>&amp;Žádná</translation>
     </message>
     <message id="main-map-menu-local">
-        <location filename="../main.qml" line="291"/>
+        <location filename="../main.qml" line="293"/>
         <source>&amp;Local</source>
         <translation>&amp;Stazene mapy</translation>
     </message>
     <message id="main-map-menu-osm">
-        <location filename="../main.qml" line="322"/>
+        <location filename="../main.qml" line="324"/>
         <source>&amp;OSM Mapnik</source>
         <translation>&amp;OSM Mapnik</translation>
     </message>
     <message id="main-map-menu-google-roadmap">
-        <location filename="../main.qml" line="334"/>
+        <location filename="../main.qml" line="336"/>
         <source>Google &amp;Roadmap</source>
         <translation>Google &amp;Roadmap</translation>
     </message>
     <message id="main-map-menu-google-terrain">
-        <location filename="../main.qml" line="346"/>
+        <location filename="../main.qml" line="348"/>
         <source>Google &amp;Terrain</source>
         <translation>Google &amp;Terrain</translation>
     </message>
     <message id="main-map-menu-google-satellite">
-        <location filename="../main.qml" line="358"/>
+        <location filename="../main.qml" line="360"/>
         <source>Google &amp;Satellite</source>
         <translation>Google &amp;Satellite</translation>
     </message>
     <message id="main-map-menu-custom-tile-layer">
-        <location filename="../main.qml" line="369"/>
+        <location filename="../main.qml" line="371"/>
         <source>Custom tile layer</source>
         <translation>Vlastní mapová vrstva</translation>
     </message>
     <message id="main-map-menu-airspace-off">
-        <location filename="../main.qml" line="381"/>
+        <location filename="../main.qml" line="383"/>
         <source>Airspace Off</source>
         <translation>Vzdušné prostory vypnuty</translation>
     </message>
     <message id="main-map-menu-airspace-prosoar">
-        <location filename="../main.qml" line="393"/>
+        <location filename="../main.qml" line="395"/>
         <source>Airspace (skylines.aero)</source>
         <oldsource>Airspace (prosoar.de)</oldsource>
         <translation>Vzdušné prostory (skylines.aero)</translation>
     </message>
     <message id="main-map-menu-airspace-local">
-        <location filename="../main.qml" line="404"/>
+        <location filename="../main.qml" line="406"/>
         <source>Airspace (local)</source>
         <translation>Vzdušné prostory (stažené)</translation>
     </message>
     <message id="main-map-menu-gfw">
-        <location filename="../main.qml" line="435"/>
+        <location filename="../main.qml" line="437"/>
         <source>Show &amp;gfw image</source>
         <oldsource>Load &amp;gfw image</oldsource>
         <translation>Zobrazit gf&amp;w obrázek</translation>
     </message>
     <message id="main-help-menu">
-        <location filename="../main.qml" line="453"/>
+        <location filename="../main.qml" line="455"/>
         <source>&amp;Help</source>
         <translation>&amp;Nápověda</translation>
     </message>
     <message id="main-help-menu-about">
-        <location filename="../main.qml" line="456"/>
+        <location filename="../main.qml" line="458"/>
         <source>&amp;About</source>
         <translation>&amp;O programu</translation>
     </message>
     <message id="main-map-dialog-title">
-        <location filename="../main.qml" line="604"/>
+        <location filename="../main.qml" line="606"/>
         <source>Custom map tile configuration</source>
         <oldsource>Set Map URL</oldsource>
         <translation>Nastavení vlastního mapového podkladu</translation>
     </message>
     <message id="main-map-dialog-question">
-        <location filename="../main.qml" line="607"/>
+        <location filename="../main.qml" line="609"/>
         <source>Enter URL</source>
         <oldsource>Set URL</oldsource>
         <translation>Zadejte adresu</translation>
     </message>
     <message id="error-dialog">
-        <location filename="../main.qml" line="619"/>
+        <location filename="../main.qml" line="621"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message id="confirm-unsaved-title">
-        <location filename="../main.qml" line="675"/>
+        <location filename="../main.qml" line="677"/>
         <source>Are you sure?</source>
         <translation>Jste si jistý?</translation>
     </message>
     <message id="confirm-usaved-text">
-        <location filename="../main.qml" line="677"/>
+        <location filename="../main.qml" line="679"/>
         <source>Your changes have not been saved.</source>
         <translation>Změny nebyly uloženy.</translation>
     </message>
     <message id="error-defaults-file">
-        <location filename="../main.qml" line="858"/>
+        <location filename="../main.qml" line="860"/>
         <source>Cannot load defaults</source>
         <translation>Nelze načíst výchozí hodnoty</translation>
     </message>
     <message id="section-type-speed">
-        <location filename="../main.qml" line="1401"/>
+        <location filename="../main.qml" line="1403"/>
         <source>speed</source>
         <translation>rychlost</translation>
     </message>
     <message id="section-type-altitude">
-        <location filename="../main.qml" line="1413"/>
+        <location filename="../main.qml" line="1415"/>
         <source>altitude</source>
         <translation>výška</translation>
     </message>
     <message id="section-type-space">
-        <location filename="../main.qml" line="1425"/>
+        <location filename="../main.qml" line="1427"/>
         <source>space</source>
         <translation>prostor</translation>
     </message>

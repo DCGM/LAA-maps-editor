@@ -87,14 +87,14 @@ ApplicationWindow {
 
             Menu {
                 id: recentFilesMenu
-                //% "Recent projects"
+                //% "&Recently opened"
                 title: qsTrId("main-file-load-recent");
                 visible: recentlyOpenedFiles.count > 0
 
                 Instantiator {
                     model: recentlyOpenedFiles
                     delegate: MenuItem {
-                        text: model.fileUrl
+                        text: "&"+index + " " + model.fileUrl
                         onTriggered: {
                             console.log("Loading " + fileUrl)
 
@@ -663,6 +663,8 @@ ApplicationWindow {
                 opened_track_filename = fileUrl
             }
 
+
+            recentlyOpenedFiles.tryAppend(String(opened_track_filename))
 
             file_reader.write(Qt.resolvedUrl(opened_track_filename), JSON.stringify(tracks));
             storeTrackSettings_with_dir_check(Qt.resolvedUrl(tucekSettingsCSV));
