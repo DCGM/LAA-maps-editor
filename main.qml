@@ -35,6 +35,8 @@ ApplicationWindow {
             confirmUnsavedDialog.open();
             return;
         }
+        config.set("recentFiles", recentlyOpenedFiles.jsonGet())
+
 
         Qt.quit();
 
@@ -48,6 +50,7 @@ ApplicationWindow {
                 //% "&New"
                 text: qsTrId("main-file-menu-new")
                 onTriggered: {
+                    console.log("New")
                     if (document_changed) {
                         confirmUnsavedDialog.action = function() {
                             opened_track_filename = "";
@@ -67,6 +70,7 @@ ApplicationWindow {
                 text: qsTrId("main-file-menu-load")
                 shortcut: StandardKey.Open;
                 onTriggered: {
+                    console.log("Load")
                     if (document_changed) {
                         confirmUnsavedDialog.action = function() {
                             loadFileDialog.open();
@@ -79,6 +83,54 @@ ApplicationWindow {
                     loadFileDialog.open();
                 }
             }
+
+
+            Menu {
+                id: recentFilesMenu
+                //% "Recent projects"
+                title: qsTrId("main-file-load-recent");
+                visible: recentlyOpenedFiles.count > 0
+
+                Instantiator {
+                    model: recentlyOpenedFiles
+                    delegate: MenuItem {
+                        text: model.fileUrl
+                        onTriggered: {
+                            console.log("Loading " + fileUrl)
+
+                            if (document_changed) {
+                                confirmUnsavedDialog.action = function() {
+                                    console.log("Loading " + fileUrl)
+                                    document_changed = false;
+                                    opened_track_filename = fileUrl;
+                                    tracks = JSON.parse(file_reader.read(Qt.resolvedUrl(fileUrl)))
+                                    map.requestUpdate()
+
+                                }
+
+                                confirmUnsavedDialog.open();
+                                return;
+                            }
+
+                            document_changed = false;
+                            opened_track_filename = fileUrl;
+                            tracks = JSON.parse(file_reader.read(Qt.resolvedUrl(fileUrl)))
+                            map.requestUpdate()
+
+
+
+                        }
+                    }
+                    onObjectAdded: recentFilesMenu.insertItem(index, object)
+                    onObjectRemoved: recentFilesMenu.removeItem(object)
+                }
+
+
+            }
+
+
+
+
             MenuItem {
                 //% "&Save"
                 text: qsTrId("main-file-menu-save")
@@ -583,6 +635,7 @@ ApplicationWindow {
             opened_track_filename = fileUrl;
             tracks = JSON.parse(file_reader.read(Qt.resolvedUrl(fileUrl)))
             map.requestUpdate()
+            recentlyOpenedFiles.tryAppend(String(fileUrl))
         }
     }
 
@@ -718,8 +771,56 @@ ApplicationWindow {
 
     }
 
+    ListModel {
+        id: recentlyOpenedFiles
+        function tryAppend(url) {
+            for (var i = 0; i < count; i++) {
+                var item = get(i);
+                if (item.fileUrl === url) {
+                    remove(i);
+                }
+            }
+            if (count > 5) {
+                remove(0);
+            }
+
+            recentlyOpenedFiles.append({"fileUrl": url})
+        }
+
+        function jsonGet() {
+            var arr = []
+
+            for (var i = 0; i < count; i++) {
+                var item = get(i);
+                arr.push(item.fileUrl)
+            }
+
+            return JSON.stringify(arr);
+
+        }
+
+        function jsonSet(str) {
+            var data = JSON.parse(str);
+            for (var i = 0; i < data.length; i++) {
+                var fn = data[i];
+                if (file_reader.file_exists(fn)) {
+                    recentlyOpenedFiles.append({"fileUrl": fn})
+                }
+            }
+        }
+
+    }
+
+    ConfigFile {
+        id: config
+    }
+
+
     Component.onCompleted: {
         loadDefaults()
+
+        recentlyOpenedFiles.jsonSet(config.get("recentFiles", {}))
+
 
 //        var default_data_file = "file:///home/jmlich/workspace/tucek/testovaci_data/track.json";
 //        var default_data = file_reader.read(Qt.resolvedUrl(default_data_file))
