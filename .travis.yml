@@ -11,10 +11,9 @@ script:
   - set PATH="%PATH%;C:\Qt\5.14.2\msvc2017_64\bin"
   - mkdir build
   - cd build
-  - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.14.2\msvc2017_64" -DCMAKE_BUILD_TYPE=RELEASE ..
+  - cmake -DCMAKE_PREFIX_PATH="C:/Qt/5.14.2/msvc2017_64" -DCMAKE_BUILD_TYPE=RELEASE ..
   - cmake --build .
 #  - windeployqt ./editor.exe
-  - cat "C:/Users/travis/build/DCGM/LAA-maps-editor/build/CMakeFiles/CMakeOutput.log"
   - 7z a -tzip editor.zip -r *
 deploy:
   provider: releases
