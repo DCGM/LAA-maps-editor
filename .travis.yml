@@ -9,11 +9,11 @@ before_install:
 script:
 #  - setx path "%path%;C:\Qt\5.14.2\msvc2017\bin"
 #  - set PATH="%PATH%;C:\Qt\5.14.2\msvc2017\bin"
+  - find /c/Qt -type d
   - mkdir build
   - cd build
-  - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.14.2\msvc2017" -DCMAKE_BUILD_TYPE=RELEASE .. || :
-#  - cmake --build .
-  - find /c/ -type d
+  - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.14.2\msvc2017" -DCMAKE_BUILD_TYPE=RELEASE ..
+  - cmake --build .
 #  - windeployqt ./editor.exe
   - 7z a -tzip editor.zip -r *
 deploy:
