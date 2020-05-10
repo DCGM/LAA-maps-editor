@@ -2,6 +2,8 @@ os: windows
 language: C++
 env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
 before_install:
+#  - choco install -y visualstudio2017buildtools
+#  - choco install -y visualstudio2017-workload-vctools
   - choco install  python --version 3.8.0
   - python -m pip install --upgrade pip
   - python -m pip install aqtinstall
