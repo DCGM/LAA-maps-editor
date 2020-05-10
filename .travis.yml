@@ -11,7 +11,8 @@ script:
   - cd build
   - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.14.2\msvc2017" -DCMAKE_BUILD_TYPE=RELEASE -DDEPLOY_QT_LIBRARIES=ON ..
   - cmake --build .
-  - 7z a -tzip editor.zip -r *
+  - cp *.qm ./Debug
+  - 7z a -tzip editor.zip -r ./build/Debug/*
 deploy:
   provider: releases
   skip_cleanup: true
