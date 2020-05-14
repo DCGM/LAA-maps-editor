@@ -43,11 +43,14 @@ function(windeployqt target)
 
     # Run windeployqt immediately after build
     add_custom_command(TARGET ${target} POST_BUILD
-            COMMAND "${CMAKE_COMMAND}" -E
+        COMMAND "${CMAKE_COMMAND}" -E
             env PATH="${_qt_bin_dir}" "${WINDEPLOYQT_EXECUTABLE}"
                 --verbose 0
                 --release-with-debug-info
                 --qmldir \"${CMAKE_CURRENT_SOURCE_DIR}\"
+                --no-compiler-runtime
+                --no-angle
+                --no-opengl-sw
                 \"$<TARGET_FILE:${target}>\"
         COMMENT "Deploying Qt..."
     )
