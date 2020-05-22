@@ -970,7 +970,7 @@ Rectangle {
                     text: qsTrId("point-detail-altitude-max-checkbox");
                     onTriggered: tracksPointTable.switchFlag(4);
                 }
-
+/*
                 MenuItem {
                     id: menu_speed_min_cb
 //                    visible: menu_flags_reset.visible
@@ -987,6 +987,7 @@ Rectangle {
                     text: qsTrId("point-detail-speed-max-checkbox");
                     onTriggered: tracksPointTable.switchFlag(6);
                 }
+                */
                 MenuItem {
                     id: menu_section_speed_start_cb
                     visible: menu_flags_reset.visible
@@ -1033,6 +1034,7 @@ Rectangle {
                     text: qsTrId("point-detail-section_space_end-checkbox");
                     onTriggered: tracksPointTable.switchFlag(12);
                 }
+/*
                 MenuItem {
                     id: menu_sectet_turn_point_cb
 //                    visible: menu_flags_reset.visible
@@ -1058,6 +1060,7 @@ Rectangle {
                     text: qsTrId("point-detail-secret_space_gate-checkbox");
                     onTriggered: tracksPointTable.switchFlag(15);
                 }
+                */
             }
         }
 
