@@ -106,45 +106,50 @@ TableView {
         }
 
         onReverseGeocoding: {
-            var item = pModel.get(row);
-
-            var url = "https://nominatim.openstreetmap.org/reverse?lat="+item.lat+"&lon="+item.lon+"&format=json";
-            console.log(url)
-            var http = new XMLHttpRequest()
-            http.open("GET", url, true);
-            http.onreadystatechange = function() {
-                if (http.readyState === XMLHttpRequest.DONE) {
-                    if (http.readyState === XMLHttpRequest.DONE) {
-                        try {
-                            var response = JSON.parse(http.responseText)
-
-                            if (response.address === undefined) {
-                                return;
-                            }
-                            if (response.address.city !== undefined) {
-                                pModel.setProperty(row, "name", response.address.city);
-                            } else if (response.address.town !== undefined) {
-                                pModel.setProperty(row, "name", response.address.town);
-                            } else if (response.address.hamlet !== undefined) {
-                                pModel.setProperty(row, "name", response.address.hamlet);
-                            } else if (response.address.village !== undefined) {
-                                pModel.setProperty(row, "name", response.address.village);
-                            }
-                            tableView.selection.deselect(0, pModel.count-1);
-                            tableView.selection.select(row)
-                            tableView.currentRow = row;
-
-                            pointSelected(pModel.get(row).pid);
-                        } catch (e) {
-                            console.error(e + " \"" + http.responseText + "\"")
-                        }
-
-                    }
-                }
-            }
-            http.send()
+            tableView.startReverseGeocoding(row)
         }
     }
+
+    function startReverseGeocoding(row) {
+        var item = pModel.get(row);
+
+        var url = "https://nominatim.openstreetmap.org/reverse?lat="+item.lat+"&lon="+item.lon+"&format=json";
+        console.log(url)
+        var http = new XMLHttpRequest()
+        http.open("GET", url, true);
+        http.onreadystatechange = function() {
+            if (http.readyState === XMLHttpRequest.DONE) {
+                if (http.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        var response = JSON.parse(http.responseText)
+
+                        if (response.address === undefined) {
+                            return;
+                        }
+                        if (response.address.city !== undefined) {
+                            pModel.setProperty(row, "name", response.address.city);
+                        } else if (response.address.town !== undefined) {
+                            pModel.setProperty(row, "name", response.address.town);
+                        } else if (response.address.hamlet !== undefined) {
+                            pModel.setProperty(row, "name", response.address.hamlet);
+                        } else if (response.address.village !== undefined) {
+                            pModel.setProperty(row, "name", response.address.village);
+                        }
+                        tableView.selection.deselect(0, pModel.count-1);
+                        tableView.selection.select(row)
+                        tableView.currentRow = row;
+
+                        pointSelected(pModel.get(row).pid);
+                    } catch (e) {
+                        console.error(e + " \"" + http.responseText + "\"")
+                    }
+
+                }
+            }
+        }
+        http.send()
+    }
+
 
     MouseArea {
         acceptedButtons: Qt.RightButton
@@ -258,6 +263,17 @@ TableView {
                 newPolygon(newPolyData)
             }
 
+        }
+
+        MenuItem {
+            //% "Retrieve local name"
+            text: qsTrId("points-list-reverse-geocoding")
+            visible: (tableView.selection.count > 0) && (tableView.selection.count <= 3)
+            onTriggered: {
+                tableView.selection.forEach(function(rowIndex) {
+                    tableView.startReverseGeocoding(rowIndex);
+                })
+            }
         }
 
     }

@@ -135,55 +135,52 @@
     </message>
     <message id="point-detail-section_speed_start-checkbox">
         <location filename="../PropertiesDetail.qml" line="419"/>
-        <location filename="../TracksList.qml" line="994"/>
+        <location filename="../TracksList.qml" line="995"/>
         <source>Section speed start</source>
         <translation>Section speed start</translation>
     </message>
     <message id="point-detail-section_speed_end-checkbox">
         <location filename="../PropertiesDetail.qml" line="427"/>
-        <location filename="../TracksList.qml" line="1002"/>
+        <location filename="../TracksList.qml" line="1003"/>
         <source>Section speed end</source>
         <translation>Section speed end</translation>
     </message>
     <message id="point-detail-section_alt_start-checkbox">
         <location filename="../PropertiesDetail.qml" line="435"/>
-        <location filename="../TracksList.qml" line="1010"/>
+        <location filename="../TracksList.qml" line="1011"/>
         <source>Section alt start</source>
         <translation>Section alt start</translation>
     </message>
     <message id="point-detail-section_alt_end-checkbox">
         <location filename="../PropertiesDetail.qml" line="443"/>
-        <location filename="../TracksList.qml" line="1018"/>
+        <location filename="../TracksList.qml" line="1019"/>
         <source>Section alt end</source>
         <translation>Section alt end</translation>
     </message>
     <message id="point-detail-section_space_start-checkbox">
         <location filename="../PropertiesDetail.qml" line="451"/>
-        <location filename="../TracksList.qml" line="1025"/>
+        <location filename="../TracksList.qml" line="1026"/>
         <source>Section space start</source>
         <translation>Section space start</translation>
     </message>
     <message id="point-detail-section_space_end-checkbox">
         <location filename="../PropertiesDetail.qml" line="459"/>
-        <location filename="../TracksList.qml" line="1033"/>
+        <location filename="../TracksList.qml" line="1034"/>
         <source>Section space end</source>
         <translation>Section space end</translation>
     </message>
     <message id="point-detail-secret_turn_point-checkbox">
         <location filename="../PropertiesDetail.qml" line="471"/>
-        <location filename="../TracksList.qml" line="1042"/>
         <source>Secret Turn Point</source>
         <translation>Secret Turn Point</translation>
     </message>
     <message id="point-detail-secret_time_gate-checkbox">
         <location filename="../PropertiesDetail.qml" line="480"/>
-        <location filename="../TracksList.qml" line="1050"/>
         <source>Secret Time Gate</source>
         <translation>Secret Time Gate</translation>
     </message>
     <message id="point-detail-secret_space_gate-checkbox">
         <location filename="../PropertiesDetail.qml" line="489"/>
-        <location filename="../TracksList.qml" line="1058"/>
         <source>Secret Space Gate</source>
         <oldsource>Secret Time Gate</oldsource>
         <translation>Secret Space Gate</translation>
@@ -379,13 +376,11 @@ By installing, copying or other use of Software User declares he/she has read th
     </message>
     <message id="point-detail-speed-min-checkbox">
         <location filename="../PropertiesDetail.qml" line="401"/>
-        <location filename="../TracksList.qml" line="979"/>
         <source>Speed min</source>
         <translation>Speed min</translation>
     </message>
     <message id="point-detail-speed-max-checkbox">
         <location filename="../PropertiesDetail.qml" line="409"/>
-        <location filename="../TracksList.qml" line="987"/>
         <source>Speed max</source>
         <translation>Speed max</translation>
     </message>
@@ -590,53 +585,53 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>Error</translation>
     </message>
     <message id="confirm-unsaved-title">
-        <location filename="../main.qml" line="677"/>
+        <location filename="../main.qml" line="679"/>
         <source>Are you sure?</source>
         <translation>Are you sure?</translation>
     </message>
     <message id="confirm-usaved-text">
-        <location filename="../main.qml" line="679"/>
+        <location filename="../main.qml" line="681"/>
         <source>Your changes have not been saved.</source>
         <translation>Your changes have not been saved.</translation>
     </message>
     <message id="error-defaults-file">
-        <location filename="../main.qml" line="860"/>
+        <location filename="../main.qml" line="862"/>
         <source>Cannot load defaults</source>
         <translation>Cannot load defaults</translation>
     </message>
     <message id="section-type-speed">
-        <location filename="../main.qml" line="1403"/>
+        <location filename="../main.qml" line="1405"/>
         <source>speed</source>
         <translation>speed</translation>
     </message>
     <message id="section-type-altitude">
-        <location filename="../main.qml" line="1415"/>
+        <location filename="../main.qml" line="1417"/>
         <source>altitude</source>
         <translation>altitude</translation>
     </message>
     <message id="section-type-space">
-        <location filename="../main.qml" line="1427"/>
+        <location filename="../main.qml" line="1429"/>
         <source>space</source>
         <translation>space</translation>
     </message>
     <message id="points-list-add-point">
-        <location filename="../PointsList.qml" line="183"/>
+        <location filename="../PointsList.qml" line="188"/>
         <source>Add point</source>
         <translation>Add point</translation>
     </message>
     <message id="points-list-default-name">
-        <location filename="../PointsList.qml" line="186"/>
+        <location filename="../PointsList.qml" line="191"/>
         <location filename="../PointsListEditableDelegate.qml" line="40"/>
         <source>Turn point</source>
         <translation>Turn point</translation>
     </message>
     <message id="points-list-add-circle">
-        <location filename="../PointsList.qml" line="197"/>
+        <location filename="../PointsList.qml" line="202"/>
         <source>Add circle</source>
         <translation>Add circle</translation>
     </message>
     <message id="points-list-circle-point-name" numerus="yes">
-        <location filename="../PointsList.qml" line="332"/>
+        <location filename="../PointsList.qml" line="348"/>
         <source>Circle point %n</source>
         <translation>
             <numerusform>Circle point %n</numerusform>
@@ -644,48 +639,53 @@ By installing, copying or other use of Software User declares he/she has read th
         </translation>
     </message>
     <message id="points-list-remove-points">
-        <location filename="../PointsList.qml" line="212"/>
+        <location filename="../PointsList.qml" line="217"/>
         <source>Remove points</source>
         <translation>Remove points</translation>
     </message>
     <message id="points-list-add-line">
-        <location filename="../PointsList.qml" line="204"/>
+        <location filename="../PointsList.qml" line="209"/>
         <source>Add points (in line)</source>
         <oldsource>Add line</oldsource>
         <translation>Add points (in line)</translation>
     </message>
     <message id="points-list-snap-to">
-        <location filename="../PointsList.qml" line="230"/>
+        <location filename="../PointsList.qml" line="235"/>
         <source>Snap to..</source>
         <translation>Snap to..</translation>
     </message>
     <message id="points-list-transform-to-polygon">
-        <location filename="../PointsList.qml" line="241"/>
+        <location filename="../PointsList.qml" line="246"/>
         <source>Transform to polygon</source>
         <translation>Transform to polygon</translation>
     </message>
+    <message id="points-list-reverse-geocoding">
+        <location filename="../PointsList.qml" line="270"/>
+        <source>Retrieve local name</source>
+        <translation>Retrieve local name</translation>
+    </message>
     <message id="points-list-id">
-        <location filename="../PointsList.qml" line="294"/>
+        <location filename="../PointsList.qml" line="310"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="points-list-name">
-        <location filename="../PointsList.qml" line="301"/>
+        <location filename="../PointsList.qml" line="317"/>
         <source>Name</source>
         <translation>Point name</translation>
     </message>
     <message id="points-list-lat">
-        <location filename="../PointsList.qml" line="308"/>
+        <location filename="../PointsList.qml" line="324"/>
         <source>Latitude</source>
         <translation>Latitude</translation>
     </message>
     <message id="points-list-lon">
-        <location filename="../PointsList.qml" line="315"/>
+        <location filename="../PointsList.qml" line="331"/>
         <source>Longitude</source>
         <translation>Longitude</translation>
     </message>
     <message id="points-list-line-point-name" numerus="yes">
-        <location filename="../PointsList.qml" line="353"/>
+        <location filename="../PointsList.qml" line="369"/>
         <source>Line point %n</source>
         <translation>
             <numerusform>Line point %n</numerusform>
@@ -918,32 +918,32 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>Space gate</translation>
     </message>
     <message id="track-list-polygon-did">
-        <location filename="../TracksList.qml" line="1098"/>
+        <location filename="../TracksList.qml" line="1101"/>
         <source>Id</source>
         <translation>Id</translation>
     </message>
     <message id="track-list-polygon-cid">
-        <location filename="../TracksList.qml" line="1105"/>
+        <location filename="../TracksList.qml" line="1108"/>
         <source>Polygon</source>
         <translation>Polygon</translation>
     </message>
     <message id="track-list-polygon-score">
-        <location filename="../TracksList.qml" line="1111"/>
+        <location filename="../TracksList.qml" line="1114"/>
         <source>Score</source>
         <translation>Score</translation>
     </message>
     <message id="tracks-list-polygons-table-add">
-        <location filename="../TracksList.qml" line="1130"/>
+        <location filename="../TracksList.qml" line="1133"/>
         <source>Add polygon</source>
         <translation>Add polygon</translation>
     </message>
     <message id="tracks-list-polygons-table-remove">
-        <location filename="../TracksList.qml" line="1154"/>
+        <location filename="../TracksList.qml" line="1157"/>
         <source>Remove polygon</source>
         <translation>Remove polygon</translation>
     </message>
     <message id="polygon-list-default-name">
-        <location filename="../PointsList.qml" line="251"/>
+        <location filename="../PointsList.qml" line="256"/>
         <location filename="../PolygonListDelegate.qml" line="37"/>
         <source>Polygon</source>
         <translation>Polygon</translation>
