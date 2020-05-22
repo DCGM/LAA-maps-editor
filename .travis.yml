@@ -9,6 +9,7 @@ before_install:
   - python -m pip install --upgrade pip
   - python -m pip install aqtinstall
   - python -m aqt install --outputdir /c/Qt 5.14.2 windows desktop win32_msvc2017
+  - python -m aqt tool --outputdir /c/Qt windows tools_openssl_x86 1.1.1-4 qt.tools.openssl.win_x64
 script:
   - mkdir build
   - cd build

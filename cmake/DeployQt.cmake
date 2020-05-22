@@ -48,7 +48,6 @@ function(windeployqt target)
                 --verbose 0
                 --qmldir \"${CMAKE_CURRENT_SOURCE_DIR}\"
                 --no-compiler-runtime
-                --no-angle
                 \"$<TARGET_FILE:${target}>\"
         COMMENT "Deploying Qt..."
     )
