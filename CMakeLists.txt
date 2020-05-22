@@ -48,7 +48,7 @@ find_package(Qt5 COMPONENTS Core Quick Xml LinguistTools REQUIRED)
 
 file(GLOB TS_FILES i18n/*.ts)
 
-add_executable(editor
+add_executable(editor WIN32
   customnetworkaccessmanager.cpp
   filereader.cpp
   gpxjsonconvertor.cpp
@@ -58,6 +58,7 @@ add_executable(editor
   networkaccessmanagerfactory.cpp
   main.cpp
   editor.qrc
+  editor.rc
   ${TS_FILES}
 )
 
