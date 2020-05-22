@@ -50,7 +50,6 @@ function(windeployqt target)
                 --qmldir \"${CMAKE_CURRENT_SOURCE_DIR}\"
                 --no-compiler-runtime
                 --no-angle
-                --no-opengl-sw
                 \"$<TARGET_FILE:${target}>\"
         COMMENT "Deploying Qt..."
     )
@@ -63,7 +62,7 @@ function(windeployqt target)
             AND CMAKE_VERSION VERSION_LESS "3.6")
         message(WARNING "Deploying with MSVC 2015+ requires CMake 3.6+")
     endif()
-
+    set(CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS TRUE)
     set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE)
     include(InstallRequiredSystemLibraries)
     foreach(lib ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS})
