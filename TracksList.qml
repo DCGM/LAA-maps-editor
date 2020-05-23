@@ -981,24 +981,26 @@ Rectangle {
                     text: qsTrId("point-detail-altitude-max-checkbox");
                     onTriggered: tracksPointTable.switchFlag(4);
                 }
-/*
-                MenuItem {
-                    id: menu_speed_min_cb
-//                    visible: menu_flags_reset.visible
+                Item {
                     visible: false;
-                    checkable: true;
-                    text: qsTrId("point-detail-speed-min-checkbox");
-                    onTriggered: tracksPointTable.switchFlag(5);
+                    MenuItem {
+                        id: menu_speed_min_cb
+                        //                    visible: menu_flags_reset.visible
+                        visible: false;
+                        checkable: true;
+                        text: qsTrId("point-detail-speed-min-checkbox");
+                        onTriggered: tracksPointTable.switchFlag(5);
+                    }
+                    MenuItem {
+                        id: menu_speed_max_cb
+                        //                    visible: menu_flags_reset.visible
+                        visible: false;
+                        checkable: true;
+                        text: qsTrId("point-detail-speed-max-checkbox");
+                        onTriggered: tracksPointTable.switchFlag(6);
+                    }
                 }
-                MenuItem {
-                    id: menu_speed_max_cb
-//                    visible: menu_flags_reset.visible
-                    visible: false;
-                    checkable: true;
-                    text: qsTrId("point-detail-speed-max-checkbox");
-                    onTriggered: tracksPointTable.switchFlag(6);
-                }
-                */
+
                 MenuItem {
                     id: menu_section_speed_start_cb
                     visible: menu_flags_reset.visible
@@ -1045,33 +1047,32 @@ Rectangle {
                     text: qsTrId("point-detail-section_space_end-checkbox");
                     onTriggered: tracksPointTable.switchFlag(12);
                 }
-/*
-                MenuItem {
-                    id: menu_sectet_turn_point_cb
-//                    visible: menu_flags_reset.visible
-                    visible: false
-                    checkable: true;
-                    //% "Secret Turn Point"
-                    text: qsTrId("point-detail-secret_turn_point-checkbox");
-                    onTriggered: tracksPointTable.switchFlag(13);
+                Item {
+                    visible: false; // FIXME disabled
+
+                    MenuItem {
+                        id: menu_sectet_turn_point_cb
+                        visible: menu_flags_reset.visible
+                        checkable: true;
+                        //% "Secret Turn Point"
+                        text: qsTrId("point-detail-secret_turn_point-checkbox");
+                        onTriggered: tracksPointTable.switchFlag(13);
+                    }
+                    MenuItem {
+                        id: menu_sectet_time_gate_cb
+                        visible: menu_flags_reset.visible
+                        checkable: true;
+                        text: qsTrId("point-detail-secret_time_gate-checkbox");
+                        onTriggered: tracksPointTable.switchFlag(14);
+                    }
+                    MenuItem {
+                        id: menu_sectet_space_gate_cb
+                        visible: menu_flags_reset.visible
+                        checkable: true;
+                        text: qsTrId("point-detail-secret_space_gate-checkbox");
+                        onTriggered: tracksPointTable.switchFlag(15);
+                    }
                 }
-                MenuItem {
-                    id: menu_sectet_time_gate_cb
-//                    visible: menu_flags_reset.visible
-                    visible: false
-                    checkable: true;
-                    text: qsTrId("point-detail-secret_time_gate-checkbox");
-                    onTriggered: tracksPointTable.switchFlag(14);
-                }
-                MenuItem {
-                    id: menu_sectet_space_gate_cb
-//                    visible: menu_flags_reset.visible
-                    visible: false
-                    checkable: true;
-                    text: qsTrId("point-detail-secret_space_gate-checkbox");
-                    onTriggered: tracksPointTable.switchFlag(15);
-                }
-                */
             }
         }
 
