@@ -12,14 +12,10 @@ BuildRequires:  git
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
 
-%if 0%{?fedora} && 0%{?fedora}  <= 32
-BuildRequires:  qt5-devel >= 5.10.0
-%else
 BuildRequires: qt5-qtbase-devel
 BuildRequires: qt5-qtquickcontrols
 BuildRequires: qt5-linguist
 BuildRequires: qt5-qtdeclarative-devel
-%endif
 
 
 %description
