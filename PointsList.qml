@@ -233,11 +233,14 @@ TableView {
         MenuItem {
             //% "Snap to.."
             text: qsTrId("points-list-snap-to")
-            enabled: (tableView.currentRow !== -1)
+            enabled: (tableView.selection.count === 1)
             visible: enableSnap
             onTriggered: {
-                var item = pModel.get(tableView.currentRow)
-                snapToSth(item.pid)
+                tableView.selection.forEach(function(rowIndex) {
+                    var item = pModel.get(rowIndex)
+                    snapToSth(item.pid)
+                    console.log("Snap to: (" +item.pid + ") " + item.name)
+                })
             }
         }
 
