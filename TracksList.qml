@@ -862,6 +862,17 @@ Rectangle {
                         }
                         console.log("look for point between: " + firstItem.name + " ("+firstItem.pid+")" + secondItem.name + "("+secondItem.pid+") found " + p.name + "(" + p.pid + ")")
 
+                    } else if (tracksModel.count > 0) {
+                        // append point with next pid
+                        var lastTIpid = tracksModel.get(tracksModel.count-1).pid
+                        for (var j = 0; j < pointsModel.count; j++) {
+                            pitem = pointsModel.get(j)
+                            if (pitem.pid > lastTIpid) {
+                                console.log("Appending point pid = " + pitem.pid + ": " + pitem.name)
+                                p = pitem;
+                                break;
+                            }
+                        }
                     }
 
                     var obj = {
