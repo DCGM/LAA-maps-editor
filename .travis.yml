@@ -18,6 +18,11 @@ script:
   - cp *.qm ./Release
   - find /c/Qt/Tools/OpenSSL -type f -name '*.dll' -print -exec cp {} ./Release \;
   - 7z a -tzip editor.zip -r *
+before_deploy:
+  - git config --local user.name "YOUR GIT USER NAME"
+  - git config --local user.email "YOUR GIT USER EMAIL"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
 deploy:
   provider: releases
   skip_cleanup: true
