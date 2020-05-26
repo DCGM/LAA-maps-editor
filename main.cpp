@@ -45,23 +45,23 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const Q
     switch (type) {
     case QtDebugMsg:
         txt = QString("%1 [D] %2:%3 @ %4(): %5").arg(now.toString(Qt::ISODate)).arg(context.file).arg(context.line).arg(context.function).arg(msg);
-        std_out << txt << endl ;
+        std_out << txt << Qt::endl ;
         break;
     case QtWarningMsg:
         txt = QString("%1 [W]: %2:%3 @ %4(): %5").arg(now.toString(Qt::ISODate)).arg(context.file).arg(context.line).arg(context.function).arg(msg);
-        std_out << txt << endl;
+        std_out << txt << Qt::endl;
         break;
     case QtCriticalMsg:
         txt = QString("%1 [C]: %2:%3 @ %4(): %5").arg(now.toString(Qt::ISODate)).arg(context.file).arg(context.line).arg(context.function).arg(msg);
-        std_err << txt << endl;
+        std_err << txt << Qt::endl;
         break;
     case QtFatalMsg:
         txt = QString("%1 [F]: %2:%3 @ %4(): %5").arg(now.toString(Qt::ISODate)).arg(context.file).arg(context.line).arg(context.function).arg(msg);
-        std_err << txt << endl;
+        std_err << txt << Qt::endl;
         abort();
     default:
         txt = QString("%1 [O]: %2:%3 @ %4(): %5").arg(now.toString(Qt::ISODate)).arg(context.file).arg(context.line).arg(context.function).arg(msg);
-        std_err << txt << endl;
+        std_err << txt << Qt::endl;
         break;
 
     }
@@ -69,7 +69,7 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const Q
 #if (defined (Q_OS_WIN) || defined (Q_OS_WIN32) || defined (Q_OS_WIN64))
     ts << ('\r');
 #endif
-    ts << endl;
+    ts << Qt::endl;
 
     outFile.close();
 }
