@@ -34,7 +34,7 @@ Item {
         anchors.margins: 4
         Connections {
             target: pidComboLoader.item
-            onNewPid: {
+            function onNewPid(pid) {
                 changeModel(styleData.row, styleData.role, pid)
 
             }
@@ -100,7 +100,7 @@ Item {
         Connections {
             target: loaderType.item
 
-            onNewType: {
+            function onNewType(t) {
                 changeModel(styleData.row, styleData.role, t)
             }
 
@@ -161,7 +161,7 @@ Item {
 
     //        Connections {
     //            target:loaderSpinBox.item
-    //            onNewAngle: {
+    //            function onNewAngle(angle) {
     //                changeModel(styleData.row, styleData.role, angle)
     //            }
     //        }
@@ -196,7 +196,7 @@ Item {
         anchors.margins: 4
         Connections {
             target: loaderEditor.item
-            onNewValue: {
+            function onNewValue(value) {
 
                 switch (styleData.role) {
                 case "angle": // default

@@ -28,7 +28,7 @@ Item {
         anchors.margins: 4
         Connections {
             target: loaderEditor.item
-            onAccepted: {
+            function onAccepted() {
 
                 switch (styleData.role) {
                 case "name": // default
