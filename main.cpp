@@ -36,7 +36,7 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const Q
 #else
     QFile outfile("editor.log");
 #endif
-    outFile.open(QIODevice::WriteOnly | QIODevice::Append);
+    outFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text);
     QTextStream ts(&outFile);
 
     QTextStream std_out(stdout, QIODevice::WriteOnly);
@@ -65,11 +65,7 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const Q
         break;
 
     }
-    ts << txt;
-#if (defined (Q_OS_WIN) || defined (Q_OS_WIN32) || defined (Q_OS_WIN64))
-    ts << ('\r');
-#endif
-    ts << Qt::endl;
+    ts << txt << Qt::endl;
 
     outFile.close();
 }
