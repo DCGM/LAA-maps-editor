@@ -29,5 +29,5 @@ deploy:
   api_key: $GITHUB_TOKEN
   file: editor.zip
   on:
-    tags: false
+    tags: true
     draft: true
