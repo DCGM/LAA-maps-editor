@@ -131,7 +131,8 @@ TableView {
             if (role == "closed") {
                 tmpValue = (value === "true")
             }
-            tableView.model.setProperty(row, role, tmpValue);
+            console.log(row + " " + role + " " + tmpValue)
+            pModel.setProperty(row, role, tmpValue);
             tableView.selection.deselect(0, pModel.count-1);
             tableView.selection.select(row)
 
