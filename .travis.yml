@@ -28,6 +28,7 @@ deploy:
   skip_cleanup: true
   api_key: $GITHUB_TOKEN
   file: editor.zip
+  overwrite: true
   on:
-    tags: true
+    tags: false
     draft: true
