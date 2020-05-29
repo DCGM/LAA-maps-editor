@@ -1215,7 +1215,9 @@ ApplicationWindow {
         for (i = 0; i < points.length; i++) {
             var item = points[i];
 
-            str += "\"" + G.addSlashes(item.name) + "\",PT" + item.pid + ",," + G.getLat(item.lat,{coordinateFormat: "DM"}) + "," + G.getLon(item.lon,{coordinateFormat: "DM"}) + ",-100000000.0m,1,,,,\""+item.name+"\"\r\n";
+            str += "\"" + F.addSlashes(item.name) + "\",PT" + item.pid + ",,"
+                    + G.getLat(item.lat,{coordinateFormat: "DM"}) + ","
+                    + G.getLon(item.lon,{coordinateFormat: "DM"}) + ",-100000000.0m,1,,,,\""+F.addSlashes(item.name)+"\"\r\n";
         }
 
         str += "-----Related Tasks-----\r\n"
