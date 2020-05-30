@@ -5,7 +5,7 @@ ApplicationWindow {
     id: window;
     width: 300;
     height: 450;
-    modality: "ApplicationModal"
+    modality: Qt.ApplicationModal
 
     //% "Clone track to other tracks"
     title: qsTrId("clone-window-title")

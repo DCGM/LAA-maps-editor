@@ -8,7 +8,7 @@ ApplicationWindow {
     id: window;
     //% "Category properties %1"
     title: qsTrId("props-detail").arg(category_name);
-    modality: "ApplicationModal"
+    modality: Qt.ApplicationModal
 
     minimumWidth: 800
     minimumHeight: 600
