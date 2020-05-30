@@ -122,6 +122,10 @@ ApplicationWindow {
         }
         TextField{
             id: tg_penalty_textfield
+            validator: DoubleValidator {
+                bottom: 0
+            }
+            textColor: acceptableInput ? "#000000" : "#ff0000"
         }
 
         NativeText {
