@@ -170,8 +170,6 @@ ApplicationWindow {
                                     "default_radius": src_obj.default_radius,
                                     "default_alt_min": src_obj.default_alt_min,
                                     "default_alt_max": src_obj.default_alt_max,
-                                    "default_speed_min": src_obj.default_speed_min,
-                                    "default_speed_max": src_obj.default_speed_max,
                                     "default_flags": src_obj.default_flags,
                                 }
                             } else {
@@ -197,8 +195,6 @@ ApplicationWindow {
                                     "default_radius": t.default_radius,
                                     "default_alt_min": t.default_alt_min,
                                     "default_alt_max": t.default_alt_max,
-                                    "default_speed_min": t.default_speed_min,
-                                    "default_speed_max": t.default_speed_max,
                                     "default_flags": t.default_flags,
                                 }
 

@@ -1373,8 +1373,6 @@ ApplicationWindow {
                 str += "\"" + ((c.radius < 0) ? trk.default_radius : c.radius) + "\";";
                 str += "\"" + ((c.alt_max < 0) ? trk.default_alt_max : c.alt_max) + "\";";
                 str += "\"" + ((c.alt_min < 0) ? trk.default_alt_min : c.alt_min) + "\";";
-                str += "\"" + ((c.speed_max < 0) ? trk.default_speed_max : c.speed_max) + "\";";
-                str += "\"" + ((c.speed_min < 0) ? trk.default_speed_min : c.speed_min) + "\";";
                 str += "\"" + F.addSlashes(pt.name) + "\";";
             }
 

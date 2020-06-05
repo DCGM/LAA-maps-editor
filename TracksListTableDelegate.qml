@@ -210,8 +210,6 @@ Item {
                     break;
                 case "distance":
                 case "radius":
-                case "speed_min":
-                case "speed_max":
                 case "alt_min":
                 case "alt_max":
                 case "ptr":
@@ -330,12 +328,6 @@ Item {
             case "radius":
                 show = category_defaults.default_radius;
                 break;
-            case "speed_min":
-                show = category_defaults.default_speed_min;
-                break;
-            case "speed_max":
-                show = category_defaults.default_speed_max;
-                break;
             case "alt_min":
                 show = category_defaults.default_alt_min;
                 break;
@@ -406,14 +398,6 @@ Item {
         if (arr[4]) {
             //% "ALT_MAX"
             strings.push(qsTrId("track-list-delegate-alt_max-short"))
-        }
-        if (arr[5]) {
-            //% "SPD_MIN"
-            strings.push(qsTrId("track-list-delegate-speed_min-short"))
-        }
-        if (arr[6]) {
-            //% "SPD_MAX"
-            strings.push(qsTrId("track-list-delegate-speed_max-short"))
         }
 
         if (arr[7]) {

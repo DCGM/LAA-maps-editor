@@ -42,10 +42,6 @@ ApplicationWindow {
     property alias default_radius: default_radius_textfield.value;
     property alias default_alt_min: default_alt_min_textfield.value;
     property alias default_alt_max: default_alt_max_textfield.value;
-    //    property alias default_speed_min: default_speed_min_textfield.value;
-    //    property alias default_speed_max: default_speed_max_textfield.value;
-    property string default_speed_min: ""
-    property string default_speed_max: ""
     property int default_flags
 
 
@@ -71,8 +67,6 @@ ApplicationWindow {
         sg_cb.checked         = arr[2]
         alt_min_cb.checked    = arr[3]
         alt_max_cb.checked    = arr[4]
-        speed_min_cb.checked  = arr[5]
-        speed_max_cb.checked  = arr[6]
 
         section_speed_start_cb.checked = arr[7];
         section_speed_end_cb.checked = arr[8];
@@ -316,26 +310,6 @@ ApplicationWindow {
         }
 
 
-        //        NativeText {
-        //            //% "Minimim Speed [km/h]"
-        //            text: qsTrId("props-detail-default_speed_min")
-        //        }
-
-        //        TextField{
-        //            id: default_speed_min_textfield
-        //        }
-
-
-        //        NativeText {
-        //            //% "Maximum speed [km/h]"
-        //            text: qsTrId("props-detail-default_speed_max")
-        //        }
-
-        //        TextField{
-        //            id: default_speed_max_textfield
-        //            text: default_speed_max
-        //        }
-
         NativeText {
             //% "Flags"
             text: qsTrId("props-detail-default_flags")
@@ -389,24 +363,6 @@ ApplicationWindow {
             //% "Altitude max"
             text: qsTrId("point-detail-altitude-max-checkbox");
             onCheckedChanged: updateDefaultFlagsIndex(4, checked);
-        }
-        Item {
-            visible: false;
-            NativeText { text: " " }
-            CheckBox {
-                id: speed_min_cb;
-                //% "Speed min"
-                text: qsTrId("point-detail-speed-min-checkbox");
-                onCheckedChanged: updateDefaultFlagsIndex(5, checked);
-            }
-
-            NativeText { text: " " }
-            CheckBox {
-                id: speed_max_cb;
-                //% "Speed max"
-                text: qsTrId("point-detail-speed-max-checkbox");
-                onCheckedChanged: updateDefaultFlagsIndex(6, checked);
-            }
         }
 
 

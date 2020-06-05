@@ -149,8 +149,6 @@ Rectangle {
                                    "computed_angle": c.computed_angle,
                                    "computed_distance": c.computed_distance,
                                    "radius": c.radius,
-                                   "speed_min": c.speed_min,
-                                   "speed_max": c.speed_max,
                                    "alt_min": c.alt_min,
                                    "alt_max": c.alt_max,
                                    "ptr": c.ptr,
@@ -193,8 +191,6 @@ Rectangle {
         propsDetail.default_radius = track.default_radius;
         propsDetail.default_alt_min = track.default_alt_min;
         propsDetail.default_alt_max = track.default_alt_max;
-        propsDetail.default_speed_min = track.default_speed_min;
-        propsDetail.default_speed_max = track.default_speed_max;
         propsDetail.default_flags = parseInt(track.default_flags, 10);
 
     }
@@ -222,8 +218,6 @@ Rectangle {
             "default_radius": propsDetail.default_radius,
             "default_alt_min": propsDetail.default_alt_min,
             "default_alt_max": propsDetail.default_alt_max,
-            "default_speed_min": propsDetail.default_speed_min,
-            "default_speed_max": propsDetail.default_speed_max,
             "default_flags": propsDetail.default_flags,
         }
 
@@ -285,8 +279,6 @@ Rectangle {
                              "radius": item.radius,
                              "computed_angle": item.computed_angle,
                              "computed_distance": item.computed_distance,
-                             "speed_min": item.speed_min,
-                             "speed_max": item.speed_max,
                              "alt_min": item.alt_min,
                              "alt_max": item.alt_max,
                              "ptr": item.ptr,
@@ -610,20 +602,6 @@ Rectangle {
             }
 
             TableViewColumn {
-                //% "Min Speed [km/h]"
-                title: qsTrId("tracks-list-speed_min")
-                role: "speed_min"
-                width: 50;
-                visible: false;
-            }
-            TableViewColumn {
-                //% "Max Speed [km/h]"
-                title: qsTrId("tracks-list-speed_max")
-                role: "speed_max"
-                width: 50;
-                visible: false;
-            }
-            TableViewColumn {
                 //% "Arc/Poly"
                 title: qsTrId("tracks-list-ptr")
                 role: "ptr"
@@ -685,8 +663,6 @@ Rectangle {
                 menu_sg_cb.checked = checkedCount[2] > 0;
                 menu_alt_min_cb.checked = checkedCount[3] > 0;
                 menu_alt_max_cb.checked = checkedCount[4] > 0;
-                menu_speed_min_cb.checked = checkedCount[5] > 0;
-                menu_speed_max_cb.checked = checkedCount[6] > 0;
                 menu_section_speed_start_cb.checked = checkedCount[7] > 0;
                 menu_section_speed_end_cb.checked = checkedCount[8] > 0;
                 menu_section_alt_start_cb.checked = checkedCount[9] > 0;
@@ -703,8 +679,6 @@ Rectangle {
                 menu_sg_cb.enabled = (checkedCount[2] === 0) || (checkedCount[2] === sum);
                 menu_alt_min_cb.enabled = (checkedCount[3] === 0) || (checkedCount[3] === sum);
                 menu_alt_max_cb.enabled = (checkedCount[4] === 0) || (checkedCount[4] === sum);
-                menu_speed_min_cb.enabled = (checkedCount[5] === 0) || (checkedCount[5] === sum);
-                menu_speed_max_cb.enabled = (checkedCount[6] === 0) || (checkedCount[6] === sum);
                 menu_section_speed_start_cb.enabled = (checkedCount[7] === 0) || (checkedCount[7] === sum);
                 menu_section_speed_end_cb.enabled = (checkedCount[8] === 0) || (checkedCount[8] === sum);
                 menu_section_alt_start_cb.enabled = (checkedCount[9] === 0) || (checkedCount[9] === sum);
@@ -886,7 +860,6 @@ Rectangle {
                         "computed_distance": -1,
                         "angle": -1,
                         "radius": -1,
-                        "speed_min": -1,
                         "speed_max": -1,
                         "alt_min": -1,
                         "alt_max": -1,
@@ -980,25 +953,6 @@ Rectangle {
                     checkable: true;
                     text: qsTrId("point-detail-altitude-max-checkbox");
                     onTriggered: tracksPointTable.switchFlag(4);
-                }
-                Item {
-                    visible: false;
-                    MenuItem {
-                        id: menu_speed_min_cb
-                        //                    visible: menu_flags_reset.visible
-                        visible: false;
-                        checkable: true;
-                        text: qsTrId("point-detail-speed-min-checkbox");
-                        onTriggered: tracksPointTable.switchFlag(5);
-                    }
-                    MenuItem {
-                        id: menu_speed_max_cb
-                        //                    visible: menu_flags_reset.visible
-                        visible: false;
-                        checkable: true;
-                        text: qsTrId("point-detail-speed-max-checkbox");
-                        onTriggered: tracksPointTable.switchFlag(6);
-                    }
                 }
 
                 MenuItem {
