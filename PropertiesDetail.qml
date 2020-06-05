@@ -22,7 +22,7 @@ ApplicationWindow {
     property string category_name: ""
     property alias tg_max_score: tg_max_score_textfield.text;
     property alias tg_tolerance: tg_tolerance_textfield.text;
-    property alias tg_penalty: tg_penalty_textfield.text;
+    property alias tg_penalty: tg_penalty_textfield.value;
     property alias sg_max_score: sg_max_score_textfield.text;
     property alias tp_max_score: tp_max_score_textfield.text;
     property alias marker_max_score: marker_max_score_textfield.text;
@@ -120,12 +120,8 @@ ApplicationWindow {
             //% "Time gate penalty [points per sec]"
             text: qsTrId("props-detail-tg-penalty")
         }
-        TextField{
+        TextFieldNumber {
             id: tg_penalty_textfield
-            validator: DoubleValidator {
-                bottom: 0
-            }
-            textColor: acceptableInput ? "#000000" : "#ff0000"
         }
 
         NativeText {

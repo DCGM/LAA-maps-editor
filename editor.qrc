@@ -57,5 +57,6 @@
         <file>data/ic_my_location_black_24dp/ic_my_location_black_24dp/web/ic_my_location_black_24dp_1x.png</file>
         <file>LineParamDialog.qml</file>
         <file>ConfigFile.qml</file>
+        <file>TextFieldNumber.qml</file>
     </qresource>
 </RCC>
