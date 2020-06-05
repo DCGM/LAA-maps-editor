@@ -6,15 +6,13 @@ TextField {
     id: field
 
     property real value
+    property alias validatorBottom: val.bottom
 
     validator: DoubleValidator {
-        bottom: 0
+        id: val;
+        bottom: 0;
     }
     textColor: acceptableInput ? "#000000" : "#ff0000"
-
-    onAccepted: {
-        console.log(value)
-    }
 
     onEditingFinished: {
         var numlocale = Qt.locale(locale);
@@ -24,8 +22,10 @@ TextField {
     onValueChanged: {
         var numlocale = Qt.locale(locale);
         var current = Number.fromLocaleString(numlocale, text)
-        if (current !== value) {
-            text = Number(value).toLocaleString(numlocale)
+
+        if (current !== value) { // use only when loading
+            text = Number(value).toLocaleString(numlocale,'f', -128) // see QLocale::FloatingPointShortest
         }
     }
+
 }

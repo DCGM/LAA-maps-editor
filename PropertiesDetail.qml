@@ -20,30 +20,30 @@ ApplicationWindow {
     signal canceled();
 
     property string category_name: ""
-    property alias tg_max_score: tg_max_score_textfield.text;
-    property alias tg_tolerance: tg_tolerance_textfield.text;
+    property alias tg_max_score: tg_max_score_textfield.value;
+    property alias tg_tolerance: tg_tolerance_textfield.value;
     property alias tg_penalty: tg_penalty_textfield.value;
-    property alias sg_max_score: sg_max_score_textfield.text;
-    property alias tp_max_score: tp_max_score_textfield.text;
-    property alias marker_max_score: marker_max_score_textfield.text;
-    property alias photos_max_score: photos_max_score_textfield.text;
-    property alias time_window_size: time_window_size_textfield.text;
-    property alias time_window_penalty: time_window_penalty_textfield.text;
-    property alias alt_penalty: alt_penalty_textfield.text;
-    property alias gyre_penalty: gyre_penalty_textfield.text;
-    property alias oposite_direction_penalty: oposite_direction_penalty_textfield.text;
-    property alias out_of_sector_penalty: out_of_sector_penalty_textfield.text;
-    property alias speed_max_score: speed_max_score_textfield.text;
-    property alias speed_penalty: speed_penalty_textfield.text
-    property alias speed_tolerance: speed_tolerance_textfield.text
+    property alias sg_max_score: sg_max_score_textfield.value;
+    property alias tp_max_score: tp_max_score_textfield.value;
+    property alias marker_max_score: marker_max_score_textfield.value;
+    property alias photos_max_score: photos_max_score_textfield.value;
+    property alias time_window_size: time_window_size_textfield.value;
+    property alias time_window_penalty: time_window_penalty_textfield.value;
+    property alias alt_penalty: alt_penalty_textfield.value;
+    property alias gyre_penalty: gyre_penalty_textfield.value;
+    property alias oposite_direction_penalty: oposite_direction_penalty_textfield.value;
+    property alias out_of_sector_penalty: out_of_sector_penalty_textfield.value;
+    property alias speed_max_score: speed_max_score_textfield.value;
+    property alias speed_penalty: speed_penalty_textfield.value;
+    property alias speed_tolerance: speed_tolerance_textfield.value;
     property alias preparation_time: preparation_time_textfield.seconds
 
     // vychozi hodnoty
-    property alias default_radius: default_radius_textfield.text
-    property alias default_alt_min: default_alt_min_textfield.text
-    property alias default_alt_max: default_alt_max_textfield.text
-    //    property alias default_speed_min: default_speed_min_textfield.text
-    //    property alias default_speed_max: default_speed_max_textfield.text
+    property alias default_radius: default_radius_textfield.value;
+    property alias default_alt_min: default_alt_min_textfield.value;
+    property alias default_alt_max: default_alt_max_textfield.value;
+    //    property alias default_speed_min: default_speed_min_textfield.value;
+    //    property alias default_speed_max: default_speed_max_textfield.value;
     property string default_speed_min: ""
     property string default_speed_max: ""
     property int default_flags
@@ -104,7 +104,7 @@ ApplicationWindow {
             //% "Time gate max score [points]"
             text: qsTrId("props-detail-tg-max-score")
         }
-        TextField {
+        TextFieldNumber {
             id: tg_max_score_textfield
         }
 
@@ -112,7 +112,7 @@ ApplicationWindow {
             //% "Time gate tolerance [sec]"
             text: qsTrId("props-detail-tg-tolerance")
         }
-        TextField{
+        TextFieldNumber {
             id: tg_tolerance_textfield;
         }
 
@@ -129,7 +129,7 @@ ApplicationWindow {
             text: qsTrId("props-detail-sg-max-score")
         }
 
-        TextField{
+        TextFieldNumber {
             id: sg_max_score_textfield
         }
 
@@ -138,7 +138,7 @@ ApplicationWindow {
             text: qsTrId("props-detail-tp-max-score")
         }
 
-        TextField{
+        TextFieldNumber {
             id: tp_max_score_textfield
         }
 
@@ -146,7 +146,7 @@ ApplicationWindow {
             //% "Marker max score [points]"
             text: qsTrId("props-detail-marker-max-score")
         }
-        TextField{
+        TextFieldNumber {
             id: marker_max_score_textfield
         }
 
@@ -154,7 +154,7 @@ ApplicationWindow {
             //% "Photos max score [points]"
             text: qsTrId("props-detail-photos-max-score")
         }
-        TextField{
+        TextFieldNumber {
             id: photos_max_score_textfield
         }
 
@@ -162,7 +162,7 @@ ApplicationWindow {
             //% "Time window size [sec]"
             text: qsTrId("props-detail-time-window-size")
         }
-        TextField{
+        TextFieldNumber {
             id: time_window_size_textfield
         }
 
@@ -170,16 +170,15 @@ ApplicationWindow {
             //% "Time window penalty [%]"
             text: qsTrId("props-detail-time-window-penalty")
         }
-        TextField{
+        TextFieldNumber {
             id: time_window_penalty_textfield
-            text: ""
         }
 
         NativeText {
             //% "Altitude penalty [points per meter]"
             text: qsTrId("props-detail-alt-penalty")
         }
-        TextField{
+        TextFieldNumber {
             id: alt_penalty_textfield
         }
 
@@ -187,16 +186,15 @@ ApplicationWindow {
             //% "Gyre penalty [%]"
             text: qsTrId("props-detail-gyre-penalty")
         }
-        TextField{
+        TextFieldNumber {
             id: gyre_penalty_textfield
-            text: ""
         }
 
         NativeText {
             //% "Oposite direction penalty [%]"
             text: qsTrId("props-detail-oposite-direction-penalty")
         }
-        TextField{
+        TextFieldNumber {
             id: oposite_direction_penalty_textfield
         }
 
@@ -205,7 +203,7 @@ ApplicationWindow {
             text: qsTrId("props-detail-out-of-sector-penalty")
         }
 
-        TextField{
+        TextFieldNumber {
             id: out_of_sector_penalty_textfield
         }
 
@@ -214,7 +212,7 @@ ApplicationWindow {
             //% "Speed max score [points]"
             text: qsTrId("props-detail-speed-max-score")
         }
-        TextField{
+        TextFieldNumber {
             id: speed_max_score_textfield
         }
 
@@ -223,7 +221,7 @@ ApplicationWindow {
             //% "Speed penalty [points per km/h]"
             text: qsTrId("props-detail-speed-penalty")
         }
-        TextField{
+        TextFieldNumber {
             id: speed_penalty_textfield
         }
 
@@ -231,12 +229,12 @@ ApplicationWindow {
             //% "Speed tolerance [km/h]"
             text: qsTrId("props-detail-speed-tolerance")
         }
-        TextField{
+        TextFieldNumber {
             id: speed_tolerance_textfield
         }
 
         NativeText {
-            //% "Preparation time [sec]"
+            //% "Preparation time [hh:mm:ss]"
             text: qsTrId("props-detail-preparation-time");
         }
         TextField {
@@ -294,7 +292,7 @@ ApplicationWindow {
             text: qsTrId("props-detail-default_radius")
         }
 
-        TextField{
+        TextFieldNumber {
             id: default_radius_textfield
         }
 
@@ -304,7 +302,7 @@ ApplicationWindow {
             text: qsTrId("props-detail-default_alt_min")
         }
 
-        TextField{
+        TextFieldNumber {
             id: default_alt_min_textfield
         }
 
@@ -313,7 +311,7 @@ ApplicationWindow {
             text: qsTrId("props-detail-default_alt_max")
         }
 
-        TextField{
+        TextFieldNumber {
             id: default_alt_max_textfield
         }
 

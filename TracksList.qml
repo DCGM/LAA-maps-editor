@@ -175,7 +175,7 @@ Rectangle {
         propsDetail.category_name = track.name;
         propsDetail.tg_max_score = track.tg_max_score
         propsDetail.tg_tolerance = track.tg_tolerance;
-        propsDetail.tg_penalty = track.tg_penalty;
+        propsDetail.tg_penalty = parseFloat(track.tg_penalty);
         propsDetail.sg_max_score = track.sg_max_score;
         propsDetail.tp_max_score = track.tp_max_score;
         propsDetail.marker_max_score = track.marker_max_score;
