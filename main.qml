@@ -27,17 +27,20 @@ ApplicationWindow {
     }
 
     function app_before_close() {
+
         if (document_changed) {
             confirmUnsavedDialog.action = function() {
+                config.set("recentFiles", recentlyOpenedFiles.jsonGet())
+                console.log("Quit")
                 Qt.quit();
             }
 
             confirmUnsavedDialog.open();
             return;
         }
+
         config.set("recentFiles", recentlyOpenedFiles.jsonGet())
-
-
+        console.log("Quit")
         Qt.quit();
 
     }
