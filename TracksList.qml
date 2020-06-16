@@ -827,7 +827,6 @@ Rectangle {
                                 continue
                             }
                             var distance = G.getDistanceTo(lat, lon, pitem.lat, pitem.lon)
-                            console.log("distance " + pitem.pid + " " + pitem.name + " " + distance)
                             if (distance < minDistance) {
                                 minDistance = distance
                                 p = pitem;
