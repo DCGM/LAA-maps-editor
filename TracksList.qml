@@ -163,7 +163,7 @@ Rectangle {
             selectedPolygonsModel.append({
                                              "did" : p.did,
                                              "cid": p.cid,
-                                             "score": p.score,
+                                             "score": (p.score !== undefined) ? p.score : 0
                                          })
         }
     }
@@ -799,14 +799,12 @@ Rectangle {
                     if (tracksModel.count > pos && pos > 0) {
                         var firstTIpid = tracksModel.get(pos).pid
                         var secondTIpid = tracksModel.get(pos-1).pid
-                        console.log(firstTIpid + " " + secondTIpid)
                         var firstItem = p;
                         var secondItem = p;
 
                         for (var j = 0; j < pointsModel.count; j++) {
                             var pitem = pointsModel.get(j)
                             if (pitem.pid === firstTIpid) {
-                                console.log("found fisrt" + pitem.name)
                                 firstItem = pitem;
                             }
                             if (pitem.pid === secondTIpid) {
@@ -833,7 +831,7 @@ Rectangle {
                             }
 
                         }
-                        console.log("look for point between: " + firstItem.name + " ("+firstItem.pid+")" + secondItem.name + "("+secondItem.pid+") found " + p.name + "(" + p.pid + ")")
+                        console.log("look for point between: " + firstItem.name + " ("+firstItem.pid+") and " + secondItem.name + " ("+secondItem.pid+"). Found: " + p.name + " (" + p.pid + ")")
 
                     } else if (tracksModel.count > 0) {
                         // append point with next pid

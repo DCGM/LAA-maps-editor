@@ -129,6 +129,7 @@ int main(int argc, char *argv[]) {
     engine.rootContext()->setContextProperty("version", QString::fromLocal8Bit(GIT_VERSION));
 
     qDebug() << "Starting build " << QString::fromLocal8Bit(GIT_VERSION) << " "<< QString::fromLocal8Bit(__DATE__) << " " <<  QString::fromLocal8Bit(__TIME__);
+    qDebug() << "Qt" << qVersion();
     qDebug() << QSslSocket::supportsSsl() << QSslSocket::sslLibraryBuildVersionString() << QSslSocket::sslLibraryVersionString();
 
     NetworkAccessManagerFactory namFactory;
