@@ -17,6 +17,26 @@ Rectangle {
         updateComputedValues()
     }
 
+    function trackPointTemplate(tid, pid) {
+        return {
+            "tid": tid,
+            "pid": pid,
+            "type": "line",
+            "flags": -1,
+            "distance": -1,
+            "addTime": 0,
+            "computed_angle": -1,
+            "computed_distance": -1,
+            "angle": -1,
+            "radius": -1,
+            "speed_max": -1,
+            "alt_min": -1,
+            "alt_max": -1,
+            "ptr": -1,
+        };
+    }
+
+
     function updateComputedValues() {
         if (computedData === undefined) {
             return;
@@ -719,7 +739,8 @@ Rectangle {
                 })
 
 
-
+                // FIXME check selection
+                console.log("selection")
                 tracksPointTable.selection.clear();
 
                 for (var i = 0; i < sel.length; i++) {
@@ -788,6 +809,29 @@ Rectangle {
                     }
                 }
 
+                MenuItem {
+                    //% "Append all points"
+                    text: qsTrId("tracks-list-points-table-add-all")
+                    enabled: (pointsModel.count > 0)
+                    visible: (tracksModel.count == 0)
+
+                    onTriggered: {
+                        var maxId = 0;
+                        for (var i = 0; i < tracksModel.count; i++) {
+                            var item = tracksModel.get(i);
+                            maxId = Math.max(item.tid, maxId);
+                        }
+                        for (var j = 0; j < pointsModel.count; j++) {
+                            var p = pointsModel.get(j)
+                            var obj = trackPointTemplate((maxId+1+j), p.pid)
+                            tracksModel.append(obj)
+                        }
+                        tracksPointTable.selection.clear();
+                        tracksModel.tracksChanged();
+
+                    }
+                }
+
                 function addPoint(pos) {
                     var maxId = 0;
                     for (var i = 0; i < tracksModel.count; i++) {
@@ -846,22 +890,7 @@ Rectangle {
                         }
                     }
 
-                    var obj = {
-                        "tid": (maxId+1),
-                        "pid": p.pid,
-                        "type": "line",
-                        "flags": -1,
-                        "distance": -1,
-                        "addTime": 0,
-                        "computed_angle": -1,
-                        "computed_distance": -1,
-                        "angle": -1,
-                        "radius": -1,
-                        "speed_max": -1,
-                        "alt_min": -1,
-                        "alt_max": -1,
-                        "ptr": -1,
-                    };
+                    var obj = trackPointTemplate((maxId+1), p.pid)
 
                     if ((pos === -1) || (pos >= tracksModel.count)) {
                         tracksModel.append(obj)
@@ -880,6 +909,7 @@ Rectangle {
 
                     tracksModel.tracksChanged();
                 }
+
 
                 MenuItem {
                     //% "Remove point"
