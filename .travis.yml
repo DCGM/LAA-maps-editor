@@ -15,6 +15,7 @@ script:
   - cd build
   - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.14.2\msvc2017" -DCMAKE_BUILD_TYPE=RELEASE -DDEPLOY_QT_LIBRARIES=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
   - cmake --build . --config Release
+  - ctest -C Release .
   - cp *.qm ./Release
   - find /c/Qt/Tools/OpenSSL -type f -name '*.dll' -print -exec cp {} ./Release \;
   - 7z a -tzip editor.zip -r *
