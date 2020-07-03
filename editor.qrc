@@ -42,7 +42,7 @@
         <file>WorldFileImage.qml</file>
         <file>TextDialog.qml</file>
         <file>AboutDialog.qml</file>
-        <file>main.qml</file>
+        <file>MainWindow.qml</file>
         <file>CloneDialog.qml</file>
         <file>PinchMap.qml</file>
         <file>Waypoint.qml</file>
@@ -58,5 +58,6 @@
         <file>LineParamDialog.qml</file>
         <file>ConfigFile.qml</file>
         <file>TextFieldNumber.qml</file>
+        <file>tst_functions.qml</file>
     </qresource>
 </RCC>

@@ -16,22 +16,11 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(GNUInstallDirs)
 include(FeatureSummary)
 
-
-# QtCreator supports the following variables for Android, which are identical to qmake Android variables.
-# Check http://doc.qt.io/qt-5/deployment-android.html for more information.
-# They need to be set before the find_package(Qt5 ...) call.
-
-#if(ANDROID)
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-#    if (ANDROID_ABI STREQUAL "armeabi-v7a")
-#        set(ANDROID_EXTRA_LIBS
-#            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libcrypto.so
-#            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libssl.so)
-#    endif()
-#endif()
-
+enable_testing()
 
 find_package(Git QUIET REQUIRED)
+find_package(Qt5QuickTest REQUIRED)
+
 
 execute_process(COMMAND
   "${GIT_EXECUTABLE}" describe --dirty --broken --always --tags
@@ -62,6 +51,26 @@ add_executable(editor WIN32
   ${TS_FILES}
 )
 
+add_executable(atest-editor WIN32
+  customnetworkaccessmanager.cpp
+  filereader.cpp
+  gpxjsonconvertor.cpp
+  igc.cpp
+  imagesaver.cpp
+  kmljsonconvertor.cpp
+  networkaccessmanagerfactory.cpp
+  main.cpp
+  editor.qrc
+  editor.rc
+  ${TS_FILES}
+)
+
+add_definitions(-DQUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
+add_test(NAME atest-editor COMMAND atest-editor)
+set_target_properties(atest-editor PROPERTIES COMPILE_DEFINITIONS RUN_TESTS=1)
+
+
+
 QT5_ADD_TRANSLATION(QM_FILES ${TS_FILES}
     OPTIONS "-idbased")
 add_custom_target(translations DEPENDS ${QM_FILES})
@@ -89,6 +98,12 @@ target_compile_definitions(editor
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(editor
   PRIVATE Qt5::Core Qt5::Quick Qt5::Xml)
+
+target_compile_definitions(atest-editor
+  PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+target_link_libraries(atest-editor
+  PRIVATE Qt5::Core Qt5::Quick Qt5::Xml Qt5::QuickTest)
+
 
 
 option(DEPLOY_QT_LIBRARIES "Deploy Qt libraries to executable path" OFF)

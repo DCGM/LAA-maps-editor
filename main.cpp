@@ -16,6 +16,10 @@
 #include "kmljsonconvertor.h"
 #include "gpxjsonconvertor.h"
 
+#if RUN_TESTS
+    #include <QtQuickTest/quicktest.h>
+#endif
+
 // turns on logging of context (file+line number) in c++
 #define QT_MESSAGELOGCONTEXT
 
@@ -72,8 +76,15 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context, const Q
 
 int main(int argc, char *argv[]) {
 
+#if RUN_TESTS
+    QTEST_SET_MAIN_SOURCE_PATH
+    return quick_test_main(argc, argv, "atest-editor", QUICK_TEST_SOURCE_DIR);
+#else
+
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
+    QQmlApplicationEngine engine;
+
 
     app.setOrganizationName("Brno University of Technology");
     app.setOrganizationDomain("fit.vutbr.cz");
@@ -85,8 +96,6 @@ int main(int argc, char *argv[]) {
     qDebug() << QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QDir::separator() +"editor.log";
 #endif
 
-
-    QQmlApplicationEngine engine;
 
 
     //    qDebug() << "app.libraryPaths() "  << app.libraryPaths();
@@ -139,7 +148,7 @@ int main(int argc, char *argv[]) {
     engine.rootContext()->setContextProperty("QStandardPathsApplicationFilePath", QFileInfo( QCoreApplication::applicationFilePath() ).dir().absolutePath() );
     //    engine.rootContext()->setContextProperty("QStandardPathsApplicationFilePath", QFileInfo( QCoreApplication::applicationFilePath() ).dir().absolutePath().left(QFileInfo( QCoreApplication::applicationFilePath() ).dir().absolutePath().size()-4) );
     engine.rootContext()->setContextProperty("QStandardPathsHomeLocation", QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0]);
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/MainWindow.qml")));
 
     QObject *topLevel = engine.rootObjects().value(0);
     QQuickWindow *window = qobject_cast<QQuickWindow *>(topLevel);
@@ -147,6 +156,6 @@ int main(int argc, char *argv[]) {
     window->setIcon(QIcon(":/editor64.png"));
     window->show();
     return app.exec();
-
+#endif
 
 }

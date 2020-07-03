@@ -798,13 +798,22 @@ Rectangle {
                 }
 
                 MenuItem {
-                    //% "Append 10 points"
+                    //% "Append 10 points after selected"
                     text: qsTrId("tracks-list-points-table-add-10")
                     enabled: (pointsModel.count > 0)
 
                     onTriggered: {
+                        var lastIndex = -1;
+                        tracksPointTable.selection.forEach( function(rowIndex) {
+                            lastIndex = rowIndex;
+                        } )
+
                         for (var i = 0; i < 10; i++) {
-                            tracksContextMenu.addPoint(-1)
+                            if (lastIndex === -1) {
+                                tracksContextMenu.addPoint(-1);
+                            } else {
+                                tracksContextMenu.addPoint(lastIndex+i+1);
+                            }
                         }
                     }
                 }

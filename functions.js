@@ -35,13 +35,13 @@ function pad2(i) {
     if (i < 10) {
         return "0" + i;
     }
-    return i;
+    return String(i);
 }
 
 function getPolyByCid(cid, poly) {
     for (var i = 0; i < poly.length; i++) {
         var item = poly[i];
-        if (item.cid == cid) {
+        if (item.cid === cid) {
             return item;
         }
     }
@@ -49,7 +49,7 @@ function getPolyByCid(cid, poly) {
 
 function getFlagsByIndex(flag_index, value) {
     var mask = (0x1 << flag_index);
-    return ((value & mask) == mask);
+    return ((value & mask) === mask);
 }
 
 
