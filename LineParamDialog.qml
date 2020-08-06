@@ -9,6 +9,7 @@ ApplicationWindow {
     title: qsTrId("line-param-dialog-title")
     minimumHeight: grid.childrenRect.height + 2 * grid.anchors.margins + buttonRow.childrenRect.height + 2* buttonRow.padding
     minimumWidth: grid.childrenRect.width + 2 * grid.anchors.margins
+    modality: Qt.ApplicationModal
 
     signal accepted();
     signal canceled();
