@@ -1122,11 +1122,11 @@ ApplicationWindow {
       <width> 4 </width>
     </LineStyle>
   </Style>
-  <LinearRing>
+  <LineString>
     <extrude>0</extrude>
     <tessellate>0</tessellate>
     <coordinates>"+coordStr+"</coordinates>
-  </LinearRing>
+  </LineString>
 </Placemark>
 "
 
