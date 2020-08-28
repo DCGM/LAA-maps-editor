@@ -1208,7 +1208,7 @@ Rectangle {
                         tmp = polygonCache
                         tmp.push({
                                      "cid": 1,
-                                     "name": "polygon",
+                                     "name": "polygon: " + item.name,
                                      "color": "cc00cc",
                                      "points": polygonCachePoints
                                  });
@@ -1280,7 +1280,7 @@ Rectangle {
 
                         tmp.push({
                                      "cid": 1,
-                                     "name": "turn point circle",
+                                     "name": "circle: " + item.name,
                                      "color": "0000FF",
                                      "points": points_ll
                                  });
@@ -1322,7 +1322,7 @@ Rectangle {
                             var tmp = polygonCache;
                             tmp.push({
                                          "cid": 1,
-                                         "name": "gate",
+                                         "name": "gate: " + item.name,
                                          "color": "0000ff",
                                          "points": [
                                              {"lat": gateA.lat, "lon": gateA.lon},
@@ -1391,7 +1391,7 @@ Rectangle {
 
                                 tmp.push({
                                              "cid": 1,
-                                             "name": "turn point circle",
+                                             "name": "circle: " + item.name,
                                              "color": "0000FF",
                                              "points": points_ll
                                          });
@@ -1438,7 +1438,7 @@ Rectangle {
                                 var tmp = polygonCache;
                                 tmp.push({
                                              "cid": 1,
-                                             "name": "gate",
+                                             "name": "gate: " + item.name,
                                              "color": "0000FF",
                                              "points": [
                                                  {"lat": gateA.lat, "lon": gateA.lon},
