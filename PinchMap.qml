@@ -1202,17 +1202,18 @@ Rectangle {
 
                         //                        console.log("distance " + i +": " + distance);
 
-                        prevItem = item;
 
                         var tmp = [];
                         tmp = polygonCache
                         tmp.push({
                                      "cid": 1,
-                                     "name": "polygon: " + item.name,
+                                     "name": "track: " + item.name + "-" + prevItem.name,
                                      "color": "cc00cc",
                                      "points": polygonCachePoints
                                  });
                         polygonCache = tmp
+                        prevItem = item;
+
                         polygonCachePoints =[];
 
                     }

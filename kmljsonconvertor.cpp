@@ -37,6 +37,7 @@ QString KmlJsonConvertor::kmlToJSONString_local(QString filename) {
         QString coordsString = placemarkEl.elementsByTagName("coordinates").at(0).childNodes().at(0).nodeValue();
         QDomNodeList point      = placemarkEl.elementsByTagName("Point");
         QDomNodeList linearRing = placemarkEl.elementsByTagName("LinearRing");
+        QDomNodeList lineString = placemarkEl.elementsByTagName("LineString");
         QString color = placemarkEl.elementsByTagName("color").at(0).childNodes().at(0).nodeValue();;
 //        QString color = "FF0000";
 
@@ -54,6 +55,15 @@ QString KmlJsonConvertor::kmlToJSONString_local(QString filename) {
             }
 
         } else if (linearRing.length()) {
+            QString str = "";
+            while ((pos = rx.indexIn(coordsString, pos)) != -1) {
+//                qDebug() << rx.cap(1) << rx.cap(2) << rx.cap(3);
+                str = str + QString("{\"lat\": %1,\"lon\":%2},").arg(rx.cap(2).toFloat()).arg(rx.cap(1).toFloat());
+                pos += rx.matchedLength();
+            }
+            str.remove(str.count()-1,1);
+            poly = poly + QString("{\"name\": \"%1\", \"color\":\"%2\", \"points\":[%3], \"closed\": true},").arg(nodeName).arg(color).arg(str);
+        } else if (lineString.length()) {
             QString str = "";
             while ((pos = rx.indexIn(coordsString, pos)) != -1) {
 //                qDebug() << rx.cap(1) << rx.cap(2) << rx.cap(3);
