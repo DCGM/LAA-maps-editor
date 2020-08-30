@@ -1,5 +1,5 @@
 Name:           editor
-Version:        0.4
+Version:        0.5.2
 Release:        %(date +%Y%m%d%H)%{?dist}
 Summary:        Editor of LAA Competition tracks
 
@@ -27,16 +27,19 @@ editor is tool for editing of LAA Competion tracks
 
 %build
 %cmake
-make %{?_smp_mflags}
+%cmake_build
 
 
 %install
-make DESTDIR=%{buildroot} install
+%cmake_install
 
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 #desktop-file-install --dir $RPM_BUILD_ROOT/opt/%{name}/share/applications\
 #      $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
+
+%check
+# %%ctest
 
 %files
 %dir /usr/share/editor
