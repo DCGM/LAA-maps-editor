@@ -369,6 +369,19 @@ ApplicationWindow {
                 }
                 shortcut: "Ctrl+6"
             }
+
+            MenuItem {
+                //% "Google Hybrid"
+                text: qsTrId("main-map-menu-google-hybrid-tile-layer")
+                exclusiveGroup: mapTypeExclusive
+                checkable: true;
+                onTriggered: {
+                    map.url = 'https://%(s)d.google.com/vt/lyrs=s,h&x=%(x)d&y=%(y)d&z=%(zoom)d';
+                    map.url_subdomains = ['mt0','mt1','mt2','mt3']
+                }
+                shortcut: "Ctrl+7"
+            }
+
             MenuItem {
                 //% "Custom tile layer"
                 text: qsTrId("main-map-menu-custom-tile-layer")
@@ -378,8 +391,10 @@ ApplicationWindow {
                     mapurl_dialog.open();
                     map.url_subdomains = [];
                 }
-                shortcut: "Ctrl+7"
+                shortcut: "Ctrl+8"
             }
+
+
 
             MenuItem {
                 //% "Airspace Off"
