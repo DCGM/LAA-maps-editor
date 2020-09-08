@@ -371,7 +371,7 @@ ApplicationWindow {
             }
 
             MenuItem {
-                //% "Google Hybrid"
+                //% "Google &Hybrid"
                 text: qsTrId("main-map-menu-google-hybrid-tile-layer")
                 exclusiveGroup: mapTypeExclusive
                 checkable: true;

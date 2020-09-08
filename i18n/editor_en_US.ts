@@ -531,87 +531,93 @@ By installing, copying or other use of Software User declares he/she has read th
         <source>Google &amp;Satellite</source>
         <translation>Google &amp;Satellite</translation>
     </message>
+    <message id="main-map-menu-google-hybrid-tile-layer">
+        <location filename="../MainWindow.qml" line="375"/>
+        <source>Google &amp;Hybrid</source>
+        <oldsource>Google Hybrid</oldsource>
+        <translation>Google &amp;Hybrid</translation>
+    </message>
     <message id="main-map-menu-custom-tile-layer">
-        <location filename="../MainWindow.qml" line="374"/>
+        <location filename="../MainWindow.qml" line="387"/>
         <source>Custom tile layer</source>
         <translation>Custom tile layer</translation>
     </message>
     <message id="main-map-menu-airspace-off">
-        <location filename="../MainWindow.qml" line="386"/>
+        <location filename="../MainWindow.qml" line="401"/>
         <source>Airspace Off</source>
         <translation>Airspace Off</translation>
     </message>
     <message id="main-map-menu-airspace-prosoar">
-        <location filename="../MainWindow.qml" line="398"/>
+        <location filename="../MainWindow.qml" line="413"/>
         <source>Airspace (skylines.aero)</source>
         <oldsource>Airspace (prosoar.de)</oldsource>
         <translation>Airspace (skylines.aero)</translation>
     </message>
     <message id="main-map-menu-airspace-local">
-        <location filename="../MainWindow.qml" line="409"/>
+        <location filename="../MainWindow.qml" line="424"/>
         <source>Airspace (local)</source>
         <translation>Airspace (local)</translation>
     </message>
     <message id="main-map-menu-gfw">
-        <location filename="../MainWindow.qml" line="440"/>
+        <location filename="../MainWindow.qml" line="455"/>
         <source>Show &amp;gfw image</source>
         <oldsource>Load &amp;gfw image</oldsource>
         <translation>Show &amp;gfw image</translation>
     </message>
     <message id="main-help-menu">
-        <location filename="../MainWindow.qml" line="458"/>
+        <location filename="../MainWindow.qml" line="473"/>
         <source>&amp;Help</source>
         <translation>&amp;Help</translation>
     </message>
     <message id="main-help-menu-about">
-        <location filename="../MainWindow.qml" line="461"/>
+        <location filename="../MainWindow.qml" line="476"/>
         <source>&amp;About</source>
         <translation>&amp;About</translation>
     </message>
     <message id="main-map-dialog-title">
-        <location filename="../MainWindow.qml" line="609"/>
+        <location filename="../MainWindow.qml" line="624"/>
         <source>Custom map tile configuration</source>
         <oldsource>Set Map URL</oldsource>
         <translation>Custom map tile configuration</translation>
     </message>
     <message id="main-map-dialog-question">
-        <location filename="../MainWindow.qml" line="612"/>
+        <location filename="../MainWindow.qml" line="627"/>
         <source>Enter URL</source>
         <oldsource>Set URL</oldsource>
         <translation>Enter URL</translation>
     </message>
     <message id="error-dialog">
-        <location filename="../MainWindow.qml" line="624"/>
+        <location filename="../MainWindow.qml" line="639"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message id="confirm-unsaved-title">
-        <location filename="../MainWindow.qml" line="682"/>
+        <location filename="../MainWindow.qml" line="697"/>
         <source>Are you sure?</source>
         <translation>Are you sure?</translation>
     </message>
     <message id="confirm-usaved-text">
-        <location filename="../MainWindow.qml" line="684"/>
+        <location filename="../MainWindow.qml" line="699"/>
         <source>Your changes have not been saved.</source>
         <translation>Your changes have not been saved.</translation>
     </message>
     <message id="error-defaults-file">
-        <location filename="../MainWindow.qml" line="865"/>
+        <location filename="../MainWindow.qml" line="880"/>
         <source>Cannot load defaults</source>
         <translation>Cannot load defaults</translation>
     </message>
     <message id="section-type-speed">
-        <location filename="../MainWindow.qml" line="1408"/>
+        <location filename="../MainWindow.qml" line="1423"/>
         <source>speed</source>
         <translation>speed</translation>
     </message>
     <message id="section-type-altitude">
-        <location filename="../MainWindow.qml" line="1420"/>
+        <location filename="../MainWindow.qml" line="1435"/>
         <source>altitude</source>
         <translation>altitude</translation>
     </message>
     <message id="section-type-space">
-        <location filename="../MainWindow.qml" line="1432"/>
+        <location filename="../MainWindow.qml" line="1447"/>
         <source>space</source>
         <translation>space</translation>
     </message>
@@ -1117,25 +1123,25 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>Circle parameters</translation>
     </message>
     <message id="circle-param-dialog-radius">
-        <location filename="../CircleParamDialog.qml" line="32"/>
+        <location filename="../CircleParamDialog.qml" line="33"/>
         <source>Radius (m)</source>
         <translation>Radius (m)</translation>
     </message>
     <message id="circle-param-dialog-points">
-        <location filename="../CircleParamDialog.qml" line="41"/>
+        <location filename="../CircleParamDialog.qml" line="42"/>
         <source>Number of points</source>
         <translation>Number of points</translation>
     </message>
     <message id="track-statistics-ok">
-        <location filename="../CircleParamDialog.qml" line="60"/>
-        <location filename="../LineParamDialog.qml" line="72"/>
+        <location filename="../CircleParamDialog.qml" line="61"/>
+        <location filename="../LineParamDialog.qml" line="73"/>
         <location filename="../TrackStatistics.qml" line="253"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message id="track-statistics-cancel">
-        <location filename="../CircleParamDialog.qml" line="68"/>
-        <location filename="../LineParamDialog.qml" line="80"/>
+        <location filename="../CircleParamDialog.qml" line="69"/>
+        <location filename="../LineParamDialog.qml" line="81"/>
         <location filename="../TrackStatistics.qml" line="261"/>
         <source>Cancel</source>
         <oldsource>Ok</oldsource>
@@ -1147,18 +1153,18 @@ By installing, copying or other use of Software User declares he/she has read th
         <translation>Line parameters</translation>
     </message>
     <message id="line-param-dialog-distance">
-        <location filename="../LineParamDialog.qml" line="33"/>
+        <location filename="../LineParamDialog.qml" line="34"/>
         <source>Distance of next point (m)</source>
         <oldsource>Distance (m)</oldsource>
         <translation>Distance to next point (m)</translation>
     </message>
     <message id="line-param-dialog-angle">
-        <location filename="../LineParamDialog.qml" line="42"/>
+        <location filename="../LineParamDialog.qml" line="43"/>
         <source>Angle (deg)</source>
         <translation>Angle (deg)</translation>
     </message>
     <message id="line-param-dialog-points">
-        <location filename="../LineParamDialog.qml" line="53"/>
+        <location filename="../LineParamDialog.qml" line="54"/>
         <source>Number of points</source>
         <translation>Number of points</translation>
     </message>
