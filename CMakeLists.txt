@@ -32,7 +32,8 @@ execute_process(COMMAND
 add_definitions( -DGIT_VERSION="${GIT_VERSION}" )
 
 find_package(Qt5 COMPONENTS Core Quick Xml LinguistTools REQUIRED)
-
+find_package(Qt5QuickCompiler)
+qtquick_compiler_add_resources(RESOURCES editor.qrc)
 
 
 file(GLOB TS_FILES i18n/*.ts)
@@ -46,8 +47,8 @@ add_executable(editor WIN32
   kmljsonconvertor.cpp
   networkaccessmanagerfactory.cpp
   main.cpp
-  editor.qrc
   editor.rc
+  ${RESOURCES}
   ${TS_FILES}
 )
 
@@ -60,8 +61,8 @@ add_executable(atest-editor WIN32
   kmljsonconvertor.cpp
   networkaccessmanagerfactory.cpp
   main.cpp
-  editor.qrc
   editor.rc
+  ${RESOURCES}
   ${TS_FILES}
 )
 
