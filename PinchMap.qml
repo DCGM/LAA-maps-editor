@@ -63,7 +63,7 @@ Rectangle {
 
     property string url;
     // : "~/Maps/OSM/%(zoom)d/%(x)d/%(y)d.png"
-    // url: "http://a.tile.openstreetmap.org/%(zoom)d/%(x)d/%(y)d.png";
+    // url: "https://a.tile.openstreetmap.org/%(zoom)d/%(x)d/%(y)d.png";
     property variant url_subdomains: []
     property string airspaceUrl;
 

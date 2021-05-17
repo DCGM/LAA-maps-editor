@@ -207,7 +207,7 @@
         <location filename="../AboutDialog.qml" line="111"/>
         <source>
 Authors: &lt;br/&gt;
-Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=&quot;http://www.fit.vutbr.cz/&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
+Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=&quot;https://www.fit.vutbr.cz/&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
 
 Licence: &lt;br/&gt;
 
@@ -243,7 +243,7 @@ By installing, copying or other use of Software User declares he/she has read th
 </source>
         <oldsource>
 Authors: &lt;br/&gt;
-Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;http://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
+Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;https://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
 
 Licence: &lt;br/&gt;
 
@@ -279,7 +279,7 @@ By installing, copying or other use of Software User declares he/she has read th
 </oldsource>
         <translation>
 Authors: &lt;br/&gt;
-Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;http://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
+Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;https://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
 
 Licence: &lt;br/&gt;
 
