@@ -8,20 +8,20 @@ before_install:
   - choco install  python --version 3.8.0
   - python -m pip install --upgrade pip
   - python -m pip install aqtinstall
-  - python -m aqt install --outputdir /c/Qt 5.14.2 windows desktop win32_msvc2017
-  - python -m aqt tool --outputdir /c/Qt windows tools_openssl_x86 1.1.1-4 qt.tools.openssl.win_x64
+  - python -m aqt install --outputdir /c/Qt 5.15.2 windows desktop win64_msvc2017_64
+  - python -m aqt tool --outputdir /c/Qt windows tools_openssl_x64 1.1.1-10 qt.tools.openssl.win_x64
 script:
   - mkdir build
   - cd build
-  - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.14.2\msvc2017" -DCMAKE_BUILD_TYPE=RELEASE -DDEPLOY_QT_LIBRARIES=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+  - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.15.2\msvc2017_64" -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_BUILD_TYPE=RELEASE -DDEPLOY_QT_LIBRARIES=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
   - cmake --build . --config Release
   - ctest -C Release .
   - cp *.qm ./Release
   - find /c/Qt/Tools/OpenSSL -type f -name '*.dll' -print -exec cp {} ./Release \;
   - 7z a -tzip editor.zip -r *
 before_deploy:
-  - git config --local user.name "YOUR GIT USER NAME"
-  - git config --local user.email "YOUR GIT USER EMAIL"
+  - git config --local user.name "travis"
+  - git config --local user.email "tavis@travis-ci.org"
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
 deploy:
