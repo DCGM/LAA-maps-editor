@@ -950,7 +950,7 @@ Rectangle {
 
                             break;
                         case "polyline":
-                            var selPoly = G.getPolyByCid(c.ptr, poly);
+                            var selPoly = F.getPolyByCid(c.ptr, poly);
                             if (selPoly === undefined) {
                                 angle = ((G.getBearingTo(prevItem.lat, prevItem.lon, item.lat, item.lon)+90)%360);
                             } else {
