@@ -776,6 +776,7 @@ Rectangle {
                 return item;
             }
         }
+        return points[0]; // return first item as combobox displays first anyway
     }
 
 
