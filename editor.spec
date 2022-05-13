@@ -24,7 +24,6 @@ editor is tool for editing of LAA Competion tracks
 %prep
 %setup -q -n %{name}-%{version}
 
-
 %build
 %cmake
 %cmake_build
@@ -43,7 +42,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %files
 %dir /usr/share/editor
-/usr/share/editor/i18n
+%dir /usr/share/editor/i18n
 /usr/share/editor/i18n/editor_cs_CZ.qm
 /usr/share/editor/i18n/editor_en_US.qm
 /usr/share/applications/editor.desktop
