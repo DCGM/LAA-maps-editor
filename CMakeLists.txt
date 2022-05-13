@@ -33,9 +33,9 @@ add_definitions( -DGIT_VERSION="${GIT_VERSION}" )
 
 find_package(Qt5 COMPONENTS Core Quick Xml LinguistTools REQUIRED)
 find_package(Qt5QuickCompiler)
-qtquick_compiler_add_resources(RESOURCES editor.qrc)
+#qtquick_compiler_add_resources(RESOURCES editor.qrc)
+qt5_add_resources(RESOURCES editor.qrc)
 
-FILE(GLOB QML_SRC "*.qml")
 file(GLOB TS_FILES i18n/*.ts)
 
 add_executable(editor WIN32
@@ -49,7 +49,6 @@ add_executable(editor WIN32
   src/main.cpp
   editor.rc
   ${RESOURCES}
-  ${QML_SRC}
   ${TS_FILES}
 )
 
@@ -64,7 +63,6 @@ add_executable(atest-editor WIN32
   src/main.cpp
   editor.rc
   ${RESOURCES}
-  ${QML_SRC}
   ${TS_FILES}
 )
 
