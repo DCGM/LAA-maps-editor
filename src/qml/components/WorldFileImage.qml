@@ -1,6 +1,5 @@
-import QtQuick 2.9
-import "functions.js" as F
-import "geom.js" as G
+import QtQuick 2.12
+import "../geom.js" as G
 
 Item {
     id: worldFileImage;
@@ -112,11 +111,21 @@ Item {
         property point d: Qt.point(1, 0.986063);
 //        property variant e: Qt.point(0.4, 0.3);
 
-        property url fragmentShaderFilename: Qt.resolvedUrl("fragment.fsh");
+        property url fragmentShaderFilename: "qrc:/src/qml/components/fragment.fsh"
+        fragmentShader: file_reader.read(fragmentShaderFilename);
 
-        onFragmentShaderFilenameChanged: {
-            console.log("loading fragment shader from: " + fragmentShaderFilename)
-            fragmentShader = file_reader.read(fragmentShaderFilename)
+        onStatusChanged: {
+            switch(status) {
+            case ShaderEffect.Compiled:
+                console.log("the shader program was successfully compiled and linked.")
+                break;
+            case ShaderEffect.Uncompiled:
+                console.log("the shader program has not yet been compiled.");
+            break
+            case ShaderEffect.Error:
+                console.error("the shader program failed to compile or link." + log);
+                break;
+            }
         }
 
     }

@@ -2,6 +2,8 @@ import QtQuick 2.9
 import "functions.js" as F
 import "geom.js" as G
 import cz.mlich 1.0
+import "./components"
+
 
 Rectangle {
     id: pinchmap;
@@ -531,21 +533,21 @@ Rectangle {
 
 
         if ((baseUrl === undefined) || (baseUrl === "")) {
-            return Qt.resolvedUrl("./data/noimage-disabled.png")
+            return "qrc:///images/noimage-disabled.png";
         }
 
         if (tx < 0 || tx > maxTileNo) {
             if (!first) {
                 return "";
             }
-            return Qt.resolvedUrl("./data/noimage.png")
+            return "qrc:///images/noimage.png"
         }
 
         if (ty < 0 || ty > maxTileNo) {
             if (!first) {
                 return "";
             }
-            return Qt.resolvedUrl("./data/noimage.png")
+            return "qrc:///images/noimage.png"
         }
 
 
@@ -632,7 +634,7 @@ Rectangle {
                 Image {
                     anchors.fill: parent;
                     visible: mapTileVisible && (img.status === Image.Null)
-                    source: "./data/noimage.png"
+                    source: "qrc:///images/noimage.png"
                 }
 
                 Image {
@@ -736,7 +738,7 @@ Rectangle {
 
     Image {
         id: targetIndicator
-        source: "./data/target-indicator-cross.png"
+        source: "qrc:///images/target-indicator-cross.png"
         property variant t: getMappointFromCoord(showTargetAtLat, showTargetAtLon)
         x: map.x + t[0] - width/2
         y: map.y + t[1] - height/2

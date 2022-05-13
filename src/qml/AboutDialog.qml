@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import "./components"
 
 
 ApplicationWindow {
@@ -135,13 +136,13 @@ By installing, copying or other use of Software User declares he/she has read th
                 height: parent.height-20
                 fillMode: Image.PreserveAspectFit
                 anchors.verticalCenter: parent.verticalCenter
-                source: "./data/logo-laa.png"
+                source: "qrc:///images/logo-laa.png"
             }
             Image {
                 height: parent.height-20
                 fillMode: Image.PreserveAspectFit
                 anchors.verticalCenter: parent.verticalCenter
-                source: "./data/logo_fit.png"
+                source: "qrc:///images/logo_fit.png"
             }
         }
 

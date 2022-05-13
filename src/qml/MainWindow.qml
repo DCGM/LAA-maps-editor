@@ -6,6 +6,7 @@ import "parseCup.js" as Cup
 import "parser_fn.js" as Parser
 import "functions.js" as F
 import "geom.js" as G
+import "./components"
 
 ApplicationWindow {
     id: mainWindow
@@ -469,6 +470,7 @@ ApplicationWindow {
 
         }
 
+
         Menu {
             //% "&Help"
             title: qsTrId("main-help-menu")
@@ -855,6 +857,11 @@ ApplicationWindow {
 //        var gpxFilename = "file:///home/imlich/workspace/tucek/docs/2013/soutěže/skutec pro import.gpx"
 //        var gpxFilename = "file:///var/www/html/tucek2/x.gpx"
 //        importGpx(gpxFilename);
+
+        map.worldfiles = [{"image":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_0.gif","gfw":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_0.gfw","utmZone":33,"northHemisphere":true},{"image":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_1.gif","gfw":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_1.gfw","utmZone":33,"northHemisphere":true},{"image":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_2.gif","gfw":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_2.gfw","utmZone":33,"northHemisphere":true}]
+        map.wfVisible = true;
+
+
 
         map.requestUpdate()
 

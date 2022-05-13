@@ -148,12 +148,12 @@ int main(int argc, char *argv[]) {
     engine.rootContext()->setContextProperty("QStandardPathsApplicationFilePath", QFileInfo( QCoreApplication::applicationFilePath() ).dir().absolutePath() );
     //    engine.rootContext()->setContextProperty("QStandardPathsApplicationFilePath", QFileInfo( QCoreApplication::applicationFilePath() ).dir().absolutePath().left(QFileInfo( QCoreApplication::applicationFilePath() ).dir().absolutePath().size()-4) );
     engine.rootContext()->setContextProperty("QStandardPathsHomeLocation", QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0]);
-    engine.load(QUrl(QStringLiteral("qrc:/MainWindow.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/src/qml/MainWindow.qml")));
 
     QObject *topLevel = engine.rootObjects().value(0);
     QQuickWindow *window = qobject_cast<QQuickWindow *>(topLevel);
 
-    window->setIcon(QIcon(":/editor64.png"));
+    window->setIcon(QIcon(":/images/editor64.png"));
     window->show();
     return app.exec();
 #endif

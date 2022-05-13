@@ -2,6 +2,8 @@ import QtQuick 2.9
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
 import "functions.js" as F
+import "./components"
+
 
 ApplicationWindow {
     id: dialog;
@@ -63,8 +65,8 @@ ApplicationWindow {
                     continue;
                     //                    break;
                 }
-
-                files.append({"image": fn, "gfw": fw})
+                var file = {"image": fn, "gfw": fw}
+                files.append(file)
 
                 //                console.log("pair " + fn + " " + fw)
 
@@ -194,7 +196,6 @@ ApplicationWindow {
                     var item = files.get(i);
                     filesCopy.push({"image": item.image, "gfw": item.gfw, "utmZone": parseFloat(utmZoneTextField.text), "northHemisphere": hemisphereCheckbox.checked});
                 }
-
                 accepted(filesCopy);
                 dialog.close();
             }

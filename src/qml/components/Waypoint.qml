@@ -12,7 +12,7 @@ Image {
 //    height: 46
     x: mapx + targetPoint[0] - width/2
     y: mapy + targetPoint[1] - height/2
-    source: "./data/"+waypointType+".png"
+    source: "qrc:///images/"+waypointType+".png"
 
     transform: Rotation {
         origin.x: item.width/2
@@ -33,7 +33,7 @@ Image {
 //    radius: 7
 //    visible: ! (settings.optionsHideFound && cache.found)
 //    Image {
-//        source: (cache.status == 0) ? "../data/mark.png" : "../data/cross.png";
+//        source: (cache.status == 0) ? "qrc:///images/mark.png" : "qrc:///images/cross.png";
 //        anchors.centerIn: parent
 //        visible: ! drawSimple
 //    }

@@ -35,34 +35,36 @@ find_package(Qt5 COMPONENTS Core Quick Xml LinguistTools REQUIRED)
 find_package(Qt5QuickCompiler)
 qtquick_compiler_add_resources(RESOURCES editor.qrc)
 
-
+FILE(GLOB QML_SRC "*.qml")
 file(GLOB TS_FILES i18n/*.ts)
 
 add_executable(editor WIN32
-  customnetworkaccessmanager.cpp
-  filereader.cpp
-  gpxjsonconvertor.cpp
-  igc.cpp
-  imagesaver.cpp
-  kmljsonconvertor.cpp
-  networkaccessmanagerfactory.cpp
-  main.cpp
+  src/customnetworkaccessmanager.cpp
+  src/filereader.cpp
+  src/gpxjsonconvertor.cpp
+  src/igc.cpp
+  src/imagesaver.cpp
+  src/kmljsonconvertor.cpp
+  src/networkaccessmanagerfactory.cpp
+  src/main.cpp
   editor.rc
   ${RESOURCES}
+  ${QML_SRC}
   ${TS_FILES}
 )
 
 add_executable(atest-editor WIN32
-  customnetworkaccessmanager.cpp
-  filereader.cpp
-  gpxjsonconvertor.cpp
-  igc.cpp
-  imagesaver.cpp
-  kmljsonconvertor.cpp
-  networkaccessmanagerfactory.cpp
-  main.cpp
+  src/customnetworkaccessmanager.cpp
+  src/filereader.cpp
+  src/gpxjsonconvertor.cpp
+  src/igc.cpp
+  src/imagesaver.cpp
+  src/kmljsonconvertor.cpp
+  src/networkaccessmanagerfactory.cpp
+  src/main.cpp
   editor.rc
   ${RESOURCES}
+  ${QML_SRC}
   ${TS_FILES}
 )
 
@@ -83,13 +85,10 @@ QT5_CREATE_TRANSLATION(QT_FILES "${CMAKE_SOURCE_DIR}"
 install(FILES ${QM_FILES}
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/editor/i18n")
 
-install(FILES "editor_defaults.json"
-    DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/editor")
-
 install(FILES "editor.desktop"
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/applications")
 
-install(FILES "editor64.ico" "editor64.png"
+install(FILES "images/editor64.ico" "images/editor64.png"
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/applications/64x64")
 
 install(TARGETS editor RUNTIME

@@ -30,7 +30,7 @@ ColumnLayout {
             radius: 3
 
             Image {
-                source: "./data/ic_my_location_black_24dp/ic_my_location_black_24dp/web/ic_my_location_black_24dp_1x.png"
+                source: "qrc:///images/ic_my_location_black_24dp_1x.png"
             }
             MouseArea {
                 anchors.fill: parent;
@@ -70,7 +70,7 @@ ColumnLayout {
 
                     Image {
                         id: add_img
-                        source: "./data/ic_add_black_24dp/ic_add_black_24dp/web/ic_add_black_24dp_1x.png"
+                        source: "qrc:///images/ic_add_black_24dp_1x.png"
                     }
                     MouseArea {
                         anchors.fill: parent
@@ -94,7 +94,7 @@ ColumnLayout {
                     radius: 3
 
                     Image {
-                        source: "./data/ic_remove_black_24dp/ic_remove_black_24dp/web/ic_remove_black_24dp_1x.png"
+                        source: "qrc:///images/ic_remove_black_24dp_1x.png"
                     }
                     MouseArea {
                         anchors.fill: parent

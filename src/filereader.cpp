@@ -40,8 +40,10 @@ QByteArray FileReader::read(const QUrl &filename) {
 QByteArray FileReader::read_local(const QString &filename)
 {
     QFile file(filename);
-    if (!file.open(QIODevice::ReadOnly))
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning() << "cannot open file " << filename;
         return QByteArray();
+    }
 
     return file.readAll();
 }
@@ -68,6 +70,7 @@ void FileReader::writeUTF8(const QUrl &filename, QByteArray data) {
 
     QFile file (filename.toLocalFile());
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+        qWarning() << "Cannot open file" << filename;
         return;
     }
 
@@ -82,6 +85,7 @@ void FileReader::writeUTF8(const QUrl &filename, QByteArray data) {
 void FileReader::write_local(const QString &filename, QByteArray data) {
     QFile file (filename);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+        qWarning() << "Cannot open file" << filename;
         return;
     }
 
