@@ -15,12 +15,12 @@ TextField {
     color: acceptableInput ? "#000000" : "#ff0000"
 
     onEditingFinished: {
-        var numlocale = Qt.locale(locale);
+        var numlocale = Qt.locale(localeBcp);
         value = Number.fromLocaleString(numlocale, text)
     }
 
     onValueChanged: {
-        var numlocale = Qt.locale(locale);
+        var numlocale = Qt.locale(localeBcp);
         var current = Number.fromLocaleString(numlocale, text)
 
         if (current !== value) { // use only when loading

@@ -116,13 +116,11 @@ int main(int argc, char *argv[]) {
     if (translator.load(i18nFilename, "./")) {
         qDebug() << i18nFilename << "./" << QLocale::system().bcp47Name();
         app.installTranslator(&translator);
-        engine.rootContext()->setContextProperty("locale", QLocale::system().bcp47Name());
-
+        engine.rootContext()->setContextProperty("localeBcp", QLocale::system().bcp47Name());
     } else if (translator.load(i18nFilename, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
         qDebug() << i18nFilename << QLibraryInfo::location(QLibraryInfo::TranslationsPath) << QLocale::system().bcp47Name();
         app.installTranslator(&translator);
-        engine.rootContext()->setContextProperty("locale", QLocale::system().bcp47Name());
-
+        engine.rootContext()->setContextProperty("localeBcp", QLocale::system().bcp47Name());
     } else {
         qDebug() << "translation.load() failed - falling back to English";
         if (translator.load(QLatin1String("editor_en_US")   , "./")) {
@@ -131,8 +129,10 @@ int main(int argc, char *argv[]) {
             app.installTranslator(&translator);
         }
 
-        engine.rootContext()->setContextProperty("locale","en");
+        engine.rootContext()->setContextProperty("localeBcp","en");
     }
+
+
 
     engine.rootContext()->setContextProperty("builddate", QString::fromLocal8Bit(__DATE__));
     engine.rootContext()->setContextProperty("buildtime", QString::fromLocal8Bit(__TIME__));
@@ -148,6 +148,7 @@ int main(int argc, char *argv[]) {
     engine.rootContext()->setContextProperty("QStandardPathsApplicationFilePath", QFileInfo( QCoreApplication::applicationFilePath() ).dir().absolutePath() );
     //    engine.rootContext()->setContextProperty("QStandardPathsApplicationFilePath", QFileInfo( QCoreApplication::applicationFilePath() ).dir().absolutePath().left(QFileInfo( QCoreApplication::applicationFilePath() ).dir().absolutePath().size()-4) );
     engine.rootContext()->setContextProperty("QStandardPathsHomeLocation", QStandardPaths::standardLocations(QStandardPaths::HomeLocation)[0]);
+
     engine.load(QUrl(QStringLiteral("qrc:/src/qml/MainWindow.qml")));
 
     QObject *topLevel = engine.rootObjects().value(0);
