@@ -210,6 +210,7 @@ ApplicationWindow {
                 onTriggered: {
                     cloneDialog.show();
                 }
+                shortcut: "Ctrl+C"
             }
             MenuItem {
                 //% "Zoom to points"

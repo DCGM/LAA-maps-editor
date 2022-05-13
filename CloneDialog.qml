@@ -1,5 +1,5 @@
-import QtQuick 2.9
-import QtQuick.Controls 1.4
+import QtQuick 2.12
+import QtQuick.Controls 2.12
 
 ApplicationWindow {
     id: window;
@@ -18,69 +18,147 @@ ApplicationWindow {
         if (cupData === undefined) {
             return;
         }
-        categoryListModel.clear();
+        sourceCategories.clear();
+        destinationCategories.clear();
 
         var trks = cupData.tracks
         for (var i = 0; i < trks.length; i++) {
             var t = trks[i];
-            categoryListModel.append({
-                                         "name" : t.name
+            sourceCategories.append({
+                                         "name" : t.name,
+                                         "selected": false,
+                                     })
+            destinationCategories.append({
+                                         "name" : t.name,
+                                         "selected": false,
                                      })
         }
     }
 
     ListModel {
-        id: categoryListModel;
+        id: sourceCategories;
+    }
+    ListModel {
+        id: destinationCategories;
     }
 
-    TableView {
+    ListView {
         id: sourceTable
         anchors.left: parent.left;
         anchors.right: parent.horizontalCenter;
         anchors.top:parent.top;
         anchors.bottom: includePreferences.top;
-        model: categoryListModel;
+        model: sourceCategories;
+        clip: true
+        boundsBehavior: Flickable.StopAtBounds
 
-        rowDelegate: Rectangle {
+        delegate: Rectangle {
             height: 30;
-            color: styleData.selected ? "#0077cc" : (styleData.alternate? "#eee" : "#fff")
+            width: parent.width
+            color: model.selected ? "#0077cc" : ((index%2 === 0)? "#eee" : "#fff")
 
+            NativeText {
+                text: model.name
+                color: model.selected ? "#ffffff" : "#000000"
+                anchors.fill: parent;
+                horizontalAlignment: "AlignLeft"
+                anchors.margins: 5
+            }
+            MouseArea {
+                anchors.fill: parent;
+                onClicked: {
+                    for (var i = 0; i < sourceCategories.count; i++) {
+                        sourceCategories.setProperty(i, "selected", false)
+                    }
+                    sourceCategories.setProperty(index, "selected", true)
+                }
+            }
         }
 
-
-        //        headerVisible: false;
-        TableViewColumn {
-            //% "Source"
-            title: qsTrId("clone-window-source-table-name")
-            role: "name"
-            width: sourceTable.width
+        function getFirstSelected() {
+            for (var i = 0; i < sourceCategories.count; i++) {
+                if (sourceCategories.get(i).selected) {
+                    return i;
+                }
+            }
+            return -1;
         }
+
+        ScrollBar.vertical: ScrollBar {}
+
     }
 
-    TableView {
+    ListView {
 
         id: destinationTable
         anchors.left: parent.horizontalCenter;
         anchors.right: parent.right;
         anchors.top:parent.top;
         anchors.bottom: includePreferences.top;
-        model: categoryListModel;
-        selectionMode: SelectionMode.ExtendedSelection
+        model: destinationCategories;
+        clip: true
+        focus: true;
+        boundsBehavior: Flickable.StopAtBounds
 
-        rowDelegate: Rectangle {
+        property int selStart: 0
+
+        function deselect_all() {
+            var c = destinationCategories.count;
+            if (c > 0) {
+                select(0, c-1, false);
+            }
+        }
+
+        function select(start, end, value) {
+            var a = start < end ? start : end;
+            var b = start >= end ? start : end;
+            for (var i = a; i <= b; i++) {
+                var target = (value === -1) ? !destinationCategories.get(i).selected : value;
+                destinationCategories.setProperty(i, "selected", target);
+            }
+        }
+
+        function select_one(i, value) {
+            destinationCategories.setProperty(i, "selected", value);
+        }
+
+        delegate: Rectangle {
             height: 30;
-            color: styleData.selected ? "#0077cc" : (styleData.alternate? "#eee" : "#fff")
+            width: parent.width
+            color: model.selected ? "#0077cc" : ((index%2 === 0)? "#eee" : "#fff")
 
+            NativeText {
+                text: model.name
+                color: model.selected ? "#ffffff" : "#000000"
+                anchors.fill: parent;
+                horizontalAlignment: "AlignLeft"
+                anchors.margins: 5
+            }
+            MouseArea {
+                anchors.fill: parent;
+
+                id: item_mousearea
+                onClicked: {
+                    switch(mouse.modifiers){
+                    case Qt.ControlModifier:
+                        destinationTable.select(destinationTable.selStart, index, true)
+                        break;
+                    case Qt.ShiftModifier:
+                        destinationTable.select_one(index, !selected)
+                        destinationTable.selStart=index;
+                        break;
+                    default:
+                        destinationTable.deselect_all();
+                        destinationTable.select_one(index, !selected)
+                        destinationTable.selStart=index;
+                        break;
+                    }
+                }
+
+            }
         }
 
-        //        headerVisible: false;
-        TableViewColumn {
-            //% "Destination"
-            title: qsTrId("clone-window-destination-table-name")
-            role: "name"
-            width: destinationTable.width
-        }
-
+        ScrollBar.vertical: ScrollBar {}
     }
 
     CheckBox {
@@ -103,15 +181,14 @@ ApplicationWindow {
             //% "Ok"
             text: qsTrId("clone-dialog-ok");
             onClicked: {
-                var s = sourceTable.currentRow;
+                var s = sourceTable.getFirstSelected();
                 if (s < 0) {
-                    console.log("Error: source is not selected")
+                    console.error("Clone source is not selected")
                     window.close();
                     return;
                 }
-                var si = categoryListModel.get(s);
+                var si = sourceCategories.get(s);
                 var si_name = si.name;
-
 
                 var trks = cupData.tracks
 
@@ -120,7 +197,7 @@ ApplicationWindow {
                 for (var i = 0; i < trks.length; i++) {
                     var t = trks[i];
 
-                    if (t.name == si_name) {
+                    if (t.name === si_name) {
                         found = true;
                         src_obj = t;
                         break;
@@ -140,12 +217,16 @@ ApplicationWindow {
                     var tname = t.name;
 
                     var found = false;
-                    destinationTable.selection.forEach( function(d) {
+                    for (var d = 0; d < destinationTable.count; d++) {
                         if (s === d ) {
-                            return;
+                            continue;
                         }
 
-                        var di = categoryListModel.get(d)
+                        var di = sourceCategories.get(d)
+
+                        if (!di.selected) {
+                            continue;
+                        }
                         if (tname === di.name) {
                             if (includePreferences.checked) {
                                 var new_obj = {
@@ -207,7 +288,7 @@ ApplicationWindow {
                             found = true;
                         }
 
-                    })
+                    }
 
                     if (!found) {
                         result.push(t)
