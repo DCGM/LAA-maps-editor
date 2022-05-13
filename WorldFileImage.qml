@@ -9,8 +9,6 @@ Item {
     property double zone
     property bool northHemi
 
-
-
     property variant ut;
     property variant uts;
     property variant t: (ut !== undefined) ? getMappointFromCoord(ut[0], ut[1]) : [0, 0]
@@ -108,11 +106,10 @@ Item {
         property variant source: ShaderEffectSource { sourceItem: inputImage; hideSource: true; }
         anchors.fill: parent;
 
-        //property variant a: [[0, 0], [1, 0], [0, 1], [1, 1]]
-        property variant a: Qt.point(0, 0.00622009);
-        property variant b: Qt.point(0.0200996, 1);
-        property variant c: Qt.point(0.980166, 0);
-        property variant d: Qt.point(1, 0.986063);
+        property point a: Qt.point(0, 0.00622009);
+        property point b: Qt.point(0.0200996, 1);
+        property point c: Qt.point(0.980166, 0);
+        property point d: Qt.point(1, 0.986063);
 //        property variant e: Qt.point(0.4, 0.3);
 
         property url fragmentShaderFilename: Qt.resolvedUrl("fragment.fsh");

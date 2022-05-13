@@ -1,18 +1,18 @@
-import QtQuick 2.9
-import QtQuick.Dialogs 1.2
-import QtQuick.Controls 1.4
+import QtQuick 2.12
+import QtQuick.Controls 2.12
 
 Dialog {
     id: dialog;
     property alias question: questionText.text
     property alias text: textField.text;
 
-    standardButtons:  StandardButton.Ok;
-    width: 500;
-    height: 100;
-    Column{
-        anchors.fill: parent;
-        spacing: 10;
+    standardButtons: Dialog.Ok | Dialog.Cancel;
+    contentItem: Column {
+        id: column
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.margins: 10;
+        spacing: 15;
 
         NativeText {
             id: questionText

@@ -1,5 +1,5 @@
-import QtQuick 2.9
-import QtQuick.Controls 1.4
+import QtQuick 2.12
+import QtQuick.Controls 2.12
 
 ApplicationWindow {
     id: window
@@ -12,7 +12,6 @@ ApplicationWindow {
 
     signal accepted();
     signal canceled();
-
 
     property alias tp_count: turnpoints_number.text
     property alias tp_max_score: turnpoints_scoring_value.text
