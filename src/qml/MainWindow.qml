@@ -858,10 +858,8 @@ ApplicationWindow {
 //        var gpxFilename = "file:///var/www/html/tucek2/x.gpx"
 //        importGpx(gpxFilename);
 
-        map.worldfiles = [{"image":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_0.gif","gfw":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_0.gfw","utmZone":33,"northHemisphere":true},{"image":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_1.gif","gfw":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_1.gfw","utmZone":33,"northHemisphere":true},{"image":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_2.gif","gfw":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_2.gfw","utmZone":33,"northHemisphere":true}]
-        map.wfVisible = true;
-
-
+//        map.worldfiles = [{"image":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_0.gif","gfw":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_0.gfw","utmZone":33,"northHemisphere":true},{"image":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_1.gif","gfw":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_1.gfw","utmZone":33,"northHemisphere":true},{"image":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_2.gif","gfw":"file:///home/jmlich/workspace/tucek/data/rokycany/rokycan.Rokycany 2013_dlazdice_0_2.gfw","utmZone":33,"northHemisphere":true}]
+//        map.wfVisible = true;
 
         map.requestUpdate()
 
