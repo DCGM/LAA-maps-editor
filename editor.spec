@@ -46,7 +46,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 /usr/share/editor/i18n
 /usr/share/editor/i18n/editor_cs_CZ.qm
 /usr/share/editor/i18n/editor_en_US.qm
-/usr/share/editor/editor_defaults.json
 /usr/share/applications/editor.desktop
 /usr/share/icons/hicolor/applications/64x64/editor64.ico
 /usr/share/icons/hicolor/applications/64x64/editor64.png
