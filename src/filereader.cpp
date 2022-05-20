@@ -33,6 +33,7 @@ QByteArray FileReader::read(const QUrl &filename) {
         QString resource_fn = ":" + filename.toString(QUrl::RemoveScheme);
         return read_local(resource_fn);
     }
+    qWarning() << "cannot open file " << filename;
     return QByteArray();
 }
 
