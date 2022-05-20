@@ -6,6 +6,6 @@ GenericName=Competition Editor
 Exec=env QT_QPA_PLATFORMTHEME=gtk2 editor %u
 Terminal=false
 Type=Application
-Icon=editor64.png
+Icon=editor64
 Categories=Application;Qt;Network;
 StartupNotify=true

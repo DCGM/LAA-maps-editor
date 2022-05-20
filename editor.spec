@@ -22,7 +22,7 @@ BuildRequires: qt5-qtdeclarative-devel
 editor is tool for editing of LAA Competion tracks
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n LAA-maps-editor-master
 
 %build
 %cmake
