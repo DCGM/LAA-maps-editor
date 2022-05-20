@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import QtQml.Models 2.12
 import "./components"
 
 ApplicationWindow {
@@ -19,28 +20,29 @@ ApplicationWindow {
         if (cupData === undefined) {
             return;
         }
-        sourceCategories.clear();
-        destinationCategories.clear();
+        categories.clear();
+        sourceCategoriesSelection.clearSelection();
 
         var trks = cupData.tracks
         for (var i = 0; i < trks.length; i++) {
             var t = trks[i];
-            sourceCategories.append({
-                                         "name" : t.name,
-                                         "selected": false,
-                                     })
-            destinationCategories.append({
-                                         "name" : t.name,
-                                         "selected": false,
-                                     })
+            categories.append({"name" : t.name})
         }
     }
 
-    ListModel {
-        id: sourceCategories;
+
+    ItemSelectionModel {
+        id: sourceCategoriesSelection
+        model: categories
     }
+
+    ItemSelectionModel {
+        id: destinationCategoriesSelection
+        model: categories
+    }
+
     ListModel {
-        id: destinationCategories;
+        id: categories;
     }
 
     ListView {
@@ -49,18 +51,20 @@ ApplicationWindow {
         anchors.right: parent.horizontalCenter;
         anchors.top:parent.top;
         anchors.bottom: includePreferences.top;
-        model: sourceCategories;
+        model: categories;
         clip: true
         boundsBehavior: Flickable.StopAtBounds
 
         delegate: Rectangle {
             height: 30;
             width: parent.width
-            color: model.selected ? "#0077cc" : ((index%2 === 0)? "#eee" : "#fff")
+            property bool selected: sourceCategoriesSelection.hasSelection
+                                    && sourceCategoriesSelection.isSelected(categories.index(index, 0))
+            color: selected ? "#0077cc" : ((index%2 === 0)? "#eee" : "#fff")
 
             NativeText {
                 text: model.name
-                color: model.selected ? "#ffffff" : "#000000"
+                color: selected  ? "#ffffff" : "#000000"
                 anchors.fill: parent;
                 horizontalAlignment: "AlignLeft"
                 anchors.margins: 5
@@ -68,21 +72,9 @@ ApplicationWindow {
             MouseArea {
                 anchors.fill: parent;
                 onClicked: {
-                    for (var i = 0; i < sourceCategories.count; i++) {
-                        sourceCategories.setProperty(i, "selected", false)
-                    }
-                    sourceCategories.setProperty(index, "selected", true)
+                    sourceCategoriesSelection.select(categories.index(index,0), ItemSelectionModel.ClearAndSelect)
                 }
             }
-        }
-
-        function getFirstSelected() {
-            for (var i = 0; i < sourceCategories.count; i++) {
-                if (sourceCategories.get(i).selected) {
-                    return i;
-                }
-            }
-            return -1;
         }
 
         ScrollBar.vertical: ScrollBar {}
@@ -96,41 +88,23 @@ ApplicationWindow {
         anchors.right: parent.right;
         anchors.top:parent.top;
         anchors.bottom: includePreferences.top;
-        model: destinationCategories;
+        model: categories;
         clip: true
         focus: true;
         boundsBehavior: Flickable.StopAtBounds
 
         property int selStart: 0
 
-        function deselect_all() {
-            var c = destinationCategories.count;
-            if (c > 0) {
-                select(0, c-1, false);
-            }
-        }
-
-        function select(start, end, value) {
-            var a = start < end ? start : end;
-            var b = start >= end ? start : end;
-            for (var i = a; i <= b; i++) {
-                var target = (value === -1) ? !destinationCategories.get(i).selected : value;
-                destinationCategories.setProperty(i, "selected", target);
-            }
-        }
-
-        function select_one(i, value) {
-            destinationCategories.setProperty(i, "selected", value);
-        }
-
         delegate: Rectangle {
             height: 30;
             width: parent.width
-            color: model.selected ? "#0077cc" : ((index%2 === 0)? "#eee" : "#fff")
+            property bool selected: destinationCategoriesSelection.hasSelection
+                                    && destinationCategoriesSelection.isSelected(categories.index(index, 0))
+            color: selected ? "#0077cc" : ((index%2 === 0)? "#eee" : "#fff")
 
             NativeText {
                 text: model.name
-                color: model.selected ? "#ffffff" : "#000000"
+                color: selected ? "#ffffff" : "#000000"
                 anchors.fill: parent;
                 horizontalAlignment: "AlignLeft"
                 anchors.margins: 5
@@ -142,18 +116,21 @@ ApplicationWindow {
                 onClicked: {
                     switch(mouse.modifiers){
                     case Qt.ControlModifier:
-                        destinationTable.select(destinationTable.selStart, index, true)
+                        var a = (destinationTable.selStart < index) ? destinationTable.selStart : index;
+                        var b = (destinationTable.selStart >= index) ? destinationTable.selStart : index;
+                        for (var i = a; i < b; i++) {
+                            destinationCategoriesSelection.select(categories.index(i,0), ItemSelectionModel.Select)
+                        }
+
                         break;
                     case Qt.ShiftModifier:
-                        destinationTable.select_one(index, !selected)
-                        destinationTable.selStart=index;
+                        destinationCategoriesSelection.select(categories.index(index, 0), ItemSelectionModel.Select)
                         break;
                     default:
-                        destinationTable.deselect_all();
-                        destinationTable.select_one(index, !selected)
-                        destinationTable.selStart=index;
+                        destinationCategoriesSelection.select(categories.index(index, 0), ItemSelectionModel.ClearAndSelect)
                         break;
                     }
+                    destinationTable.selStart = index
                 }
 
             }
@@ -182,13 +159,12 @@ ApplicationWindow {
             //% "Ok"
             text: qsTrId("clone-dialog-ok");
             onClicked: {
-                var s = sourceTable.getFirstSelected();
-                if (s < 0) {
+                if (!sourceCategoriesSelection.hasSelection) {
                     console.error("Clone source is not selected")
                     window.close();
                     return;
                 }
-                var si = sourceCategories.get(s);
+                var si = categories.get(sourceCategoriesSelection.selectedRows(0));
                 var si_name = si.name;
 
                 var trks = cupData.tracks
@@ -218,14 +194,13 @@ ApplicationWindow {
                     var tname = t.name;
 
                     var found = false;
-                    for (var d = 0; d < destinationTable.count; d++) {
-                        if (s === d ) {
+                    for (var d = 0; d < categories.count; d++) {
+                        var di = categories.get(d)
+                        if (si_name === di.name) { // do not try to replace own category
                             continue;
                         }
 
-                        var di = sourceCategories.get(d)
-
-                        if (!di.selected) {
+                        if (!destinationCategoriesSelection.isSelected(categories.index(d, 0))) {
                             continue;
                         }
                         if (tname === di.name) {
