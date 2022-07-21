@@ -759,18 +759,27 @@ ApplicationWindow {
         nameFilters: [
             "Keyhole Markup Language (*.kml)",
             "GPS exchange Format (*.gpx)",
+            "GPS exchange Format Route (*.gpx)",
             "See You cup (*.cup)",
         ]
         onAccepted: {
-            var str = String(fileUrl);
-            if (str.match(/\.kml$/)) {
+            console.log("Export: " + exportFileDialog.selectedNameFilterIndex + " " + exportFileDialog.selectedNameFilter + " " + fileUrl)
+            switch(exportFileDialog.selectedNameFilterIndex) {
+            case 0:
                 exportKml(fileUrl);
-            } else if (str.match(/\.gpx$/)) {
+                break;
+            case 1:
                 exportGpx(fileUrl);
-            } else if (str.match(/\.cup$/)) {
+                break;
+            case 2:
+                exportGpxRoute(fileUrl);
+                break;
+            case 3:
                 exportCup(fileUrl);
-            } else {
-                console.error("unsupported file format (please add file extension)")
+                break;
+            default:
+                console.error("unsupported file format (please add file extension)" + exportFileDialog.selectedNameFilter)
+                break;
             }
         }
     }
@@ -1223,6 +1232,38 @@ ApplicationWindow {
         }
 
         str += "</gpx>"
+
+        file_reader.write(Qt.resolvedUrl(filename), str);
+
+    }
+
+    function exportGpxRoute(filename) {
+        var str ="";
+        str += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<gpx>
+<rte xmlns=\"http://www.topografix.com/GPX/1/1\">
+"
+        var points = tracks.points;
+
+        for (var tidx = 0; tidx < tracks.tracks.length; tidx++) {
+            var trk = tracks.tracks[tidx];
+            var conn = trk.conn
+            var point;
+
+            if (conn.length > 0) { // export first non empty track
+                for (var i = 0; i < conn.length; i++) {
+                    point = getPtByPid(conn[i].pid , points);
+
+                    str += "<rtept lat=\""+point.lat+"\" lon=\""+point.lon+"\">"
+                    str += "<name>"+point.name+"</name>"
+                    str += "</rtept>\n"
+                }
+                break;
+            }
+        }
+
+
+        str += "</rte></gpx>"
 
         file_reader.write(Qt.resolvedUrl(filename), str);
 
