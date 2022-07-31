@@ -1256,6 +1256,8 @@ ApplicationWindow {
 
                     str += "<rtept lat=\""+point.lat+"\" lon=\""+point.lon+"\">"
                     str += "<name>"+point.name+"</name>"
+                    str += "<cmt>"+point.name+"</cmt>"
+                    str += "<desc>"+point.name+"</desc>"
                     str += "</rtept>\n"
                 }
                 break;

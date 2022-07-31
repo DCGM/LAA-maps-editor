@@ -31,14 +31,16 @@ Item {
         anchors.margins: 4
         Connections {
             target: cidComboLoader.item
-            function onNewCid(cid) {
+            onNewCid: {
+//            function onNewCid(cid) {
                 changeModel(styleData.row, styleData.role, cid)
             }
         }
 
         Connections {
             target: cidComboLoader.item
-            function onNewScore(value) {
+            onNewScore: {
+//            function onNewScore(value) {
                 changeModel(styleData.row, styleData.role, value)
             }
         }
