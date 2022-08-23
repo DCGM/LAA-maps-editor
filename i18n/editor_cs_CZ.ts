@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs_CZ">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs_CZ">
 <context>
-    <name></name>
+    <name/>
     <message id="props-detail">
         <location filename="../PropertiesDetail.qml" line="10"/>
         <source>Category properties %1</source>
@@ -207,7 +205,7 @@
         <location filename="../AboutDialog.qml" line="111"/>
         <source>
 Authors: &lt;br/&gt;
-Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=&quot;http://www.fit.vutbr.cz/&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
+Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=&quot;https://www.fit.vutbr.cz/&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
 
 Licence: &lt;br/&gt;
 
@@ -243,7 +241,7 @@ By installing, copying or other use of Software User declares he/she has read th
 </source>
         <oldsource>
 Authors: &lt;br/&gt;
-Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;http://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
+Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;https://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
 
 Licence: &lt;br/&gt;
 
@@ -277,7 +275,6 @@ This licence agreement provides in essentials the same extent of rights as the t
 This agreement is governed by law of the Czech Republic. In case of a dispute, the jurisdiction shall be that of courts in the Czech Republic.
 By installing, copying or other use of Software User declares he/she has read this terms and conditions, understands them and his/her use of Software is a demonstration of his/her free will absent of any duress.
 </oldsource>
-        <translatorcomment>viz GPL Licence</translatorcomment>
         <translation>
 Autoři: &lt;br/&gt;
 Jozef Mlich, Adam Siroky, Pavel Zemcik, &lt;a href=\&quot;http://www.fit.vutbr.cz/\&quot;&gt;FIT VUT Brno&lt;/a&gt; &lt;br/&gt; &lt;br/&gt;
@@ -380,11 +377,11 @@ By installing, copying or other use of Software User declares he/she has read th
     </message>
     <message id="point-detail-speed-min-checkbox">
         <source>Speed min</source>
-        <translation type="vanished">Minimální rychlost</translation>
+        <translation type="vanished">Rychlost min</translation>
     </message>
     <message id="point-detail-speed-max-checkbox">
         <source>Speed max</source>
-        <translation type="vanished">Maximální rychlost</translation>
+        <translation type="vanished">Rychlost max</translation>
     </message>
     <message id="point-detail-turn-point-checkbox">
         <location filename="../PropertiesDetail.qml" line="330"/>
@@ -641,11 +638,7 @@ By installing, copying or other use of Software User declares he/she has read th
     <message id="points-list-circle-point-name" numerus="yes">
         <location filename="../PointsList.qml" line="351"/>
         <source>Circle point %n</source>
-        <translation>
-            <numerusform>Bod kružnice %n</numerusform>
-            <numerusform>Bod kružnice %n</numerusform>
-            <numerusform>Bod kružnice %n</numerusform>
-        </translation>
+        <translation><numerusform>Bod kroužení %n</numerusform><numerusform>Bod kroužení %n</numerusform><numerusform>Bod kroužení %n</numerusform><numerusform>Bod kroužení %n</numerusform></translation>
     </message>
     <message id="points-list-remove-points">
         <location filename="../PointsList.qml" line="217"/>
@@ -696,11 +689,7 @@ By installing, copying or other use of Software User declares he/she has read th
     <message id="points-list-line-point-name" numerus="yes">
         <location filename="../PointsList.qml" line="372"/>
         <source>Line point %n</source>
-        <translation>
-            <numerusform>Bod čáry %n</numerusform>
-            <numerusform>Bod čáry %n</numerusform>
-            <numerusform>Bod čáry %n</numerusform>
-        </translation>
+        <translation><numerusform>Bod přímky %n</numerusform><numerusform>Bod přímky %n</numerusform><numerusform>Bod přímky %n</numerusform><numerusform>Bod přímky %n</numerusform></translation>
     </message>
     <message id="polygon-list-remove-polygon">
         <location filename="../PolygonList.qml" line="112"/>
@@ -990,6 +979,7 @@ By installing, copying or other use of Software User declares he/she has read th
     <message id="track-list-delegate-sg-short">
         <location filename="../TracksListTableDelegate.qml" line="391"/>
         <source>SG</source>
+        <translatorcomment>space gate</translatorcomment>
         <translation>PB</translation>
     </message>
     <message id="track-list-delegate-alt_min-short">
@@ -1050,11 +1040,13 @@ By installing, copying or other use of Software User declares he/she has read th
     <message id="track-list-delegate-secret-turn-point-short">
         <location filename="../TracksListTableDelegate.qml" line="433"/>
         <source>sec_tp</source>
+        <translatorcomment>secret turn point short</translatorcomment>
         <translation>S_OB</translation>
     </message>
     <message id="track-list-delegate-secret-time-gate-short">
         <location filename="../TracksListTableDelegate.qml" line="438"/>
         <source>sec_tg</source>
+        <translatorcomment>secret time gate short</translatorcomment>
         <translation>S_ČB</translation>
     </message>
     <message id="track-statistics-issue">
