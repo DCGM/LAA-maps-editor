@@ -7,4 +7,4 @@ Application for designing of navigation competition tasks for purposes of [ppt.l
 
 ![](docs/screenshot.jpg)
 
-Translate with [https://explore.transifex.com/dcgm/laa-maps-editor/](Transifex) into your language.
+Translate with [Transifex](https://explore.transifex.com/dcgm/laa-maps-editor/) into your language.
