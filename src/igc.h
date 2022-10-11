@@ -103,7 +103,8 @@ public:
 };
 
 /// Pilot event.
-struct PilotEvent : public IgcEvent { };
+struct PilotEvent : public IgcEvent {
+};
 
 /// A class that loads an IGC file.
 class IgcFile : public QAbstractListModel {
