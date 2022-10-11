@@ -19,52 +19,43 @@
 
 //#include <QObject>
 #include <QPixmap>
-#include <QQuickPaintedItem>
 #include <QQuickItem>
+#include <QQuickPaintedItem>
 //#include <QGraphicsObject>
 //#include <QPainter>
 //#include <QStyleOptionGraphicsItem>
-#include <QQuickView>
 #include "imagesaver.h"
+#include <QQuickView>
 
+ImageSaver::ImageSaver(QObject *parent) : QObject(parent) {}
 
-ImageSaver::ImageSaver(QObject *parent) :
-    QObject(parent)
-{
+void ImageSaver::save(QQuickItem *item, const QUrl &url) {
 
-}
-
-void ImageSaver::save(QQuickItem* item, const QUrl& url)
-{
-
-    QString filename = url.toLocalFile();
-    if (item) {
-        QQuickWindow *window = item->window();
-        if (window == NULL) {
-            qDebug() << "ImageSaver::save() window == NULL";
-            return;
-        }
-        QImage grabbed = window->grabWindow();
-        QPointF poi = item->mapToScene(QPointF(0,0));
-        QRectF rf(poi.x(), poi.y(), item->width(), item->height());
-        rf = rf.intersected(QRectF(0,0, grabbed.width(), grabbed.height()));
-
-        QImage result = grabbed.copy(rf.toAlignedRect());
-
-        qDebug() << "saving image into: " << filename;
-        result.save(filename);
-    } else {
-        qDebug() << "ImageSaver::save Item == NULL";
+  QString filename = url.toLocalFile();
+  if (item) {
+    QQuickWindow *window = item->window();
+    if (window == NULL) {
+      qDebug() << "ImageSaver::save() window == NULL";
+      return;
     }
+    QImage grabbed = window->grabWindow();
+    QPointF poi = item->mapToScene(QPointF(0, 0));
+    QRectF rf(poi.x(), poi.y(), item->width(), item->height());
+    rf = rf.intersected(QRectF(0, 0, grabbed.width(), grabbed.height()));
 
+    QImage result = grabbed.copy(rf.toAlignedRect());
 
-//    QQuickView* view = new QQuickView();
-//    view->rootObject()
+    qDebug() << "saving image into: " << filename;
+    result.save(filename);
+  } else {
+    qDebug() << "ImageSaver::save Item == NULL";
+  }
 
-//    QImage img = currentView_->grabWindow();
-//    img.save(path);
+  //    QQuickView* view = new QQuickView();
+  //    view->rootObject()
 
-//    qDebug() << "ImageSave::save " << item << filename;
+  //    QImage img = currentView_->grabWindow();
+  //    img.save(path);
 
-
+  //    qDebug() << "ImageSave::save " << item << filename;
 }
