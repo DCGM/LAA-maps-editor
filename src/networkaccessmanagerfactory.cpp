@@ -1,3 +1,3 @@
 #include "networkaccessmanagerfactory.h"
 
-NetworkAccessManagerFactory::NetworkAccessManagerFactory() {}
+NetworkAccessManagerFactory::NetworkAccessManagerFactory() { }

@@ -7,13 +7,13 @@
 
 class NetworkAccessManagerFactory : public QQmlNetworkAccessManagerFactory {
 public:
-  explicit NetworkAccessManagerFactory();
+    explicit NetworkAccessManagerFactory();
 
-  QNetworkAccessManager *create(QObject *parent) {
-    CustomNetworkAccessManager *manager =
-        new CustomNetworkAccessManager(parent);
-    return manager;
-  }
+    QNetworkAccessManager* create(QObject* parent)
+    {
+        CustomNetworkAccessManager* manager = new CustomNetworkAccessManager(parent);
+        return manager;
+    }
 };
 
 #endif // NETWORKACCESSMANAGERFACTORY_H

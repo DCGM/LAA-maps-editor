@@ -25,13 +25,13 @@
 #include <QQuickPaintedItem>
 
 class ImageSaver : public QObject {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  explicit ImageSaver(QObject *parent = 0);
-  // QQuickItem
-  Q_INVOKABLE void save(QQuickItem *item, const QUrl &filename);
-  //    Q_INVOKABLE void save(QString item, QString filename);
+    explicit ImageSaver(QObject* parent = 0);
+    // QQuickItem
+    Q_INVOKABLE void save(QQuickItem* item, const QUrl& filename);
+    //    Q_INVOKABLE void save(QString item, QString filename);
 };
 
 #endif // IMAGESAVER_H
