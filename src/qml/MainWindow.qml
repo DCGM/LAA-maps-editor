@@ -289,6 +289,7 @@ ApplicationWindow {
                 onTriggered: {
                     map.url = "";
                     map.url_subdomains = [];
+                    map.maxZoomLevel = 19
                 }
                 shortcut: "Ctrl+1"
 
@@ -311,6 +312,7 @@ ApplicationWindow {
                     var homepath = QStandardPathsHomeLocation+"/Maps/OSM/"
                     var binpath = QStandardPathsApplicationFilePath +"/../Maps/OSM/";
                     map.url_subdomains = [];
+                    map.maxZoomLevel = 19
                     if (file_reader.is_dir_and_exists_local(binpath)) {
                         console.log("local map " + binpath)
                         map.url = Qt.resolvedUrl("file:///"+binpath) + "%(zoom)d/%(x)d/%(y)d.png"
@@ -332,6 +334,7 @@ ApplicationWindow {
                 onTriggered: {
                     map.url = "https://%(s)d.tile.openstreetmap.org/%(zoom)d/%(x)d/%(y)d.png";
                     map.url_subdomains = ['a','b', 'c'];
+                    map.maxZoomLevel = 19
                 }
                 shortcut: "Ctrl+3"
 
@@ -344,6 +347,7 @@ ApplicationWindow {
                 onTriggered: {
                     map.url = "https://%(s)d.google.com/vt/lyrs=m@248407269&hl=x-local&x=%(x)d&y=%(y)d&z=%(zoom)d&s=Galileo"
                     map.url_subdomains = ['mt0','mt1','mt2','mt3']
+                    map.maxZoomLevel = 19
                 }
                 shortcut: "Ctrl+4"
             }
@@ -356,6 +360,7 @@ ApplicationWindow {
                 onTriggered: {
                     map.url = "https://%(s)d.google.com/vt/lyrs=t,r&x=%(x)d&y=%(y)d&z=%(zoom)d"
                     map.url_subdomains = ['mt0','mt1','mt2','mt3']
+                    map.maxZoomLevel = 19
                 }
                 shortcut: "Ctrl+5"
             }
@@ -368,6 +373,7 @@ ApplicationWindow {
                 onTriggered: {
                     map.url = 'https://%(s)d.google.com/vt/lyrs=s&x=%(x)d&y=%(y)d&z=%(zoom)d';
                     map.url_subdomains = ['mt0','mt1','mt2','mt3']
+                    map.maxZoomLevel = 19
                 }
                 shortcut: "Ctrl+6"
             }
@@ -380,8 +386,22 @@ ApplicationWindow {
                 onTriggered: {
                     map.url = 'https://%(s)d.google.com/vt/lyrs=s,h&x=%(x)d&y=%(y)d&z=%(zoom)d';
                     map.url_subdomains = ['mt0','mt1','mt2','mt3']
+                    map.maxZoomLevel = 19
                 }
                 shortcut: "Ctrl+7"
+            }
+
+            MenuItem {
+                //% "Databáze letišť"
+                text: qsTrId("main-map-menu-dl-map")
+                exclusiveGroup: mapTypeExclusive
+                checkable: true;
+                onTriggered: {
+                    map.url = 'https://dl.cz/api/resources/map/actual/Z%(zoom)d/%(y)d/%(x)d.png';
+                    map.url_subdomains = []
+                    map.maxZoomLevel = 13
+                }
+                shortcut: "Ctrl+8"
             }
 
             MenuItem {
@@ -392,8 +412,9 @@ ApplicationWindow {
                 onTriggered: {
                     mapurl_dialog.open();
                     map.url_subdomains = [];
+                    map.maxZoomLevel = 19
                 }
-                shortcut: "Ctrl+8"
+                shortcut: "Ctrl+9"
             }
 
 
