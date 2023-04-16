@@ -392,19 +392,6 @@ ApplicationWindow {
             }
 
             MenuItem {
-                //% "Databáze letišť"
-                text: qsTrId("main-map-menu-dl-map")
-                exclusiveGroup: mapTypeExclusive
-                checkable: true;
-                onTriggered: {
-                    map.url = 'https://dl.cz/api/resources/map/actual/Z%(zoom)d/%(y)d/%(x)d.png';
-                    map.url_subdomains = []
-                    map.maxZoomLevel = 13
-                }
-                shortcut: "Ctrl+8"
-            }
-
-            MenuItem {
                 //% "Custom tile layer"
                 text: qsTrId("main-map-menu-custom-tile-layer")
                 exclusiveGroup: mapTypeExclusive
@@ -414,9 +401,37 @@ ApplicationWindow {
                     map.url_subdomains = [];
                     map.maxZoomLevel = 19
                 }
-                shortcut: "Ctrl+9"
+                shortcut: "Ctrl+8"
             }
 
+            MenuItem {
+                //% "Databáze letišť"
+                text: qsTrId("main-map-menu-dl-map")
+                exclusiveGroup: mapTypeExclusive
+                checkable: true;
+                property string homePath: QStandardPathsHomeLocation+"/Maps/DL/"
+                property string binPath: QStandardPathsApplicationFilePath +"/../Maps/DL/"
+                visible: file_reader.is_dir_and_exists_local(binPath) || file_reader.is_dir_and_exists_local(homePath)
+                onTriggered: {
+
+                    map.url_subdomains = [];
+                    map.maxZoomLevel = 19
+                    if (file_reader.is_dir_and_exists_local(binPath)) {
+                        console.log("local map " + binPath)
+                        map.url = Qt.resolvedUrl("file:///"+binPath) + "%(zoom)d/%(x)d/%(y)d.png"
+                    } else if (file_reader.is_dir_and_exists_local(homePath)) {
+                        console.log("local map " + homePath)
+                        map.url = Qt.resolvedUrl("file:///"+homePath) + "%(zoom)d/%(x)d/%(y)d.png"
+                    } else {
+                        map.url = "";
+                        console.warn("local map not found")
+                    }
+
+                    map.url_subdomains = []
+                    map.maxZoomLevel = 13
+                }
+                shortcut: "Ctrl+9"
+            }
 
 
             MenuItem {
