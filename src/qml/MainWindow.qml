@@ -290,6 +290,7 @@ ApplicationWindow {
                     map.url = "";
                     map.url_subdomains = [];
                     map.maxZoomLevel = 19
+                    map.attribution = ""
                 }
                 shortcut: "Ctrl+1"
 
@@ -313,6 +314,7 @@ ApplicationWindow {
                     var binpath = QStandardPathsApplicationFilePath +"/../Maps/OSM/";
                     map.url_subdomains = [];
                     map.maxZoomLevel = 19
+                    map.attribution = ""
                     if (file_reader.is_dir_and_exists_local(binpath)) {
                         console.log("local map " + binpath)
                         map.url = Qt.resolvedUrl("file:///"+binpath) + "%(zoom)d/%(x)d/%(y)d.png"
@@ -335,6 +337,10 @@ ApplicationWindow {
                     map.url = "https://%(s)d.tile.openstreetmap.org/%(zoom)d/%(x)d/%(y)d.png";
                     map.url_subdomains = ['a','b', 'c'];
                     map.maxZoomLevel = 19
+                    map.attribution = "data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, " +
+                    "<a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, "
+                    "Imagery © <a href=\"http://mapbox.com\">Mapbox</a>"
+
                 }
                 shortcut: "Ctrl+3"
 
@@ -348,6 +354,7 @@ ApplicationWindow {
                     map.url = "https://%(s)d.google.com/vt/lyrs=m@248407269&hl=x-local&x=%(x)d&y=%(y)d&z=%(zoom)d&s=Galileo"
                     map.url_subdomains = ['mt0','mt1','mt2','mt3']
                     map.maxZoomLevel = 19
+                    map.attribution = "data &copy; Google"
                 }
                 shortcut: "Ctrl+4"
             }
@@ -361,6 +368,7 @@ ApplicationWindow {
                     map.url = "https://%(s)d.google.com/vt/lyrs=t,r&x=%(x)d&y=%(y)d&z=%(zoom)d"
                     map.url_subdomains = ['mt0','mt1','mt2','mt3']
                     map.maxZoomLevel = 19
+                    map.attribution = "data &copy; Google"
                 }
                 shortcut: "Ctrl+5"
             }
@@ -374,6 +382,7 @@ ApplicationWindow {
                     map.url = 'https://%(s)d.google.com/vt/lyrs=s&x=%(x)d&y=%(y)d&z=%(zoom)d';
                     map.url_subdomains = ['mt0','mt1','mt2','mt3']
                     map.maxZoomLevel = 19
+                    map.attribution = "data &copy; Google"
                 }
                 shortcut: "Ctrl+6"
             }
@@ -387,6 +396,7 @@ ApplicationWindow {
                     map.url = 'https://%(s)d.google.com/vt/lyrs=s,h&x=%(x)d&y=%(y)d&z=%(zoom)d';
                     map.url_subdomains = ['mt0','mt1','mt2','mt3']
                     map.maxZoomLevel = 19
+                    map.attribution = "data &copy; Google"
                 }
                 shortcut: "Ctrl+7"
             }
@@ -400,6 +410,7 @@ ApplicationWindow {
                     mapurl_dialog.open();
                     map.url_subdomains = [];
                     map.maxZoomLevel = 19
+                    map.attribution = ""
                 }
                 shortcut: "Ctrl+8"
             }
@@ -429,6 +440,7 @@ ApplicationWindow {
 
                     map.url_subdomains = []
                     map.maxZoomLevel = 13
+                    map.attribution = "&copy; Databáze Letišť"
                 }
                 shortcut: "Ctrl+9"
             }
@@ -443,6 +455,7 @@ ApplicationWindow {
                 onTriggered: {
                     map.airspaceUrl = ""
                     map.mapAirspaceVisible = false;
+                    map.airspaceAttribution = ""
                 }
             }
 
@@ -454,6 +467,7 @@ ApplicationWindow {
                 onTriggered: {
                     map.airspaceUrl = "https://skylines.aero/mapproxy/tiles/1.0.0/airspace+airports/EPSG3857/%(zoom)d/%(x)d/%(y)d.png"
                     map.mapAirspaceVisible = true;
+                    map.airspaceAttribution = "&copy; skylines.aero"
                 }
             }
 
@@ -481,6 +495,8 @@ ApplicationWindow {
                         map.mapAirspaceVisible = false;
                         console.warn("local map not found")
                     }
+                    map.airspaceAttribution = ""
+
                     console.log(map.airspaceUrl)
                 }
 

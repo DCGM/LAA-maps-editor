@@ -69,6 +69,9 @@ Rectangle {
     property variant url_subdomains: []
     property string airspaceUrl;
 
+    property string attribution: "";
+    property string airspaceAttribution: "";
+
 
     //    property alias wfImageSource: worldFileImage.source
     //    property alias wfParam: worldFileImage.param
@@ -1867,6 +1870,18 @@ Rectangle {
 
     FileReader {
         id: filereader
+    }
+
+    NativeText {
+        id: attributionText
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.leftMargin: 5
+        anchors.bottomMargin: 2
+        font.pixelSize: 12
+        textFormat: Text.RichText
+
+        text: parent.attribution + " " + parent.airspaceAttribution
     }
 
 
