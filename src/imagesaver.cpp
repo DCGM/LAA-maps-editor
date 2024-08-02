@@ -17,13 +17,13 @@
  *
  **************************************************************************/
 
-//#include <QObject>
+// #include <QObject>
 #include <QPixmap>
 #include <QQuickItem>
 #include <QQuickPaintedItem>
-//#include <QGraphicsObject>
-//#include <QPainter>
-//#include <QStyleOptionGraphicsItem>
+// #include <QGraphicsObject>
+// #include <QPainter>
+// #include <QStyleOptionGraphicsItem>
 #include "imagesaver.h"
 #include <QQuickView>
 
