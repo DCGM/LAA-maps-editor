@@ -119,6 +119,8 @@ int main(int argc, char* argv[])
     app.setOrganizationDomain("fit.vutbr.cz");
     app.setApplicationName("LAA Maps Editor");
 
+//    qSetMessagePattern("[%{type}] %{time MM-dd hh:mm:ss}  %{file}:%{line} @ %{function}(): %{message}");
+
     qInstallMessageHandler(myMessageHandler);
 
 #if defined(Q_OS_LINUX)
