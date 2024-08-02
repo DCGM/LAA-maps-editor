@@ -147,6 +147,7 @@ ApplicationWindow {
                     }
                     document_changed = false;
 
+                    console.log("writting " + opened_track_filename)
                     file_reader.write(Qt.resolvedUrl(opened_track_filename), JSON.stringify(tracks));
                     storeTrackSettings_with_dir_check(opened_track_filename);
 
@@ -739,6 +740,7 @@ ApplicationWindow {
 
             recentlyOpenedFiles.tryAppend(String(opened_track_filename))
 
+            console.log("writting " + opened_track_filename)
             file_reader.write(Qt.resolvedUrl(opened_track_filename), JSON.stringify(tracks));
             storeTrackSettings_with_dir_check(Qt.resolvedUrl(tucekSettingsCSV));
 
@@ -763,6 +765,7 @@ ApplicationWindow {
                 saveFileDialog.open()
                 return;
             }
+            console.log("writting " + opened_track_filename)
             file_reader.write(Qt.resolvedUrl(opened_track_filename), JSON.stringify(tracks));
             storeTrackSettings_with_dir_check(Qt.resolvedUrl(tucekSettingsCSV));
 
@@ -1217,7 +1220,7 @@ ApplicationWindow {
 
         str += "</Folder></Document></kml>";
 
-
+        console.log("writing " + filename)
         file_reader.write(Qt.resolvedUrl(filename), str);
 
 
@@ -1285,6 +1288,7 @@ ApplicationWindow {
 
         str += "</gpx>"
 
+        console.log("writing " + filename)
         file_reader.write(Qt.resolvedUrl(filename), str);
 
     }
@@ -1319,6 +1323,7 @@ ApplicationWindow {
 
         str += "</rte></gpx>"
 
+        console.log("writing " + filename)
         file_reader.write(Qt.resolvedUrl(filename), str);
 
     }
@@ -1367,6 +1372,7 @@ ApplicationWindow {
             }
         }
 
+        console.log("writing " + filename)
         file_reader.write(Qt.resolvedUrl(filename), str);
 
     }
@@ -1437,7 +1443,7 @@ ApplicationWindow {
 
     function storeTrackSettings_with_dir_check(opened_track_filename) {
         var tucekDir = file_reader.dirname_local(opened_track_filename) + "/" + tucekSettingsDIR;
-        var tucekFile = tucekDir + "/" + tucekSettingsCSV;
+        var tucekFile = "file://" + tucekDir + "/" + tucekSettingsCSV;
         if (file_reader.is_dir_and_exists_local(tucekDir)) {
             console.log("writing "+ tucekFile);
             storeTrackSettings(Qt.resolvedUrl(tucekFile));
@@ -1592,6 +1598,7 @@ ApplicationWindow {
         }
         str += ""
 
+        console.log("writing " + filename)
         file_reader.write(Qt.resolvedUrl(filename), str);
 
     }
