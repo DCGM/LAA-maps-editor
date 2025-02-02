@@ -33,8 +33,8 @@ add_definitions( -DGIT_VERSION="${GIT_VERSION}" )
 
 find_package(Qt5 COMPONENTS Core Quick Xml LinguistTools REQUIRED)
 find_package(Qt5QuickCompiler)
-qtquick_compiler_add_resources(RESOURCES editor.qrc)
-#qt5_add_resources(RESOURCES editor.qrc)
+
+SET(RESOURCES editor.qrc)
 
 file(GLOB TS_FILES i18n/*.ts)
 
