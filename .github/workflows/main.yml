@@ -21,7 +21,7 @@ jobs:
         target: 'desktop'
         arch: 'win64_msvc2019_64'
 #        modules: 'qtwebengine'
-        tools: 'tools_opensslv3_x64,3.0.15-1,qt.tools.opensslv3.win_x64'
+        tools: 'tools_opensslv3_x64,qt.tools.opensslv3.win_x64'
 
     - name: Build
       if: startsWith(matrix.os, 'windows')
