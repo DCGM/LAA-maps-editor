@@ -526,8 +526,27 @@ Rectangle {
     }
 
     function tileUrl(tx, ty) {
-        return tileUrlMultiple(tx, ty, url, true);
+        var imageUrl = tileUrlMultiple(tx, ty, url, true)
+        for (var i = 0; i < imageCache.length; i++) {
+            if (imageCache[i].cacheUrl === imageUrl) {
+                // console.log("Cache hit:", imageUrl)
+                return imageCache[i].source
+            }
+        }
+
+        console.log("cache miss ("+imageCache.length+"): " + imageUrl )
+        var newImage = Qt.createQmlObject(
+            'import QtQuick 2.15;
+                Image {
+                    property string cacheUrl: "'+imageUrl+'";
+                    visible: false;
+                    source: "' + imageUrl + '"
+                }', parent, "dynamicImage")
+        imageCache.push(newImage)
+        return newImage.source;
     }
+
+    property var imageCache: []
 
 
     function tileUrlMultiple(tx, ty, baseUrl, first) {
