@@ -1,6 +1,6 @@
+#include <QRegularExpression>
 #include <QtCore>
 #include <QtXml>
-#include <QRegularExpression>
 
 #include "kmljsonconvertor.h"
 

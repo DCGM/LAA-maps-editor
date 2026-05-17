@@ -34,7 +34,7 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context,
 
 #if defined(Q_OS_LINUX)
     if (!QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation))
-             .exists()) {
+            .exists()) {
         QDir().mkpath(
             QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
     }
@@ -141,8 +141,6 @@ int main(int argc, char* argv[])
 
     QTranslator translator;
     QTranslator qtbasetranslator;
-
-
 
     if (translator.load(QLocale(), QLatin1String("editor"), QLatin1String("_"), QLatin1String("."))) {
         app.installTranslator(&translator);

@@ -1,8 +1,8 @@
 #ifndef IGC__H
 #define IGC__H
 
-#include <QtCore>
 #include <QStringConverter>
+#include <QtCore>
 
 /// A single event from the igc file.
 /// the field type determines which subclass of Event
