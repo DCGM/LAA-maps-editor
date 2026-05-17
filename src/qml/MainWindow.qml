@@ -816,6 +816,7 @@ ApplicationWindow {
             "GPS exchange Format (*.gpx)",
             "GPS exchange Format Route (*.gpx)",
             "See You cup (*.cup)",
+            "HTML Table (*.html)",
         ]
         onAccepted: {
             console.log("Export: " + exportFileDialog.selectedNameFilterIndex + " " + exportFileDialog.selectedNameFilter + " " + fileUrl)
@@ -831,6 +832,9 @@ ApplicationWindow {
                 break;
             case 3:
                 exportCup(fileUrl);
+                break;
+            case 4:
+                exportHtmlTable(fileUrl);
                 break;
             default:
                 console.error("unsupported file format (please add file extension)" + exportFileDialog.selectedNameFilter)
@@ -1376,6 +1380,88 @@ ApplicationWindow {
         file_reader.write(Qt.resolvedUrl(filename), str);
 
     }
+
+    function exportHtmlTable(filename) {
+        var str ="";
+        str += "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<title>" + qsTr("Navigation Table") + "</title>\n";
+        str += "<style>\n";
+        str += "body { font-family: sans-serif; }\n";
+        str += "table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }\n";
+        str += "th, td { border: 1px solid black; padding: 8px; text-align: left; }\n";
+        str += "th { background-color: #f2f2f2; }\n";
+        str += "th:nth-child(2), td:nth-child(2),\n";
+        str += "th:nth-child(3), td:nth-child(3),\n";
+        str += "th:nth-child(4), td:nth-child(4),\n";
+        str += "th:nth-child(5), td:nth-child(5) {\n";
+        str += "    width: 1%; white-space: nowrap;\n";
+        str += "}\n";
+        str += "</style>\n";
+        str += "</head>\n<body>\n";
+
+        var points = tracks.points;
+
+        for (var tidx = 0; tidx < tracks.tracks.length; tidx++) {
+            var trk = tracks.tracks[tidx];
+            var conns = trk.conn;
+
+            if (conns.length > 0) {
+                str += "<h2>" + F.addSlashes(trk.name) + "</h2>\n";
+                str += "<table>\n";
+                str += "<tr><th>" + qsTr("Waypoint") + "</th><th>" + qsTr("Direction") + "</th><th>" + qsTr("Distance") + "</th><th>" + qsTr("Cumulative Dist.") + "</th><th>" + qsTr("Extra Time") + "</th><th>" + qsTr("Notes") + "</th></tr>\n";
+
+                var cumulativeDistance = 0;
+                var legDistance = 0;
+                var legAddTime = 0;
+
+                for (var i = 0; i < conns.length; i++) {
+                    var c = conns[i];
+                    var distance = (c.distance < 0) ? c.computed_distance : c.distance;
+                    var addTime = (c.addTime < 0) ? trk.default_addTime : c.addTime;
+
+                    cumulativeDistance += distance;
+                    legDistance += distance;
+                    legAddTime += addTime;
+
+                    var flags = ((c.flags < 0) ? trk.default_flags : c.flags);
+                    var tp_enabled = F.getFlagsByIndex(0, flags);
+                    var tg_enabled = F.getFlagsByIndex(1, flags);
+                    var sg_enabled = F.getFlagsByIndex(2, flags);
+
+                    if (!tp_enabled && !tg_enabled && !sg_enabled) {
+                        continue;
+                    }
+
+                    var pt = getPtByPid(c.pid, points);
+
+                    var angle = (c.angle < 0) ? c.computed_angle : c.angle;
+
+                    var displayAngle = Math.round((angle + 270) % 360);
+                    var displayDistance = Math.round(legDistance);
+                    var displayCumulativeDistance = Math.round(cumulativeDistance);
+                    var displayAddTime = legAddTime > 0 ? F.addTimeStrFormat(legAddTime) : "";
+
+                    str += "<tr>";
+                    str += "<td>" + F.addSlashes(pt.name) + "</td>";
+                    str += "<td>" + displayAngle + "°</td>";
+                    str += "<td>" + displayDistance + "</td>";
+                    str += "<td>" + displayCumulativeDistance + "</td>";
+                    str += "<td>" + displayAddTime + "</td>";
+                    str += "<td></td>";
+                    str += "</tr>\n";
+
+                    legDistance = 0; // reset leg distance for next shown point
+                    legAddTime = 0; // reset leg add time
+                }
+                str += "</table>\n";
+            }
+        }
+
+        str += "</body>\n</html>";
+
+        console.log("writing " + filename)
+        file_reader.write(Qt.resolvedUrl(filename), str);
+    }
+
 
 
     function importIgc(filename) {
