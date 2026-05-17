@@ -82,7 +82,7 @@ QString KmlJsonConvertor::kmlToJSONString_local(QString filename)
                 str = str + QString("{\"lat\": %1,\"lon\":%2},").arg(match.captured(2).toFloat()).arg(match.captured(1).toFloat());
                 pos = match.capturedEnd();
             }
-            str.remove(str.count() - 1, 1);
+            str.remove(str.length() - 1, 1);
             poly = poly + QString("{\"name\": \"%1\", \"color\":\"%2\", "
                                   "\"points\":[%3], \"closed\": true},")
                               .arg(nodeName)
@@ -96,15 +96,15 @@ QString KmlJsonConvertor::kmlToJSONString_local(QString filename)
                 str = str + QString("{\"lat\": %1,\"lon\":%2},").arg(match.captured(2).toFloat()).arg(match.captured(1).toFloat());
                 pos = match.capturedEnd();
             }
-            str.remove(str.count() - 1, 1);
+            str.remove(str.length() - 1, 1);
             poly = poly + QString("{\"name\": \"%1\", \"color\":\"%2\", \"points\":[%3]},").arg(nodeName).arg(color).arg(str);
         } else {
             qDebug() << nodeName << "unknown node";
         }
     }
 
-    points.remove(points.count() - 1, 1);
-    poly.remove(poly.count() - 1, 1);
+    points.remove(points.length() - 1, 1);
+    poly.remove(poly.length() - 1, 1);
 
     return QString("{\"points\": [%1], \"poly\": [%2]}").arg(points).arg(poly);
 }

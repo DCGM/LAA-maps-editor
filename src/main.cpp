@@ -26,27 +26,23 @@
 void myMessageHandler(QtMsgType type, const QMessageLogContext& context,
     const QString& msg)
 {
+    const QDateTime now = []() {
+        const QDateTime local = QDateTime::currentDateTime();
+        return local.toOffsetFromUtc(local.offsetFromUtc());
+    }();
+
     QString txt;
 
-    QDateTime now = QDateTime::currentDateTime();
-    int offset = now.offsetFromUtc();
-    now.setOffsetFromUtc(offset);
-
 #if defined(Q_OS_LINUX)
-    if (!QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation))
-            .exists()) {
-        QDir().mkpath(
-            QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
-    }
-    QFile outFile(
-        QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QDir::separator() + "editor.log");
-#elif (defined(Q_OS_WIN) || defined(Q_OS_WIN32) || defined(Q_OS_WIN64))
+    const QString logDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    if (!QDir(logDir).exists())
+        QDir().mkpath(logDir);
+    QFile outFile(logDir + QDir::separator() + "editor.log");
+#elif defined(Q_OS_WIN) || defined(Q_OS_WIN32) || defined(Q_OS_WIN64)
     QFile outFile("editor.log");
 #else
-    QFile outfile("editor.log");
+    QFile outFile("editor.log");
 #endif
-    outFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text);
-    QTextStream ts(&outFile);
 
     QTextStream std_out(stdout, QIODevice::WriteOnly);
     QTextStream std_err(stderr, QIODevice::WriteOnly);
@@ -98,9 +94,14 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context,
         std_err << txt << Qt::endl;
         break;
     }
-    ts << txt << Qt::endl;
 
-    outFile.close();
+    if (!outFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+        std_err << "Failed to open log file: " << outFile.errorString() << Qt::endl;
+    } else {
+        QTextStream ts(&outFile);
+        ts << txt << Qt::endl;
+        outFile.close();
+    }
 }
 
 int main(int argc, char* argv[])
