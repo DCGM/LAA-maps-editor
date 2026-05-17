@@ -1,5 +1,5 @@
-import QtQuick 2.9
-import QtQuick.Controls 1.4
+import QtQuick
+import QtQuick.Controls
 import "geom.js" as G
 import "./components"
 
@@ -9,16 +9,23 @@ Item {
     id: editableDelegate
     signal changeModel(int row, string role, variant value);
     signal reverseGeocoding(int row);
+    
+    property int row
+    property string role
+    property variant value
+    property bool selected: false
+    property color textColor: selected ? "white" : "black"
+    property int elideMode: Text.ElideRight
 
-    NativeText {
+    Text {
         width: parent.width
         anchors.margins: 4
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        elide: styleData.elideMode
-        text: getStyledData(styleData.value, styleData.role) // zobrazi se ruzne podle role
-        color: styleData.textColor
-        visible: !styleData.selected
+        elide: editableDelegate.elideMode
+        text: getStyledData(editableDelegate.value, editableDelegate.role) // zobrazi se ruzne podle role
+        color: editableDelegate.textColor
+        visible: !editableDelegate.selected
     }
     Loader { // Initialize text editor lazily to improve performance
         id: loaderEditor
@@ -33,40 +40,40 @@ Item {
 //            function onAccepted() {
             onAccepted: {
 
-                switch (styleData.role) {
+                switch (editableDelegate.role) {
                 case "name": // default
                     if (loaderEditor.item.text === "") {
-                        reverseGeocoding(styleData.row);
+                        reverseGeocoding(editableDelegate.row);
                         //% "Turn point"
-                        changeModel(styleData.row, styleData.role, qsTrId("points-list-default-name"))
+                        changeModel(editableDelegate.row, editableDelegate.role, qsTrId("points-list-default-name"))
                     } else {
-                        changeModel(styleData.row, styleData.role, loaderEditor.item.text)
+                        changeModel(editableDelegate.row, editableDelegate.role, loaderEditor.item.text)
                     }
                     break;
                 case "pid":
                     console.log("Cannot change point id"); // neni mozne prepsat pid
                     break;
                 case "lat":
-                    changeModel(styleData.row, styleData.role, G.DMStoFloat(loaderEditor.item.text))
+                    changeModel(editableDelegate.row, editableDelegate.role, G.DMStoFloat(loaderEditor.item.text))
                     break;
                 case "lon":
-                    changeModel(styleData.row, styleData.role, G.DMStoFloat(loaderEditor.item.text))
+                    changeModel(editableDelegate.row, editableDelegate.role, G.DMStoFloat(loaderEditor.item.text))
                     break;
                 default:
-                    changeModel(styleData.row, styleData.role, loaderEditor.item.text)
+                    changeModel(editableDelegate.row, editableDelegate.role, loaderEditor.item.text)
                     break;
                 }
 
             }
         }
-        sourceComponent: styleData.selected ? editor : null
+        sourceComponent: editableDelegate.selected ? editor : null
         Component {
             id: editor
-            NativeTextInput {
+            TextInput {
                 id: textinput
 
-                color: styleData.textColor
-                text: getStyledData(styleData.value, styleData.role)
+                color: editableDelegate.textColor
+                text: getStyledData(editableDelegate.value, editableDelegate.role)
 
                 MouseArea {
                     id: mouseArea

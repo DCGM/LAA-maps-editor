@@ -35,23 +35,23 @@ ApplicationWindow {
         spacing: 5
         columns: 5;
 
-        NativeText {
+        Text {
             //% "Issue"
             text: qsTrId("track-statistics-issue")
         }
-        NativeText {
+        Text {
             //% "Number"
             text: qsTrId("track-statistics-number")
         }
-        NativeText {
+        Text {
             //% "Scoring value"
             text: qsTrId("track-statistics-scoring-value")
         }
-        NativeText {
+        Text {
             //% "Value in task"
             text: qsTrId("track-statistics-value-in-task")
         }
-        NativeText {
+        Text {
             //% "% of task value"
             text: qsTrId("track-statistics-percent-of-task-value")
         }
@@ -59,7 +59,7 @@ ApplicationWindow {
         /////
 
 
-        NativeText {
+        Text {
             //% "Turn points"
             text: qsTrId("track-statistics-turn-point")
         }
@@ -71,19 +71,19 @@ ApplicationWindow {
             id: turnpoints_scoring_value
             text: "0"
         }
-        NativeText {
+        Text {
             // value in task
             id: turnpoints_value_in_task
             text: Math.round(parseFloat(turnpoints_number.text, 10) * parseFloat(turnpoints_scoring_value.text, 10),2)
         }
-        NativeText {
+        Text {
             // % of task
             text: Math.round(100.0*parseFloat(turnpoints_value_in_task.text, 10)/parseFloat(total_score.text,10),2);
         }
 
         /////
 
-        NativeText {
+        Text {
             //% "Time gates"
             text: qsTrId("track-statistics-time-gates")
         }
@@ -95,19 +95,19 @@ ApplicationWindow {
             id: timegates_scoring_value
             text: "0"
         }
-        NativeText {
+        Text {
             // value in task
             id: timegates_value_in_task
             text: Math.round(parseFloat(timegates_number.text, 10) * parseFloat(timegates_scoring_value.text, 10),2)
         }
-        NativeText {
+        Text {
             // % of task
             text: Math.round(100.0*parseFloat(timegates_value_in_task.text, 10)/parseFloat(total_score.text,10),2);
         }
 
         /////
 
-        NativeText {
+        Text {
             //% "Space gates"
             text: qsTrId("track-statistics-space-gates")
         }
@@ -120,12 +120,12 @@ ApplicationWindow {
             text: "0"
 
         }
-        NativeText {
+        Text {
             // value in task
             id: spacegates_value_in_task
             text: Math.round(parseFloat(spacegates_number.text, 10) * parseFloat(spacegates_scoring_value.text, 10),2)
         }
-        NativeText {
+        Text {
             // % of task
             text: Math.round(100.0*parseFloat(spacegates_value_in_task.text, 10)/parseFloat(total_score.text,10),2);
         }
@@ -133,7 +133,7 @@ ApplicationWindow {
 
         /////
 
-        NativeText {
+        Text {
             //% "Markers"
             text: qsTrId("track-statistics-markers")
         }
@@ -145,12 +145,12 @@ ApplicationWindow {
             id: markers_scoring_value
             text: "0"
         }
-        NativeText {
+        Text {
             // value in task
             id: markers_value_in_task
             text: Math.round(parseFloat(markers_number.text, 10) * parseFloat(markers_scoring_value.text, 10),2)
         }
-        NativeText {
+        Text {
             // % of task
             text: Math.round(100.0*parseFloat(markers_value_in_task.text, 10)/parseFloat(total_score.text,10),2);
         }
@@ -158,7 +158,7 @@ ApplicationWindow {
 
         /////
 
-        NativeText {
+        Text {
             //% "Photos"
             text: qsTrId("track-statistics-photos")
         }
@@ -170,12 +170,12 @@ ApplicationWindow {
             id: photos_scoring_value
             text: "0"
         }
-        NativeText {
+        Text {
             // value in task
             id: photos_value_in_task
             text: Math.round(parseFloat(photos_number.text, 10) * parseFloat(photos_scoring_value.text, 10),2)
         }
-        NativeText {
+        Text {
             // % of task
             text: Math.round(100.0*parseFloat(photos_value_in_task.text, 10)/parseFloat(total_score.text,10),2);
         }
@@ -183,15 +183,15 @@ ApplicationWindow {
 
         /////
 
-        NativeText {
+        Text {
             //% "Other"
             text: qsTrId("track-statistics-other")
         }
-        NativeText {
+        Text {
             text: "-"
         }
 
-        NativeText {
+        Text {
             text: "-"
 
         }
@@ -201,7 +201,7 @@ ApplicationWindow {
             text: "0"
         }
 
-        NativeText {
+        Text {
             // % of task
             text: Math.round(100.0*parseFloat(other_value_in_task.text, 10)/parseFloat(total_score.text,10),2);
         }
@@ -212,18 +212,18 @@ ApplicationWindow {
 
 
 
-        NativeText {
+        Text {
             //% "Total"
             text: qsTrId("track-statistics-total");
         }
-        NativeText {
+        Text {
             text: " "
         }
-        NativeText {
+        Text {
             text: " "
         }
 
-        NativeText {
+        Text {
             id: total_score
             text: Math.round(parseFloat(turnpoints_value_in_task.text,10)
                              + parseFloat(timegates_value_in_task.text,10)

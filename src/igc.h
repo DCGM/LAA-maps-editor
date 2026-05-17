@@ -2,6 +2,7 @@
 #define IGC__H
 
 #include <QtCore>
+#include <QStringConverter>
 
 /// A single event from the igc file.
 /// the field type determines which subclass of Event
@@ -125,8 +126,8 @@ public:
     IgcFile(QObject* object = 0);
     ~IgcFile() { clear(); }
 
-    Q_INVOKABLE bool load(const QString& path, QTextCodec* codec = 0);
-    bool load(QIODevice* file, QTextCodec* codec = 0);
+    Q_INVOKABLE bool load(const QString& path);
+    bool load(QIODevice* file, QStringConverter::Encoding codec = QStringConverter::Latin1);
     Q_INVOKABLE void clear();
 
     int getCount() { return rowCount(); }
@@ -234,7 +235,7 @@ private:
 
     char previousRecord;
     QIODevice* file;
-    QTextCodec* activeCodec;
+    QStringConverter::Encoding activeCodec;
 
     /// Data extracted from IGC headers.
     /// \{

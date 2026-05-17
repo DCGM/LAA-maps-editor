@@ -1,25 +1,33 @@
-import QtQuick 2.9
-import QtQuick.Controls 1.4
+import QtQuick
+import QtQuick.Controls
 import "functions.js" as F
 import "./components"
 
 
 Item {
     id: item;
+    height: parent ? parent.height : 30
     property variant comboModel
     property variant typeModel
     signal changeModel(int row, string role, variant value);
 
+    property int row
+    property string role
+    property variant value
+    property bool selected: false
+    property color textColor: selected ? "white" : "black"
+    property int elideMode: Text.ElideRight
 
-    NativeText {
+
+    Text {
         width: parent.width
         anchors.margins: 4
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        elide: styleData.elideMode
-        text: styleData.value;
-        color: styleData.textColor
-        visible: (styleData.role === "did") || ((styleData.role === "score") && !styleData.selected)
+        elide: item.elideMode
+        text: item.value;
+        color: item.textColor
+        visible: (item.role === "did") || ((item.role === "score") && !item.selected)
     }
 
     Loader { // Initialize text editor lazily to improve performance
@@ -31,28 +39,26 @@ Item {
         anchors.margins: 4
         Connections {
             target: cidComboLoader.item
-            onNewCid: {
-//            function onNewCid(cid) {
-                changeModel(styleData.row, styleData.role, cid)
+            function onNewCid(cid) {
+                changeModel(item.row, item.role, cid)
             }
         }
 
         Connections {
             target: cidComboLoader.item
-            onNewScore: {
-//            function onNewScore(value) {
-                changeModel(styleData.row, styleData.role, value)
+            function onNewScore(value) {
+                changeModel(item.row, item.role, value)
             }
         }
 
-        sourceComponent: (styleData.role === "cid") ? polygonSelection : ((styleData.selected && styleData.role === "score") ? polygonScoreText : null)
+        sourceComponent: (item.role === "cid") ? polygonSelection : ((item.selected && item.role === "score") ? polygonScoreText : null)
         Component {
             id: polygonSelection
             ComboBox {
                 id: combo
                 width: 130;
                 textRole: "name"
-                property string tableCid: parseInt(styleData.value);
+                property string tableCid: parseInt(item.value);
 
                 signal newCid(int cid);
                 signal newScore(int value);
@@ -63,7 +69,7 @@ Item {
                     }
 
                     var it = comboModel.get(currentIndex);
-                    if (it.cid != styleData.value) {
+                    if (it.cid != item.value) {
                         newCid(it.cid);
                     }
                 }
@@ -82,7 +88,7 @@ Item {
 
                     for (var i = 0; i < model.count; i++) {
                         var it = model.get(i);
-                        if (it.cid == styleData.value) {
+                        if (it.cid == item.value) {
                             toIdx = i;
                             break;
                         }
@@ -97,13 +103,13 @@ Item {
 
         Component {
             id: polygonScoreText
-            NativeTextInput {
+            TextInput {
                 id: textinput
 
                 signal newCid();
                 signal newScore(int value);
-                color: styleData.textColor
-                text: styleData.value
+                color: item.textColor
+                text: item.value
                 onAccepted: {
                     newScore(parseInt(textinput.text, 10))
                 }

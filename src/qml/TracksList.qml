@@ -1,5 +1,6 @@
-import QtQuick 2.9
-import QtQuick.Controls 1.4
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 import "functions.js" as F
 import "geom.js" as G
 
@@ -136,9 +137,10 @@ Rectangle {
                                     })
         }
 
-        trackToTable(categoryChooser.currentIndex)
-
-
+        // currentIndex may already be 0, so onCurrentIndexChanged won't fire — force init
+        categoryChooser.currentIndex = 0;
+        trackToTable(0);
+        categoryChanged(0);
     }
 
 
@@ -407,6 +409,7 @@ Rectangle {
         anchors.left: parent.left
         width: parent.width/3
         anchors.margins: 2
+        textRole: "text"
 
         model: categories;
 
@@ -503,141 +506,157 @@ Rectangle {
 
 
     SplitView {
+        id: tracksSplitView
         orientation: Qt.Vertical
         anchors.top: categoryChooser.bottom;
         anchors.left: parent.left;
         anchors.right: parent.right;
         anchors.bottom: parent.bottom;
 
-        TableView {
+        Item {
             id: tracksPointTable
 
-            anchors.top: parent.top;
-            anchors.left: parent.left;
-            anchors.right: parent.right;
-            height: parent.height*0.75;
+            SplitView.fillWidth: true
+            SplitView.fillHeight: true
+            SplitView.preferredHeight: 300
+            SplitView.minimumHeight: 100
 
-            model: tracksModel;
+            property int currentRow: listView.currentIndex
+            property alias selection: selectionData
 
-            selectionMode:SelectionMode.ExtendedSelection;
-
-            itemDelegate: TracksListTableDelegate {
-                comboModel: pointsModel
-                typeModel: connectionTypeModel
-                category_defaults: propsDetail;
-
-                onChangeModel: {
-                    tracksModel.setProperty(row, role, value);
-
-                    tracksPointTable.selection.clear();
-//                    tracksPointTable.selection.select(row);
-//                    tracksPointTable.currentRow = row;
-
-                }
-
-            }
-
-            rowDelegate: Rectangle {
-                height: 30;
-                color: styleData.selected ? "#0077cc" : (styleData.alternate? "#eee" : "#fff")
-
-            }
-
-            TableViewColumn {
-                //% "Id"
-                title: qsTrId("tracks-list-id")
-                role: "tid"
-                width: 50;
-            }
-            TableViewColumn {
-                //% "Point"
-                title: qsTrId("tracks-list-point");
-                role: "pid"
-                width: 250;
-            }
-
-            TableViewColumn {
-                //% "Type"
-                title: qsTrId("tracks-list-type");
-                role: "type"
-                width: 100;
-
-            }
-            TableViewColumn {
-                //% "Angle [deg]"
-                title: qsTrId("tracks-list-angle")
-                role: "angle"
-                width: 50;
-            }
-
-            TableViewColumn {
-                //% "Distance to previous point [m]"
-                title: qsTrId("tracks-list-distance")
-                role: "distance"
-                width: 50;
-            }
-
-            TableViewColumn {
-                //% "Distance to start point [m]"
-                title: qsTrId("tracks-list-distance-sum")
-                role: "distance_sum"
-                width: 50;
-            }
-
-            TableViewColumn {
-                //% "Time to next point [s]"
-                title: qsTrId("tracks-list-addTime")
-                role: "addTime"
-                width: 80;
-            }
-
-
-            TableViewColumn {
-                //% "Radius [m]"
-                title: qsTrId("tracks-list-radius")
-                role: "radius"
-                width: 50;
-            }
-
-
-            TableViewColumn {
-                //% "Flags"
-                title: qsTrId("tracks-list-flags")
-                role: "flags"
-                width: 150;
-            }
-
-            TableViewColumn {
-                //% "Min Alt [m]"
-                title: qsTrId("tracks-list-alt_min")
-                role: "alt_min"
-                width: 50;
-            }
-            TableViewColumn {
-                //% "Max Alt [m]"
-                title: qsTrId("tracks-list-alt_max")
-                role: "alt_max"
-                width: 50;
-                //visible: false;
-            }
-
-            TableViewColumn {
-                //% "Arc/Poly"
-                title: qsTrId("tracks-list-ptr")
-                role: "ptr"
-                width: 50;
-            }
-
-
-
+            // Background right-click handler: opens context menu even on empty list
             MouseArea {
-                acceptedButtons: Qt.RightButton
                 anchors.fill: parent
-                propagateComposedEvents: true
-                onClicked: {
+                acceptedButtons: Qt.RightButton
+                z: -1
+                onClicked: (mouse) => {
                     tracksContextMenu.popup();
                 }
+            }
 
+            QtObject {
+                id: selectionData
+                property var items: []
+                property int count: items.length
+                function clear() { items = []; itemsChanged(); }
+                function select(idx) { 
+                    var newItems = items.slice();
+                    if (newItems.indexOf(idx) === -1) { 
+                        newItems.push(idx); 
+                        items = newItems; 
+                    } 
+                }
+                function deselect(start, end) { 
+                    var newItems = [];
+                    for (var i = 0; i < items.length; i++) {
+                        if (items[i] < start || items[i] > end) {
+                            newItems.push(items[i]);
+                        }
+                    }
+                    items = newItems;
+                }
+                function forEach(cb) { items.forEach(cb); }
+                function contains(idx) { return items.indexOf(idx) !== -1; }
+                signal selectionChanged()
+                onItemsChanged: selectionChanged()
+            }
+
+            Flickable {
+                anchors.fill: parent
+                contentWidth: 1020
+                contentHeight: parent.height
+                clip: true
+                boundsBehavior: Flickable.StopAtBounds
+
+                ColumnLayout {
+                    width: 1020
+                    height: parent.height
+                    spacing: 0
+
+                    // Header Row
+                    Rectangle {
+                        Layout.fillWidth: true
+                        height: 30
+                        color: "#eee"
+                        border.color: "#ccc"
+                        Row {
+                            id: headerRow
+                            anchors.verticalCenter: parent.verticalCenter
+                            spacing: 0
+                            Rectangle { width: 50; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("tracks-list-tid"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                            Rectangle { width: 180; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("tracks-list-pid"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                            Rectangle { width: 100; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("tracks-list-type"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                            Rectangle { width: 60; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("tracks-list-angle"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                            Rectangle { width: 70; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("tracks-list-distance"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                            Rectangle { width: 80; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("tracks-list-distance-sum"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                            Rectangle { width: 80; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("tracks-list-add-time"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                            Rectangle { width: 60; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("tracks-list-radius"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                            Rectangle { width: 150; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("tracks-list-flags"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                            Rectangle { width: 70; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("tracks-list-alt_min"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                            Rectangle { width: 70; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("tracks-list-alt_max"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                            Rectangle { width: 50; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("tracks-list-ptr"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                        }
+                    }
+
+                    ListView {
+                        id: listView
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        model: tracksModel
+                        clip: true
+
+                        delegate: Rectangle {
+                            width: headerRow.width
+                            height: 30
+                            color: selectionData.contains(index) ? "#0077cc" : (index % 2 == 0 ? "#fff" : "#eee")
+
+                            MouseArea {
+                                anchors.fill: parent
+                                acceptedButtons: Qt.LeftButton | Qt.RightButton
+                                onClicked: (mouse) => {
+                                    if (mouse.button === Qt.RightButton) {
+                                        if (!selectionData.contains(index)) {
+                                            selectionData.clear();
+                                            selectionData.select(index);
+                                            listView.currentIndex = index;
+                                        }
+                                        tracksContextMenu.popup();
+                                    } else {
+                                        if (mouse.modifiers & Qt.ControlModifier) {
+                                            if (selectionData.contains(index)) {
+                                                var newItems = selectionData.items.filter(i => i !== index);
+                                                selectionData.items = newItems;
+                                            } else {
+                                                selectionData.select(index);
+                                            }
+                                        } else {
+                                            selectionData.clear();
+                                            selectionData.select(index);
+                                            listView.currentIndex = index;
+                                        }
+                                    }
+                                }
+                            }
+
+                            Row {
+                                spacing: 0
+                                anchors.fill: parent
+                                TracksListTableDelegate { width: 50; role: "tid"; value: model.tid; row: index; selected: selectionData.contains(index); comboModel: pointsModel; typeModel: connectionTypeModel; category_defaults: propsDetail; onChangeModel: (row, role, value) => { tracksModel.setProperty(row, role, value); selectionData.clear(); } }
+                                TracksListTableDelegate { width: 180; role: "pid"; value: model.pid; row: index; selected: selectionData.contains(index); comboModel: pointsModel; typeModel: connectionTypeModel; category_defaults: propsDetail; onChangeModel: (row, role, value) => { tracksModel.setProperty(row, role, value); selectionData.clear(); } }
+                                TracksListTableDelegate { width: 100; role: "type"; value: model.type; row: index; selected: selectionData.contains(index); comboModel: pointsModel; typeModel: connectionTypeModel; category_defaults: propsDetail; onChangeModel: (row, role, value) => { tracksModel.setProperty(row, role, value); selectionData.clear(); } }
+                                TracksListTableDelegate { width: 60; role: "angle"; value: model.angle; row: index; selected: selectionData.contains(index); comboModel: pointsModel; typeModel: connectionTypeModel; category_defaults: propsDetail; onChangeModel: (row, role, value) => { tracksModel.setProperty(row, role, value); selectionData.clear(); } }
+                                TracksListTableDelegate { width: 70; role: "distance"; value: model.distance; row: index; selected: selectionData.contains(index); comboModel: pointsModel; typeModel: connectionTypeModel; category_defaults: propsDetail; onChangeModel: (row, role, value) => { tracksModel.setProperty(row, role, value); selectionData.clear(); } }
+                                TracksListTableDelegate { width: 80; role: "distance_sum"; value: model.distance_sum; row: index; selected: selectionData.contains(index); comboModel: pointsModel; typeModel: connectionTypeModel; category_defaults: propsDetail; onChangeModel: (row, role, value) => { tracksModel.setProperty(row, role, value); selectionData.clear(); } }
+                                TracksListTableDelegate { width: 80; role: "addTime"; value: model.addTime; row: index; selected: selectionData.contains(index); comboModel: pointsModel; typeModel: connectionTypeModel; category_defaults: propsDetail; onChangeModel: (row, role, value) => { tracksModel.setProperty(row, role, value); selectionData.clear(); } }
+                                TracksListTableDelegate { width: 60; role: "radius"; value: model.radius; row: index; selected: selectionData.contains(index); comboModel: pointsModel; typeModel: connectionTypeModel; category_defaults: propsDetail; onChangeModel: (row, role, value) => { tracksModel.setProperty(row, role, value); selectionData.clear(); } }
+                                TracksListTableDelegate { width: 150; role: "flags"; value: model.flags; row: index; selected: selectionData.contains(index); comboModel: pointsModel; typeModel: connectionTypeModel; category_defaults: propsDetail; onChangeModel: (row, role, value) => { tracksModel.setProperty(row, role, value); selectionData.clear(); } }
+                                TracksListTableDelegate { width: 70; role: "alt_min"; value: model.alt_min; row: index; selected: selectionData.contains(index); comboModel: pointsModel; typeModel: connectionTypeModel; category_defaults: propsDetail; onChangeModel: (row, role, value) => { tracksModel.setProperty(row, role, value); selectionData.clear(); } }
+                                TracksListTableDelegate { width: 70; role: "alt_max"; value: model.alt_max; row: index; selected: selectionData.contains(index); comboModel: pointsModel; typeModel: connectionTypeModel; category_defaults: propsDetail; onChangeModel: (row, role, value) => { tracksModel.setProperty(row, role, value); selectionData.clear(); } }
+                                TracksListTableDelegate { width: 50; role: "ptr"; value: model.ptr; row: index; selected: selectionData.contains(index); comboModel: pointsModel; typeModel: connectionTypeModel; category_defaults: propsDetail; onChangeModel: (row, role, value) => { tracksModel.setProperty(row, role, value); selectionData.clear(); } }
+                            }
+                        }
+                    }
+                }
             }
 
             Component.onCompleted: {
@@ -645,22 +664,20 @@ Rectangle {
             }
 
             function selectionChangedHanlder() {
-
                 if (currentRow < 0) {
                     return;
                 }
-                if (!tracksPointTable.selection.contains(currentRow)) {
+                if (!selectionData.contains(currentRow)) {
                     return;
                 }
 
                 var sel = [];
-
                 var checkedCount = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
-                tracksPointTable.selection.forEach( function(rowIndex) {
+                selectionData.forEach( function(rowIndex) {
                     sel.push(rowIndex)
 
-                    var item = model.get(rowIndex);
+                    var item = tracksModel.get(rowIndex);
                     var flags = parseInt(item.flags, 10);
                     if (flags < 0) {
                         flags = parseInt(propsDetail.default_flags, 10)
@@ -673,10 +690,9 @@ Rectangle {
                             checkedCount[i] = checkedCount[i] + 1
                         }
                     }
-
                 });
 
-                var sum = tracksPointTable.selection.count;
+                var sum = selectionData.count;
 
                 menu_tp_cb.checked = checkedCount[0] > 0;
                 menu_tg_cb.checked = checkedCount[1] > 0;
@@ -689,10 +705,9 @@ Rectangle {
                 menu_section_alt_end_cb.checked = checkedCount[10] > 0;
                 menu_section_space_start_cb.checked = checkedCount[11] > 0;
                 menu_section_space_end_cb.checked = checkedCount[12] > 0;
-                menu_sectet_turn_point_cb.checked = checkedCount[13] > 0
+                menu_sectet_turn_point_cb.checked = checkedCount[13] > 0;
                 menu_sectet_time_gate_cb.checked = checkedCount[14] > 0;
                 menu_sectet_space_gate_cb.checked = checkedCount[15] > 0;
-
 
                 menu_tp_cb.enabled = (checkedCount[0] === 0) || (checkedCount[0] === sum);
                 menu_tg_cb.enabled = (checkedCount[1] === 0) || (checkedCount[1] === sum);
@@ -709,23 +724,18 @@ Rectangle {
                 menu_sectet_time_gate_cb.enabled = (checkedCount[14] === 0) || (checkedCount[14] === sum);
                 menu_sectet_space_gate_cb.enabled = (checkedCount[15] === 0) || (checkedCount[15] === sum);
 
-
-                // highlight first one in map
-                if (sel.length >0) {
-                    var item = model.get(sel[0]);
+                if (sel.length > 0) {
+                    var item = tracksModel.get(sel[0]);
                     pointSelected(item.tid)
                 }
-
             }
 
             function switchFlag(flags_index) {
-
                 var sel = [];
-
-                tracksPointTable.selection.forEach( function(rowIndex) {
+                selectionData.forEach( function(rowIndex) {
                     sel.push(rowIndex);
 
-                    var item = model.get(rowIndex);
+                    var item = tracksModel.get(rowIndex);
                     var flags = parseInt(item.flags, 10);
                     if (flags < 0) {
                         flags = parseInt(propsDetail.default_flags, 10)
@@ -734,19 +744,13 @@ Rectangle {
                     var mask = (0x1 << flags_index);
                     flags = flags ^ mask
                     tracksModel.setProperty(rowIndex, "flags", flags);
-
-
                 })
 
-
-                // FIXME check selection
                 console.log("selection")
-                tracksPointTable.selection.clear();
-
+                selectionData.clear();
                 for (var i = 0; i < sel.length; i++) {
-                    tracksPointTable.selection.select(sel[i]);
+                    selectionData.select(sel[i]);
                 }
-
             }
 
             Menu {
@@ -904,15 +908,11 @@ Rectangle {
                     if ((pos === -1) || (pos >= tracksModel.count)) {
                         tracksModel.append(obj)
                         tracksPointTable.selection.clear();
-//                        tracksPointTable.currentRow = 0;
-//                        tracksPointTable.selection.select(0)
                     } else {
 
                         tracksModel.insert(pos, obj)
 
                         tracksPointTable.selection.clear();
-//                        tracksPointTable.currentRow = pos;
-//                        tracksPointTable.selection.select(pos)
 
                     }
 
@@ -946,7 +946,7 @@ Rectangle {
                     text: qsTrId("point-detail-reset-flags");
                     onTriggered: {
                         tracksPointTable.selection.forEach( function(rowIndex) {
-                            tracksPointTable.model.setProperty(rowIndex, "flags", -1);
+                            tracksModel.setProperty(rowIndex, "flags", -1);
                         });
                         tracksPointTable.selectionChangedHanlder();
                     }
@@ -1037,96 +1037,137 @@ Rectangle {
                     text: qsTrId("point-detail-section_space_end-checkbox");
                     onTriggered: tracksPointTable.switchFlag(12);
                 }
+
+                MenuItem {
+                    id: menu_sectet_turn_point_cb
+                    visible: menu_flags_reset.visible
+                    checkable: true;
+                    //% "Secret Turn Point"
+                    text: qsTrId("point-detail-secret_turn_point-checkbox");
+                    onTriggered: tracksPointTable.switchFlag(13);
+                }
+                MenuItem {
+                    id: menu_sectet_time_gate_cb
+                    visible: menu_flags_reset.visible
+                    checkable: true;
+                    text: qsTrId("point-detail-secret_time_gate-checkbox");
+                    onTriggered: tracksPointTable.switchFlag(14);
+                }
+                MenuItem {
+                    id: menu_sectet_space_gate_cb
+                    visible: menu_flags_reset.visible
+                    checkable: true;
+                    text: qsTrId("point-detail-secret_space_gate-checkbox");
+                    onTriggered: tracksPointTable.switchFlag(15);
+                }
             }
         }
         Item {
-            visible: false;
-            enabled: false;
-
-            MenuItem {
-                id: menu_sectet_turn_point_cb
-                visible: menu_flags_reset.visible
-                checkable: true;
-                //% "Secret Turn Point"
-                text: qsTrId("point-detail-secret_turn_point-checkbox");
-                onTriggered: tracksPointTable.switchFlag(13);
-            }
-            MenuItem {
-                id: menu_sectet_time_gate_cb
-                visible: menu_flags_reset.visible
-                checkable: true;
-                text: qsTrId("point-detail-secret_time_gate-checkbox");
-                onTriggered: tracksPointTable.switchFlag(14);
-            }
-            MenuItem {
-                id: menu_sectet_space_gate_cb
-                visible: menu_flags_reset.visible
-                checkable: true;
-                text: qsTrId("point-detail-secret_space_gate-checkbox");
-                onTriggered: tracksPointTable.switchFlag(15);
-            }
-        }
-
-
-        TableView {
             id: polygonsTable
-            anchors.left: parent.left;
-            anchors.right: parent.right
-            anchors.top: tracksPointTable.bottom;
-            anchors.bottom: parent.bottom;
 
-            model: selectedPolygonsModel
+            SplitView.fillWidth: true
+            SplitView.preferredHeight: 150
+            SplitView.minimumHeight: 100
 
-            rowDelegate: Rectangle {
-                height: 30;
-                color: styleData.selected ? "#0077cc" : (styleData.alternate? "#eee" : "#fff")
+            property int currentRow: listViewPoly.currentIndex
+            property alias selection: selectionPolyData
 
-            }
-
-            itemDelegate: TracksListPolygonsDelegate {
-                comboModel: allPolygonsModel
-                onChangeModel: {
-                    if (row >= selectedPolygonsModel.count) {
-                        return;
+            QtObject {
+                id: selectionPolyData
+                property var items: []
+                property int count: items.length
+                function clear() { items = []; itemsChanged(); }
+                function select(idx) { 
+                    var newItems = items.slice();
+                    if (newItems.indexOf(idx) === -1) { 
+                        newItems.push(idx); 
+                        items = newItems; 
+                    } 
+                }
+                function deselect(start, end) { 
+                    var newItems = [];
+                    for (var i = 0; i < items.length; i++) {
+                        if (items[i] < start || items[i] > end) {
+                            newItems.push(items[i]);
+                        }
                     }
-                    selectedPolygonsModel.setProperty(row, role, value);
-
-                    polygonsTable.selection.clear();
-//                    polygonsTable.selection.select(row);
-//                    polygonsTable.currentRow = row;
-
+                    items = newItems;
                 }
-
+                function forEach(cb) { items.forEach(cb); }
+                function contains(idx) { return items.indexOf(idx) !== -1; }
+                signal selectionChanged()
+                onItemsChanged: selectionChanged()
             }
 
-            TableViewColumn {
-                //% "Id"
-                title: qsTrId("track-list-polygon-did")
-                role: "did";
-                width: 50;
-
-            }
-            TableViewColumn {
-                //% "Polygon"
-                title: qsTrId("track-list-polygon-cid")
-                role: "cid";
-                width: 150;
-            }
-            TableViewColumn {
-                //% "Score"
-                title: qsTrId("track-list-polygon-score")
-                role: "score"
-                width: 150;
-            }
-
-            MouseArea {
-                acceptedButtons: Qt.RightButton
+            ColumnLayout {
                 anchors.fill: parent
-                propagateComposedEvents: true
-                onClicked: {
-                    polyContextMenu.popup();
+                spacing: 0
+
+                // Header Row
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 30
+                    color: "#eee"
+                    border.color: "#ccc"
+                    Row {
+                        id: headerPolyRow
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: 0
+                        Rectangle { width: 50; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("track-list-polygon-did"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                        Rectangle { width: 150; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("track-list-polygon-cid"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                        Rectangle { width: 150; height: 30; color: "transparent"; border.color: "#ccc"; Text { text: qsTrId("track-list-polygon-score"); anchors.fill: parent; anchors.margins: 4; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight; font.pixelSize: 11; font.bold: true } }
+                    }
                 }
 
+                ListView {
+                    id: listViewPoly
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    model: selectedPolygonsModel
+                    clip: true
+
+                    delegate: Rectangle {
+                        width: headerPolyRow.width
+                        height: 30
+                        color: selectionPolyData.contains(index) ? "#0077cc" : (index % 2 == 0 ? "#fff" : "#eee")
+
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.LeftButton | Qt.RightButton
+                            onClicked: (mouse) => {
+                                if (mouse.button === Qt.RightButton) {
+                                    if (!selectionPolyData.contains(index)) {
+                                        selectionPolyData.clear();
+                                        selectionPolyData.select(index);
+                                        listViewPoly.currentIndex = index;
+                                    }
+                                    polyContextMenu.popup();
+                                } else {
+                                    if (mouse.modifiers & Qt.ControlModifier) {
+                                        if (selectionPolyData.contains(index)) {
+                                            var newItems = selectionPolyData.items.filter(i => i !== index);
+                                            selectionPolyData.items = newItems;
+                                        } else {
+                                            selectionPolyData.select(index);
+                                        }
+                                    } else {
+                                        selectionPolyData.clear();
+                                        selectionPolyData.select(index);
+                                        listViewPoly.currentIndex = index;
+                                    }
+                                }
+                            }
+                        }
+
+                        Row {
+                            spacing: 0
+                            anchors.fill: parent
+                            TracksListPolygonsDelegate { width: 50; role: "did"; value: model.did; row: index; selected: selectionPolyData.contains(index); comboModel: allPolygonsModel; onChangeModel: (row, role, value) => { if (row < selectedPolygonsModel.count) { selectedPolygonsModel.setProperty(row, role, value); selectionPolyData.clear(); } } }
+                            TracksListPolygonsDelegate { width: 150; role: "cid"; value: model.cid; row: index; selected: selectionPolyData.contains(index); comboModel: allPolygonsModel; onChangeModel: (row, role, value) => { if (row < selectedPolygonsModel.count) { selectedPolygonsModel.setProperty(row, role, value); selectionPolyData.clear(); } } }
+                            TracksListPolygonsDelegate { width: 150; role: "score"; value: model.score; row: index; selected: selectionPolyData.contains(index); comboModel: allPolygonsModel; onChangeModel: (row, role, value) => { if (row < selectedPolygonsModel.count) { selectedPolygonsModel.setProperty(row, role, value); selectionPolyData.clear(); } } }
+                        }
+                    }
+                }
             }
 
             Menu {
@@ -1171,3 +1212,4 @@ Rectangle {
     }
 
 }
+

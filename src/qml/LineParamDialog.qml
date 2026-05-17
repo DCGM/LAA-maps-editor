@@ -30,7 +30,7 @@ ApplicationWindow {
         spacing: 5
         columns: 2;
 
-        NativeText {
+        Text {
             //% "Distance of next point (m)"
             text: qsTrId("line-param-dialog-distance")
         }
@@ -39,7 +39,7 @@ ApplicationWindow {
             text: "1000"
         }
 
-        NativeText {
+        Text {
             //% "Angle (deg)"
             text: qsTrId("line-param-dialog-angle")
         }
@@ -50,7 +50,7 @@ ApplicationWindow {
 
 
 
-        NativeText {
+        Text {
             //% "Number of points"
             text: qsTrId("line-param-dialog-points")
         }

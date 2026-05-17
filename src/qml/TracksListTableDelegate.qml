@@ -1,27 +1,35 @@
-import QtQuick 2.9
-import QtQuick.Controls 1.4
+import QtQuick
+import QtQuick.Controls
 import "functions.js" as F
 import "./components"
 
 
 Item {
     id: delegate;
+    height: parent ? parent.height : 30
     property variant comboModel
     property variant typeModel
     property variant category_defaults;
     signal changeModel(int row, string role, variant value);
 
-    NativeText {
+    property int row
+    property string role
+    property variant value
+    property bool selected: false
+    property color textColor: selected ? "white" : "black"
+    property int elideMode: Text.ElideRight
+
+    Text {
         width: parent.width
         anchors.margins: 4
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        elide: styleData.elideMode
-        text: getTextForRole(styleData.row, styleData.role, styleData.value);
-        color: (styleData.value === -1
-                || (styleData.role === "addTime" && styleData.value === 0)
-                ) ? "#aaa" : styleData.textColor
-        visible: ((styleData.role === "tid") || (styleData.role === "flags") || styleData.role === "distance_sum" ) || (!styleData.selected && (styleData.role !== "type"))
+        elide: delegate.elideMode
+        text: getTextForRole(delegate.row, delegate.role, delegate.value);
+        color: (delegate.value === -1
+                || (delegate.role === "addTime" && delegate.value === 0)
+                ) ? "#aaa" : delegate.textColor
+        visible: ((delegate.role === "tid") || (delegate.role === "flags") || delegate.role === "distance_sum" ) || (!delegate.selected && (delegate.role !== "type"))
 
     }
 
@@ -35,58 +43,53 @@ Item {
         anchors.margins: 4
         Connections {
             target: pidComboLoader.item
-//            function onNewPid() {
-            onNewPid: {
-                changeModel(styleData.row, styleData.role, pid)
+            function onNewPid(pid) {
+                changeModel(delegate.row, delegate.role, pid)
             }
         }
 
-        sourceComponent: (styleData.role === "pid") ? pointSelection : null
+        sourceComponent: (delegate.role === "pid") ? pointSelection : null
         Component {
             id: pointSelection
             ComboBox {
                 id: combo
-                width: delegate.width-10;
+                width: delegate.width - 10
                 textRole: "text"
+                model: comboModel
 
-                property int tablePid: parseInt(styleData.value);
+                property int tablePid: parseInt(delegate.value)
+                property bool initializing: true
+                signal newPid(int pid)
 
-                signal newPid(int pid);
-                onCurrentIndexChanged: {
-                    if (comboModel === undefined) {
-                        return;
-                    }
-
-                    var it = comboModel.get(currentIndex);
-                    if (it.pid !== styleData.value) { // jen kdyz se zmenilo
-                        newPid(it.pid);
-                    }
-
-                }
-
-                onTablePidChanged: {
-                    if (tablePid < 0) {
-                        return;
-                    }
-
-                    model = comboModel
-                    var toIdx = 0;
-
+                function updateIndex() {
+                    if (!model || model.count === 0) return;
+                    initializing = true;
+                    var target = delegate.value;
                     for (var i = 0; i < model.count; i++) {
                         var it = model.get(i);
-                        if (it.pid === styleData.value) {
-                            toIdx = i;
-                            break;
+                        if (it.pid == target) {  // == for type-safe comparison
+                            currentIndex = i;
+                            initializing = false;
+                            return;
                         }
                     }
-                    currentIndex = toIdx;
+                    currentIndex = 0;
+                    initializing = false;
                 }
 
+                Component.onCompleted: updateIndex()
+                onModelChanged: if (model && model.count > 0) updateIndex()
+                onTablePidChanged: if (model && model.count > 0) updateIndex()
 
-
+                onCurrentIndexChanged: {
+                    if (initializing || !model || model.count === 0 || currentIndex < 0) return;
+                    var it = model.get(currentIndex);
+                    if (it && it.pid != delegate.value) {
+                        newPid(it.pid);
+                    }
+                }
             }
         }
-
     }
 
 
@@ -100,56 +103,52 @@ Item {
         anchors.margins: 4
         Connections {
             target: loaderType.item
-
-            onNewType: {
-//            function onNewType(t) {
-                changeModel(styleData.row, styleData.role, t)
+            function onNewType(t) {
+                changeModel(delegate.row, delegate.role, t)
             }
-
         }
 
-        sourceComponent: ((styleData.role === "type") && (styleData.row !== 0)) ? typeSelection : null
+        sourceComponent: ((delegate.role === "type") && (delegate.row !== 0)) ? typeSelection : null
         Component {
             id: typeSelection
             ComboBox {
                 id: typeCombo
-                width: delegate.width-10
+                width: delegate.width - 10
                 textRole: "text"
+                model: typeModel
 
-                property string tableType: styleData.value;
-                signal newType(string t);
+                property string tableType: (delegate.value !== undefined && delegate.value !== null) ? delegate.value : ""
+                property bool initializing: true
+                signal newType(string t)
 
+                function updateIndex() {
+                    if (!model || model.count === 0 || tableType === "") return;
+                    initializing = true;
+                    var target = delegate.value;
+                    for (var i = 0; i < model.count; i++) {
+                        var it = model.get(i);
+                        if (it.typeId === target) {
+                            currentIndex = i;
+                            initializing = false;
+                            return;
+                        }
+                    }
+                    initializing = false;
+                }
+
+                Component.onCompleted: updateIndex()
+                onModelChanged: if (model && model.count > 0) updateIndex()
+                onTableTypeChanged: if (model && model.count > 0) updateIndex()
 
                 onCurrentIndexChanged: {
-                    if (typeModel === undefined) {
-                        return;
-                    }
-                    var it = typeModel.get(currentIndex)
-                    if (it.typeId !== styleData.value) { // jen kdyz se zmenilo
+                    if (initializing || !model || model.count === 0 || currentIndex < 0) return;
+                    var it = model.get(currentIndex);
+                    if (it && it.typeId !== delegate.value) {
                         newType(it.typeId);
                     }
                 }
-
-
-                onTableTypeChanged: {
-                    if (tableType =="") {
-                        return;
-                    }
-
-                    model = typeModel;
-                    var toIdx = 0;
-                    for (var i = 0; i < model.count; i++) {
-                        var it = model.get(i);
-                        if (it.typeId === styleData.value) {
-                            toIdx = i;
-                            break;
-                        }
-                    }
-                    currentIndex = toIdx
-                }
             }
         }
-
     }
 
 
@@ -165,10 +164,10 @@ Item {
     //            target:loaderSpinBox.item
     //            onNewAngle: {
     ////                function onNewAngle(angle) {
-    //                changeModel(styleData.row, styleData.role, angle)
+    //                changeModel(delegate.row, delegate.role, angle)
     //            }
     //        }
-    //        sourceComponent: ((styleData.role === "angle") && (styleData.selected)) ? spinbox : null;
+    //        sourceComponent: ((delegate.role === "angle") && (delegate.selected)) ? spinbox : null;
     //        Component {
     //            id: spinbox;
     //            SpinBox {
@@ -177,8 +176,8 @@ Item {
     //                minimumValue: -1;
     //                maximumValue: 360;
     //                stepSize: 10;
-    //                value: getTextForRole(styleData.row, styleData.role, styleData.value);
-    //                font.weight: (styleData.value === -1) ? Font.Light : Font.Normal
+    //                value: getTextForRole(delegate.row, delegate.role, delegate.value);
+    //                font.weight: (delegate.value === -1) ? Font.Light : Font.Normal
 
     //                onEditingFinished: {
     //                    newAngle(value)
@@ -199,17 +198,15 @@ Item {
         anchors.margins: 4
         Connections {
             target: loaderEditor.item
-            onNewValue: {
-//            function onNewValue(value) {
-
-                switch (styleData.role) {
+            function onNewValue(value) {
+                switch (delegate.role) {
                 case "angle": // default
                     var num = parseFloat(value);
                     if (isNaN(num)) {
-                        changeModel(styleData.row, styleData.role, -1)
+                        changeModel(delegate.row, delegate.role, -1)
                     } else {
                         num = (num + 90) % 360
-                        changeModel(styleData.row, styleData.role, num)
+                        changeModel(delegate.row, delegate.role, num)
                     }
                     break;
                 case "distance":
@@ -219,9 +216,9 @@ Item {
                 case "ptr":
                     var num = parseFloat(value);
                     if (isNaN(num)) {
-                        changeModel(styleData.row, styleData.role, -1)
+                        changeModel(delegate.row, delegate.role, -1)
                     } else {
-                        changeModel(styleData.row, styleData.role, num)
+                        changeModel(delegate.row, delegate.role, num)
                     }
                     break;
                 case "addTime":
@@ -230,19 +227,19 @@ Item {
                     var result = regexp.exec(str);
                     if (result) {
                         var num = parseInt(result[1], 10) * 3600 + parseInt(result[2], 10) * 60 + parseInt(result[3], 10);
-                        changeModel(styleData.row, styleData.role, num)
+                        changeModel(delegate.row, delegate.role, num)
                     } else {
                         var num = parseFloat(str);
                         if (isNaN(num)) {
-                            changeModel(styleData.row, styleData.role, 0)
+                            changeModel(delegate.row, delegate.role, 0)
                         } else {
-                            changeModel(styleData.row, styleData.role, num)
+                            changeModel(delegate.row, delegate.role, num)
                         }
                     }
 
                     break;
                 default:
-                    changeModel(styleData.row, styleData.role, value)
+                    changeModel(delegate.row, delegate.role, value)
                     break;
                 }
 
@@ -250,32 +247,32 @@ Item {
         }
         sourceComponent:
             (
-                styleData.role !== "tid" &&
-                styleData.role !== "type" &&
-                styleData.role !== "pid" &&
-                styleData.role !== "flags" &&
-                styleData.role !== "distance_sum"
-             ) && (styleData.selected)
+                delegate.role !== "tid" &&
+                delegate.role !== "type" &&
+                delegate.role !== "pid" &&
+                delegate.role !== "flags" &&
+                delegate.role !== "distance_sum"
+             ) && (delegate.selected)
             ? editor : null
 
         Component {
             id: editor
 
-            NativeTextInput {
+            TextInput {
                 id: textinput
                 signal newValue(string value);
 
-                color: styleData.textColor
-                text: getTextForRole(styleData.row, styleData.role, styleData.value);
+                color: delegate.textColor
+                text: getTextForRole(delegate.row, delegate.role, delegate.value);
 
                 Keys.onUpPressed: {
-                    if (styleData.role === "angle") {
+                    if (delegate.role === "angle") {
                         text =parseInt(text) +10
                     }
                 }
 
                 Keys.onDownPressed: {
-                    if (styleData.role === "angle") {
+                    if (delegate.role === "angle") {
                         text = parseInt(text) - 10
                     }
                 }
@@ -322,11 +319,11 @@ Item {
                 show = category_defaults.default_flags;
                 break;
             case "angle":
-                var it = tracksModel.get(styleData.row);
+                var it = tracksModel.get(delegate.row);
                 show = Math.round(it.computed_angle)
                 break;
             case "distance":
-                var it = tracksModel.get(styleData.row);
+                var it = tracksModel.get(delegate.row);
                 show = Math.round(it.computed_distance)
                 break;
             case "radius":
@@ -356,7 +353,7 @@ Item {
             break;
         case "distance_sum":
             var distance_sum = 0;
-            for (var i = 0; ((i < tracksModel.count) && (i <= styleData.row)); i++) {
+            for (var i = 0; ((i < tracksModel.count) && (i <= delegate.row)); i++) {
                 var item = tracksModel.get(i);
                 var distance = (item.distance !== -1) ? item.distance : item.computed_distance
                 distance_sum += distance;

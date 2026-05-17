@@ -1,17 +1,44 @@
-import QtQuick 2.9
-import QtQuick.Controls 1.4
-import QtQuick.Dialogs 1.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Dialogs
 
-TableView {
+Item {
     id: tableView
     property variant polygons
 
     signal polygonSelected(int cid);
 
-    model: pModel
-
     signal newPolygons(variant p);
     signal polygonToPoints(int cid);
+
+    QtObject {
+        id: selectionData
+        property var items: []
+        property int count: items.length
+        function clear() { items = []; itemsChanged(); }
+        function select(idx) { 
+            var newItems = items.slice();
+            if (newItems.indexOf(idx) === -1) { 
+                newItems.push(idx); 
+                items = newItems; 
+            } 
+        }
+        function deselect(start, end) { 
+            var newItems = [];
+            for (var i = 0; i < items.length; i++) {
+                if (items[i] < start || items[i] > end) {
+                    newItems.push(items[i]);
+                }
+            }
+            items = newItems;
+        }
+        function forEach(cb) { items.forEach(cb); }
+        function contains(idx) { return items.indexOf(idx) !== -1; }
+        signal selectionChanged()
+        onItemsChanged: selectionChanged()
+    }
+    property alias selection: selectionData
 
     onPolygonsChanged: {
         if (polygons === undefined) {
@@ -29,14 +56,12 @@ TableView {
                               "closed": p.closed,
                           });
         }
-
-
     }
 
     function polygonSelectionChanged() {
         if (selection.count === 1) {
             selection.forEach( function(rowIndex) {
-                var item = model.get(rowIndex);
+                var item = pModel.get(rowIndex);
                 polygonSelected(item.cid)
             })
         }
@@ -47,7 +72,10 @@ TableView {
         property int returnRow;
 
         onAccepted: {
-            var col = String(colorDialog.currentColor).substring(1);
+            var col = String(colorDialog.color).substring(1); // Qt6 color returns #AARRGGBB or #RRGGBB
+            if (col.length === 8 && col.startsWith("FF")) {
+                col = col.substring(2);
+            }
             pModel.setProperty(returnRow, "color", col)
 
             tableView.selection.deselect(0, pModel.count-1);
@@ -88,13 +116,12 @@ TableView {
         onClicked: {
             contextMenu.popup();
         }
-
     }
 
 
     Menu {
         id: contextMenu
-        MenuItem {
+        Action {
             //% "Transform to points"
             text: qsTrId("polygon-list-polygon-to-points")
             enabled: (tableView.selection.count > 0)
@@ -107,7 +134,7 @@ TableView {
             }
         }
 
-        MenuItem {
+        Action {
             //% "Remove polygon"
             text: qsTrId("polygon-list-remove-polygon")
             enabled: (tableView.selection.count > 0)
@@ -125,59 +152,117 @@ TableView {
 
     }
 
-    itemDelegate: PolygonListDelegate {
-        onChangeModel: {
-            var tmpValue = value;
-            if (role == "closed") {
-                tmpValue = (value === "true")
+    ColumnLayout {
+        anchors.fill: parent
+        spacing: 0
+
+        Rectangle {
+            Layout.fillWidth: true
+            height: 30
+            color: "#eee"
+            RowLayout {
+                anchors.fill: parent
+                Text { text: qsTrId("polygon-list-id"); Layout.preferredWidth: 50 }
+                Text { text: qsTrId("polygon-list-name"); Layout.preferredWidth: 250 }
+                Text { text: qsTrId("polygon-list-color"); Layout.preferredWidth: 70 }
+                Text { text: qsTrId("polygon-points-count"); Layout.preferredWidth: 50 }
+                Text { text: qsTrId("polygon-closed"); Layout.fillWidth: true }
             }
-            console.log(row + " " + role + " " + tmpValue)
-            pModel.setProperty(row, role, tmpValue);
-            tableView.selection.deselect(0, pModel.count-1);
-            tableView.selection.select(row)
-
         }
 
-        onOpenColorDialog: {
-            colorDialog.returnRow = row;
-            colorDialog.color = "#" + prevValue
-            colorDialog.open();
+        ListView {
+            id: listView
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            model: pModel
+            clip: true
+
+            delegate: Rectangle {
+                width: listView.width
+                height: 30
+                color: selection.contains(index) ? "#0077cc" : (index % 2 == 0 ? "#fff" : "#f5f5f5")
+                
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: (mouse) => {
+                        if (mouse.modifiers & Qt.ControlModifier) {
+                            if (selection.contains(index)) {
+                                var newItems = selection.items.filter(i => i !== index);
+                                selection.items = newItems;
+                            } else {
+                                selection.select(index);
+                            }
+                        } else {
+                            selection.clear();
+                            selection.select(index);
+                            listView.currentIndex = index;
+                        }
+                    }
+                }
+
+                RowLayout {
+                    anchors.fill: parent
+                    PolygonListDelegate {
+                        Layout.preferredWidth: 50
+                        role: "cid"; value: model.cid; row: index
+                        selected: selection.contains(index)
+                        onChangeModel: (row, role, value) => {
+                            var tmpValue = value;
+                            if (role == "closed") {
+                                tmpValue = (value === "true")
+                            }
+                            pModel.setProperty(row, role, tmpValue);
+                            tableView.selection.deselect(0, pModel.count-1);
+                            tableView.selection.select(row)
+                        }
+                    }
+                    PolygonListDelegate {
+                        Layout.preferredWidth: 250
+                        role: "name"; value: model.name; row: index
+                        selected: selection.contains(index)
+                        onChangeModel: (row, role, value) => {
+                            pModel.setProperty(row, role, value);
+                            tableView.selection.deselect(0, pModel.count-1);
+                            tableView.selection.select(row)
+                        }
+                    }
+                    PolygonListDelegate {
+                        Layout.preferredWidth: 70
+                        role: "color"; value: model.color; row: index
+                        selected: selection.contains(index)
+                        onChangeModel: (row, role, value) => {
+                            pModel.setProperty(row, role, value);
+                            tableView.selection.deselect(0, pModel.count-1);
+                            tableView.selection.select(row)
+                        }
+                        onOpenColorDialog: (row, prevValue) => {
+                            colorDialog.returnRow = row;
+                            colorDialog.selectedColor = "#" + prevValue
+                            colorDialog.open();
+                        }
+                    }
+                    PolygonListDelegate {
+                        Layout.preferredWidth: 50
+                        role: "point_count"; value: model.point_count; row: index
+                        selected: selection.contains(index)
+                    }
+                    PolygonListDelegate {
+                        Layout.fillWidth: true
+                        role: "closed"; value: model.closed; row: index
+                        selected: selection.contains(index)
+                        onChangeModel: (row, role, value) => {
+                            var tmpValue = value;
+                            if (role == "closed") {
+                                tmpValue = (value === "true" || value === true)
+                            }
+                            pModel.setProperty(row, role, tmpValue);
+                            tableView.selection.deselect(0, pModel.count-1);
+                            tableView.selection.select(row)
+                        }
+                    }
+                }
+            }
         }
-
-    }
-
-    TableViewColumn {
-        //% "Id"
-        title: qsTrId("polygon-list-id")
-        role: "cid"
-        width: 50
-    }
-
-    TableViewColumn {
-        //% "Name"
-        title: qsTrId("polygon-list-name");
-        role: "name"
-        width: 250;
-    }
-
-    TableViewColumn {
-        //% "Color"
-        title: qsTrId("polygon-list-color");
-        role: "color";
-        width: 70;
-    }
-
-    TableViewColumn {
-        //% "Points"
-        title: qsTrId("polygon-points-count");
-        role: "point_count";
-        width: 50;
-    }
-    TableViewColumn {
-        //% "Closed"
-        title: qsTrId("polygon-closed")
-        role: "closed";
-        width: 50
     }
 
     Component.onCompleted: {

@@ -29,7 +29,7 @@ ApplicationWindow {
         spacing: 5
         columns: 2;
 
-        NativeText {
+        Text {
             //% "Radius (m)"
             text: qsTrId("circle-param-dialog-radius")
         }
@@ -38,7 +38,7 @@ ApplicationWindow {
             text: "5556" // 3 nautical miles == 5556 (standard ATZ size)
         }
 
-        NativeText {
+        Text {
             //% "Number of points"
             text: qsTrId("circle-param-dialog-points")
         }

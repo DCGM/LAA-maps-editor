@@ -1,5 +1,5 @@
-import QtQuick 2.9
-import QtQuick.Controls 1.4
+import QtQuick
+import QtQuick.Controls
 import "functions.js" as F
 import "./components"
 
@@ -9,16 +9,23 @@ Item {
     signal changeModel(int row, string role, string value);
     signal openColorDialog(int row, string prevValue);
 
+    property int row
+    property string role
+    property variant value
+    property bool selected: false
+    property color textColor: selected ? "white" : "black"
+    property int elideMode: Text.ElideRight
 
-    NativeText {
+
+    Text {
         width: parent.width
         anchors.margins: 4
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        elide: styleData.elideMode
-        text: styleData.value
-        color: styleData.textColor
-        visible: !styleData.selected && (styleData.role !== "closed") && (styleData.role !== "color")
+        elide: editableDelegate.elideMode
+        text: editableDelegate.value
+        color: editableDelegate.textColor
+        visible: !editableDelegate.selected && (editableDelegate.role !== "closed") && (editableDelegate.role !== "color")
     }
     Loader { // Initialize text editor lazily to improve performance
         id: loaderEditor
@@ -32,17 +39,17 @@ Item {
             onAccepted: {
 //            function onAccepted() {
 
-                switch (styleData.role) {
+                switch (editableDelegate.role) {
                 case "name": // default
                     if (loaderEditor.item.text === "") {
                         //% "Polygon"
-                        changeModel(styleData.row, styleData.role, qsTrId("polygon-list-default-name"));
+                        changeModel(editableDelegate.row, editableDelegate.role, qsTrId("polygon-list-default-name"));
                     } else {
-                        changeModel(styleData.row, styleData.role, loaderEditor.item.text)
+                        changeModel(editableDelegate.row, editableDelegate.role, loaderEditor.item.text)
                     }
                     break;
                 case "color": // default
-                    changeModel(styleData.row, styleData.role, validateColor(loaderEditor.item.text))
+                    changeModel(editableDelegate.row, editableDelegate.role, validateColor(loaderEditor.item.text))
                     break;
                 case "cid":
                     console.log("Cannot change point id"); // neni mozne prepsat pid
@@ -51,20 +58,20 @@ Item {
                     console.log("Cannot change point count so easy"); // neni mozne prepsat pocet bodu (TODO: editor bodu)
                     break;
                 case "closed":
-                    changeModel(styleData.row, styleData.role, loaderEditor.item.checked)
+                    changeModel(editableDelegate.row, editableDelegate.role, loaderEditor.item.checked)
                     break;
                 default:
-                    changeModel(styleData.row, styleData.role, loaderEditor.item.text)
+                    changeModel(editableDelegate.row, editableDelegate.role, loaderEditor.item.text)
                     break;
                 }
 
             }
         }
-        sourceComponent: (styleData.role === "closed") ? btn : ( (styleData.role === "color") ? colorRect : (styleData.selected ? editor : null) )
+        sourceComponent: (editableDelegate.role === "closed") ? btn : ( (editableDelegate.role === "color") ? colorRect : (editableDelegate.selected ? editor : null) )
         Component {
             id: btn
             CheckBox {
-                checked: styleData.value;
+                checked: editableDelegate.value;
                 signal accepted();
                 onClicked: {
                     accepted();
@@ -76,12 +83,12 @@ Item {
             Rectangle {
                 width: 10;
                 height: 10;
-                color: "#" + styleData.value
+                color: "#" + editableDelegate.value
                 signal accepted();
                 MouseArea {
                     anchors.fill: parent;
                     onClicked: {
-                        openColorDialog(styleData.row, styleData.value)
+                        openColorDialog(editableDelegate.row, editableDelegate.value)
                     }
                 }
             }
@@ -89,11 +96,11 @@ Item {
 
         Component {
             id: editor
-            NativeTextInput {
+            TextInput {
                 id: textinput
 
-                color: styleData.textColor
-                text: styleData.value
+                color: editableDelegate.textColor
+                text: editableDelegate.value
 
                 MouseArea {
                     id: mouseArea
@@ -101,8 +108,8 @@ Item {
                     hoverEnabled: true
                     onClicked: {
                         textinput.forceActiveFocus()
-                        if (styleData.role === "color") {
-                            openColorDialog(styleData.row, styleData.value)
+                        if (editableDelegate.role === "color") {
+                            openColorDialog(editableDelegate.row, editableDelegate.value)
                         }
                     }
                 }

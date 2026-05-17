@@ -83,7 +83,7 @@ QVariant IgcFile::data(const QModelIndex& index, int role) const
 
 /// Open a file with given path and
 /// load it.
-bool IgcFile::load(const QString& path, QTextCodec* codec)
+bool IgcFile::load(const QString& path)
 {
     QUrl url(path);
 
@@ -94,11 +94,11 @@ bool IgcFile::load(const QString& path, QTextCodec* codec)
         return false;
     }
 
-    return load(&f, codec);
+    return load(&f);
 }
 
 /// Load a file from opened QIODevice.
-bool IgcFile::load(QIODevice* dev, QTextCodec* codec)
+bool IgcFile::load(QIODevice* dev, QStringConverter::Encoding codec)
 {
 
     clear();
@@ -106,11 +106,7 @@ bool IgcFile::load(QIODevice* dev, QTextCodec* codec)
     file = dev;
     previousRecord = '\0';
 
-    if (codec) {
-        activeCodec = codec;
-    } else {
-        activeCodec = QTextCodec::codecForName("Latin1");
-    }
+    activeCodec = codec;
 
     if (!loadOneRecord()) {
         clear();
@@ -362,9 +358,9 @@ bool IgcFile::processRecordH()
             return false;
         }
     } else if (subtype == "CCL") {
-        competitionClass_ = activeCodec->toUnicode(value);
+        competitionClass_ = QStringDecoder(activeCodec).decode(value);
     } else if (subtype == "CID") {
-        competitionId_ = activeCodec->toUnicode(value);
+        competitionId_ = QStringDecoder(activeCodec).decode(value);
     } else if (subtype == "DTE") {
         bool ok;
         date_ = parseDate(data, &ok);
@@ -379,19 +375,19 @@ bool IgcFile::processRecordH()
     } else if (subtype == "FTY") {
         QList<QByteArray> list = value.split(',');
         if (list.size() == 1) {
-            frType_ = activeCodec->toUnicode(list[0]);
+            frType_ = QStringDecoder(activeCodec).decode(list[0]);
         } else {
-            manufacturer_ = activeCodec->toUnicode(list[0]);
-            frType_ = activeCodec->toUnicode(list[1]);
+            manufacturer_ = QStringDecoder(activeCodec).decode(list[0]);
+            frType_ = QStringDecoder(activeCodec).decode(list[1]);
         }
     } else if (subtype == "GID") {
-        gliderId_ = activeCodec->toUnicode(value);
+        gliderId_ = QStringDecoder(activeCodec).decode(value);
     } else if (subtype == "GPS") {
-        gps_ = activeCodec->toUnicode(value.split(',')[0]);
+        gps_ = QStringDecoder(activeCodec).decode(value.split(',')[0]);
     } else if (subtype == "GTY") {
-        gliderType_ = activeCodec->toUnicode(value);
+        gliderType_ = QStringDecoder(activeCodec).decode(value);
     } else if (subtype == "PLT") {
-        pilot_ = activeCodec->toUnicode(value);
+        pilot_ = QStringDecoder(activeCodec).decode(value);
     }
 
     return true;

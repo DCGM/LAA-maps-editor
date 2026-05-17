@@ -6,7 +6,7 @@
 #include <QUrl>
 
 #include <QString>
-#include <QTextCodec>
+#include <QStringConverter>
 #include <QTextStream>
 
 FileReader::FileReader(QObject* parent)
@@ -80,7 +80,7 @@ void FileReader::writeUTF8(const QUrl& filename, QByteArray data)
     }
 
     QTextStream streamFileOut(&file);
-    streamFileOut.setCodec(QTextCodec::codecForName("UTF-8"));
+    streamFileOut.setEncoding(QStringConverter::Utf8);
     streamFileOut << QString::fromUtf8(data);
     streamFileOut.flush();
 

@@ -1,8 +1,9 @@
-import QtQuick 2.9
-import QtQuick.Controls 1.4
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 import "geom.js" as G
 
-TableView {
+Item {
     id: tableView
 
     property variant points
@@ -17,27 +18,43 @@ TableView {
     property bool enableSnap: false;
     property variant lateSelect;
 
-    model: pModel;
-    selectionMode: SelectionMode.ExtendedSelection
+    property int currentRow: listView.currentIndex
 
-    onRowCountChanged: {
-        if (lateSelect !== undefined) {
-            tableView.selection.clear();
-            tableView.selection.select(lateSelect)
-            lateSelect = undefined;
+    QtObject {
+        id: selectionData
+        property var items: []
+        property int count: items.length
+        function clear() { items = []; itemsChanged(); }
+        function select(idx) { 
+            var newItems = items.slice();
+            if (newItems.indexOf(idx) === -1) { 
+                newItems.push(idx); 
+                items = newItems; 
+            } 
         }
-
+        function deselect(start, end) { 
+            var newItems = [];
+            for (var i = 0; i < items.length; i++) {
+                if (items[i] < start || items[i] > end) {
+                    newItems.push(items[i]);
+                }
+            }
+            items = newItems;
+        }
+        function forEach(cb) { items.forEach(cb); }
+        function contains(idx) { return items.indexOf(idx) !== -1; }
+        signal selectionChanged()
+        onItemsChanged: selectionChanged()
     }
-
+    property alias selection: selectionData
 
     onPointPidSelectedFromMapChanged: {
         for (var i = 0; i < pModel.count; i++) {
-
             var item = pModel.get(i);
             if (item.pid === pointPidSelectedFromMap) {
-                tableView.selection.clear();
-                tableView.selection.select(i);
-                currentRow =i;
+                selection.clear();
+                selection.select(i);
+                listView.currentIndex = i;
             }
         }
     }
@@ -56,7 +73,7 @@ TableView {
             if (item.pid === pid) {
                 pModel.setProperty(i, "lat", newPointPosition.lat)
                 pModel.setProperty(i, "lon", newPointPosition.lon)
-                currentRow = i;
+                listView.currentIndex = i;
                 return;
             }
         }
@@ -69,10 +86,9 @@ TableView {
     function pointlistSelectionChanged() {
         if (selection.count === 1) {
             selection.forEach( function(rowIndex) {
-                pointSelected(model.get(rowIndex).pid);
+                pointSelected(pModel.get(rowIndex).pid);
             });
         }
-
     }
 
     onPointsChanged: {
@@ -87,26 +103,6 @@ TableView {
                                   "lon": parseFloat(p.lon)
                               })
             }
-        }
-    }
-
-
-
-
-    itemDelegate: PointsListEditableDelegate {
-        onChangeModel: {
-            tableView.model.setProperty(row, role, value);
-
-            tableView.selection.deselect(0, pModel.count-1);
-            tableView.selection.select(row)
-            tableView.currentRow = row;
-
-            pointSelected(pModel.get(row).pid);
-
-        }
-
-        onReverseGeocoding: {
-            tableView.startReverseGeocoding(row)
         }
     }
 
@@ -135,9 +131,9 @@ TableView {
                         } else if (response.address.village !== undefined) {
                             pModel.setProperty(row, "name", response.address.village);
                         }
-                        tableView.selection.deselect(0, pModel.count-1);
-                        tableView.selection.select(row)
-                        tableView.currentRow = row;
+                        selection.deselect(0, pModel.count-1);
+                        selection.select(row)
+                        listView.currentIndex = row;
 
                         pointSelected(pModel.get(row).pid);
                     } catch (e) {
@@ -150,7 +146,6 @@ TableView {
         http.send()
     }
 
-
     MouseArea {
         acceptedButtons: Qt.RightButton
         anchors.fill: parent
@@ -158,7 +153,6 @@ TableView {
         onClicked: {
             contextMenu.popup();
         }
-
     }
 
     function addPointToList(name = 'point', lat, lon) {
@@ -176,31 +170,31 @@ TableView {
         }
 
         pModel.append(item)
-
     }
-
 
     Menu {
         id: contextMenu;
 
-        MenuItem {
+        Action {
             //% "Add point"
             text: qsTrId("points-list-add-point")
             onTriggered: {
-                //% "Turn point"
                 var name = qsTrId("points-list-default-name");
 
                 addPointToList(name, mapCenterLat, mapCenterLon)
                 var current = pModel.count-1;
                 pModel.pointsChanged()
-                lateSelect = current; // workarround for https://bugreports.qt.io/browse/QTBUG-53027
-
+                
+                selection.clear();
+                selection.select(current);
+                listView.currentIndex = current;
             }
         }
         MenuItem {
             //% "Add circle"
             text: qsTrId("points-list-add-circle")
             visible: (tableView.currentRow !== -1)
+            height: visible ? implicitHeight : 0
             onTriggered: circleParamDialog.show();
         }
 
@@ -208,22 +202,23 @@ TableView {
             //% "Add points (in line)"
             text: qsTrId("points-list-add-line")
             visible: (tableView.currentRow !== -1)
+            height: visible ? implicitHeight : 0
             onTriggered: lineParamDialog.show();
         }
 
-
-        MenuItem {
+        Action {
             //% "Remove points"
             text: qsTrId("points-list-remove-points")
             enabled: (tableView.currentRow !== -1)
             onTriggered: {
                 var removedCount = 0;
-                tableView.selection.forEach(function(rowIndex) {
+                var sortedItems = selection.items.slice().sort(function(a, b){return a - b});
+                sortedItems.forEach(function(rowIndex) {
                     var removeIndex = rowIndex - removedCount;
                     pModel.remove(removeIndex, 1);
                     removedCount++
                 })
-                tableView.selection.clear();
+                selection.clear();
 
                 pModel.pointsChanged();
 
@@ -233,10 +228,11 @@ TableView {
         MenuItem {
             //% "Snap to.."
             text: qsTrId("points-list-snap-to")
-            enabled: (tableView.selection.count === 1)
+            enabled: (selection.count === 1)
             visible: enableSnap
+            height: visible ? implicitHeight : 0
             onTriggered: {
-                tableView.selection.forEach(function(rowIndex) {
+                selection.forEach(function(rowIndex) {
                     var item = pModel.get(rowIndex)
                     snapToSth(item.pid)
                     console.log("Snap to: (" +item.pid + ") " + item.name)
@@ -247,10 +243,12 @@ TableView {
         MenuItem {
             //% "Transform to polygon"
             text: qsTrId("points-list-transform-to-polygon")
-            visible: (tableView.selection.count > 1)
+            visible: (selection.count > 1)
+            height: visible ? implicitHeight : 0
+
             onTriggered: {
                 var newPointsArr = []
-                tableView.selection.forEach(function(rowIndex) {
+                selection.forEach(function(rowIndex) {
                     var item = pModel.get(rowIndex)
                     newPointsArr.push({"lat": item.lat, "lon": item.lon})
                 })
@@ -261,33 +259,28 @@ TableView {
                     "points": newPointsArr,
                     "closed": false,
                 }
-
-
                 newPolygon(newPolyData)
             }
-
         }
 
         MenuItem {
             //% "Retrieve local name"
             text: qsTrId("points-list-reverse-geocoding")
-            visible: (tableView.selection.count > 0) && (tableView.selection.count <= 3)
+            visible: (selection.count > 0) && (selection.count <= 3)
+            height: visible ? implicitHeight : 0
             onTriggered: {
-                tableView.selection.forEach(function(rowIndex) {
+                selection.forEach(function(rowIndex) {
                     tableView.startReverseGeocoding(rowIndex);
                 })
             }
         }
-
     }
-
 
     ListModel {
         id: pModel;
         onDataChanged: {
             pointsChanged();
         }
-
 
         function pointsChanged() {
             var new_arr = [];
@@ -303,39 +296,95 @@ TableView {
             }
             newPoints(new_arr);
         }
-
     }
 
+    ColumnLayout {
+        anchors.fill: parent
+        spacing: 0
 
-    TableViewColumn {
-        role: "pid"
-        //% "Id"
-        title: qsTrId("points-list-id");
-        width: 50;
+        Rectangle {
+            Layout.fillWidth: true
+            height: 30
+            color: "#eee"
+            RowLayout {
+                anchors.fill: parent
+                Text { text: qsTrId("points-list-id"); Layout.preferredWidth: 50 }
+                Text { text: qsTrId("points-list-name"); Layout.preferredWidth: 200 }
+                Text { text: qsTrId("points-list-lat"); Layout.preferredWidth: 150 }
+                Text { text: qsTrId("points-list-lon"); Layout.fillWidth: true }
+            }
+        }
+
+        ListView {
+            id: listView
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            model: pModel
+            clip: true
+
+            onCountChanged: {
+                if (lateSelect !== undefined) {
+                    selection.clear();
+                    selection.select(lateSelect)
+                    listView.currentIndex = lateSelect;
+                    lateSelect = undefined;
+                }
+            }
+
+            delegate: Rectangle {
+                width: listView.width
+                height: 30
+                color: selection.contains(index) ? "#0077cc" : (index % 2 == 0 ? "#fff" : "#f5f5f5")
+                
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: (mouse) => {
+                        if (mouse.modifiers & Qt.ControlModifier) {
+                            if (selection.contains(index)) {
+                                var newItems = selection.items.filter(i => i !== index);
+                                selection.items = newItems;
+                            } else {
+                                selection.select(index);
+                            }
+                        } else {
+                            selection.clear();
+                            selection.select(index);
+                            listView.currentIndex = index;
+                        }
+                        pointSelected(model.pid);
+                    }
+                }
+
+                RowLayout {
+                    anchors.fill: parent
+                    PointsListEditableDelegate {
+                        Layout.preferredWidth: 50
+                        role: "pid"; value: model.pid; row: index
+                        selected: selection.contains(index)
+                        onChangeModel: (row, role, value) => { pModel.setProperty(row, role, value); }
+                    }
+                    PointsListEditableDelegate {
+                        Layout.preferredWidth: 200
+                        role: "name"; value: model.name; row: index
+                        selected: selection.contains(index)
+                        onChangeModel: (row, role, value) => { pModel.setProperty(row, role, value); }
+                    }
+                    PointsListEditableDelegate {
+                        Layout.preferredWidth: 150
+                        role: "lat"; value: model.lat; row: index
+                        selected: selection.contains(index)
+                        onChangeModel: (row, role, value) => { pModel.setProperty(row, role, value); }
+                    }
+                    PointsListEditableDelegate {
+                        Layout.fillWidth: true
+                        role: "lon"; value: model.lon; row: index
+                        selected: selection.contains(index)
+                        onChangeModel: (row, role, value) => { pModel.setProperty(row, role, value); }
+                    }
+                }
+            }
+        }
     }
-
-    TableViewColumn {
-        role: "name"
-        //% "Name"
-        title: qsTrId("points-list-name");
-        width: 200;
-    }
-
-    TableViewColumn {
-        role: "lat"
-        //% "Latitude"
-        title: qsTrId("points-list-lat");
-        width: 150;
-    }
-
-    TableViewColumn {
-        role: "lon"
-        //% "Longitude"
-        title: qsTrId("points-list-lon");
-        width: 150;
-    }
-
-
 
     CircleParamDialog {
         id: circleParamDialog
@@ -347,13 +396,11 @@ TableView {
 
             var list = G.insertMidArcByAngle(selectedPoint.lat, selectedPoint.lon, 0, Math.PI*2, true, G.distToAngle(radius_num), (Math.PI*2)/(points_num+0.01));
             for (var i = 0; i < list.length; i++) {
-                //% "Circle point %n"
                 var name = selectedPoint.name + ": " + qsTrId("points-list-circle-point-name", i+1)
                 var coord = list[i];
                 addPointToList(name, coord[0], coord[1])
             }
             pModel.pointsChanged()
-
         }
     }
 
@@ -368,17 +415,12 @@ TableView {
             console.log("Add points for line: " + distance_num + " " + angle_num + " " + points_num)
 
             for (var i = 0; i < points_num; i++) {
-                //% "Line point %n"
                 var name = selectedPoint.name + ": " + qsTrId("points-list-line-point-name", i+1)
                 distance_sum = distance_sum + distance_num;
                 var coord = G.getCoordByDistanceBearing(selectedPoint.lat, selectedPoint.lon, angle_num, distance_sum)
                 addPointToList(name, coord.lat, coord.lon)
             }
             pModel.pointsChanged()
-
         }
-
     }
-
-
 }
