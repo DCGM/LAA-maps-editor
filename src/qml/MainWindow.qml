@@ -1449,7 +1449,8 @@ ApplicationWindow {
 
                     str += "<tr>";
                     str += "<td>" + F.addSlashes(pt.name) + "</td>";
-                    str += "<td>" + displayAngle + "°</td>";
+//                    str += "<td>" + displayAngle + "°</td>";
+                    str += "<td></td>";
                     str += "<td>" + displayDistance + "</td>";
                     str += "<td>" + displayCumulativeDistance + "</td>";
                     str += "<td>" + displayAddTime + "</td>";
