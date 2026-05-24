@@ -10,7 +10,7 @@ ApplicationWindow {
     modality: Qt.ApplicationModal
 
 
-    NativeText {
+    Text {
         id: titleLabel;
         font.pixelSize: 36;
         //% "LAA Trajectory Editor"
@@ -56,7 +56,7 @@ ApplicationWindow {
             spacing: 20;
             anchors.margins: 10;
 
-            NativeText {
+            Text {
                 //% "Build %1 %2 %3"
                 text: qsTrId("about-build-date").arg(builddate).arg(buildtime).arg(version);
                 anchors.left: parent.left
@@ -65,7 +65,7 @@ ApplicationWindow {
             }
 
 
-            NativeText {
+            Text {
                 id: aboutTextLabel
 
                  anchors.left: parent.left

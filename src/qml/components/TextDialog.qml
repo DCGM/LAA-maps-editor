@@ -14,7 +14,7 @@ Dialog {
         anchors.margins: 10;
         spacing: 15;
 
-        NativeText {
+        Text {
             id: questionText
             width: parent.width;
 

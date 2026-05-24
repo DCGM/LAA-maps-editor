@@ -538,7 +538,7 @@ Rectangle {
 
         // console.log("cache miss ("+imageCache.length+"): " + imageUrl )
         var newImage = Qt.createQmlObject(
-            'import QtQuick 2.15;
+            'import QtQuick;
                 Image {
                     property var lastHit: new Date();
                     property string cacheUrl: "'+imageUrl+'";
@@ -663,7 +663,7 @@ Rectangle {
                     }
                     visible: mapTileVisible && (img.status !== Image.Ready)
                 }
-                NativeText {
+                Text {
                     anchors.left: parent.left
                     anchors.leftMargin: 16
                     y: parent.height/2 - 32
@@ -1605,7 +1605,7 @@ Rectangle {
         width: scaleBarLength[0]
     }
 
-    NativeText {
+    Text {
         text: G.formatDistance(scaleBarLength[1], {'distanceUnit':'m'})
         anchors.horizontalCenter: scaleBar.horizontalCenter
         anchors.top: scaleBar.bottom
@@ -1908,7 +1908,7 @@ Rectangle {
         id: filereader
     }
 
-    NativeText {
+    Text {
         id: attributionText
         anchors.bottom: parent.bottom
         anchors.left: parent.left

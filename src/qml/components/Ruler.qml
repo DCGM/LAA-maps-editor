@@ -36,7 +36,7 @@ Item {
         smooth: true;
     }
 
-    NativeText {
+    Text {
         id: ruler_text
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.top

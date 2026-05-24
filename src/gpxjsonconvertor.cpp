@@ -52,7 +52,7 @@ QString GpxJsonConvertor::gpxToJSONString_local(QString filename)
         points = points + str;
     }
 
-    points.remove(points.count() - 1, 1);
+    points.remove(points.length() - 1, 1);
 
     QDomNodeList trks = root.elementsByTagName("trk");
 
@@ -81,11 +81,11 @@ QString GpxJsonConvertor::gpxToJSONString_local(QString filename)
 
             str = str + QString("{\"lat\": %1,\"lon\":%2},").arg(latitude).arg(longitude);
         }
-        str.remove(str.count() - 1, 1);
+        str.remove(str.length() - 1, 1);
         poly = poly + QString("{\"name\": \"%1\", \"color\":\"%2\", \"points\":[%3]},").arg(encodeString(name)).arg(color).arg(str);
     }
 
-    poly.remove(poly.count() - 1, 1);
+    poly.remove(poly.length() - 1, 1);
 
     return QString("{\"points\": [%1], \"poly\": [%2]}").arg(points).arg(poly);
 }
@@ -93,7 +93,7 @@ QString GpxJsonConvertor::gpxToJSONString_local(QString filename)
 QString GpxJsonConvertor::encodeString(const QString& value)
 {
     QString result = "";
-    for (int i = 0; i < value.count(); i++) {
+    for (int i = 0; i < value.length(); i++) {
         ushort chr = value.at(i).unicode();
         if (chr < 32) {
             switch (chr) {

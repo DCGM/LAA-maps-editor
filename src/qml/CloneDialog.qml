@@ -62,7 +62,7 @@ ApplicationWindow {
                                     && sourceCategoriesSelection.isSelected(categories.index(index, 0))
             color: selected ? "#0077cc" : ((index%2 === 0)? "#eee" : "#fff")
 
-            NativeText {
+            Text {
                 text: model.name
                 color: selected  ? "#ffffff" : "#000000"
                 anchors.fill: parent;
@@ -102,7 +102,7 @@ ApplicationWindow {
                                     && destinationCategoriesSelection.isSelected(categories.index(index, 0))
             color: selected ? "#0077cc" : ((index%2 === 0)? "#eee" : "#fff")
 
-            NativeText {
+            Text {
                 text: model.name
                 color: selected ? "#ffffff" : "#000000"
                 anchors.fill: parent;

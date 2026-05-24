@@ -1,7 +1,8 @@
-import QtQuick 2.9
-import QtQuick.Controls 1.4
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
-TabView {
+ColumnLayout {
     id: tabView
 
     property variant tracksData;
@@ -15,6 +16,7 @@ TabView {
     signal polyListItemSelected(int cid);
 
     property int selectedCategoryIndex: 0
+    property alias currentIndex: tabBar.currentIndex
 
     property int pointPidSelectedFromMap;
     property variant newPointPosition;
@@ -24,16 +26,31 @@ TabView {
     property real mapCenterLon
     property bool showTrackAlways;
 
-    Tab {
+    TabBar {
+        id: tabBar
+        Layout.fillWidth: true
+        TabButton {
+            //% "Points"
+            text: qsTrId("cup-text-points-title")
+        }
+        TabButton {
+            //% "Polygons"
+            text: qsTrId("cup-text-polygons-title")
+        }
+        TabButton {
+            //% "Tracks"
+            text: qsTrId("cup-text-tracks-title")
+        }
+    }
 
-        id: pointsTab
-
-        //% "Points"
-        title: qsTrId("cup-text-points-title")
+    StackLayout {
+        id: stackLayout
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        currentIndex: tabBar.currentIndex
 
         PointsList {
             id: pointsList;
-            anchors.fill: parent;
             points: (tracksData !== undefined) ? tracksData.points : undefined;
             pointPidSelectedFromMap: tabView.pointPidSelectedFromMap
             newPointPosition: tabView.newPointPosition;
@@ -67,16 +84,9 @@ TabView {
             }
 
         }
-    }
-
-    Tab {
-        //% "Polygons"
-        title: qsTrId("cup-text-polygons-title")
-
 
         PolygonList {
             id: polygonList;
-            anchors.fill: parent;
             polygons: (tracksData !== undefined) ? tracksData.poly : undefined;
 
             onNewPolygons: {
@@ -124,13 +134,6 @@ TabView {
 
         }
 
-    }
-
-
-    Tab {
-        //% "Tracks"
-        title: qsTrId("cup-text-tracks-title")
-
         TracksList {
             cupData: tracksData;
             onNewTracks: {
@@ -147,8 +150,5 @@ TabView {
             computedData: tabView.computedData
 
         }
-
     }
-
-
 }

@@ -1,3 +1,4 @@
+#include <QRegularExpression>
 #include <QtCore>
 #include <QtXml>
 
@@ -58,28 +59,30 @@ QString KmlJsonConvertor::kmlToJSONString_local(QString filename)
         //        qDebug() << nodeName;
 
         int pos = 0;
-        QRegExp rx("([\\d+|\\.]*)\\,([\\d+|\\.]*)\\,?([\\d+|\\.]*)");
+        QRegularExpression rx("([\\d+|\\.]*)\\,([\\d+|\\.]*)\\,?([\\d+|\\.]*)");
         // longitude, latitude, altitude
 
         if (point.length() > 0) {
-            if ((pos = rx.indexIn(coordsString, pos)) != -1) {
-                //                qDebug() << rx.cap(1) << rx.cap(2) << rx.cap(3);
+            QRegularExpressionMatch match = rx.match(coordsString, pos);
+            if (match.hasMatch()) {
+                //                qDebug() << match.captured(1) << match.captured(2) << match.captured(3);
                 QString str = QString("{\"lat\": %1,\"lon\":%2, \"alt\": %3, \"name\":\"%4\"},")
-                                  .arg(rx.cap(2).toFloat())
-                                  .arg(rx.cap(1).toFloat())
-                                  .arg(rx.cap(3).toFloat())
+                                  .arg(match.captured(2).toFloat())
+                                  .arg(match.captured(1).toFloat())
+                                  .arg(match.captured(3).toFloat())
                                   .arg(nodeName);
                 points = points + str;
             }
 
         } else if (linearRing.length()) {
             QString str = "";
-            while ((pos = rx.indexIn(coordsString, pos)) != -1) {
-                //                qDebug() << rx.cap(1) << rx.cap(2) << rx.cap(3);
-                str = str + QString("{\"lat\": %1,\"lon\":%2},").arg(rx.cap(2).toFloat()).arg(rx.cap(1).toFloat());
-                pos += rx.matchedLength();
+            QRegularExpressionMatch match;
+            while ((match = rx.match(coordsString, pos)).hasMatch()) {
+                //                qDebug() << match.captured(1) << match.captured(2) << match.captured(3);
+                str = str + QString("{\"lat\": %1,\"lon\":%2},").arg(match.captured(2).toFloat()).arg(match.captured(1).toFloat());
+                pos = match.capturedEnd();
             }
-            str.remove(str.count() - 1, 1);
+            str.remove(str.length() - 1, 1);
             poly = poly + QString("{\"name\": \"%1\", \"color\":\"%2\", "
                                   "\"points\":[%3], \"closed\": true},")
                               .arg(nodeName)
@@ -87,20 +90,21 @@ QString KmlJsonConvertor::kmlToJSONString_local(QString filename)
                               .arg(str);
         } else if (lineString.length()) {
             QString str = "";
-            while ((pos = rx.indexIn(coordsString, pos)) != -1) {
-                //                qDebug() << rx.cap(1) << rx.cap(2) << rx.cap(3);
-                str = str + QString("{\"lat\": %1,\"lon\":%2},").arg(rx.cap(2).toFloat()).arg(rx.cap(1).toFloat());
-                pos += rx.matchedLength();
+            QRegularExpressionMatch match;
+            while ((match = rx.match(coordsString, pos)).hasMatch()) {
+                //                qDebug() << match.captured(1) << match.captured(2) << match.captured(3);
+                str = str + QString("{\"lat\": %1,\"lon\":%2},").arg(match.captured(2).toFloat()).arg(match.captured(1).toFloat());
+                pos = match.capturedEnd();
             }
-            str.remove(str.count() - 1, 1);
+            str.remove(str.length() - 1, 1);
             poly = poly + QString("{\"name\": \"%1\", \"color\":\"%2\", \"points\":[%3]},").arg(nodeName).arg(color).arg(str);
         } else {
             qDebug() << nodeName << "unknown node";
         }
     }
 
-    points.remove(points.count() - 1, 1);
-    poly.remove(poly.count() - 1, 1);
+    points.remove(points.length() - 1, 1);
+    poly.remove(poly.length() - 1, 1);
 
     return QString("{\"points\": [%1], \"poly\": [%2]}").arg(points).arg(poly);
 }

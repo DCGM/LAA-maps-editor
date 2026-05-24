@@ -1,6 +1,7 @@
-import QtQuick 2.9
-import QtQuick.Controls 1.4
-import QtQuick.Dialogs 1.2
+import QtQuick
+import QtQuick.Controls
+import Qt.labs.platform as Platform
+import QtQuick.Dialogs
 import cz.mlich 1.0
 import "parseCup.js" as Cup
 import "parser_fn.js" as Parser
@@ -22,15 +23,21 @@ ApplicationWindow {
     property string tucekSettingsDIR: "results"
     property string tucekSettingsCSV: "tucek-settings.csv"
 
-    onClosing: {
-        close.accepted = false;
-        app_before_close();
+    onClosing: (close) => {
+        if (document_changed) {
+            close.accepted = false;
+            app_before_close();
+        } else {
+            config.set("recentFiles", recentlyOpenedFiles.jsonGet())
+            close.accepted = true;
+        }
     }
 
     function app_before_close() {
 
         if (document_changed) {
             confirmUnsavedDialog.action = function() {
+                document_changed = false;
                 config.set("recentFiles", recentlyOpenedFiles.jsonGet())
                 console.log("Quit")
                 Qt.quit();
@@ -40,6 +47,7 @@ ApplicationWindow {
             return;
         }
 
+        document_changed = false;
         config.set("recentFiles", recentlyOpenedFiles.jsonGet())
         console.log("Quit")
         Qt.quit();
@@ -50,7 +58,7 @@ ApplicationWindow {
         Menu {
             //% "&File"
             title: qsTrId("main-file-menu")
-            MenuItem {
+            Action {
                 //% "&New"
                 text: qsTrId("main-file-menu-new")
                 onTriggered: {
@@ -69,7 +77,7 @@ ApplicationWindow {
                 }
 
             }
-            MenuItem {
+            Action {
                 //% "&Load"
                 text: qsTrId("main-file-menu-load")
                 shortcut: StandardKey.Open;
@@ -97,17 +105,17 @@ ApplicationWindow {
 
                 Instantiator {
                     model: recentlyOpenedFiles
-                    delegate: MenuItem {
-                        text: "&"+index + " " + model.fileUrl
+                    delegate: Action {
+                        text: "&"+index + " " + model.file
                         onTriggered: {
-                            console.log("Loading " + fileUrl)
+                            console.log("Loading " + file)
 
                             if (document_changed) {
                                 confirmUnsavedDialog.action = function() {
-                                    console.log("Loading " + fileUrl)
+                                    console.log("Loading " + file)
                                     document_changed = false;
-                                    opened_track_filename = fileUrl;
-                                    tracks = JSON.parse(file_reader.read(Qt.resolvedUrl(fileUrl)))
+                                    opened_track_filename = file;
+                                    tracks = JSON.parse(file_reader.read(Qt.resolvedUrl(file)))
                                     map.requestUpdate()
 
                                 }
@@ -117,16 +125,16 @@ ApplicationWindow {
                             }
 
                             document_changed = false;
-                            opened_track_filename = fileUrl;
-                            tracks = JSON.parse(file_reader.read(Qt.resolvedUrl(fileUrl)))
+                            opened_track_filename = file;
+                            tracks = JSON.parse(file_reader.read(Qt.resolvedUrl(file)))
                             map.requestUpdate()
 
 
 
                         }
                     }
-                    onObjectAdded: recentFilesMenu.insertItem(index, object)
-                    onObjectRemoved: recentFilesMenu.removeItem(object)
+                    onObjectAdded: recentFilesMenu.insertAction(index, object)
+                    onObjectRemoved: recentFilesMenu.removeAction(object)
                 }
 
 
@@ -135,7 +143,7 @@ ApplicationWindow {
 
 
 
-            MenuItem {
+            Action {
                 //% "&Save"
                 text: qsTrId("main-file-menu-save")
                 shortcut: StandardKey.Save;
@@ -155,7 +163,7 @@ ApplicationWindow {
 
             }
 
-            MenuItem {
+            Action {
                 //% "Save &as..."
                 text: qsTrId("main-file-menu-save-as")
                 shortcut: StandardKey.SaveAs;
@@ -165,7 +173,7 @@ ApplicationWindow {
                 }
             }
 
-            MenuItem {
+            Action {
                 //% "Load &GFW"
                 text: qsTrId("main-file-menu-load-gfw");
                 onTriggered: {
@@ -174,7 +182,7 @@ ApplicationWindow {
                 }
             }
 
-            MenuItem {
+            Action {
                 //% "&Import"
                 text: qsTrId("main-file-menu-import")
                 onTriggered: {
@@ -183,7 +191,7 @@ ApplicationWindow {
                 }
             }
 
-            MenuItem {
+            Action {
                 //% "E&xport"
                 text: qsTrId("main-file-menu-export")
                 onTriggered: {
@@ -193,7 +201,7 @@ ApplicationWindow {
                 }
 
             }
-            MenuItem {
+            Action {
                 //% "E&xit"
                 text: qsTrId("main-file-menu-exit")
                 onTriggered: {
@@ -206,7 +214,7 @@ ApplicationWindow {
         Menu {
             //% "&Edit"
             title: qsTrId("main-edit-menu")
-            MenuItem {
+            Action {
                 //% "Clone"
                 text: qsTrId("main-menu-edit-clone")
                 onTriggered: {
@@ -214,7 +222,7 @@ ApplicationWindow {
                 }
                 shortcut: "Ctrl+C"
             }
-            MenuItem {
+            Action {
                 //% "Zoom to points"
                 text: qsTrId("main-menu-edit-zoom-to-points")
                 onTriggered: {
@@ -222,7 +230,7 @@ ApplicationWindow {
                 }
                 shortcut: "Ctrl+0"
             }
-            MenuItem {
+            Action {
                 //% "Zoom in"
                 text: qsTrId("main-menu-edit-zoom-in")
                 shortcut: StandardKey.ZoomIn;
@@ -230,7 +238,7 @@ ApplicationWindow {
                     map.zoomIn();
                 }
             }
-            MenuItem {
+            Action {
                 //% "Zoom out"
                 text: qsTrId("main-menu-edit-zoom-out")
                 shortcut: StandardKey.ZoomOut;
@@ -239,7 +247,7 @@ ApplicationWindow {
                 }
             }
 
-            MenuItem {
+            Action {
                 id: main_menu_edit_show_track_always
                 //% "Show track always"
                 text: qsTrId("main-menu-edit-show-track-always");
@@ -248,7 +256,7 @@ ApplicationWindow {
 
             }
 
-            MenuItem {
+            Action {
                 id: main_menu_edit_show_ruler
                 //% "Ruler"
                 text: qsTrId("main-menu-edit-ruler")
@@ -259,7 +267,7 @@ ApplicationWindow {
                 }
             }
 
-            MenuItem {
+            Action {
                 id: main_menu_edit_autocenter_point
                 //% "Automaticaly snap to center"
                 text: qsTrId("main-menu-edit-autocenter")
@@ -275,18 +283,18 @@ ApplicationWindow {
         Menu {
             //% "&Map"
             title: qsTrId("main-map-menu")
-            ExclusiveGroup {
+            ActionGroup {
                 id: mapTypeExclusive
             }
-            ExclusiveGroup {
+            ActionGroup {
                 id: mapTypeSecondaryExclusive
             }
 
-            MenuItem {
+            Action {
                 //% "&None"
                 text: qsTrId("main-map-menu-none")
                 checkable: true;
-                exclusiveGroup: mapTypeExclusive
+                ActionGroup.group: mapTypeExclusive
                 onTriggered: {
                     map.url = "";
                     map.url_subdomains = [];
@@ -296,11 +304,11 @@ ApplicationWindow {
                 shortcut: "Ctrl+1"
 
             }
-            MenuItem {
+            Action {
                 //% "&Local"
                 text: qsTrId("main-map-menu-local")
                 checkable: true;
-                exclusiveGroup: mapTypeExclusive
+                ActionGroup.group: mapTypeExclusive
                 onTriggered: {
                     setLocalPath();
                 }
@@ -329,11 +337,11 @@ ApplicationWindow {
                 }
 
             }
-            MenuItem {
+            Action {
                 //% "&OSM Mapnik"
                 text: qsTrId("main-map-menu-osm")
                 checkable: true;
-                exclusiveGroup: mapTypeExclusive
+                ActionGroup.group: mapTypeExclusive
                 onTriggered: {
                     map.url = "https://%(s)d.tile.openstreetmap.org/%(zoom)d/%(x)d/%(y)d.png";
                     map.url_subdomains = ['a','b', 'c'];
@@ -346,11 +354,11 @@ ApplicationWindow {
                 shortcut: "Ctrl+3"
 
             }
-            MenuItem {
+            Action {
                 //% "Google &Roadmap"
                 text: qsTrId("main-map-menu-google-roadmap")
                 checkable: true;
-                exclusiveGroup: mapTypeExclusive
+                ActionGroup.group: mapTypeExclusive
                 onTriggered: {
                     map.url = "https://%(s)d.google.com/vt/lyrs=m@248407269&hl=x-local&x=%(x)d&y=%(y)d&z=%(zoom)d&s=Galileo"
                     map.url_subdomains = ['mt0','mt1','mt2','mt3']
@@ -360,11 +368,11 @@ ApplicationWindow {
                 shortcut: "Ctrl+4"
             }
 
-            MenuItem {
+            Action {
                 //% "Google &Terrain"
                 text: qsTrId("main-map-menu-google-terrain")
                 checkable: true;
-                exclusiveGroup: mapTypeExclusive
+                ActionGroup.group: mapTypeExclusive
                 onTriggered: {
                     map.url = "https://%(s)d.google.com/vt/lyrs=t,r&x=%(x)d&y=%(y)d&z=%(zoom)d"
                     map.url_subdomains = ['mt0','mt1','mt2','mt3']
@@ -374,10 +382,10 @@ ApplicationWindow {
                 shortcut: "Ctrl+5"
             }
 
-            MenuItem {
+            Action {
                 //% "Google &Satellite"
                 text: qsTrId("main-map-menu-google-satellite")
-                exclusiveGroup: mapTypeExclusive
+                ActionGroup.group: mapTypeExclusive
                 checkable: true;
                 onTriggered: {
                     map.url = 'https://%(s)d.google.com/vt/lyrs=s&x=%(x)d&y=%(y)d&z=%(zoom)d';
@@ -388,10 +396,10 @@ ApplicationWindow {
                 shortcut: "Ctrl+6"
             }
 
-            MenuItem {
+            Action {
                 //% "Google &Hybrid"
                 text: qsTrId("main-map-menu-google-hybrid-tile-layer")
-                exclusiveGroup: mapTypeExclusive
+                ActionGroup.group: mapTypeExclusive
                 checkable: true;
                 onTriggered: {
                     map.url = 'https://%(s)d.google.com/vt/lyrs=s,h&x=%(x)d&y=%(y)d&z=%(zoom)d';
@@ -402,10 +410,10 @@ ApplicationWindow {
                 shortcut: "Ctrl+7"
             }
 
-            MenuItem {
+            Action {
                 //% "Custom tile layer"
                 text: qsTrId("main-map-menu-custom-tile-layer")
-                exclusiveGroup: mapTypeExclusive
+                ActionGroup.group: mapTypeExclusive
                 checkable: true;
                 onTriggered: {
                     mapurl_dialog.open();
@@ -416,14 +424,14 @@ ApplicationWindow {
                 shortcut: "Ctrl+8"
             }
 
-            MenuItem {
+            Action {
                 //% "Databáze letišť"
                 text: qsTrId("main-map-menu-dl-map")
-                exclusiveGroup: mapTypeExclusive
+                ActionGroup.group: mapTypeExclusive
                 checkable: true;
                 property string homePath: QStandardPathsHomeLocation+"/Maps/DL/"
                 property string binPath: QStandardPathsApplicationFilePath +"/../Maps/DL/"
-                visible: file_reader.is_dir_and_exists_local(binPath) || file_reader.is_dir_and_exists_local(homePath)
+                enabled: file_reader.is_dir_and_exists_local(binPath) || file_reader.is_dir_and_exists_local(homePath)
                 onTriggered: {
 
                     map.url_subdomains = [];
@@ -447,10 +455,10 @@ ApplicationWindow {
             }
 
 
-            MenuItem {
+            Action {
                 //% "Airspace Off"
                 text: qsTrId("main-map-menu-airspace-off")
-                exclusiveGroup: mapTypeSecondaryExclusive
+                ActionGroup.group: mapTypeSecondaryExclusive
                 checkable: true;
                 checked: true;
                 onTriggered: {
@@ -460,10 +468,10 @@ ApplicationWindow {
                 }
             }
 
-            MenuItem {
+            Action {
                 //% "Airspace (skylines.aero)"
                 text: qsTrId("main-map-menu-airspace-prosoar")
-                exclusiveGroup: mapTypeSecondaryExclusive
+                ActionGroup.group: mapTypeSecondaryExclusive
                 checkable: true;
                 onTriggered: {
                     map.airspaceUrl = "https://skylines.aero/mapproxy/tiles/1.0.0/airspace+airports/EPSG3857/%(zoom)d/%(x)d/%(y)d.png"
@@ -472,10 +480,10 @@ ApplicationWindow {
                 }
             }
 
-            MenuItem {
+            Action {
                 //% "Airspace (local)"
                 text: qsTrId("main-map-menu-airspace-local")
-                exclusiveGroup: mapTypeSecondaryExclusive
+                ActionGroup.group: mapTypeSecondaryExclusive
                 checkable: true;
                 onTriggered: {
                     setLocalPath();
@@ -504,7 +512,7 @@ ApplicationWindow {
             }
 
 
-            MenuItem {
+            Action {
                 id: loadGfwMenuItem
                 //% "Show &gfw image"
                 text: qsTrId("main-map-menu-gfw")
@@ -527,7 +535,7 @@ ApplicationWindow {
         Menu {
             //% "&Help"
             title: qsTrId("main-help-menu")
-            MenuItem {
+            Action {
                 //% "&About"
                 text: qsTrId("main-help-menu-about")
                 onTriggered: {
@@ -547,8 +555,7 @@ ApplicationWindow {
 
         Rectangle {
             clip:true;
-            height: parent.height
-            width: parent.width/2;
+            SplitView.preferredWidth: parent.width/2
 
             PinchMap {
                 id: map;
@@ -577,7 +584,7 @@ ApplicationWindow {
         CupTextData {
             id: cupTextDataTabs;
             tracksData: tracks
-            width: parent.width/2;
+            SplitView.preferredWidth: parent.width/2
             height: parent.height
             mapCenterLat: map.latitude
             mapCenterLon: map.longitude
@@ -689,52 +696,53 @@ ApplicationWindow {
 
     }
 
-    MessageDialog {
+    Platform.MessageDialog {
         id: errorDialog;
         //% "Error"
         title: qsTrId("error-dialog")
-        icon: StandardIcon.Critical;
+        
         onAccepted: {
             Qt.quit();
         }
     }
 
-    FileDialog {
+    Platform.FileDialog {
         id: loadFileDialog;
         nameFilters: [
             "Laa Editor data file (*.json)"
         ]
         onAccepted: {
             document_changed = false;
-            opened_track_filename = fileUrl;
-            tracks = JSON.parse(file_reader.read(Qt.resolvedUrl(fileUrl)))
+            opened_track_filename = file;
+            tracks = JSON.parse(file_reader.read(Qt.resolvedUrl(file)))
             map.requestUpdate()
-            recentlyOpenedFiles.tryAppend(String(fileUrl))
+            recentlyOpenedFiles.tryAppend(String(file))
         }
     }
 
-    FileDialog {
+    Platform.FileDialog {
         id: saveFileDialog;
         nameFilters: [
             "Laa Editor data file (*.json)",
             "All files (*)"
         ]
+        defaultSuffix: "json"
 
-        selectExisting: false;
+        fileMode: Platform.FileDialog.SaveFile
         property var action; // function called
 
         onAccepted: {
             document_changed = false;
-            if (selectedNameFilterExtensions === "*.json") {
-                if (String(fileUrl).match(/\.json$/)) {
-                    opened_track_filename = fileUrl;
+            if (currentFile.toString().endsWith(".json")) {
+                if (String(file).match(/\.json$/)) {
+                    opened_track_filename = file;
                 } else {
-                    // FIXME: the overwrite is checked per fileUrl, but not fileUrl + suffix
+                    // FIXME: the overwrite is checked per file, but not file + suffix
                     console.log("warning overwrite is not checked")
-                    opened_track_filename = fileUrl + ".json";
+                    opened_track_filename = file + ".json";
                 }
             } else {
-                opened_track_filename = fileUrl
+                opened_track_filename = file
             }
 
 
@@ -757,29 +765,28 @@ ApplicationWindow {
 
         property var action; // function called on discard and after save (i.e. exit or new)
 
-        standardButtons: StandardButton.Save | StandardButton.Discard | StandardButton.Cancel;
-        onAccepted: {
+        buttons: MessageDialog.Save | MessageDialog.Discard | MessageDialog.Cancel;
+        onButtonClicked: (button, role) => {
+            if (button === MessageDialog.Save) {
+                if (opened_track_filename === "") {
+                    saveFileDialog.action = action;
+                    saveFileDialog.open()
+                    return;
+                }
+                console.log("writting " + opened_track_filename)
+                file_reader.write(Qt.resolvedUrl(opened_track_filename), JSON.stringify(tracks));
+                storeTrackSettings_with_dir_check(Qt.resolvedUrl(tucekSettingsCSV));
 
-            if (opened_track_filename === "") {
-                saveFileDialog.action = action;
-                saveFileDialog.open()
-                return;
+                action();
+            } else if (button === MessageDialog.Discard) {
+                action();
             }
-            console.log("writting " + opened_track_filename)
-            file_reader.write(Qt.resolvedUrl(opened_track_filename), JSON.stringify(tracks));
-            storeTrackSettings_with_dir_check(Qt.resolvedUrl(tucekSettingsCSV));
-
-            action();
-        }
-
-        onDiscard: {
-            action();
         }
     }
 
 
 
-    FileDialog {
+    Platform.FileDialog {
         id: importFileDialog
         nameFilters: [
             "Any supported format (*.cup *.gpx *.kml *.igc)",
@@ -791,25 +798,25 @@ ApplicationWindow {
         ]
 
         onAccepted: {
-            var str = String(fileUrl);
+            var str = String(file);
             if (str.match(/\.cup$/i)) {
-                importCup(fileUrl);
+                importCup(file);
             } else if (str.match(/\.kml$/i)) {
-                importKml(fileUrl)
+                importKml(file)
             } else if (str.match(/\.gpx$/i)) {
-                importGpx(fileUrl)
+                importGpx(file)
             } else if (str.match(/\.igc$/i)) {
-                importIgc(fileUrl)
+                importIgc(file)
             } else {
-                console.error("unsupported file format (please rename file): " + fileUrl)
+                console.error("unsupported file format (please rename file): " + file)
             }
         }
 
     }
 
-    FileDialog {
+    Platform.FileDialog {
         id: exportFileDialog;
-        selectExisting: false;
+        fileMode: Platform.FileDialog.SaveFile
 
         nameFilters: [
             "Keyhole Markup Language (*.kml)",
@@ -819,22 +826,22 @@ ApplicationWindow {
             "HTML Table (*.html)",
         ]
         onAccepted: {
-            console.log("Export: " + exportFileDialog.selectedNameFilterIndex + " " + exportFileDialog.selectedNameFilter + " " + fileUrl)
+            console.log("Export: " + exportFileDialog.selectedNameFilterIndex + " " + exportFileDialog.selectedNameFilter + " " + file)
             switch(exportFileDialog.selectedNameFilterIndex) {
             case 0:
-                exportKml(fileUrl);
+                exportKml(file);
                 break;
             case 1:
-                exportGpx(fileUrl);
+                exportGpx(file);
                 break;
             case 2:
-                exportGpxRoute(fileUrl);
+                exportGpxRoute(file);
                 break;
             case 3:
-                exportCup(fileUrl);
+                exportCup(file);
                 break;
             case 4:
-                exportHtmlTable(fileUrl);
+                exportHtmlTable(file);
                 break;
             default:
                 console.error("unsupported file format (please add file extension)" + exportFileDialog.selectedNameFilter)
@@ -867,7 +874,7 @@ ApplicationWindow {
         function tryAppend(url) {
             for (var i = 0; i < count; i++) {
                 var item = get(i);
-                if (item.fileUrl === url) {
+                if (item.file === url) {
                     remove(i);
                 }
             }
@@ -875,7 +882,7 @@ ApplicationWindow {
                 remove(0);
             }
 
-            recentlyOpenedFiles.append({"fileUrl": url})
+            recentlyOpenedFiles.append({"file": url})
         }
 
         function jsonGet() {
@@ -883,7 +890,7 @@ ApplicationWindow {
 
             for (var i = 0; i < count; i++) {
                 var item = get(i);
-                arr.push(item.fileUrl)
+                arr.push(item.file)
             }
 
             return JSON.stringify(arr);
@@ -895,7 +902,7 @@ ApplicationWindow {
             for (var i = 0; i < data.length; i++) {
                 var fn = data[i];
                 if (file_reader.file_exists(fn)) {
-                    recentlyOpenedFiles.append({"fileUrl": fn})
+                    recentlyOpenedFiles.append({"file": fn})
                 }
             }
         }
@@ -1442,7 +1449,8 @@ ApplicationWindow {
 
                     str += "<tr>";
                     str += "<td>" + F.addSlashes(pt.name) + "</td>";
-                    str += "<td>" + displayAngle + "°</td>";
+//                    str += "<td>" + displayAngle + "°</td>";
+                    str += "<td></td>";
                     str += "<td>" + displayDistance + "</td>";
                     str += "<td>" + displayCumulativeDistance + "</td>";
                     str += "<td>" + displayAddTime + "</td>";

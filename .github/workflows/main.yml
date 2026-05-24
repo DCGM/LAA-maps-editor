@@ -1,42 +1,35 @@
 name: Build
-
 on: [push]
-
-
 jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [windows-latest]
-        version: ['5.15.2']
+        version: ['6.8.1']
     steps:
-    - uses: actions/checkout@v1
-
+    - uses: actions/checkout@v4
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
         version: ${{ matrix.version }}
         host: 'windows'
         target: 'desktop'
-        arch: 'win64_msvc2019_64'
+        arch: 'win64_msvc2022_64'
 #        modules: 'qtwebengine'
         tools: 'tools_opensslv3_x64,qt.tools.opensslv3.win_x64'
-
     - name: Build
       if: startsWith(matrix.os, 'windows')
       run: |
-        call "%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+        call "%programfiles%\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
         mkdir build
         cd build
-        cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.15.2\msvc2019_64" -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_BUILD_TYPE=RELEASE -DDEPLOY_QT_LIBRARIES=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+        cmake -DCMAKE_PREFIX_PATH="C:\Qt\6.8.1\msvc2022_64" -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_BUILD_TYPE=RELEASE -DDEPLOY_QT_LIBRARIES=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
         cmake --build . --config Release
         ctest -C Release .
         cp *.qm ./Release
         for /R c:\Qt\Tools\OpenSSL %%f in (*.dll) do copy %%f "%CD%\Release"
       shell: cmd
-
-
     - name: Archive build results
       uses: actions/upload-artifact@v4
       with:

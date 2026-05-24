@@ -26,27 +26,23 @@
 void myMessageHandler(QtMsgType type, const QMessageLogContext& context,
     const QString& msg)
 {
+    const QDateTime now = []() {
+        const QDateTime local = QDateTime::currentDateTime();
+        return local.toOffsetFromUtc(local.offsetFromUtc());
+    }();
+
     QString txt;
 
-    QDateTime now = QDateTime::currentDateTime();
-    int offset = now.offsetFromUtc();
-    now.setOffsetFromUtc(offset);
-
 #if defined(Q_OS_LINUX)
-    if (!QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation))
-             .exists()) {
-        QDir().mkpath(
-            QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
-    }
-    QFile outFile(
-        QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QDir::separator() + "editor.log");
-#elif (defined(Q_OS_WIN) || defined(Q_OS_WIN32) || defined(Q_OS_WIN64))
+    const QString logDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    if (!QDir(logDir).exists())
+        QDir().mkpath(logDir);
+    QFile outFile(logDir + QDir::separator() + "editor.log");
+#elif defined(Q_OS_WIN) || defined(Q_OS_WIN32) || defined(Q_OS_WIN64)
     QFile outFile("editor.log");
 #else
-    QFile outfile("editor.log");
+    QFile outFile("editor.log");
 #endif
-    outFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text);
-    QTextStream ts(&outFile);
 
     QTextStream std_out(stdout, QIODevice::WriteOnly);
     QTextStream std_err(stderr, QIODevice::WriteOnly);
@@ -59,7 +55,7 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context,
                   .arg(context.line)
                   .arg(context.function)
                   .arg(msg);
-        std_out << txt << endl;
+        std_out << txt << Qt::endl;
         break;
     case QtWarningMsg:
         txt = QString("%1 [W]: %2:%3 @ %4(): %5")
@@ -68,7 +64,7 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context,
                   .arg(context.line)
                   .arg(context.function)
                   .arg(msg);
-        std_out << txt << endl;
+        std_out << txt << Qt::endl;
         break;
     case QtCriticalMsg:
         txt = QString("%1 [C]: %2:%3 @ %4(): %5")
@@ -77,7 +73,7 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context,
                   .arg(context.line)
                   .arg(context.function)
                   .arg(msg);
-        std_err << txt << endl;
+        std_err << txt << Qt::endl;
         break;
     case QtFatalMsg:
         txt = QString("%1 [F]: %2:%3 @ %4(): %5")
@@ -86,7 +82,7 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context,
                   .arg(context.line)
                   .arg(context.function)
                   .arg(msg);
-        std_err << txt << endl;
+        std_err << txt << Qt::endl;
         abort();
     default:
         txt = QString("%1 [O]: %2:%3 @ %4(): %5")
@@ -95,12 +91,17 @@ void myMessageHandler(QtMsgType type, const QMessageLogContext& context,
                   .arg(context.line)
                   .arg(context.function)
                   .arg(msg);
-        std_err << txt << endl;
+        std_err << txt << Qt::endl;
         break;
     }
-    ts << txt << endl;
 
-    outFile.close();
+    if (!outFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+        std_err << "Failed to open log file: " << outFile.errorString() << Qt::endl;
+    } else {
+        QTextStream ts(&outFile);
+        ts << txt << Qt::endl;
+        outFile.close();
+    }
 }
 
 int main(int argc, char* argv[])
@@ -111,9 +112,9 @@ int main(int argc, char* argv[])
     return quick_test_main(argc, argv, "atest-editor", QUICK_TEST_SOURCE_DIR);
 #else
 
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
+    QObject::connect(&engine, &QQmlApplicationEngine::quit, &app, &QGuiApplication::quit);
 
     app.setOrganizationName("Brno University of Technology");
     app.setOrganizationDomain("fit.vutbr.cz");
@@ -142,16 +143,12 @@ int main(int argc, char* argv[])
     QTranslator translator;
     QTranslator qtbasetranslator;
 
-    if (translator.load(QLocale(), QLatin1String("editor"), QLatin1String("_"),
-            QLatin1String("."))) {
+    if (translator.load(QLocale(), QLatin1String("editor"), QLatin1String("_"), QLatin1String("."))) {
         app.installTranslator(&translator);
-        engine.rootContext()->setContextProperty("localeBcp",
-            QLocale::system().bcp47Name());
-    } else if (translator.load(QLocale(), QLatin1String("editor"),
-                   QLatin1String("_"),
-                   QString(QLibraryInfo::TranslationsPath))) {
-        qDebug() << QLibraryInfo::location(QLibraryInfo::TranslationsPath)
-                 << QLocale::system().bcp47Name();
+        engine.rootContext()->setContextProperty("localeBcp", QLocale::system().bcp47Name());
+    } else if (translator.load(QLocale(), QLatin1String("editor"), QLatin1String("_"), QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
+        qDebug() << QLibraryInfo::path(QLibraryInfo::TranslationsPath) << QLocale::system().bcp47Name();
+
         app.installTranslator(&translator);
         engine.rootContext()->setContextProperty("localeBcp",
             QLocale::system().bcp47Name());
@@ -159,9 +156,7 @@ int main(int argc, char* argv[])
         qDebug() << "translation.load() failed - falling back to English";
         if (translator.load(QLatin1String("editor_en_US"), "./")) {
             app.installTranslator(&translator);
-        } else if (translator.load(
-                       QLatin1String("editor_en_US"),
-                       QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+        } else if (translator.load(QLatin1String("editor_en_US"), QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
             app.installTranslator(&translator);
         }
 
@@ -202,9 +197,10 @@ int main(int argc, char* argv[])
 
     QObject* topLevel = engine.rootObjects().value(0);
     QQuickWindow* window = qobject_cast<QQuickWindow*>(topLevel);
-
-    window->setIcon(QIcon(":/images/editor64.png"));
-    window->show();
+    if (window) {
+        window->setIcon(QIcon(":/images/editor64.png"));
+        window->show();
+    }
     return app.exec();
 #endif
 }

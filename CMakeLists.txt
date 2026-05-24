@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.16)
 
 project(editor LANGUAGES CXX)
 
@@ -8,7 +8,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
@@ -19,8 +19,7 @@ include(FeatureSummary)
 enable_testing()
 
 find_package(Git QUIET REQUIRED)
-find_package(Qt5QuickTest REQUIRED)
-
+find_package(Qt6 COMPONENTS QuickTest REQUIRED)
 
 execute_process(COMMAND
   "${GIT_EXECUTABLE}" describe --dirty --broken --always --tags
@@ -31,8 +30,7 @@ execute_process(COMMAND
 
 add_definitions( -DGIT_VERSION="${GIT_VERSION}" )
 
-find_package(Qt5 COMPONENTS Core Quick Xml LinguistTools REQUIRED)
-find_package(Qt5QuickCompiler)
+find_package(Qt6 COMPONENTS Core Quick Xml LinguistTools REQUIRED)
 
 SET(RESOURCES editor.qrc)
 
@@ -72,12 +70,12 @@ set_target_properties(atest-editor PROPERTIES COMPILE_DEFINITIONS RUN_TESTS=1)
 
 
 
-QT5_ADD_TRANSLATION(QM_FILES ${TS_FILES}
+qt6_add_translation(QM_FILES ${TS_FILES}
     OPTIONS "-idbased")
 add_custom_target(translations DEPENDS ${QM_FILES})
 add_dependencies(editor translations)
 
-QT5_CREATE_TRANSLATION(QT_FILES "${CMAKE_SOURCE_DIR}"
+qt6_create_translation(QT_FILES "${CMAKE_SOURCE_DIR}"
     OPTIONS "-no-obsolete")
 
 install(FILES ${QM_FILES}
@@ -95,12 +93,12 @@ install(TARGETS editor RUNTIME
 target_compile_definitions(editor
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(editor
-  PRIVATE Qt5::Core Qt5::Quick Qt5::Xml)
+  PRIVATE Qt6::Core Qt6::Quick Qt6::Xml)
 
 target_compile_definitions(atest-editor
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(atest-editor
-  PRIVATE Qt5::Core Qt5::Quick Qt5::Xml Qt5::QuickTest)
+  PRIVATE Qt6::Core Qt6::Quick Qt6::Xml Qt6::QuickTest)
 
 
 

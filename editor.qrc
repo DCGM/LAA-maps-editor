@@ -18,8 +18,6 @@
         <file>src/qml/components/ShadowElement.qml</file>
         <file>src/qml/components/WorldFileImage.qml</file>
         <file>src/qml/components/Waypoint.qml</file>
-        <file>src/qml/components/NativeText.qml</file>
-        <file>src/qml/components/NativeTextInput.qml</file>
         <file>src/qml/components/TextFieldNumber.qml</file>
         <file>src/qml/components/Ruler.qml</file>
         <file>src/qml/GFWDialog.qml</file>

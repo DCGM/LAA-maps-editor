@@ -1,5 +1,5 @@
-import QtQuick 2.12
-import QtQuick.Controls 2.12
+import QtQuick
+import QtQuick.Controls
 import "functions.js" as F
 import "./components"
 
@@ -95,7 +95,7 @@ ApplicationWindow {
         anchors.margins: 10;
         spacing: 5;
         columns: 2;
-        NativeText {
+        Text {
             //% "Time gate max score [points]"
             text: qsTrId("props-detail-tg-max-score")
         }
@@ -103,7 +103,7 @@ ApplicationWindow {
             id: tg_max_score_textfield
         }
 
-        NativeText {
+        Text {
             //% "Time gate tolerance [sec]"
             text: qsTrId("props-detail-tg-tolerance")
         }
@@ -111,7 +111,7 @@ ApplicationWindow {
             id: tg_tolerance_textfield;
         }
 
-        NativeText {
+        Text {
             //% "Time gate penalty [points per sec]"
             text: qsTrId("props-detail-tg-penalty")
         }
@@ -119,7 +119,7 @@ ApplicationWindow {
             id: tg_penalty_textfield
         }
 
-        NativeText {
+        Text {
             //% "Space gate max score [points]"
             text: qsTrId("props-detail-sg-max-score")
         }
@@ -128,7 +128,7 @@ ApplicationWindow {
             id: sg_max_score_textfield
         }
 
-        NativeText {
+        Text {
             //% "Turn point max score [points]"
             text: qsTrId("props-detail-tp-max-score")
         }
@@ -137,7 +137,7 @@ ApplicationWindow {
             id: tp_max_score_textfield
         }
 
-        NativeText {
+        Text {
             //% "Marker max score [points]"
             text: qsTrId("props-detail-marker-max-score")
         }
@@ -145,7 +145,7 @@ ApplicationWindow {
             id: marker_max_score_textfield
         }
 
-        NativeText {
+        Text {
             //% "Photos max score [points]"
             text: qsTrId("props-detail-photos-max-score")
         }
@@ -153,7 +153,7 @@ ApplicationWindow {
             id: photos_max_score_textfield
         }
 
-        NativeText {
+        Text {
             //% "Time window size [sec]"
             text: qsTrId("props-detail-time-window-size")
         }
@@ -161,7 +161,7 @@ ApplicationWindow {
             id: time_window_size_textfield
         }
 
-        NativeText {
+        Text {
             //% "Time window penalty [%]"
             text: qsTrId("props-detail-time-window-penalty")
         }
@@ -169,7 +169,7 @@ ApplicationWindow {
             id: time_window_penalty_textfield
         }
 
-        NativeText {
+        Text {
             //% "Altitude penalty [points per meter]"
             text: qsTrId("props-detail-alt-penalty")
         }
@@ -177,7 +177,7 @@ ApplicationWindow {
             id: alt_penalty_textfield
         }
 
-        NativeText {
+        Text {
             //% "Gyre penalty [%]"
             text: qsTrId("props-detail-gyre-penalty")
         }
@@ -185,7 +185,7 @@ ApplicationWindow {
             id: gyre_penalty_textfield
         }
 
-        NativeText {
+        Text {
             //% "Oposite direction penalty [%]"
             text: qsTrId("props-detail-oposite-direction-penalty")
         }
@@ -193,7 +193,7 @@ ApplicationWindow {
             id: oposite_direction_penalty_textfield
         }
 
-        NativeText {
+        Text {
             //% "Out of sector pentaly [%]"
             text: qsTrId("props-detail-out-of-sector-penalty")
         }
@@ -203,7 +203,7 @@ ApplicationWindow {
         }
 
 
-        NativeText {
+        Text {
             //% "Speed max score [points]"
             text: qsTrId("props-detail-speed-max-score")
         }
@@ -212,7 +212,7 @@ ApplicationWindow {
         }
 
 
-        NativeText {
+        Text {
             //% "Speed penalty [points per km/h]"
             text: qsTrId("props-detail-speed-penalty")
         }
@@ -220,7 +220,7 @@ ApplicationWindow {
             id: speed_penalty_textfield
         }
 
-        NativeText {
+        Text {
             //% "Speed tolerance [km/h]"
             text: qsTrId("props-detail-speed-tolerance")
         }
@@ -228,7 +228,7 @@ ApplicationWindow {
             id: speed_tolerance_textfield
         }
 
-        NativeText {
+        Text {
             //% "Preparation time [hh:mm:ss]"
             text: qsTrId("props-detail-preparation-time");
         }
@@ -236,7 +236,7 @@ ApplicationWindow {
             id: preparation_time_textfield
             property string seconds
             text: F.addTimeStrFormat(seconds);
-            validator: RegExpValidator { regExp: /^(\d+):(\d+):(\d+)$/; }
+            validator: RegularExpressionValidator { regularExpression: /^(\d+):(\d+):(\d+)$/; }
 
 
 
@@ -282,7 +282,7 @@ ApplicationWindow {
         columns: 2;
 
 
-        NativeText {
+        Text {
             //% "Radius [m]"
             text: qsTrId("props-detail-default_radius")
         }
@@ -292,7 +292,7 @@ ApplicationWindow {
         }
 
 
-        NativeText {
+        Text {
             //% "Minimum Altitude [m]"
             text: qsTrId("props-detail-default_alt_min")
         }
@@ -301,7 +301,7 @@ ApplicationWindow {
             id: default_alt_min_textfield
         }
 
-        NativeText {
+        Text {
             //% "Maximum Altitude [m]"
             text: qsTrId("props-detail-default_alt_max")
         }
@@ -311,7 +311,7 @@ ApplicationWindow {
         }
 
 
-        NativeText {
+        Text {
             //% "Flags"
             text: qsTrId("props-detail-default_flags")
         }
@@ -324,7 +324,7 @@ ApplicationWindow {
         }
 
 
-        NativeText { text: " " }
+        Text { text: " " }
         CheckBox {
             id: tp_cb;
             //% "Turn Point"
@@ -332,7 +332,7 @@ ApplicationWindow {
             onCheckedChanged: updateDefaultFlagsIndex(0, checked);
         }
 
-        NativeText { text: " " }
+        Text { text: " " }
         CheckBox {
             id: tg_cb;
             //% "Time gate"
@@ -340,7 +340,7 @@ ApplicationWindow {
             onCheckedChanged: updateDefaultFlagsIndex(1, checked);
         }
 
-        NativeText { text: " " }
+        Text { text: " " }
         CheckBox {
             id: sg_cb;
             //% "Space gate"
@@ -349,7 +349,7 @@ ApplicationWindow {
         }
 
 
-        NativeText { text: " " }
+        Text { text: " " }
         CheckBox {
             id: alt_min_cb;
             //% "Altitude min"
@@ -357,7 +357,7 @@ ApplicationWindow {
             onCheckedChanged: updateDefaultFlagsIndex(3, checked);
         }
 
-        NativeText { text: " " }
+        Text { text: " " }
 
         CheckBox {
             id: alt_max_cb;
@@ -367,7 +367,7 @@ ApplicationWindow {
         }
 
 
-        NativeText { text: " " }
+        Text { text: " " }
         CheckBox {
             id: section_speed_start_cb;
             //% "Section speed start"
@@ -375,7 +375,7 @@ ApplicationWindow {
             onCheckedChanged: updateDefaultFlagsIndex(7, checked);
         }
 
-        NativeText { text: " " }
+        Text { text: " " }
         CheckBox {
             id: section_speed_end_cb;
             //% "Section speed end"
@@ -383,7 +383,7 @@ ApplicationWindow {
             onCheckedChanged: updateDefaultFlagsIndex(8, checked);
         }
 
-        NativeText { text: " " }
+        Text { text: " " }
         CheckBox {
             id: section_alt_start_cb;
             //% "Section alt start"
@@ -391,7 +391,7 @@ ApplicationWindow {
             onCheckedChanged: updateDefaultFlagsIndex(9, checked);
         }
 
-        NativeText { text: " " }
+        Text { text: " " }
         CheckBox {
             id: section_alt_end_cb;
             //% "Section alt end"
@@ -399,7 +399,7 @@ ApplicationWindow {
             onCheckedChanged: updateDefaultFlagsIndex(10, checked);
         }
 
-        NativeText { text: " " }
+        Text { text: " " }
         CheckBox {
             id: section_space_start_cb;
             //% "Section space start"
@@ -407,7 +407,7 @@ ApplicationWindow {
             onCheckedChanged: updateDefaultFlagsIndex(11, checked);
         }
 
-        NativeText { text: " " }
+        Text { text: " " }
         CheckBox {
             id: section_space_end_cb;
             //% "Section space end"
@@ -418,7 +418,7 @@ ApplicationWindow {
 
 
 
-        NativeText { text: " "; visible: false;}
+        Text { text: " "; visible: false;}
         CheckBox {
             visible: false;
             id: secret_turn_point_cb;
@@ -427,7 +427,7 @@ ApplicationWindow {
             onCheckedChanged: updateDefaultFlagsIndex(13, checked);
         }
 
-        NativeText { text: " ";  visible: false; }
+        Text { text: " ";  visible: false; }
         CheckBox {
             visible: false;
             id: secret_time_gate_cb;
@@ -436,7 +436,7 @@ ApplicationWindow {
             onCheckedChanged: updateDefaultFlagsIndex(14, checked);
         }
 
-        NativeText { text: " ";  visible: false; }
+        Text { text: " ";  visible: false; }
         CheckBox {
             visible: false;
             id: secret_space_gate_cb;
